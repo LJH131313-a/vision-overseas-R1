@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>政策原文 | 远见·企业出海助手 R1</title>
+<meta name="description" content="新加坡法规原始 PDF 归档：官方参考、版本标记与 SHA-256 哈希校验。">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../css/styles.css">
+<style>
+  .doc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;margin-top:14px}
+  .doc-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;box-shadow:0 6px 18px rgba(24,59,78,.05);display:flex;flex-direction:column;gap:8px}
+  .doc-card h3{margin:0;font-size:15.5px;line-height:1.45}
+  .doc-meta{font-size:12.5px;color:var(--muted);display:grid;gap:3px}
+  .doc-meta b{color:var(--ink);font-weight:640}
+  .hash{font-family:ui-monospace,Consolas,monospace;font-size:11px;word-break:break-all;background:var(--mint-2);border-radius:6px;padding:6px 8px;color:var(--green-2)}
+  .doc-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:auto}
+  .badge-ok{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;color:var(--ok);background:var(--ok-bg);border:1px solid #bfe0cd;border-radius:999px;padding:2px 10px}
+</style>
+</head>
+<body class="subpage">
+<div class="sub-wrap">
+  <header class="page-title">
+    <div>
+      <p class="eyebrow">政策原文归档 · 新加坡（SG）</p>
+      <h1>法规原始 PDF 与哈希校验</h1>
+    </div>
+    <a class="btn sec sm" href="../index.html">← 返回工作台</a>
+  </header>
+
+  <div class="banner info">以下是<b>原始字节未改动</b>的官方法规 PDF 归档，每份均经 SHA-256 与文件大小校验（校验结果为构建时实测）。<b>归档 ≠ 全文已结构化，也 ≠ 新增规则已生效</b>：规则引擎仍以数据包中已核条款为准；PDF 供人工核对原文使用。版本标记为合并文本自带的生效标注，未重新从官方站点下载比对哈希。</div>
+
+  <div class="doc-grid" id="docGrid"></div>
+
+  <div class="card" style="margin-top:18px">
+    <h3>使用边界</h3>
+    <p class="subhint">· 打开 PDF 即为原始文件浏览器预览；「官方参考」跳转新加坡成文法（SSO）对应页面，用于核对最新版本。</p>
+    <p class="subhint">· 归档哈希用于确认“这份文件就是当初核验的那份”；不能证明法规当前仍然有效——请结合官方参考页与主管机关公告确认。</p>
+  </div>
+</div>
+<script src="../data/policy-docs.js"></script>
+<script>
+(function () {
+  var IDX = window.VO_POLICY_DOCS || [];
+  var grid = document.getElementById('docGrid');
+  IDX.forEach(function (d) {
+    var card = document.createElement('div');
+    card.className = 'doc-card';
+    var h = document.createElement('h3');
+    h.textContent = d.title;
+    card.appendChild(h);
+    var meta = document.createElement('div');
+    meta.className = 'doc-meta';
+    function row(k, v) {
+      var p = document.createElement('div');
+      var b = document.createElement('b'); b.textContent = k + '：';
+      p.appendChild(b); p.appendChild(document.createTextNode(v));
+      meta.appendChild(p);
+    }
+    row('版本标记', d.version_marker);
+    row('归档来源', d.provenance);
+    row('核验说明', d.verification);
+    row('文件大小', d.size_bytes.toLocaleString('zh-CN') + ' 字节');
+    card.appendChild(meta);
+    var hash = document.createElement('div');
+    hash.className = 'hash';
+    hash.textContent = 'SHA-256 ' + d.sha256;
+    card.appendChild(hash);
+    var ok = document.createElement('span');
+    ok.className = 'badge-ok';
+    ok.textContent = '✓ 哈希与大小校验通过（构建时实测）';
+    card.appendChild(ok);
+    var actions = document.createElement('div');
+    actions.className = 'doc-actions';
+    var open = document.createElement('a');
+    open.className = 'btn sm';
+    open.href = '../' + d.path;
+    open.target = '_blank'; open.rel = 'noopener noreferrer';
+    open.textContent = '打开 PDF 原文';
+    actions.appendChild(open);
+    var ref = document.createElement('a');
+    ref.className = 'btn sec sm';
+    ref.href = d.official_reference;
+    ref.target = '_blank'; ref.rel = 'noopener noreferrer';
+    ref.textContent = '官方参考 ↗';
+    actions.appendChild(ref);
+    card.appendChild(actions);
+    grid.appendChild(card);
+  });
+  if (!IDX.length) grid.textContent = '暂无归档记录。';
+})();
+</script>
+</body>
+</html>

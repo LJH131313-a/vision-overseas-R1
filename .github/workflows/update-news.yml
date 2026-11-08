@@ -3,12 +3,6 @@ name: 更新新闻快照
 # 定时更新（非实时监控）：北京时间约 09:17 与 17:17（UTC 01:17 / 09:17）
 # 手动运行：仓库 Actions 页选择本工作流 → Run workflow
 on:
-  push:
-    branches: [main]
-    paths:
-      - .github/workflows/update-news.yml
-      - tools/collect_news.py
-      - news/feeds.json
   schedule:
     - cron: '17 1 * * *'
     - cron: '17 9 * * *'

@@ -81,7 +81,7 @@
    }
   ],
   "allFailed": false,
-  "snapshotNote": "定时采集快照；来源为政府官方 RSS/Atom 公告。",
+  "snapshotNote": "定时采集快照；来源为政府官方 RSS/Atom 公告。；已按 URL 合并 PolicyRadar 交接快照（2026-11-05），去重不重复。",
   "feedsConfigured": 11,
   "maxItems": 1200,
   "maxAgeDays": 240

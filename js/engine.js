@@ -262,7 +262,9 @@
 
   function taxProfileFor(data, input) {
     var legacy = input.product_type || '';
-    var hs = String(input.hs_candidate || '').replace(/\./g, '');
+    // UI 保存候选记录 ID；直接调用仍支持 HS 编码。
+    var candidate = (data.hsCandidates || []).find(function (c) { return c.id === input.hs_candidate && c.market === input.market; });
+    var hs = String(candidate ? candidate.code : (input.hs_candidate || '')).replace(/\./g, '');
     var date = input.import_date || SNAPSHOT_DATE;
     return data.taxProfiles.find(function (row) {
       return row.market === input.market
@@ -280,7 +282,7 @@
     if (!input.origin) blockers.push('缺少原产地，不能确认税率情景。');
     if (!validNumber(input.goods_value)) blockers.push('货值/海关价值必须是非负数。');
     if (!input.import_date) blockers.push('缺少进口日期。');
-    if (input.import_date && input.import_date > SNAPSHOT_DATE) warnings.push('进口日期晚于数据快照（' + SNAPSHOT_DATE + '），税率、措施与规则版本需重新核验。');
+    if (input.import_date && input.import_date > SNAPSHOT_DATE) warnings.push('进口日期晚于最后核验日（' + SNAPSHOT_DATE + '）。按已收录且覆盖该日期的规则测算；未自动确认此后有无修订，请在业务使用前复核。核验日不等于政策失效日。');
     if (input.special_valuation === true || isUnknown(input.special_valuation)) blockers.push('特殊估价事实为「是/不确定」，需先取得专业估价结论，不按常规估价计算。');
   }
 
@@ -330,7 +332,7 @@
     var gstBase = customsValue;
     if (input.multiple_sales === true) {
       if (validNumber(input.lsp) && input.last_buyer_is_declarant === true) gstBase = input.lsp * factor;
-      else blockers.push('进口前多次销售需确认最后买方申报价及申报主体。');
+      else { gstBase = null; blockers.push('进口前多次销售需确认最后买方申报价及申报主体。'); }
     }
 
     var lowValueRoute = ['low_value', 'postal'].indexOf(input.import_route) >= 0;
@@ -341,7 +343,7 @@
     var profile = taxProfileFor(data, input);
     var dutyRate = profile ? profile.ordinaryRate : null;
     var duty = dutyRate === 0 ? 0 : (customsValue === null || dutyRate === null ? null : round2(customsValue * dutyRate));
-    var gst = (gstBase === null || duty === null || lowValueRoute || (input.import_date && input.import_date > SNAPSHOT_DATE) || input.special_valuation !== false || fxBlocked)
+    var gst = (gstBase === null || duty === null || lowValueRoute || input.special_valuation !== false || fxBlocked)
       ? null : round2((gstBase + duty) * 0.09);
     var permitFee = 0.9, operatorFee = 2.29;
     var knownSubtotal = (duty === null || gst === null) ? null : round2(duty + gst + permitFee);
@@ -400,7 +402,7 @@
     var duty = rate === 0 ? 0 : (customsValue === null || rate === null ? null : round2(customsValue * rate));
     var transportInsurance = (validNumber(input.freight) && validNumber(input.insurance)) ? round2((input.freight + input.insurance) * factor) : null;
     var gstBase = (customsValue === null || duty === null || transportInsurance === null) ? null : round2(customsValue + duty + transportInsurance);
-    var gst = (gstBase === null || lowValueImport || (input.import_date && input.import_date > SNAPSHOT_DATE) || input.special_valuation !== false || fxBlocked)
+    var gst = (gstBase === null || lowValueImport || input.special_valuation !== false || fxBlocked)
       ? null : round2(gstBase * 0.1);
     var ipc = customsValue === null ? null : (customsValue >= 10000 ? 152 : (customsValue > 1000 ? 50 : 0));
     var biosecurity = customsValue === null ? null : 0;

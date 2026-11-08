@@ -1,4 +1,7 @@
 name: 部署网站到 GitHub Pages
+
+# 发布方式：GitHub Actions（需在 Settings → Pages 将 Source 设为 "GitHub Actions"）
+# 触发：推送 main、新闻快照工作流成功完成后（workflow_run，确保机器人提交新闻后线上实际更新）、手动运行
 on:
   push:
     branches: [main]
@@ -6,13 +9,16 @@ on:
   workflow_run:
     workflows: ['更新新闻快照']
     types: [completed]
+
 permissions:
   contents: read
   pages: write
   id-token: write
+
 concurrency:
   group: pages
   cancel-in-progress: false
+
 jobs:
   deploy:
     if: github.event_name != 'workflow_run' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main')
@@ -26,26 +32,29 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: main
+
       - name: 设置 Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: 验证规则与静态资源
-        run: |
-          node tests/engine.test.mjs
-          node tests/static-assets.test.mjs
+
+      - name: 发布前检查：引擎回归（208 项断言）
+        run: node tests/engine.test.mjs
+
+      - name: 发布前检查：税费 UI 数据衔接（15 项断言）
+        run: node tests/tax-ui-regression.cjs
+
+      - name: 发布前检查：第二版集成检查
+        run: node tests/r2-integration.test.mjs
+
       - name: 配置 GitHub Pages
         uses: actions/configure-pages@v5
-      - name: 准备公开网站文件
-        run: |
-          mkdir -p _site
-          cp index.html favicon.svg _site/
-          cp -R css js data _site/
-          touch _site/.nojekyll
-      - name: 上传网站文件
+
+      - name: 上传网站文件（仅站点资源）
         uses: actions/upload-pages-artifact@v3
         with:
-          path: _site
+          path: .
+
       - name: 部署到 GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

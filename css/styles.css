@@ -292,3 +292,29 @@ textarea.task { width: 100%; min-height: 250px; border: 1px solid var(--line); b
   a { color: #000; text-decoration: none; }
   .hero { background: #fff; box-shadow: none; }
 }
+
+/* ---------- R1 第二版：首页 / 雷达视图 / 子页 ---------- */
+.home-hero{min-height:280px;padding:clamp(28px,3.5vw,48px);display:grid;grid-template-columns:1.35fr .75fr;gap:36px;align-items:center;border-radius:22px;background:linear-gradient(135deg,#e7f0f3 0%,#f3f8f7 54%,#dcefe9 100%);box-shadow:var(--shadow);overflow:hidden;position:relative;margin-bottom:20px}
+.home-hero::after{content:"";position:absolute;width:320px;height:320px;border:1px solid rgba(7,95,70,.12);border-radius:50%;right:-140px;top:-160px}
+.home-hero h1{max-width:620px;font-size:clamp(28px,3.4vw,42px);font-weight:760;letter-spacing:-.03em;line-height:1.2;margin:0}
+.home-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.home-objects{display:grid;gap:10px;position:relative;z-index:1}
+.ho-card{background:rgba(255,255,255,.88);border:1px solid #cfe2db;border-radius:14px;padding:14px 16px}
+.ho-card b{display:block;font-size:14.5px}
+.ho-card span{font-size:12px;color:var(--muted)}
+.home-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}
+.hs-card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;gap:12px;box-shadow:0 6px 18px rgba(24,59,78,.05)}
+.hs-n{width:28px;height:28px;flex:none;display:grid;place-items:center;background:var(--green);color:#fff;border-radius:9px;font-weight:750}
+.hs-card b{font-size:14px}
+.hs-card p{font-size:12.5px;color:var(--muted);margin:4px 0 6px}
+.nav-links{display:grid;gap:4px;margin-top:10px;padding-top:10px;border-top:1px dashed var(--line)}
+.nav-links a{font-size:12.5px;color:var(--green);text-decoration:none;padding:6px 14px;border-radius:8px}
+.nav-links a:hover{background:#fff}
+.nav-item.home-link{border:1px dashed var(--line)}
+.view-switch{display:flex;gap:8px}
+.radar-frame-wrap{margin:0 0 14px}
+.radar-frame-wrap iframe{width:100%;min-height:1400px;border:1px solid var(--line);border-radius:14px;background:#fff}
+@media(max-width:920px){.home-hero{grid-template-columns:1fr}}
+.subpage{background:var(--canvas)}
+.sub-wrap{max-width:1180px;margin:0 auto;padding:34px clamp(18px,4vw,60px) 70px}
+.subpage .page-title{max-width:1180px;margin:0 auto;padding:30px clamp(18px,4vw,60px) 0}

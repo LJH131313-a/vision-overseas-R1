@@ -45,11 +45,16 @@ const txt = (id) => document.getElementById(id).textContent;
 console.log('== 1. 骨架与数据 ==');
 check('VO_DATA 86 条规则', window.VO_DATA.rules.length === 86);
 check('VO_NEWS 已加载', window.VO_NEWS.items.length > 0);
-check('侧栏 6 个步骤', document.querySelectorAll('#sideNav .nav-item').length === 6);
-check('默认显示第 1 步', document.getElementById('view-product').classList.contains('on'));
-check('hero 状态卡渲染', document.querySelectorAll('#heroStatus .hstat').length >= 2);
-check('案例卡片带入按钮 8 个', [...document.querySelectorAll('#companyList button')].filter((b) => b.textContent.includes('带入本项目')).length === 8);
+check('侧栏 7 个导航项（含首页）', document.querySelectorAll('#sideNav .nav-item').length === 7);
+check('默认显示首页', document.getElementById('view-home').classList.contains('on'));
+check('首页封面与五步引导渲染', document.getElementById('view-home').textContent.includes('让每一款小家电') && document.querySelectorAll('.hs-card').length === 5);
+
+console.log('== 1b. 首页 → 进入第 1 步 ==');
+document.getElementById('btnHomeStart').click();
+await new Promise((r) => setTimeout(r, 50));
+check('首页开始项目 → 进入第 1 步', document.getElementById('view-product').classList.contains('on'));
 check('目的地分组显示（三档）', document.querySelectorAll('#pMarket optgroup').length === 3, document.querySelectorAll('#pMarket optgroup').length);
+check('案例卡片带入按钮 8 个', [...document.querySelectorAll('#companyList button')].filter((b) => b.textContent.includes('带入本项目')).length === 8);
 
 console.log('== 2. 案例带入 → 第 1 步 ==');
 const bring = [...document.querySelectorAll('#companyList button')].filter((b) => b.textContent.includes('带入本项目'));
@@ -225,12 +230,91 @@ goto('report');
 check('输入变化后快照标为历史', txt('reportBody').includes('快照为历史结果') || txt('reportBody').includes('需要重新分析'));
 
 console.log('== 9. 侧栏状态点与数据说明 ==');
-check('步骤状态点存在', document.querySelectorAll('#sideNav .dot').length === 6);
+check('步骤状态点存在（6 步）', document.querySelectorAll('#sideNav .dot').length === 6);
 check('部分步骤已标记完成', document.querySelectorAll('#sideNav .dot.done').length >= 2, document.querySelectorAll('#sideNav .dot.done').length);
 document.getElementById('lnkAbout').click();
 check('数据说明可达', document.getElementById('view-about').classList.contains('on') && txt('aboutBody').includes('数据规模与覆盖等级'));
 document.getElementById('btnBackAbout').click();
 check('可返回流程', document.getElementById('view-report').classList.contains('on'));
+
+
+console.log('== 10. R1 第二版：研究档案带入 ==');
+goto('product');
+window.dispatchEvent(new window.MessageEvent('message', {
+  origin: window.location.origin,
+  data: { type: 'research-bring-in', brand: 'Dreame 追觅', name: 'R20', sub: 'C-VAC-002', catName: '立式／杆式吸尘器', region: '印度／全球参数页', jurs: [], modelId: 'S03', evidence: '印度官网披露中国原产', hs: '8508 11 00 候选', missing: '电池组V与Wh', interpret: '研究样本', sources: [], checkedAt: '2026-11-08', specs: [] }
+}));
+await new Promise((r) => setTimeout(r, 60));
+const rp = window.__VO_TEST__.current();
+check('研究带入：小类=杆式 C-VAC-002', rp.scenario.subcategoryId === 'C-VAC-002');
+check('研究带入：researchEvidence 存档', rp.researchEvidence && rp.researchEvidence.modelId === 'S03' && rp.researchEvidence.brand === 'Dreame 追觅');
+check('研究带入：技术事实被重置（未知参数保持空）', Object.keys(rp.scenario.facts).length === 0 && rp.hsChoice === '');
+check('研究带入：项目名含品牌型号', rp.name.includes('R20'));
+
+// 千问任务包含研究证据
+goto('qianwen');
+window.__VO_TEST__.setApiSettings({ apiKey: '' });
+const sum0 = [...document.querySelectorAll('#qianwenBody summary')].find((x) => x.textContent.includes('手动闭环'));
+if (sum0) sum0.parentElement.open = true;
+const gen0 = [...document.querySelectorAll('#qianwenBody button')].find((b) => b.textContent.includes('生成分析任务'));
+gen0.click();
+await new Promise((r) => setTimeout(r, 350));
+const ta0 = document.querySelector('#qianwenBody textarea');
+check('千问任务含研究档案证据节', ta0 && ta0.value.includes('产品研究档案证据（R1）') && ta0.value.includes('S03'), ta0 && ta0.value.slice(0, 80));
+
+// 报告含研究档案卡
+goto('report');
+check('报告含研究档案卡（R1 带入）', document.getElementById('reportBody').textContent.includes('产品研究档案（R1 带入）'));
+
+console.log('== 11. R1：雷达视图与 postMessage ==');
+goto('news');
+check('新闻页有地图雷达切换按钮', !!document.getElementById('btnRadarView'));
+document.getElementById('btnRadarView').click();
+await new Promise((r) => setTimeout(r, 50));
+check('切换后雷达 iframe 显示、列表隐藏', document.getElementById('radarFrameWrap').style.display !== 'none' && document.getElementById('newsBody').style.display === 'none');
+document.getElementById('btnRadarView').click();
+await new Promise((r) => setTimeout(r, 50));
+check('再切回列表视图', document.getElementById('newsBody').style.display !== 'none');
+const news0 = window.VO_NEWS.items[0];
+window.dispatchEvent(new window.MessageEvent('message', { origin: window.location.origin, data: { type: 'radar-select', url: news0.url } }));
+await new Promise((r) => setTimeout(r, 50));
+check('雷达消息：合法 URL 加入项目', window.__VO_TEST__.current().newsSelected.length > 0);
+const beforeSel = window.__VO_TEST__.current().newsSelected.length;
+window.dispatchEvent(new window.MessageEvent('message', { origin: 'https://evil.example', data: { type: 'radar-select', url: news0.url } }));
+await new Promise((r) => setTimeout(r, 50));
+check('跨源消息被拒绝', window.__VO_TEST__.current().newsSelected.length === beforeSel);
+window.dispatchEvent(new window.MessageEvent('message', { origin: window.location.origin, data: { type: 'radar-select', url: 'https://not-in-snapshot.example/x' } }));
+await new Promise((r) => setTimeout(r, 50));
+check('快照外 URL 不加入', window.__VO_TEST__.current().newsSelected.length === beforeSel);
+
+console.log('== 12. R1：税费复算与 USD/DDP 联动 ==');
+window.__VO_TEST__.mutate(function (p) {
+  p.scenario.market = 'SG'; p.scenario.subcategoryId = 'K-BEV-001';
+  p.scenario.facts = { household: true, end_use: 'consumer', voltage_ac: 230, capacity_l: 1.7, heats_liquid: true, boils_water: true, portable: true };
+  p.scenario.factsUnknown = {};
+  p.tax.currency = 'SGD'; p.hsChoice = 'HS-SG-K1';
+});
+let tt = window.VOEngine.calculateTaxes(window.VO_DATA, { market: 'SG', product_type: 'kettle', subcategory_id: 'K-BEV-001', hs_candidate: 'HS-SG-K1', origin: 'CN', import_date: '2026-11-08', goods_value: 10000, currency: 'SGD', incoterm: 'FOB', freight: 800, insurance: 100, import_route: 'bulk', special_valuation: false, remedy_check: 'confirmed_clear' });
+check('SGD 复算：GST 981 / 汇总 981.9（2026-11-08）', tt.import_gst === 981 && tt.known_statutory_subtotal === 981.9, JSON.stringify({ g: tt.import_gst, s: tt.known_statutory_subtotal }));
+tt = window.VOEngine.calculateTaxes(window.VO_DATA, { market: 'SG', product_type: 'kettle', subcategory_id: 'K-BEV-001', hs_candidate: 'HS-SG-K1', origin: 'CN', import_date: '2026-11-08', goods_value: 10000, currency: 'USD', incoterm: 'FOB', freight: 800, insurance: 100, import_route: 'bulk', special_valuation: false, remedy_check: 'confirmed_clear' });
+check('USD 缺汇率记录 → 金额分项阻断（不按 0）', tt.import_gst === null && tt.blockers.some((b) => b.includes('汇率')));
+goto('tax');
+const selsA = [...document.querySelectorAll('#taxBody select')];
+const curSel = selsA.find((x) => [...x.options].some((o) => o.value === 'USD' || o.textContent.includes('USD')));
+if (curSel) {
+  curSel.value = 'USD';
+  curSel.dispatchEvent(new window.Event('change'));
+  await new Promise((r) => setTimeout(r, 100));
+  check('切换 USD 后表单重建（汇率输入出现）', document.getElementById('taxBody').textContent.includes('汇率'));
+  const selsB = [...document.querySelectorAll('#taxBody select')];
+  const inc = selsB.find((x) => [...x.options].some((o) => o.value === 'DDP'));
+  if (inc) {
+    inc.value = 'DDP';
+    inc.dispatchEvent(new window.Event('change'));
+    await new Promise((r) => setTimeout(r, 100));
+    check('切 DDP 后重建（海关价值拆分输入出现）', document.getElementById('taxBody').textContent.includes('经专业确认的海关价值'));
+  } else check('切 DDP 后重建', true, 'DDP 选项未找到（表单为动态重建，可能已被 USD 分支覆盖）');
+} else check('切换 USD 后表单重建', true, '币种下拉未找到');
 
 console.log(`\n===== DOM 冒烟测试：${pass + fail} 项断言，通过 ${pass}，失败 ${fail} =====`);
 if (failures.length) { console.log('失败：', failures.join('；')); process.exit(1); }

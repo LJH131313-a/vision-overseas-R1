@@ -111,7 +111,7 @@
   };
 
   /* ================= 状态与保存 ================= */
-  var LS_KEY = 'vo-workbench-v2';
+  var LS_KEY = 'vo-r1-workbench-v2';
   var state = null;
   function defaultSettings() {
     return { region: 'cn', model: 'qwen-plus', customModel: '', apiKey: '', apiBase: '' };
@@ -126,6 +126,7 @@
       scenario: { market: '', subcategoryId: '', placingOnMarketDate: '', importDate: '', role: '', facts: {}, factsUnknown: {}, factNotes: {} },
       tax: { goodsValue: '', currency: 'SGD', fxRate: '', fxSource: '', incoterm: 'FOB', priceBasis: 'FOB', freight: '', insurance: '', multipleSales: false, lsp: '', lastBuyerDeclarant: '', importRoute: 'bulk', specialValuation: 'no', remedyCheck: '', confirmedCustomsValue: '', valuationConfirmed: false, customsValueConfirmed: '', origin: 'CN', originPreference: 'none', psrSatisfied: '', docsValid: '', transportCond: '', transport: 'sea', salesState: 'VIC', quantity: '' },
       hsChoice: '',
+      researchEvidence: null,
       todoState: {},
       newsSelected: [],
       qianwen: { taskText: '', taskHash: '', taskAt: '', responses: [] },
@@ -175,7 +176,8 @@
       market: p.scenario.market, sub: p.scenario.subcategoryId,
       facts: p.scenario.facts, factsUnknown: p.scenario.factsUnknown,
       dates: [p.scenario.placingOnMarketDate, p.scenario.importDate], role: p.scenario.role,
-      tax: p.tax, hs: p.hsChoice, news: p.newsSelected
+      tax: p.tax, hs: p.hsChoice, news: p.newsSelected,
+      research: p.researchEvidence || null
     });
   }
 
@@ -237,8 +239,8 @@
   }
 
   /* ================= 导航（侧栏向导） ================= */
-  var flowSteps = ['product', 'compliance', 'tax', 'news', 'qianwen', 'report'];
-  var currentTab = 'product';
+  var flowSteps = ['home', 'product', 'compliance', 'tax', 'news', 'qianwen', 'report'];
+  var currentTab = 'home';
   var lastFlowTab = 'product';
   function showTab(name) {
     if (name !== 'about') lastFlowTab = name;
@@ -252,6 +254,7 @@
     updateDots();
   }
   function renderTab(name) {
+    if (name === 'home') return;
     if (name === 'product') { renderCompanies(); renderProduct(); }
     else if (name === 'compliance') renderCompliance();
     else if (name === 'tax') renderTax();
@@ -825,7 +828,7 @@
       insurance: t.insurance === '' ? null : Number(t.insurance),
       multiple_sales: t.multipleSales === true || t.multipleSales === 'true',
       lsp: t.lsp === '' ? null : Number(t.lsp),
-      last_buyer_is_declarant: t.lastBuyerDeclarant === true,
+      last_buyer_is_declarant: t.lastBuyerDeclarant === true || t.lastBuyerDeclarant === 'true',
       import_route: t.importRoute || 'bulk',
       special_valuation: t.specialValuation === 'yes' ? true : t.specialValuation === 'unknown' ? 'unknown' : false,
       remedy_check: t.remedyCheck || '',
@@ -859,6 +862,7 @@
     var market = p.scenario.market;
 
     /* A. HS 候选 */
+    host.appendChild(h('div', { class: 'banner warn' }, 'L3 表示已有普通交易计算路径；请填写进口日期、HS 候选、价格及运保费。最后核验日为 ' + E.SNAPSHOT_DATE + '。进口日期按规则有效期匹配；晚于核验日仍可测算，并提示复核后续政策变动。'));
     var hsCard = h('div', { class: 'card' });
     hsCard.appendChild(h('h3', {}, '目的国 HS 候选方向'));
     var cands = sc ? sc.hsCandidates : [];
@@ -908,7 +912,11 @@
         var s = h('select', {});
         optList.forEach(function (o) { s.appendChild(h('option', { value: o[0] }, o[1])); });
         s.value = f[key] === true ? 'true' : (f[key] || '');
-        s.addEventListener('change', function () { f[key] = s.value; touch(); recomputeTax(result); });
+        s.addEventListener('change', function () {
+          f[key] = s.value; touch();
+          if (['currency', 'incoterm', 'originPreference', 'multipleSales'].indexOf(key) >= 0) { renderTax(); updateDots(); }
+          else recomputeTax(result);
+        });
         lab.appendChild(s);
         if (note) lab.appendChild(h('span', { class: 'subhint' }, note));
         return lab;
@@ -954,7 +962,8 @@
         fields.appendChild(h('div', { class: 'fields' },
           selField('进口路线', 'importRoute', routes),
           selField('进口前多次销售', 'multipleSales', [['', '否'], ['true', '是——需最后买方申报价']]),
-          numField('最后买方申报价（如多次销售）', 'lsp')
+          numField('最后买方申报价（如多次销售）', 'lsp'),
+          selField('最后买方是否为付款许可申报方（多次销售时确认）', 'lastBuyerDeclarant', [['', '未确认'], ['true', '是'], ['false', '否——需复核计税路径']])
         ));
       }
       if (market === 'AU') {
@@ -1083,7 +1092,7 @@
       t.appendChild(tb);
       host.appendChild(h('div', { class: 'tbl-wrap' }, t));
       host.appendChild(h('p', {}, '已知法定分项小计：', h('b', {}, tax.known_statutory_subtotal === null ? '不可用（存在被阻断分项）' : fmtMoney(tax.known_statutory_subtotal, tax.currency)),
-        '；完整进口法定总额：', h('b', { style: tax.complete_total === null ? 'color:var(--red)' : 'color:var(--ok)' }, tax.complete_total === null ? '不可用' : fmtMoney(tax.complete_total, tax.currency))));
+        '；本模型已覆盖法定项目汇总：', h('b', { style: tax.complete_total === null ? 'color:var(--red)' : 'color:var(--ok)' }, tax.complete_total === null ? '不可用' : fmtMoney(tax.complete_total, tax.currency))));
       if (tax.conditional_preferential_scenario) host.appendChild(h('p', { class: 'subhint' }, '优惠情景说明：' + tax.conditional_preferential_scenario));
       if (tax.preferential_duty_saving !== null && tax.preferential_duty_saving !== undefined && tax.preferential_duty_saving > 0) host.appendChild(h('p', { class: 'subhint' }, '如优惠成立，可节省关税约：' + fmtMoney(tax.preferential_duty_saving, tax.currency)));
     } else {
@@ -1591,6 +1600,7 @@
     host.appendChild(s1);
 
     var s2 = h('div', { class: 'card' });
+    s2.setAttribute('id', 'repFactsCard');
     s2.appendChild(h('h3', {}, '2. 关键产品与经营事实'));
     var facts = engineFacts();
     var fkeys = Object.keys(facts);
@@ -1885,8 +1895,154 @@
   var firstSub = subById(proj().scenario.subcategoryId);
   if (firstSub) selectedGroup = firstSub.group;
   refreshProjSelect();
-  showTab('product');
+  showTab('home');
   persist(false);
+
+  /* ================= R1 第二版：首页、雷达视图、研究档案带入 ================= */
+
+  /* ---------- 首页入口 ---------- */
+  var btnHomeStart = $('btnHomeStart');
+  if (btnHomeStart) btnHomeStart.addEventListener('click', function () { showTab('product'); });
+  var btnHomeRadar = $('btnHomeRadar');
+  if (btnHomeRadar) btnHomeRadar.addEventListener('click', function () { showTab('news'); });
+  document.querySelectorAll('[data-goto]').forEach(function (b) {
+    b.addEventListener('click', function () { showTab(b.getAttribute('data-goto')); });
+  });
+
+  /* ---------- 新闻页：地图雷达视图切换 ---------- */
+  var radarShown = false;
+  var btnRadarView = $('btnRadarView');
+  if (btnRadarView) {
+    btnRadarView.addEventListener('click', function () {
+      radarShown = !radarShown;
+      var wrap = $('radarFrameWrap');
+      wrap.style.display = radarShown ? '' : 'none';
+      btnRadarView.textContent = radarShown ? '切换回列表视图' : '切换地图雷达视图';
+      $('newsBody').style.display = radarShown ? 'none' : '';
+    });
+  }
+
+  /* ---------- 雷达子页 postMessage：加入当前项目 ----------
+     安全三查：消息来自 iframe.contentWindow、事件来源同源、URL 确实在主站 NEWS.items 中。 */
+  window.addEventListener('message', function (ev) {
+    if (ev.origin !== window.location.origin) return;
+    var frame = $('radarFrame');
+    if (!frame || ev.source !== frame.contentWindow) return;
+    var d = ev.data;
+    if (!d || d.type !== 'radar-select' || typeof d.url !== 'string') return;
+    if (!/^https?:\/\//i.test(d.url)) return;
+    var hit = NEWS.items.find(function (it) { return it.url === d.url; });
+    if (!hit) { toast('该新闻不在当前快照中，未加入', 'err'); return; }
+    var id = newsId(hit);
+    var p = proj();
+    if (p.newsSelected.indexOf(id) < 0) {
+      p.newsSelected.push(id);
+      touch();
+      toast('已加入当前项目：' + String(hit.title || '').slice(0, 40), 'ok');
+      updateDots();
+    } else {
+      toast('该新闻已在项目中', 'ok');
+    }
+  });
+
+  /* ---------- 研究档案带入（子页 postMessage 或 URL 参数回跳） ---------- */
+  function applyResearchBringIn(d) {
+    var p = proj();
+    if (!d || !d.sub) { toast('研究档案数据不完整', 'err'); return; }
+    // 重置当前情景：税费选择、相关事实（同小类换型号也走这条路径，由调用前确认保证）
+    p.hsChoice = '';
+    p.scenario.facts = {};
+    p.scenario.factsUnknown = {};
+    p.scenario.factNotes = {};
+    p.scenario.subcategoryId = d.sub;
+    p.companyName = d.brand || p.companyName;
+    if (d.jurs && d.jurs.length && !p.scenario.market) p.scenario.market = d.jurs[0];
+    p.researchEvidence = {
+      modelId: d.modelId, brand: d.brand, name: d.name, region: d.region,
+      catName: d.catName, sub: d.sub, jurs: d.jurs || [],
+      evidence: d.evidence || '', hs: d.hs || '', missing: d.missing || '',
+      interpret: d.interpret || '', checkedAt: d.checkedAt || '',
+      sources: d.sources || [], specs: d.specs || [],
+      broughtAt: new Date().toISOString(),
+      note: '研究档案只载入品牌/型号/小类/地区；技术参数不自动代入（充电电压≠市电电压，吸力Pa≠功率W）；归类方向为研究候选，非海关结论。'
+    };
+    p.name = (d.brand || '研究') + ' ' + (d.name || '型号') + ' 项目';
+    touch();
+    refreshProjSelect();
+    showTab('product');
+    toast('已带入研究档案「' + (d.brand || '') + ' ' + (d.name || '') + '」：请逐项登记出口版技术事实', 'ok');
+  }
+  window.addEventListener('message', function (ev) {
+    if (ev.origin !== window.location.origin) return;
+    var d = ev.data;
+    if (!d || d.type !== 'research-bring-in') return;
+    applyResearchBringIn(d);
+  });
+  // 子页独立打开（无 iframe 父页）时的回跳通道
+  if (window.location.search.indexOf('bring=research') >= 0) {
+    try {
+      var raw = localStorage.getItem('vo-r1-research-bring');
+      if (raw) {
+        localStorage.removeItem('vo-r1-research-bring');
+        applyResearchBringIn(JSON.parse(raw));
+      }
+    } catch (e) { }
+    try { window.history.replaceState(null, '', window.location.pathname); } catch (e) { }
+  }
+
+  /* ---------- 千问任务注入研究证据 ---------- */
+  var _buildTaskTextBase = buildTaskText;
+  buildTaskText = function () {
+    var text = _buildTaskTextBase();
+    var re = proj().researchEvidence;
+    if (re) {
+      var lines = [
+        '',
+        '## 附：产品研究档案证据（R1）',
+        '- 型号：' + re.brand + ' ' + re.name + '（' + re.modelId + '）；结构类型：' + re.catName + '（' + re.sub + '）；证据地区：' + re.region + (re.jurs && re.jurs.length ? '（法域 ' + re.jurs.join('/') + '）' : ''),
+        '- 地区证据：' + re.evidence,
+        '- 研究解释：' + re.interpret,
+        '- 候选归类方向（研究候选，非海关结论）：' + re.hs,
+        '- 待补项：' + re.missing,
+        '- 研究核验日：' + re.checkedAt,
+        '- 注意：以上为研究档案，出口版技术参数须逐项重新登记，不得把研究参数当作申报参数。'
+      ];
+      var anchor = '## 三、明确不确定的事实';
+      var idx = text.indexOf(anchor);
+      if (idx < 0) idx = text.indexOf('## 二、已知产品/经营事实');
+      text = idx >= 0 ? (text.slice(0, idx) + lines.join('\n') + '\n\n' + text.slice(idx)) : (text + '\n' + lines.join('\n'));
+    }
+    return text;
+  };
+
+  /* ---------- 报告注入研究证据 ---------- */
+  var _renderReportBase = renderReport;
+  renderReport = function () {
+    _renderReportBase();
+    var re = proj().researchEvidence;
+    if (!re) return;
+    var host = $('reportBody');
+    if (!host) return;
+    var s2 = host.querySelector('#repFactsCard');
+    var card = document.createElement('div');
+    card.className = 'card';
+    var html = '<h3>1b. 产品研究档案（R1 带入）</h3>';
+    html += '<p class="subhint">来源：研究档案页（核验 ' + re.checkedAt + '）；只载入了品牌/型号/小类/地区，技术参数需在第 1 步逐项登记。</p>';
+    html += '<dl class="kv">';
+    html += '<dt>型号</dt><dd>' + re.brand + ' ' + re.name + '（' + re.modelId + '）</dd>';
+    html += '<dt>结构类型</dt><dd>' + re.catName + '（' + re.sub + '）</dd>';
+    html += '<dt>证据地区</dt><dd>' + re.region + (re.jurs && re.jurs.length ? '（法域 ' + re.jurs.join('/') + '）' : '') + '</dd>';
+    html += '<dt>地区证据</dt><dd>' + re.evidence + '</dd>';
+    html += '<dt>候选归类方向</dt><dd>' + re.hs + '（研究候选，非海关确定结论）</dd>';
+    html += '<dt>待补项</dt><dd>' + re.missing + '</dd>';
+    html += '</dl>';
+    html += '<div class="src-list" style="font-size:12px;color:var(--muted);display:grid;gap:3px">' + (re.sources || []).map(function (s) {
+      return '<a href="' + String(s.url).replace(/[\"<>&']/g, '') + '" target="_blank" rel="noopener noreferrer">' + String(s.title || s.url).replace(/[<>&]/g, '') + ' ↗</a>';
+    }).join('') + '</div>';
+    card.innerHTML = html;
+    if (s2 && s2.nextSibling) host.insertBefore(card, s2.nextSibling);
+    else host.appendChild(card);
+  };
 
   /* 测试钩子：仅暴露当前项目读写与 API 构造，不含敏感信息 */
   window.__VO_TEST__ = {
