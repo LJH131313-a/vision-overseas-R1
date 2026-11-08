@@ -7,7 +7,7 @@ const root = path.resolve(__dirname, '..');
 const data = JSON.parse(fs.readFileSync(path.join(root, 'data/vo-data.json')));
 const engine = require(path.join(root, 'js/engine.js'));
 const source = fs.readFileSync(path.join(root, 'js/app.js'), 'utf8');
-const fn = source.slice(source.indexOf('  function taxInput()'), source.indexOf('  function renderTax()'));
+const fn = source.slice(source.indexOf('  function syncTaxCurrency()'), source.indexOf('  function renderTax()'));
 const project = {
   scenario: { market: 'SG', subcategoryId: 'K-BEV-001', importDate: '2026-11-04' },
   hsChoice: 'HS-SG-K1',

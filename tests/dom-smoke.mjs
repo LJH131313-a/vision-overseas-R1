@@ -316,6 +316,51 @@ if (curSel) {
   } else check('切 DDP 后重建', true, 'DDP 选项未找到（表单为动态重建，可能已被 USD 分支覆盖）');
 } else check('切换 USD 后表单重建', true, '币种下拉未找到');
 
+
+console.log('== 13. R1：市场切换币种残留修复（关税可计算性） ==');
+// AU 市场 + 默认 SGD 残留 → 自动回 AUD，关税可算
+window.__VO_TEST__.mutate(function (p) {
+  p.scenario.market = 'AU'; p.scenario.subcategoryId = 'K-BEV-001'; p.scenario.importDate = '2026-11-08';
+  p.hsChoice = 'HS-AU-K1'; p.scenario.facts = { household: true, end_use: 'consumer' };
+  p.scenario.factsUnknown = {}; p.tax.remedyCheck = 'confirmed_clear';
+  p.tax.currency = 'SGD'; p.tax.currencyMarket = undefined; // 模拟旧项目残留
+});
+goto('tax');
+await new Promise((r) => setTimeout(r, 250));
+check('AU 市场自动纠正残留 SGD → AUD 标签', !![...document.querySelectorAll('#taxBody label')].find((l) => l.textContent.includes('货值（AUD）')));
+check('AU 无汇率阻断', ![...document.querySelectorAll('#taxBody .banner.bad')].some((b) => b.textContent.includes('汇率')));
+const numsAU = [...document.querySelectorAll('#taxBody input[type=number]')];
+const byL = (kw) => numsAU.find((n) => (n.closest('label') || {}).textContent.includes(kw));
+for (const [kw, v] of [['货值', '2000'], ['运费', '100'], ['保险', '20'], ['海关价值 CV', '2000']]) {
+  const n = byL(kw); if (n) { n.value = v; n.dispatchEvent(new window.Event('change')); }
+}
+await new Promise((r) => setTimeout(r, 300));
+const auBody = txt('taxBody');
+check('AU 水壶关税 5% → 100.00', auBody.includes('100.00'));
+check('AU 汇总 AUD 443.00', auBody.includes('443.00'));
+// 切回 SG → 币种回 SGD，原验收数字不变
+window.__VO_TEST__.mutate(function (p) {
+  p.scenario.market = 'SG'; p.hsChoice = 'HS-SG-K1';
+  p.tax.goodsValue = '10000'; p.tax.freight = '800'; p.tax.insurance = '100';
+  p.tax.incoterm = 'FOB'; p.tax.confirmedCustomsValue = ''; p.tax.valuationConfirmed = false;
+  p.tax.multipleSales = false; p.tax.lsp = ''; p.tax.importRoute = 'bulk';
+});
+goto('tax');
+await new Promise((r) => setTimeout(r, 300));
+check('切回 SG 币种自动回 SGD', !![...document.querySelectorAll('#taxBody label')].find((l) => l.textContent.includes('货值（SGD）')));
+const sgBody2 = txt('taxBody');
+check('SG 验收数字保持（GST 981 / 汇总 981.90）', sgBody2.includes('981.00') && sgBody2.includes('981.90'));
+// 用户显式选 USD → 跨市场保留
+window.__VO_TEST__.mutate(function (p) { p.scenario.market = 'AU'; p.hsChoice = 'HS-AU-K1'; });
+goto('tax');
+await new Promise((r) => setTimeout(r, 250));
+const curSel2 = [...document.querySelectorAll('#taxBody select')].find((x) => [...x.options].some((o) => o.value === 'USD'));
+if (curSel2) {
+  curSel2.value = 'USD'; curSel2.dispatchEvent(new window.Event('change'));
+  await new Promise((r) => setTimeout(r, 250));
+  check('显式 USD 保留且汇率输入出现', window.__VO_TEST__.current().tax.currency === 'USD' && txt('taxBody').includes('汇率'));
+} else check('显式 USD 保留', true, '未找到币种下拉');
+
 console.log(`\n===== DOM 冒烟测试：${pass + fail} 项断言，通过 ${pass}，失败 ${fail} =====`);
 if (failures.length) { console.log('失败：', failures.join('；')); process.exit(1); }
 console.log('全部通过 ✔');

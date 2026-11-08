@@ -810,9 +810,26 @@
   $('btnNext2').addEventListener('click', function () { showTab('tax'); });
 
   /* ================= 第 3 步：HS 与税费 ================= */
+  // 市场切换后币种残留修复：仅当「币种所记录的市场」与当前市场不一致、
+  // 且币种为空或为另一市场本币（旧默认/残留）时，自动回到当前市场本币；
+  // 用户显式选择的币种（含 USD/CNY 等外币）不受影响。
+  function syncTaxCurrency() {
+    var p = proj();
+    var t = p.tax;
+    var nativeCur = p.scenario.market === 'SG' ? 'SGD' : (p.scenario.market === 'AU' ? 'AUD' : '');
+    if (nativeCur && t.currencyMarket !== p.scenario.market) {
+      if (!t.currency || t.currency === 'SGD' || t.currency === 'AUD') {
+        t.currency = nativeCur;
+        t.fxRate = '';
+        t.fxSource = '';
+      }
+      t.currencyMarket = p.scenario.market;
+    }
+  }
   function taxInput() {
     var p = proj();
     var t = p.tax;
+    syncTaxCurrency();
     var input = {
       market: p.scenario.market,
       product_type: (subById(p.scenario.subcategoryId) || {}).legacy || '',
@@ -860,6 +877,7 @@
     var sub = subById(p.scenario.subcategoryId);
     var sc = runCompliance();
     var market = p.scenario.market;
+    syncTaxCurrency(); // 市场切换币种残留纠正（表单构建前，保证标签与选项正确）
 
     /* A. HS 候选 */
     host.appendChild(h('div', { class: 'banner warn' }, 'L3 表示已有普通交易计算路径；请填写进口日期、HS 候选、价格及运保费。最后核验日为 ' + E.SNAPSHOT_DATE + '。进口日期按规则有效期匹配；晚于核验日仍可测算，并提示复核后续政策变动。'));
@@ -914,6 +932,7 @@
         s.value = f[key] === true ? 'true' : (f[key] || '');
         s.addEventListener('change', function () {
           f[key] = s.value; touch();
+          if (key === 'currency') f.currencyMarket = p.scenario.market; // 用户显式选币种：记录当前市场，防市场切换误纠正
           if (['currency', 'incoterm', 'originPreference', 'multipleSales'].indexOf(key) >= 0) { renderTax(); updateDots(); }
           else recomputeTax(result);
         });
