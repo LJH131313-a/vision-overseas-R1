@@ -119,12 +119,18 @@
           window.parent.postMessage(payload, '*');
         }
       });
-      card.innerHTML = html;
+      var illuMap = { 1: 'vo-tank', 2: 'vo-stick', 3: 'vo-bot', 4: 'vo-tank', 5: 'vo-bot' };
+      var illu = '<div class="mini-illu vo-illustration ' + (illuMap[m.cat] || 'vo-stick') + '" aria-hidden="true">' +
+        (m.cat === 2 ? '<i class="pipe"></i><i class="body"></i><i class="head"></i>' : m.cat === 1 || m.cat === 4 ? '<i class="body"></i><i class="head"></i><i class="pipe"></i>' : '<i class="dock"></i><i class="body"></i><i class="head"></i>') + '</div>';
+      card.innerHTML = illu + html;
       card.appendChild(btn);
       grid.appendChild(card);
     });
     if (!list.length) grid.innerHTML = '<div class="banner warn">没有符合条件的型号。</div>';
   }
+  // 支持首页品类卡深链：research/index.html?cat=5
+  var catParam = new URLSearchParams(location.search).get('cat');
+  if (catParam && catSel.querySelector('option[value="' + catParam + '"]')) catSel.value = catParam;
   document.getElementById('fKw').addEventListener('input', render);
   catSel.addEventListener('change', render);
   render();
