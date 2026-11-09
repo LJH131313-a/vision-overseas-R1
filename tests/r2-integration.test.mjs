@@ -40,16 +40,15 @@ for (const d of ['policy-documents/SG', 'research', 'modules', 'data', 'js', 'cs
 }
 
 console.log('== 2. 发布包不应包含的文件 ==');
-const banned = [];
-const ALLOWED_DOT = new Set(['.gitignore', '.gitattributes']);
 const BANNED_NAME = /\.sqlite3?$|\.zip$|\.patch$|CHANGE\.patch|\.pem$|\.key$|\.env$|\.log$/i;
+const ALLOWED_DOT = new Set(['.gitignore', '.gitattributes']);
+const banned = [];
 (function walk(dir) {
   for (const e of readdirSync(dir, { withFileTypes: true })) {
     if (e.name === '.git' || e.name === 'node_modules') continue;
     const p = join(dir, e.name);
     if (e.isDirectory()) walk(p);
-    else if (BANNED_NAME.test(e.name)) banned.push(p);
-    else if (e.name.startsWith('.') && !ALLOWED_DOT.has(e.name)) banned.push(p);
+    else if (BANNED_NAME.test(e.name) || (e.name.startsWith('.') && !ALLOWED_DOT.has(e.name))) banned.push(p);
   }
 })(ROOT);
 check('无 SQLite / 原始 ZIP / 补丁 / 密钥 / 日志文件（.gitignore 与 .gitattributes 为正常配置）', banned.length === 0, banned.join(', '));
@@ -88,12 +87,12 @@ check('研究页存在品牌/型号/地区搜索与类型筛选', read('research
 check('研究页保留全文入口', read('research/index.html').includes('中国品牌真空吸尘产品与出海研究.html'));
 const rpage = read('research/index.html');
 check('类型映射 1→C-VAC-001 … 5→C-VAC-005', rpage.includes("'C-VAC-001'") && rpage.includes("'C-VAC-005'") && rpage.includes("'C-VAC-002'") && rpage.includes("'C-VAC-003'") && rpage.includes("'C-VAC-004'"));
-check('带入前确认提示（重置税费与事实）', rpage.includes('税费选择与相关事实将被重置'));
-check('只载入品牌/型号/小类/地区（不猜参数）', rpage.includes('不猜测实际出口参数') && rpage.includes('充电电压不能当市电电压'));
+check('带入前确认提示（说明会替换什么）', rpage.includes('当前已填的技术事实、HS 与税费输入会被清空重填') && rpage.includes('确定带入？'));
+check('只载入有资料支持的内容并提示易错事实', rpage.includes('技术参数不会自动带入') && rpage.includes('充电电压不等于市电电压') && rpage.includes('吸力 Pa 不等于功率 W'));
 
 console.log('== 6. 政策 PDF 归档 ==');
 const idx = JSON.parse(read('policy-documents/SG/index.json'));
-check('4 份 PDF 归档', idx.length === 4);
+check('5 份 PDF 归档', idx.length === 5);
 idx.forEach((d) => {
   const p = join(ROOT, d.path);
   const buf = readFileSync(p);
@@ -102,14 +101,14 @@ idx.forEach((d) => {
   check(`${d.path.split('/').pop()} 大小校验`, buf.length === d.size_bytes);
 });
 const pdocPage = read('policy-documents/index.html');
-check('政策原文入口：可打开 PDF 与官方参考', pdocPage.includes('打开 PDF 原文') && pdocPage.includes('官方参考'));
-check('归档 ≠ 已结构化/已生效 声明', pdocPage.includes('归档 ≠ 全文已结构化'));
+check('政策资料库入口：可打开文件与官方来源', pdocPage.includes('打开 PDF') && (pdocPage.includes('查看官方网页') || pdocPage.includes('官方 PDF')));
+check('文件类型诚实标注（阅读版不冒充官方原文）', pdocPage.includes('不是官方法规原文'));
 check('首页导航含政策原文入口', appIdx.includes('policy-documents/index.html'));
 
 console.log('== 7. 首页与第二版功能 ==');
 check('首页封面标语', appIdx.includes('让每一款小家电，'));
 check('开始项目 / 浏览研究 / 新闻雷达入口', appIdx.includes('btnHomeStart') && appIdx.includes('research/index.html') && appIdx.includes('btnHomeRadar'));
-check('五步上手说明', appIdx.includes('五步上手说明'));
+check('上手说明', appIdx.includes('查看上手说明'));
 check('app.js 首页 tab 支持', app.includes("name === 'home'"));
 check('researchEvidence 入 inputHash', app.includes('research: p.researchEvidence'));
 check('researchEvidence 入千问任务', app.includes('产品研究档案证据（R1）'));

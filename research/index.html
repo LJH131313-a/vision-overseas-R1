@@ -39,7 +39,7 @@
     </div>
   </header>
 
-  <div class="banner warn">带入规则：只载入<b>品牌、型号、产品小类与地区</b>——不猜测实际出口参数（充电电压不能当市电电压，吸力 Pa 不能当功率 W）；带入前会提示替换当前情景并重置税费选择与相关事实；同市场同小类换型号也会使旧建议失效。</div>
+  <p class="subhint">带入只填写有公开资料支持的内容（品牌、型号、品类、地区）；技术参数需要你按出口版本重新确认，带入前会先询问是否替换当前项目。</p>
 
   <div class="filters">
     <input type="search" id="fKw" placeholder="搜索品牌 / 型号 / 地区">
@@ -109,7 +109,7 @@
       btn.style.marginTop = 'auto';
       btn.textContent = '带入当前项目';
       btn.addEventListener('click', function () {
-        var msg = '将把「' + m.brand + ' ' + m.name + '」带入当前项目：\n· 载入品牌、型号、产品小类（' + (cm.name || m.cat) + '）与证据地区' + (jurs.length ? '（' + jurs.join('/') + '）' : '') + '\n· 技术参数不会自动代入——出口版参数需在第 1 步逐项登记\n· 当前情景的税费选择与相关事实将被重置\n\n确定带入？';
+        var msg = '将把「' + (d.brand || '') + ' ' + (d.name || '') + '」带入当前项目：\n· 品类：' + (CAT_NAME[d.sub] || d.sub) + (d.jurisdiction ? '，目的地：' + d.jurisdiction : '') + '\n· 当前已填的技术事实、HS 与税费输入会被清空重填\n· 技术参数不会自动带入，需要你按出口版本确认（例如充电电压不等于市电电压、吸力 Pa 不等于功率 W）\n\n确定带入？';
         if (!window.confirm(msg)) return;
         var payload = { type: 'research-bring-in', brand: m.brand, name: m.name, sub: cm.sub || '', catName: cm.name || '', region: m.region, jurs: jurs, modelId: m.id, evidence: m.evidence, hs: m.hs, missing: m.missing, interpret: m.interpret, sources: (m.sources || []).map(function (s) { return { url: s.url, title: s.title }; }), checkedAt: m.checked_at, specs: m.specs };
         if (window.parent === window) {

@@ -269,7 +269,7 @@
     return data.taxProfiles.find(function (row) {
       return row.market === input.market
         && row.product_type === legacy
-        && (!hs || hs.indexOf(String(row.hs).replace(/\./g, '')) === 0 || String(row.hs).replace(/\./g, '').indexOf(hs) === 0)
+        && (row.candidateId ? !!candidate && candidate.id === row.candidateId : (!hs || hs.indexOf(String(row.hs).replace(/\./g, '')) === 0 || String(row.hs).replace(/\./g, '').indexOf(hs) === 0))
         && (!row.origin_scope || row.origin_scope === 'ANY' || row.origin_scope === input.origin)
         && (!row.effective_from || date >= row.effective_from)
         && (!row.effective_to || date <= row.effective_to);
@@ -277,7 +277,7 @@
   }
 
   function checkCommon(input, blockers, warnings) {
-    if (!input._profileFound) blockers.push('当前产品与市场组合没有已核税费计算画像。');
+    if (!input._profileFound) blockers.push('当前产品与市场尚无适用税率，请补充核验资料。');
     if (!input.hs_candidate) blockers.push('尚未选择目的国 HS 候选；已知分项可作阶段测算，完整总额保持为空。');
     if (!input.origin) blockers.push('缺少原产地，不能确认税率情景。');
     if (!validNumber(input.goods_value)) blockers.push('货值/海关价值必须是非负数。');
@@ -307,6 +307,8 @@
     var blockers = [], warnings = [];
     input._profileFound = !!taxProfileFor(data, input);
     checkCommon(input, blockers, warnings);
+    var selectedProfile = taxProfileFor(data, input);
+    if (selectedProfile && selectedProfile.requiresReview && input.hs_reviewed !== true) blockers.push('请完成商品归类及非应税商品范围复核后再输出汇总。');
     var cur = toNativeCurrency(input, 'SGD', blockers);
     var fxBlocked = blockers.some(function (b) { return b.indexOf('汇率') >= 0; });
     var factor = cur ? cur.factor : 1;
@@ -398,6 +400,7 @@
 
     var profile = taxProfileFor(data, input);
     var ordinaryRate = profile ? profile.ordinaryRate : null;
+    eligiblePreference = eligiblePreference && input.origin === 'CN' && !!profile;
     var rate = eligiblePreference ? 0 : ordinaryRate;
     var duty = rate === 0 ? 0 : (customsValue === null || rate === null ? null : round2(customsValue * rate));
     var transportInsurance = (validNumber(input.freight) && validNumber(input.insurance)) ? round2((input.freight + input.insurance) * factor) : null;
@@ -443,7 +446,7 @@
     };
   }
 
-  function calculateTaxes(data, input) {
+  function calculateTaxesRaw(data, input) {
     if (input.market === 'SG') return calculateSingapore(data, input);
     if (input.market === 'AU') return calculateAustralia(data, input);
     return {
@@ -452,6 +455,20 @@
       blockers: ['当前市场（' + (input.market || '未选') + '）在静态数据包内仅有资料检索与 HS 候选方向，未建立可复算的税费画像；请查看覆盖缺口说明，不以零税率代替。'],
       warnings: [], assumptions: [], snapshotDate: SNAPSHOT_DATE
     };
+  }
+
+  function calculateTaxes(data, input) {
+    var result = calculateTaxesRaw(data, Object.assign({}, input));
+    var profile = taxProfileFor(data, input);
+    if (profile && profile.requiresReview && (!input.origin || !input.import_date || !['FOB', 'CIF', 'DDP'].includes(input.incoterm))) {
+      result.blockers.push('请填写原产地、进口日期及支持的贸易术语后测算税额。');
+      result.ordinary_duty = result.import_gst = result.ordinary_tax_subtotal = result.known_statutory_subtotal = result.complete_total = null;
+      result.lines.forEach(function (line) { if (line.classification === '税') { line.amount = null; line.status = 'blocked'; } });
+    }
+    result.capabilities = { rates: !!profile, amounts: result.import_gst !== null && result.import_gst !== undefined,
+      summary: result.complete_total !== null };
+    result.profileVersion = profile && (profile.version || 'baseline-2026');
+    return result;
   }
 
   /* ================= 输入指纹 ================= */

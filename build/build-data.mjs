@@ -45,7 +45,18 @@ const pk = J(join(P.qianwen, 'data/product_knowledge_v2.json'));
 const ext = J(join(P.qianwen, 'data/extensions_20261104.json'));
 const wb = J(join(P.qianwen, 'data/task4/regulatory_web_bundle.json'));
 const pkb = J(join(P.qianwen, 'data/task4/product_knowledge_bundle.json'));
-const taxProfiles = J(join(P.qianwen, 'data/tax_calculation_profiles.json')).profiles;
+const taxProfilesBase = J(join(P.qianwen, 'data/tax_calculation_profiles.json')).profiles;
+/* 已提交分支新增的画像扩展（如新加坡 25 条）必须一并载入，重建时不得丢失任何已提交画像 */
+const extTaxPath = join(ROOT, 'data/tax-profiles-extension-sg.json');
+let taxProfiles = taxProfilesBase;
+if (existsSync(extTaxPath)) {
+  const ext = J(extTaxPath).profiles || [];
+  const key = (t) => [t.market, t.product_type, t.hs, t.effective_from].join('|');
+  const seen = new Set(taxProfilesBase.map(key));
+  const add = ext.filter((t) => !seen.has(key(t)));
+  taxProfiles = taxProfilesBase.concat(add);
+  log('载入仓库内画像扩展', add.length, '条（合计', taxProfiles.length, '）');
+}
 const covProfiles = J(join(P.qianwen, 'data/coverage_profiles.json'));
 const newsOriginal = J(P.newsJson);
 const feeds = J(P.feedsJson);
@@ -481,6 +492,16 @@ const companies = [
   },
 ];
 
+/* ---------- 10b. 法规-来源与来源-产品族关联（政策资料库分类依据，取自原始交付真实记录） ---------- */
+const regSourceLinks = (ds.tables['法规来源关联_合并'] || []).map((r) => ({
+  source: r.source_id, regulation: r.regulation_id, rule: r.rule_id || '', role: r.role || '', origin: r.record_origin || ''
+}));
+const sourceScopeLinks = (ds.tables['法规与产品经营关联_保留MAP'] || []).map((r) => ({
+  source: r['来源ID'] || '', regulation: r['法规ID'] || '', family: r['产品族'] || '',
+  modes: r['经营模式'] || '', evidence: r['证据状态'] || '', nature: r['关联性质'] || ''
+})).filter((r) => r.source);
+log('法规-来源关联', regSourceLinks.length, '条 | 来源-产品族关联', sourceScopeLinks.length, '条');
+
 /* ---------- 11. 组装输出 ---------- */
 const voData = {
   meta: {
@@ -501,6 +522,7 @@ const voData = {
   },
   jurisdictions, categories, groups, subcategories, fields, ruleFields, dynamicMap, judgments,
   topics, regulations, sources, rules, actions, materials, productRuleLinks,
+  regSourceLinks, sourceScopeLinks,
   hsCandidates, taxProfiles, coverageProfiles: [...covList.values()],
   taxRules, incotermMatrix, formOptions, taxTemplates,
   coverageMatrix, hsTaxAudit, gapsSummary,
@@ -521,7 +543,13 @@ const newsMeta = {
   allFailed: false,
 };
 const newsJs = '/*! 新闻快照（由 tools/collect_news.py 定时重建） */\nwindow.VO_NEWS = ' + JSON.stringify({ meta: newsMeta, items: newsOriginal.items }) + ';\n';
-writeFileSync(join(ROOT, 'data/news.js'), newsJs, 'utf-8');
-writeFileSync(join(ROOT, 'data/news.json'), JSON.stringify({ meta: newsMeta, items: newsOriginal.items }, null, 1), 'utf-8');
-log('已写出 data/news.js（' + Math.round(newsJs.length / 1024) + ' KB），新闻', newsOriginal.items.length, '条');
+/* 新闻快照由采集器维护：本脚本只在文件缺失时初始化，绝不覆盖已有快照（防止重建回退历史新闻） */
+if (!existsSync(join(ROOT, 'data/news.json'))) {
+  writeFileSync(join(ROOT, 'data/news.json'), JSON.stringify({ meta: newsMeta, items: newsOriginal.items }, null, 1), 'utf-8');
+  writeFileSync(join(ROOT, 'data/news.js'), newsJs, 'utf-8');
+  log('新闻快照缺失，已用交接包初始化：', newsOriginal.items.length, '条');
+} else {
+  const cur = J(join(ROOT, 'data/news.json'));
+  log('保留现有新闻快照（', (cur.items || []).length, '条），本脚本不覆盖；更新请用 tools/collect_news.py');
+}
 log('构建完成 ✔');

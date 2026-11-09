@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>远见·企业出海助手 R1 | 小家电出海合规工作台</title>
-<meta name="description" content="面向中国小家电出海的企业研究档案、产品登记、法规合规初筛、HS 候选与税费阶段测算、政策新闻雷达、千问辅助建议与综合报告工作台。静态页面，数据快照见页面内说明。">
+<meta name="description" content="面向中国小家电出海的企业研究档案、产品登记、法规合规初筛、HS 候选与税费阶段测算、政策新闻雷达、千问辅助建议与综合报告工作台。静态页面，使用流程与能力边界见「上手指南」。">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="css/styles.css">
 </head>
@@ -22,22 +22,22 @@
       <button class="tool-btn" id="btnNewProj" type="button" title="新建项目">新建</button>
       <button class="tool-btn" id="btnRenameProj" type="button" title="重命名当前项目">改名</button>
       <button class="tool-btn" id="btnDelProj" type="button" title="删除当前项目（本机存储）">删除</button>
-      <button class="tool-btn" id="lnkAbout" type="button">数据说明</button>
+      <button class="tool-btn" id="lnkAbout" type="button">上手指南</button>
     </div>
   </header>
 
   <aside class="sidebar no-print">
     <nav id="sideNav" aria-label="流程步骤">
       <button class="nav-item home-link" data-tab="home"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 11l8-7 8 7v8a1 1 0 0 1-1 1h-4v-6h-6v6H5a1 1 0 0 1-1-1z"/></svg><span>⌂</span><b>首页</b></button>
-      <button class="nav-item" data-tab="product"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M12 12l8-4.5M12 12v9M12 12L4 7.5"/></svg><span>1</span><b>项目与产品</b><em class="dot" id="dot-product"></em></button>
+      <button class="nav-item" data-tab="product"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M12 12l8-4.5M12 12v9M12 12L4 7.5"/></svg><span>1</span><b>产品市场</b><em class="dot" id="dot-product"></em></button>
       <button class="nav-item" data-tab="compliance"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l7 4v5c0 4-3 7-7 9-4-2-7-5-7-9V7z"/><path d="M9 12l2 2 4-4"/></svg><span>2</span><b>合规初筛</b><em class="dot" id="dot-compliance"></em></button>
-      <button class="nav-item" data-tab="tax"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 9h8M8 13h5M8 17h3"/></svg><span>3</span><b>HS 与税费</b><em class="dot" id="dot-tax"></em></button>
-      <button class="nav-item" data-tab="news"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="8"/><path d="M12 4v3M5 8l2.5 2"/></svg><span>4</span><b>新闻雷达</b><em class="sub">可选</em><em class="dot" id="dot-news"></em></button>
+      <button class="nav-item" data-tab="tax"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 9h8M8 13h5M8 17h3"/></svg><span>3</span><b>税费计算</b><em class="dot" id="dot-tax"></em></button>
+      <button class="nav-item" data-tab="news"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="8"/><path d="M12 4v3M5 8l2.5 2"/></svg><span>4</span><b>市场动态</b><em class="sub">可选</em><em class="dot" id="dot-news"></em></button>
       <button class="nav-item" data-tab="qianwen"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 12l-3 6-7-1-3 4-1-6-6-2 4-4-1-7 6 2 5-4z"/></svg><span>5</span><b>千问建议</b><em class="dot" id="dot-qianwen"></em></button>
-      <button class="nav-item" data-tab="report"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 3h10v18H7z"/><path d="M10 8h4M10 12h4"/></svg><span>6</span><b>综合报告</b><em class="dot" id="dot-report"></em></button>
+      <button class="nav-item" data-tab="report"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 3h10v18H7z"/><path d="M10 8h4M10 12h4"/></svg><span>6</span><b>出海报告</b><em class="dot" id="dot-report"></em></button>
       <div class="nav-links">
-        <a href="research/index.html">产品研究档案 ↗</a>
-        <a href="policy-documents/index.html">政策原文归档 ↗</a>
+        <a href="research/index.html">产品研究 ↗</a>
+        <a href="policy-documents/index.html">政策资料库 ↗</a>
       </div>
     </nav>
     <div class="sidebar-note">
@@ -54,11 +54,11 @@
         <div class="home-copy">
           <p class="eyebrow">从了解产品，到准备出海</p>
           <h1>让每一款小家电，<br>都有清晰的出海准备路径。</h1>
-          <p class="lead">选好产品和目标市场，查看需要满足的要求、估算进口税费，并持续关注相关变化。</p>
+          <p class="lead">选好产品和目标市场，查看需要满足的要求、测算进口税费，并持续关注相关变化。</p>
           <div class="home-actions">
-            <button class="btn" id="btnHomeStart" type="button">开始项目</button>
-            <a class="btn sec" href="research/index.html">浏览产品研究</a>
-            <button class="btn sec" id="btnHomeRadar" type="button">新闻雷达</button>
+            <button class="btn" id="btnHomeStart" type="button">开始你的项目</button>
+            <button class="btn sec" id="btnHomeExamples" type="button">项目示例</button>
+            <button class="btn sec" id="btnHomeRadar" type="button">政策动态</button>
           </div>
         </div>
         <div class="home-objects" aria-hidden="true">
@@ -69,26 +69,19 @@
         </div>
       </div>
       <div class="card" style="margin-top:0">
-        <h3>先认识你的产品类别</h3>
-        <p class="subhint" style="margin:0 0 4px">清洁家电 / 真空吸尘 · 点击类别直达研究档案（已带类型筛选）</p>
-        <div class="cat-cards">
-          <a class="cat-card" href="research/index.html?cat=1"><span class="vo-label">地面清洁</span><h4>罐式吸尘器</h4><p>市电有袋/无袋，尘杯与过滤是关键差异</p><span class="text-button">查看 3 款研究 →</span></a>
-          <a class="cat-card" href="research/index.html?cat=2"><span class="vo-label">高处与日常</span><h4>立式／杆式吸尘器</h4><p>先核供电方式，再决定是否问电池参数</p><span class="text-button">查看 4 款研究 →</span></a>
-          <a class="cat-card" href="research/index.html?cat=3"><span class="vo-label">轻量随手吸</span><h4>手持吸尘器</h4><p>无线为主，注意电池与充电参数</p><span class="text-button">查看 3 款研究 →</span></a>
-          <a class="cat-card" href="research/index.html?cat=4"><span class="vo-label">尘土与液体</span><h4>干湿两用吸尘器</h4><p>桶式常见，需确认可吸液量</p><span class="text-button">查看 3 款研究 →</span></a>
-          <a class="cat-card" href="research/index.html?cat=5"><span class="vo-label">自动清洁</span><h4>扫地／扫拖机器人</h4><p>基站、无线与地图数据触发更多核查</p><span class="text-button">查看 3 款研究 →</span></a>
+        <h3 class="home-section-title"><span class="hs-n" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span>认识产品类别</h3>
+        <p class="subhint" style="margin:0 0 4px">覆盖小家电主要产品组；清洁电器研究档案较完整。各市场功能以实际支持标签为准。</p>
+        <div class="cat-cards" id="homeGroups"></div>
+        <button class="text-button" data-goto="product" type="button">查看全部产品 →</button>
+      </div>
+      <div class="card home-guide">
+        <h3 class="home-section-title"><span class="hs-n" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4zM8 9h8M8 13h8M8 17h5"/></svg></span>查看上手说明</h3>
+        <div class="home-steps">
+          <div class="hs-card"><span class="hs-n" aria-hidden="true">1</span><div><b>选择产品与市场</b><ul><li>选择产品和目的地</li><li>填写关键产品信息</li></ul><button class="text-button" data-goto="product" type="button">去登记 →</button></div></div>
+          <div class="hs-card"><span class="hs-n" aria-hidden="true">2</span><div><b>查看合规初筛</b><ul><li>了解可能适用的要求</li><li>确认需要准备的材料</li></ul><button class="text-button" data-goto="compliance" type="button">去初筛 →</button></div></div>
+          <div class="hs-card"><span class="hs-n" aria-hidden="true">3</span><div><b>计算进口税费</b><ul><li>复核 HS 候选</li><li>填写交易条件查看测算</li></ul><button class="text-button" data-goto="tax" type="button">去计算 →</button></div></div>
+          <div class="hs-card"><span class="hs-n" aria-hidden="true">4</span><div><b>获取出海报告</b><ul><li>汇总分析结果和政策来源</li><li>整理后续准备事项</li></ul><button class="text-button" data-goto="report" type="button">看报告 →</button></div></div>
         </div>
-      </div>
-      <div class="home-steps">
-        <div class="hs-card"><span class="hs-n"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></span><div><b>登记项目与产品</b><p>选目的地与品类，只回答影响判断的关键事实；研究档案可一键带入。</p><button class="text-button" data-goto="product" type="button">去登记 →</button></div></div>
-        <div class="hs-card"><span class="hs-n"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l7 4v5c0 4-3 7-7 9-4-2-7-5-7-9V7z"/><path d="M9 12l2 2 4-4"/></svg></span><div><b>运行合规初筛</b><p>可能适用、待补事实、不适用与待规则核验分开显示，缺口如实呈现。</p><button class="text-button" data-goto="compliance" type="button">去初筛 →</button></div></div>
-        <div class="hs-card"><span class="hs-n"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 8h8M8 12h3M14 12h2M8 16h6"/></svg></span><div><b>选 HS 候选并算税费</b><p>候选方向 + 按公式逐行复算；条件不足时完整总额保持不可用。</p><button class="text-button" data-goto="tax" type="button">去测算 →</button></div></div>
-        <div class="hs-card"><span class="hs-n"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="8"/><path d="M12 2v4M4.9 4.9l2.8 2.8"/></svg></span><div><b>筛选新闻与生成建议</b><p>官方公告快照按项目筛选；一键调用千问 API 或手动闭环。</p><button class="text-button" data-goto="news" type="button">去看新闻 →</button></div></div>
-        <div class="hs-card"><span class="hs-n"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 3h10v18H7z"/><path d="M10 8h4M10 12h4M10 16h2"/></svg></span><div><b>出具综合报告</b><p>每条结论可溯源，支持打印 PDF、导出 JSON 与快照管理。</p><button class="text-button" data-goto="report" type="button">看报告 →</button></div></div>
-      </div>
-      <div class="card" style="margin-top:16px">
-        <h3>五步上手说明</h3>
-        <p class="subhint">第 1 步在「项目与产品」完成登记（不确定的事实选「不确定」，系统不会按「否」处理）→ 第 2 步查看四类初筛结果并补齐关键事实 → 第 3 步选 HS 候选、填交易要素得到税费分项 → 第 4 步按目的地筛新闻并勾选 → 第 5 步让千问基于全部证据生成建议 → 综合报告随时可生成与打印。侧栏顶部可随时回到本页；「产品研究档案」与「政策原文归档」是新开页面。</p>
       </div>
     </section>
 
@@ -97,14 +90,14 @@
       <div class="hero">
         <div class="hero-copy">
           <p class="eyebrow">出海合规准备 · 第一步</p>
-          <h1>登记项目、目的地与产品</h1>
+          <h1>产品市场</h1>
           <p class="lead" id="heroLead">先选好「产品 × 目的地」，系统只追问影响当前判断的关键事实；案例资料可一键带入。</p>
         </div>
         <div class="hero-status" id="heroStatus"></div>
       </div>
 
       <details class="card case-box" id="companyQuick">
-        <summary><b>从企业案例带入</b><em>可选 · 小熊电器 / 石头科技公开研究档案</em></summary>
+        <summary><b>从企业案例带入</b><em>小熊电器 / 石头科技公开案例</em></summary>
         <div class="banner warn">案例档案来自公开官网与披露文件：国内在售型号不能自动当作出口型号；研究路线不等于已实现的出口事实。</div>
         <div id="companyList"></div>
       </details>
@@ -162,24 +155,24 @@
       <div id="complianceResult"></div>
       <div class="step-foot">
         <button class="btn sec" id="btnBack1" type="button">← 返回修改</button>
-        <button class="btn" id="btnNext2" type="button">下一步：HS 与税费 →</button>
+        <button class="btn" id="btnNext2" type="button">下一步：税费计算 →</button>
       </div>
     </section>
 
     <!-- 3 HS 与税费 -->
     <section class="view" id="view-tax" aria-label="HS 与税费">
-      <div class="page-title"><h1>HS 候选与税费测算</h1></div>
+      <div class="page-title"><h1>税费计算</h1></div>
       <div id="taxBody"></div>
       <div class="step-foot">
         <button class="btn sec" id="btnBack2" type="button">← 返回</button>
-        <button class="btn" id="btnNext3" type="button">下一步：新闻雷达 →</button>
+        <button class="btn" id="btnNext3" type="button">下一步：市场动态 →</button>
       </div>
     </section>
 
     <!-- 4 新闻雷达 -->
     <section class="view" id="view-news" aria-label="政策与新闻雷达">
       <div class="page-title">
-        <h1>政策与新闻雷达 <em class="tag">可选</em></h1>
+        <h1>市场动态 <em class="tag">可选</em></h1>
         <div class="view-switch no-print">
           <button class="btn sec sm" id="btnRadarView" type="button">切换地图雷达视图</button>
         </div>
@@ -190,24 +183,24 @@
       <div id="newsBody"></div>
       <div class="step-foot">
         <button class="btn sec" id="btnBack3" type="button">← 返回</button>
-        <button class="btn" id="btnNext4" type="button">下一步：千问辅助建议 →</button>
+        <button class="btn" id="btnNext4" type="button">下一步：千问建议 →</button>
       </div>
     </section>
 
     <!-- 5 千问辅助建议 -->
     <section class="view" id="view-qianwen" aria-label="千问辅助建议">
-      <div class="page-title"><h1>千问辅助建议</h1></div>
+      <div class="page-title"><h1>千问建议</h1></div>
       <div id="qianwenBody"></div>
       <div class="step-foot">
         <button class="btn sec" id="btnBack4" type="button">← 返回</button>
-        <button class="btn" id="btnNext5" type="button">下一步：综合报告 →</button>
+        <button class="btn" id="btnNext5" type="button">下一步：出海报告 →</button>
       </div>
     </section>
 
     <!-- 6 综合报告 -->
     <section class="view" id="view-report" aria-label="综合报告">
       <div class="page-title">
-        <h1>综合报告</h1>
+        <h1>出海报告</h1>
         <div class="no-print toolbar">
           <button class="btn sm" id="btnPrint" type="button">打印 / 导出 PDF</button>
           <button class="btn sec sm" id="btnExportJson" type="button">导出项目 JSON</button>
@@ -218,9 +211,9 @@
       <div id="reportBody"></div>
     </section>
 
-    <!-- 数据说明 -->
-    <section class="view" id="view-about" aria-label="数据说明">
-      <div class="page-title"><h1>数据说明</h1></div>
+    <!-- 上手指南 -->
+    <section class="view" id="view-about" aria-label="上手指南">
+      <div class="page-title"><h1>上手指南</h1>
       <div id="aboutBody"></div>
       <div class="step-foot"><button class="btn sec" id="btnBackAbout" type="button">← 返回流程</button></div>
     </section>

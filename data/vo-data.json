@@ -2,7 +2,7 @@
  "meta": {
   "app": "远见·企业出海助手",
   "version": "2.0.0",
-  "generatedAt": "2026-11-05T08:09:44.280Z",
+  "generatedAt": "2026-11-09T11:51:45.164Z",
   "dataAsOf": "2026-11-04",
   "builtAt": "2026-11-05",
   "scope": "面向中国小家电出海的条件初筛、HS/税费阶段测算、政策新闻筛选与建议任务生成；不替代主管机关、认证机构、律师、税务顾问或海关决定。",
@@ -31486,6 +31486,4603 @@
    "reason": "电气小家电/包装通用初筛；仍以规则条件为准"
   }
  ],
+ "regSourceLinks": [
+  {
+   "source": "SRC-102",
+   "regulation": "REG-EU-001",
+   "rule": "",
+   "role": "主来源",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-103",
+   "regulation": "REG-EU-002",
+   "rule": "",
+   "role": "主来源",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-094",
+   "regulation": "REG-EU-003",
+   "rule": "",
+   "role": "主来源",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-092",
+   "regulation": "REG-EU-004",
+   "rule": "",
+   "role": "主来源",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-097",
+   "regulation": "REG-EU-005",
+   "rule": "",
+   "role": "主来源",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-104",
+   "regulation": "REG-EU-006",
+   "rule": "",
+   "role": "主来源",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-105",
+   "regulation": "REG-EU-007",
+   "rule": "",
+   "role": "主来源",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-098",
+   "regulation": "REG-EU-008",
+   "rule": "",
+   "role": "主来源",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-106",
+   "regulation": "REG-EU-009",
+   "rule": "",
+   "role": "主来源",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-107",
+   "regulation": "REG-EU-010",
+   "rule": "",
+   "role": "主来源",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-108",
+   "regulation": "REG-EU-011",
+   "rule": "",
+   "role": "主来源",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-109",
+   "regulation": "REG-EU-012",
+   "rule": "",
+   "role": "主来源",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-099",
+   "regulation": "REG-EU-013",
+   "rule": "",
+   "role": "主来源",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-081",
+   "regulation": "REG-EU-014",
+   "rule": "",
+   "role": "主来源",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-080",
+   "regulation": "REG-EU-015",
+   "rule": "",
+   "role": "主来源",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-126",
+   "regulation": "REG-EU-016",
+   "rule": "",
+   "role": "主来源",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-083",
+   "regulation": "REG-EU-017",
+   "rule": "",
+   "role": "主来源",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-100",
+   "regulation": "REG-EU-018",
+   "rule": "",
+   "role": "主来源",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-110",
+   "regulation": "REG-DE-001",
+   "rule": "",
+   "role": "主来源",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-116",
+   "regulation": "REG-DE-002",
+   "rule": "",
+   "role": "主来源",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-114",
+   "regulation": "REG-FR-001",
+   "rule": "",
+   "role": "主来源",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-113",
+   "regulation": "REG-FR-002",
+   "rule": "",
+   "role": "主来源",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-013",
+   "regulation": "REG-UK_GB-001",
+   "rule": "",
+   "role": "主来源",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-014",
+   "regulation": "REG-UK_GB-002",
+   "rule": "",
+   "role": "主来源",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-003",
+   "regulation": "REG-US-001",
+   "rule": "",
+   "role": "主来源",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-005",
+   "regulation": "REG-US-002",
+   "rule": "",
+   "role": "主来源",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-007",
+   "regulation": "REG-US-003",
+   "rule": "",
+   "role": "主来源",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-011",
+   "regulation": "REG-US-004",
+   "rule": "",
+   "role": "主来源",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-119",
+   "regulation": "REG-US-005",
+   "rule": "",
+   "role": "主来源",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-120",
+   "regulation": "REG-US-006",
+   "rule": "",
+   "role": "主来源",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-130",
+   "regulation": "REG-US-007",
+   "rule": "",
+   "role": "主来源",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-009",
+   "regulation": "REG-US-008",
+   "rule": "",
+   "role": "主来源",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-016",
+   "regulation": "REG-CA-001",
+   "rule": "",
+   "role": "主来源",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-026",
+   "regulation": "REG-JP-001",
+   "rule": "",
+   "role": "主来源",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-034",
+   "regulation": "REG-JP-002",
+   "rule": "",
+   "role": "主来源",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-029",
+   "regulation": "REG-KR-001",
+   "rule": "",
+   "role": "主来源",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-031",
+   "regulation": "REG-SG-001",
+   "rule": "",
+   "role": "主来源",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-021",
+   "regulation": "REG-MY-001",
+   "rule": "",
+   "role": "主来源",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-131",
+   "regulation": "REG-MY-001",
+   "rule": "",
+   "role": "附件/版本或补充证据",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-022",
+   "regulation": "REG-MY-002",
+   "rule": "",
+   "role": "主来源",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-036",
+   "regulation": "REG-TH-001",
+   "rule": "",
+   "role": "主来源",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-067",
+   "regulation": "REG-VN-001",
+   "rule": "",
+   "role": "主来源",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-070",
+   "regulation": "REG-VN-002",
+   "rule": "",
+   "role": "主来源",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-064",
+   "regulation": "REG-ID-001",
+   "rule": "",
+   "role": "主来源",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-087",
+   "regulation": "REG-PH-001",
+   "rule": "",
+   "role": "主来源",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-089",
+   "regulation": "REG-PH-002",
+   "rule": "",
+   "role": "主来源",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-037",
+   "regulation": "REG-TW-001",
+   "rule": "",
+   "role": "主来源",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-132",
+   "regulation": "REG-TW-001",
+   "rule": "",
+   "role": "附件/版本或补充证据",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-133",
+   "regulation": "REG-TW-001",
+   "rule": "",
+   "role": "附件/版本或补充证据",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-038",
+   "regulation": "REG-TW-002",
+   "rule": "",
+   "role": "主来源",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-018",
+   "regulation": "REG-AU-001",
+   "rule": "",
+   "role": "主来源",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-040",
+   "regulation": "REG-GCC-001",
+   "rule": "",
+   "role": "主来源",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-043",
+   "regulation": "REG-SA-001",
+   "rule": "",
+   "role": "主来源",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-045",
+   "regulation": "REG-SA-002",
+   "rule": "",
+   "role": "主来源",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-047",
+   "regulation": "REG-SA-003",
+   "rule": "",
+   "role": "主来源",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-050",
+   "regulation": "REG-AE-001",
+   "rule": "",
+   "role": "主来源",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-071",
+   "regulation": "REG-IN-001",
+   "rule": "",
+   "role": "主来源",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-138",
+   "regulation": "REG-IN-001",
+   "rule": "",
+   "role": "附件/版本或补充证据",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-140",
+   "regulation": "REG-IN-001",
+   "rule": "",
+   "role": "附件/版本或补充证据",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-141",
+   "regulation": "REG-IN-001",
+   "rule": "",
+   "role": "附件/版本或补充证据",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-142",
+   "regulation": "REG-IN-001",
+   "rule": "",
+   "role": "附件/版本或补充证据",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-048",
+   "regulation": "REG-IN-002",
+   "rule": "",
+   "role": "主来源",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-054",
+   "regulation": "REG-BR-001",
+   "rule": "",
+   "role": "主来源",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-056",
+   "regulation": "REG-BR-002",
+   "rule": "",
+   "role": "主来源",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-058",
+   "regulation": "REG-MX-001",
+   "rule": "",
+   "role": "主来源",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-059",
+   "regulation": "REG-MX-002",
+   "rule": "",
+   "role": "主来源",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-061",
+   "regulation": "REG-AR-001",
+   "rule": "",
+   "role": "主来源",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-084",
+   "regulation": "REG-CL-001",
+   "rule": "",
+   "role": "主来源",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-090",
+   "regulation": "REG-TR-001",
+   "rule": "",
+   "role": "主来源",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-091",
+   "regulation": "REG-TR-002",
+   "rule": "",
+   "role": "主来源",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-127",
+   "regulation": "REG-ZA-001",
+   "rule": "",
+   "role": "主来源",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-129",
+   "regulation": "REG-EAEU-001",
+   "rule": "",
+   "role": "主来源",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-073",
+   "regulation": "REG-CN_RCEP-001",
+   "rule": "",
+   "role": "主来源",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-077",
+   "regulation": "REG-RCEP-001",
+   "rule": "",
+   "role": "主来源",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-143",
+   "regulation": "REG-RCEP-001",
+   "rule": "",
+   "role": "附件/版本或补充证据",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-144",
+   "regulation": "REG-RCEP-001",
+   "rule": "",
+   "role": "附件/版本或补充证据",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-145",
+   "regulation": "REG-RCEP-001",
+   "rule": "",
+   "role": "附件/版本或补充证据",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-146",
+   "regulation": "REG-RCEP-001",
+   "rule": "",
+   "role": "附件/版本或补充证据",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-147",
+   "regulation": "REG-RCEP-001",
+   "rule": "",
+   "role": "附件/版本或补充证据",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-148",
+   "regulation": "REG-RCEP-001",
+   "rule": "",
+   "role": "附件/版本或补充证据",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-149",
+   "regulation": "REG-RCEP-001",
+   "rule": "",
+   "role": "附件/版本或补充证据",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-150",
+   "regulation": "REG-RCEP-001",
+   "rule": "",
+   "role": "附件/版本或补充证据",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-151",
+   "regulation": "REG-RCEP-001",
+   "rule": "",
+   "role": "附件/版本或补充证据",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-152",
+   "regulation": "REG-RCEP-001",
+   "rule": "",
+   "role": "附件/版本或补充证据",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-153",
+   "regulation": "REG-RCEP-001",
+   "rule": "",
+   "role": "附件/版本或补充证据",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-154",
+   "regulation": "REG-RCEP-001",
+   "rule": "",
+   "role": "附件/版本或补充证据",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-155",
+   "regulation": "REG-RCEP-001",
+   "rule": "",
+   "role": "附件/版本或补充证据",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-156",
+   "regulation": "REG-RCEP-001",
+   "rule": "",
+   "role": "附件/版本或补充证据",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-157",
+   "regulation": "REG-RCEP-001",
+   "rule": "",
+   "role": "附件/版本或补充证据",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-158",
+   "regulation": "REG-RCEP-001",
+   "rule": "",
+   "role": "附件/版本或补充证据",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-159",
+   "regulation": "REG-RCEP-001",
+   "rule": "",
+   "role": "附件/版本或补充证据",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-160",
+   "regulation": "REG-RCEP-001",
+   "rule": "",
+   "role": "附件/版本或补充证据",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-142",
+   "regulation": "REG-IN-003",
+   "rule": "",
+   "role": "主来源",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-138",
+   "regulation": "REG-IN-004",
+   "rule": "",
+   "role": "主来源",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-136",
+   "regulation": "REG-GCC-002",
+   "rule": "",
+   "role": "主来源",
+   "origin": "20261101"
+  },
+  {
+   "source": "SRC-161",
+   "regulation": "REG-SG-001",
+   "rule": "SG-C01",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-164",
+   "regulation": "REG-SG-001",
+   "rule": "SG-C01",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-161",
+   "regulation": "REG-SG-001",
+   "rule": "SG-C02",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-164",
+   "regulation": "REG-SG-001",
+   "rule": "SG-C02",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-200",
+   "regulation": "REG-SG-001",
+   "rule": "SG-C03",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-164",
+   "regulation": "REG-SG-001",
+   "rule": "SG-C03",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-201",
+   "regulation": "REG-SG-001",
+   "rule": "SG-C03",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-164",
+   "regulation": "REG-SG-001",
+   "rule": "SG-C04",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-201",
+   "regulation": "REG-SG-001",
+   "rule": "SG-C04",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-164",
+   "regulation": "REG-SG-001",
+   "rule": "SG-C05",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-218",
+   "regulation": "REG-SG-001",
+   "rule": "SG-C05",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-161",
+   "regulation": "REG-SG-001",
+   "rule": "SG-C06",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-164",
+   "regulation": "REG-SG-001",
+   "rule": "SG-C06",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-161",
+   "regulation": "REG-SG-001",
+   "rule": "SG-C07",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-164",
+   "regulation": "REG-SG-001",
+   "rule": "SG-C07",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-164",
+   "regulation": "REG-SG-001",
+   "rule": "SG-C08",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-164",
+   "regulation": "REG-SG-001",
+   "rule": "SG-C09",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-218",
+   "regulation": "REG-SG-001",
+   "rule": "SG-C09",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-164",
+   "regulation": "REG-SG-001",
+   "rule": "SG-C10",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-164",
+   "regulation": "REG-SG-001",
+   "rule": "SG-C11",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-164",
+   "regulation": "REG-SG-001",
+   "rule": "SG-C12",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-164",
+   "regulation": "REG-SG-001",
+   "rule": "SG-C13",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-164",
+   "regulation": "REG-SG-001",
+   "rule": "SG-C14",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-164",
+   "regulation": "REG-SG-001",
+   "rule": "SG-C15",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-164",
+   "regulation": "REG-SG-001",
+   "rule": "SG-C16",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-201",
+   "regulation": "REG-SG-001",
+   "rule": "SG-C17",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-164",
+   "regulation": "REG-SG-001",
+   "rule": "SG-C17",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-164",
+   "regulation": "REG-SG-001",
+   "rule": "SG-C18",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-176",
+   "regulation": "REG-SG-002",
+   "rule": "SG-C19",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-204",
+   "regulation": "REG-SG-002",
+   "rule": "SG-C19",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-176",
+   "regulation": "REG-SG-002",
+   "rule": "SG-C20",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-204",
+   "regulation": "REG-SG-002",
+   "rule": "SG-C20",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-225",
+   "regulation": "REG-SG-003",
+   "rule": "SG-C21",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-226",
+   "regulation": "REG-SG-004",
+   "rule": "SG-C22",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-227",
+   "regulation": "REG-SG-004",
+   "rule": "SG-C22",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-231",
+   "regulation": "REG-SG-005",
+   "rule": "SG-C23",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-173",
+   "regulation": "REG-SG-006",
+   "rule": "SG-C24",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-186",
+   "regulation": "REG-AU-001",
+   "rule": "AU-C01",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-206",
+   "regulation": "REG-AU-001",
+   "rule": "AU-C01",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-219",
+   "regulation": "REG-AU-001",
+   "rule": "AU-C01",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-186",
+   "regulation": "REG-AU-001",
+   "rule": "AU-C02",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-206",
+   "regulation": "REG-AU-001",
+   "rule": "AU-C02",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-219",
+   "regulation": "REG-AU-001",
+   "rule": "AU-C02",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-184",
+   "regulation": "REG-AU-001",
+   "rule": "AU-C03",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-185",
+   "regulation": "REG-AU-001",
+   "rule": "AU-C03",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-184",
+   "regulation": "REG-AU-001",
+   "rule": "AU-C04",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-183",
+   "regulation": "REG-AU-001",
+   "rule": "AU-C04",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-187",
+   "regulation": "REG-AU-002",
+   "rule": "AU-C05",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-211",
+   "regulation": "REG-AU-001",
+   "rule": "AU-C06",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-235",
+   "regulation": "REG-AU-004",
+   "rule": "AU-C07",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-236",
+   "regulation": "REG-AU-004",
+   "rule": "AU-C07",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-237",
+   "regulation": "REG-AU-004",
+   "rule": "AU-C07",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-233",
+   "regulation": "REG-AU-004",
+   "rule": "AU-C07",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-164",
+   "regulation": "PROJECT-SCOPE",
+   "rule": "CORE-C01",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-187",
+   "regulation": "PROJECT-SCOPE",
+   "rule": "CORE-C01",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-168",
+   "regulation": "PROJECT-SCOPE",
+   "rule": "CORE-C02",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-177",
+   "regulation": "PROJECT-SCOPE",
+   "rule": "CORE-C02",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-173",
+   "regulation": "PROJECT-SCOPE",
+   "rule": "CORE-C03",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-179",
+   "regulation": "PROJECT-SCOPE",
+   "rule": "CORE-C03",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-172",
+   "regulation": "PROJECT-SCOPE",
+   "rule": "CORE-C04",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-179",
+   "regulation": "PROJECT-SCOPE",
+   "rule": "CORE-C04",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-192",
+   "regulation": "PROJECT-SCOPE",
+   "rule": "CORE-C05",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-172",
+   "regulation": "PROJECT-SCOPE",
+   "rule": "CORE-C05",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-170",
+   "regulation": "REG-SG-007",
+   "rule": "TX-SG-D0",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-173",
+   "regulation": "REG-SG-007",
+   "rule": "TX-SG-D0",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-168",
+   "regulation": "REG-SG-007",
+   "rule": "TX-SG-D0",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-171",
+   "regulation": "REG-SG-007",
+   "rule": "TX-SG-G9",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-174",
+   "regulation": "REG-SG-007",
+   "rule": "TX-SG-G9",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-217",
+   "regulation": "REG-SG-007",
+   "rule": "TX-SG-G9",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-172",
+   "regulation": "REG-SG-007",
+   "rule": "TX-SG-V",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-171",
+   "regulation": "REG-SG-007",
+   "rule": "TX-SG-LSP",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-228",
+   "regulation": "REG-SG-007",
+   "rule": "TX-SG-FX",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-202",
+   "regulation": "REG-SG-007",
+   "rule": "TX-SG-P90",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-202",
+   "regulation": "REG-SG-007",
+   "rule": "TX-SG-OP",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-164",
+   "regulation": "REG-SG-007",
+   "rule": "TX-SG-REG",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-164",
+   "regulation": "REG-SG-007",
+   "rule": "TX-SG-REN",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-177",
+   "regulation": "REG-AU-003",
+   "rule": "TX-AU-K5",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-177",
+   "regulation": "REG-AU-003",
+   "rule": "TX-AU-T0",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-233",
+   "regulation": "REG-AU-003",
+   "rule": "TX-AU-CN0",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-207",
+   "regulation": "REG-AU-003",
+   "rule": "TX-AU-CN0",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-235",
+   "regulation": "REG-AU-003",
+   "rule": "TX-AU-CN0",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-236",
+   "regulation": "REG-AU-003",
+   "rule": "TX-AU-CN0",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-237",
+   "regulation": "REG-AU-003",
+   "rule": "TX-AU-CN0",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-238",
+   "regulation": "REG-AU-003",
+   "rule": "TX-AU-CN0",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-179",
+   "regulation": "REG-AU-003",
+   "rule": "TX-AU-G10",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-232",
+   "regulation": "REG-AU-003",
+   "rule": "TX-AU-G10",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-180",
+   "regulation": "REG-AU-003",
+   "rule": "TX-AU-IPC50",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-180",
+   "regulation": "REG-AU-003",
+   "rule": "TX-AU-IPC152",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-180",
+   "regulation": "REG-AU-003",
+   "rule": "TX-AU-BIO48",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-224",
+   "regulation": "REG-AU-003",
+   "rule": "TX-AU-BIO48",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-180",
+   "regulation": "REG-AU-003",
+   "rule": "TX-AU-BIO71",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-224",
+   "regulation": "REG-AU-003",
+   "rule": "TX-AU-BIO71",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-190",
+   "regulation": "PROJECT-SCOPE",
+   "rule": "TX-REMEDY",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-216",
+   "regulation": "PROJECT-SCOPE",
+   "rule": "TX-REMEDY",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-217",
+   "regulation": "PROJECT-SCOPE",
+   "rule": "TX-RECOVER",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  },
+  {
+   "source": "SRC-179",
+   "regulation": "PROJECT-SCOPE",
+   "rule": "TX-RECOVER",
+   "role": "规则或税项证据",
+   "origin": "20261103"
+  }
+ ],
+ "sourceScopeLinks": [
+  {
+   "source": "SRC-102",
+   "regulation": "REG-EU-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "B2B",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-102",
+   "regulation": "REG-EU-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "平台",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-102",
+   "regulation": "REG-EU-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "DTC",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-102",
+   "regulation": "REG-EU-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "海外仓",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-102",
+   "regulation": "REG-EU-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "本地经营",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-103",
+   "regulation": "REG-EU-002",
+   "family": "全部功能族（须满足条件）",
+   "modes": "B2B",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-103",
+   "regulation": "REG-EU-002",
+   "family": "全部功能族（须满足条件）",
+   "modes": "平台",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-103",
+   "regulation": "REG-EU-002",
+   "family": "全部功能族（须满足条件）",
+   "modes": "DTC",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-103",
+   "regulation": "REG-EU-002",
+   "family": "全部功能族（须满足条件）",
+   "modes": "海外仓",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-103",
+   "regulation": "REG-EU-002",
+   "family": "全部功能族（须满足条件）",
+   "modes": "本地经营",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-094",
+   "regulation": "REG-EU-003",
+   "family": "全部功能族（须满足条件）",
+   "modes": "B2B",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-094",
+   "regulation": "REG-EU-003",
+   "family": "全部功能族（须满足条件）",
+   "modes": "平台",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-094",
+   "regulation": "REG-EU-003",
+   "family": "全部功能族（须满足条件）",
+   "modes": "DTC",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-094",
+   "regulation": "REG-EU-003",
+   "family": "全部功能族（须满足条件）",
+   "modes": "海外仓",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-094",
+   "regulation": "REG-EU-003",
+   "family": "全部功能族（须满足条件）",
+   "modes": "本地经营",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-092",
+   "regulation": "REG-EU-004",
+   "family": "全部功能族（须满足条件）",
+   "modes": "B2B",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-092",
+   "regulation": "REG-EU-004",
+   "family": "全部功能族（须满足条件）",
+   "modes": "平台",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-092",
+   "regulation": "REG-EU-004",
+   "family": "全部功能族（须满足条件）",
+   "modes": "DTC",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-092",
+   "regulation": "REG-EU-004",
+   "family": "全部功能族（须满足条件）",
+   "modes": "海外仓",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-092",
+   "regulation": "REG-EU-004",
+   "family": "全部功能族（须满足条件）",
+   "modes": "本地经营",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-097",
+   "regulation": "REG-EU-005",
+   "family": "全部功能族（须满足条件）",
+   "modes": "B2B",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-097",
+   "regulation": "REG-EU-005",
+   "family": "全部功能族（须满足条件）",
+   "modes": "平台",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-097",
+   "regulation": "REG-EU-005",
+   "family": "全部功能族（须满足条件）",
+   "modes": "DTC",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-097",
+   "regulation": "REG-EU-005",
+   "family": "全部功能族（须满足条件）",
+   "modes": "海外仓",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-097",
+   "regulation": "REG-EU-005",
+   "family": "全部功能族（须满足条件）",
+   "modes": "本地经营",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-104",
+   "regulation": "REG-EU-006",
+   "family": "全部功能族（须满足条件）",
+   "modes": "B2B",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-104",
+   "regulation": "REG-EU-006",
+   "family": "全部功能族（须满足条件）",
+   "modes": "平台",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-104",
+   "regulation": "REG-EU-006",
+   "family": "全部功能族（须满足条件）",
+   "modes": "DTC",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-104",
+   "regulation": "REG-EU-006",
+   "family": "全部功能族（须满足条件）",
+   "modes": "海外仓",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-104",
+   "regulation": "REG-EU-006",
+   "family": "全部功能族（须满足条件）",
+   "modes": "本地经营",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-105",
+   "regulation": "REG-EU-007",
+   "family": "全部功能族（须满足条件）",
+   "modes": "B2B",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-105",
+   "regulation": "REG-EU-007",
+   "family": "全部功能族（须满足条件）",
+   "modes": "平台",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-105",
+   "regulation": "REG-EU-007",
+   "family": "全部功能族（须满足条件）",
+   "modes": "DTC",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-105",
+   "regulation": "REG-EU-007",
+   "family": "全部功能族（须满足条件）",
+   "modes": "海外仓",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-105",
+   "regulation": "REG-EU-007",
+   "family": "全部功能族（须满足条件）",
+   "modes": "本地经营",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-098",
+   "regulation": "REG-EU-008",
+   "family": "全部功能族（须满足条件）",
+   "modes": "B2B",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-098",
+   "regulation": "REG-EU-008",
+   "family": "全部功能族（须满足条件）",
+   "modes": "平台",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-098",
+   "regulation": "REG-EU-008",
+   "family": "全部功能族（须满足条件）",
+   "modes": "DTC",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-098",
+   "regulation": "REG-EU-008",
+   "family": "全部功能族（须满足条件）",
+   "modes": "海外仓",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-098",
+   "regulation": "REG-EU-008",
+   "family": "全部功能族（须满足条件）",
+   "modes": "本地经营",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-106",
+   "regulation": "REG-EU-009",
+   "family": "全部功能族（须满足条件）",
+   "modes": "B2B",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-106",
+   "regulation": "REG-EU-009",
+   "family": "全部功能族（须满足条件）",
+   "modes": "平台",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-106",
+   "regulation": "REG-EU-009",
+   "family": "全部功能族（须满足条件）",
+   "modes": "DTC",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-106",
+   "regulation": "REG-EU-009",
+   "family": "全部功能族（须满足条件）",
+   "modes": "海外仓",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-106",
+   "regulation": "REG-EU-009",
+   "family": "全部功能族（须满足条件）",
+   "modes": "本地经营",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-107",
+   "regulation": "REG-EU-010",
+   "family": "全部功能族（须满足条件）",
+   "modes": "B2B",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-107",
+   "regulation": "REG-EU-010",
+   "family": "全部功能族（须满足条件）",
+   "modes": "平台",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-107",
+   "regulation": "REG-EU-010",
+   "family": "全部功能族（须满足条件）",
+   "modes": "DTC",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-107",
+   "regulation": "REG-EU-010",
+   "family": "全部功能族（须满足条件）",
+   "modes": "海外仓",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-107",
+   "regulation": "REG-EU-010",
+   "family": "全部功能族（须满足条件）",
+   "modes": "本地经营",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-108",
+   "regulation": "REG-EU-011",
+   "family": "全部功能族（须满足条件）",
+   "modes": "B2B",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-108",
+   "regulation": "REG-EU-011",
+   "family": "全部功能族（须满足条件）",
+   "modes": "平台",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-108",
+   "regulation": "REG-EU-011",
+   "family": "全部功能族（须满足条件）",
+   "modes": "DTC",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-108",
+   "regulation": "REG-EU-011",
+   "family": "全部功能族（须满足条件）",
+   "modes": "海外仓",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-108",
+   "regulation": "REG-EU-011",
+   "family": "全部功能族（须满足条件）",
+   "modes": "本地经营",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-109",
+   "regulation": "REG-EU-012",
+   "family": "全部功能族（须满足条件）",
+   "modes": "B2B",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-109",
+   "regulation": "REG-EU-012",
+   "family": "全部功能族（须满足条件）",
+   "modes": "平台",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-109",
+   "regulation": "REG-EU-012",
+   "family": "全部功能族（须满足条件）",
+   "modes": "DTC",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-109",
+   "regulation": "REG-EU-012",
+   "family": "全部功能族（须满足条件）",
+   "modes": "海外仓",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-109",
+   "regulation": "REG-EU-012",
+   "family": "全部功能族（须满足条件）",
+   "modes": "本地经营",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-099",
+   "regulation": "REG-EU-013",
+   "family": "全部功能族（须满足条件）",
+   "modes": "B2B",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-099",
+   "regulation": "REG-EU-013",
+   "family": "全部功能族（须满足条件）",
+   "modes": "平台",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-099",
+   "regulation": "REG-EU-013",
+   "family": "全部功能族（须满足条件）",
+   "modes": "DTC",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-099",
+   "regulation": "REG-EU-013",
+   "family": "全部功能族（须满足条件）",
+   "modes": "海外仓",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-099",
+   "regulation": "REG-EU-013",
+   "family": "全部功能族（须满足条件）",
+   "modes": "本地经营",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-081",
+   "regulation": "REG-EU-014",
+   "family": "食物加工;烹饪加热;饮品与水处理",
+   "modes": "B2B",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-081",
+   "regulation": "REG-EU-014",
+   "family": "食物加工;烹饪加热;饮品与水处理",
+   "modes": "平台",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-081",
+   "regulation": "REG-EU-014",
+   "family": "食物加工;烹饪加热;饮品与水处理",
+   "modes": "DTC",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-081",
+   "regulation": "REG-EU-014",
+   "family": "食物加工;烹饪加热;饮品与水处理",
+   "modes": "海外仓",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-081",
+   "regulation": "REG-EU-014",
+   "family": "食物加工;烹饪加热;饮品与水处理",
+   "modes": "本地经营",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-080",
+   "regulation": "REG-EU-015",
+   "family": "食物加工;烹饪加热;饮品与水处理",
+   "modes": "B2B",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-080",
+   "regulation": "REG-EU-015",
+   "family": "食物加工;烹饪加热;饮品与水处理",
+   "modes": "平台",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-080",
+   "regulation": "REG-EU-015",
+   "family": "食物加工;烹饪加热;饮品与水处理",
+   "modes": "DTC",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-080",
+   "regulation": "REG-EU-015",
+   "family": "食物加工;烹饪加热;饮品与水处理",
+   "modes": "海外仓",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-080",
+   "regulation": "REG-EU-015",
+   "family": "食物加工;烹饪加热;饮品与水处理",
+   "modes": "本地经营",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-126",
+   "regulation": "REG-EU-016",
+   "family": "全部功能族（须满足条件）",
+   "modes": "B2B",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-126",
+   "regulation": "REG-EU-016",
+   "family": "全部功能族（须满足条件）",
+   "modes": "平台",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-126",
+   "regulation": "REG-EU-016",
+   "family": "全部功能族（须满足条件）",
+   "modes": "DTC",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-126",
+   "regulation": "REG-EU-016",
+   "family": "全部功能族（须满足条件）",
+   "modes": "海外仓",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-126",
+   "regulation": "REG-EU-016",
+   "family": "全部功能族（须满足条件）",
+   "modes": "本地经营",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-083",
+   "regulation": "REG-EU-017",
+   "family": "全部功能族（须满足条件）",
+   "modes": "B2B",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-083",
+   "regulation": "REG-EU-017",
+   "family": "全部功能族（须满足条件）",
+   "modes": "平台",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-083",
+   "regulation": "REG-EU-017",
+   "family": "全部功能族（须满足条件）",
+   "modes": "DTC",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-083",
+   "regulation": "REG-EU-017",
+   "family": "全部功能族（须满足条件）",
+   "modes": "海外仓",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-083",
+   "regulation": "REG-EU-017",
+   "family": "全部功能族（须满足条件）",
+   "modes": "本地经营",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-100",
+   "regulation": "REG-EU-018",
+   "family": "全部功能族（须满足条件）",
+   "modes": "B2B",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-100",
+   "regulation": "REG-EU-018",
+   "family": "全部功能族（须满足条件）",
+   "modes": "平台",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-100",
+   "regulation": "REG-EU-018",
+   "family": "全部功能族（须满足条件）",
+   "modes": "DTC",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-100",
+   "regulation": "REG-EU-018",
+   "family": "全部功能族（须满足条件）",
+   "modes": "海外仓",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-100",
+   "regulation": "REG-EU-018",
+   "family": "全部功能族（须满足条件）",
+   "modes": "本地经营",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-110",
+   "regulation": "REG-DE-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "B2B",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-110",
+   "regulation": "REG-DE-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "平台",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-110",
+   "regulation": "REG-DE-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "DTC",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-110",
+   "regulation": "REG-DE-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "海外仓",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-110",
+   "regulation": "REG-DE-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "本地经营",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-116",
+   "regulation": "REG-DE-002",
+   "family": "全部功能族（须满足条件）",
+   "modes": "B2B",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-116",
+   "regulation": "REG-DE-002",
+   "family": "全部功能族（须满足条件）",
+   "modes": "平台",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-116",
+   "regulation": "REG-DE-002",
+   "family": "全部功能族（须满足条件）",
+   "modes": "DTC",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-116",
+   "regulation": "REG-DE-002",
+   "family": "全部功能族（须满足条件）",
+   "modes": "海外仓",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-116",
+   "regulation": "REG-DE-002",
+   "family": "全部功能族（须满足条件）",
+   "modes": "本地经营",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-114",
+   "regulation": "REG-FR-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "B2B",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-114",
+   "regulation": "REG-FR-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "平台",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-114",
+   "regulation": "REG-FR-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "DTC",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-114",
+   "regulation": "REG-FR-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "海外仓",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-114",
+   "regulation": "REG-FR-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "本地经营",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-113",
+   "regulation": "REG-FR-002",
+   "family": "全部功能族（须满足条件）",
+   "modes": "B2B",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-113",
+   "regulation": "REG-FR-002",
+   "family": "全部功能族（须满足条件）",
+   "modes": "平台",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-113",
+   "regulation": "REG-FR-002",
+   "family": "全部功能族（须满足条件）",
+   "modes": "DTC",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-113",
+   "regulation": "REG-FR-002",
+   "family": "全部功能族（须满足条件）",
+   "modes": "海外仓",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-113",
+   "regulation": "REG-FR-002",
+   "family": "全部功能族（须满足条件）",
+   "modes": "本地经营",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-013",
+   "regulation": "REG-UK_GB-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "B2B",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-013",
+   "regulation": "REG-UK_GB-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "平台",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-013",
+   "regulation": "REG-UK_GB-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "DTC",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-013",
+   "regulation": "REG-UK_GB-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "海外仓",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-013",
+   "regulation": "REG-UK_GB-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "本地经营",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-014",
+   "regulation": "REG-UK_GB-002",
+   "family": "全部功能族（须满足条件）",
+   "modes": "B2B",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-014",
+   "regulation": "REG-UK_GB-002",
+   "family": "全部功能族（须满足条件）",
+   "modes": "平台",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-014",
+   "regulation": "REG-UK_GB-002",
+   "family": "全部功能族（须满足条件）",
+   "modes": "DTC",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-014",
+   "regulation": "REG-UK_GB-002",
+   "family": "全部功能族（须满足条件）",
+   "modes": "海外仓",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-014",
+   "regulation": "REG-UK_GB-002",
+   "family": "全部功能族（须满足条件）",
+   "modes": "本地经营",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-003",
+   "regulation": "REG-US-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "B2B",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-003",
+   "regulation": "REG-US-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "平台",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-003",
+   "regulation": "REG-US-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "DTC",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-003",
+   "regulation": "REG-US-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "海外仓",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-003",
+   "regulation": "REG-US-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "本地经营",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-005",
+   "regulation": "REG-US-002",
+   "family": "全部功能族（须满足条件）",
+   "modes": "B2B",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-005",
+   "regulation": "REG-US-002",
+   "family": "全部功能族（须满足条件）",
+   "modes": "平台",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-005",
+   "regulation": "REG-US-002",
+   "family": "全部功能族（须满足条件）",
+   "modes": "DTC",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-005",
+   "regulation": "REG-US-002",
+   "family": "全部功能族（须满足条件）",
+   "modes": "海外仓",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-005",
+   "regulation": "REG-US-002",
+   "family": "全部功能族（须满足条件）",
+   "modes": "本地经营",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-007",
+   "regulation": "REG-US-003",
+   "family": "全部功能族（须满足条件）",
+   "modes": "B2B",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-007",
+   "regulation": "REG-US-003",
+   "family": "全部功能族（须满足条件）",
+   "modes": "平台",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-007",
+   "regulation": "REG-US-003",
+   "family": "全部功能族（须满足条件）",
+   "modes": "DTC",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-007",
+   "regulation": "REG-US-003",
+   "family": "全部功能族（须满足条件）",
+   "modes": "海外仓",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-007",
+   "regulation": "REG-US-003",
+   "family": "全部功能族（须满足条件）",
+   "modes": "本地经营",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-011",
+   "regulation": "REG-US-004",
+   "family": "全部功能族（须满足条件）",
+   "modes": "B2B",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-011",
+   "regulation": "REG-US-004",
+   "family": "全部功能族（须满足条件）",
+   "modes": "平台",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-011",
+   "regulation": "REG-US-004",
+   "family": "全部功能族（须满足条件）",
+   "modes": "DTC",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-011",
+   "regulation": "REG-US-004",
+   "family": "全部功能族（须满足条件）",
+   "modes": "海外仓",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-011",
+   "regulation": "REG-US-004",
+   "family": "全部功能族（须满足条件）",
+   "modes": "本地经营",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-119",
+   "regulation": "REG-US-005",
+   "family": "全部功能族（须满足条件）",
+   "modes": "B2B",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-119",
+   "regulation": "REG-US-005",
+   "family": "全部功能族（须满足条件）",
+   "modes": "平台",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-119",
+   "regulation": "REG-US-005",
+   "family": "全部功能族（须满足条件）",
+   "modes": "DTC",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-119",
+   "regulation": "REG-US-005",
+   "family": "全部功能族（须满足条件）",
+   "modes": "海外仓",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-119",
+   "regulation": "REG-US-005",
+   "family": "全部功能族（须满足条件）",
+   "modes": "本地经营",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-120",
+   "regulation": "REG-US-006",
+   "family": "全部功能族（须满足条件）",
+   "modes": "B2B",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-120",
+   "regulation": "REG-US-006",
+   "family": "全部功能族（须满足条件）",
+   "modes": "平台",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-120",
+   "regulation": "REG-US-006",
+   "family": "全部功能族（须满足条件）",
+   "modes": "DTC",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-120",
+   "regulation": "REG-US-006",
+   "family": "全部功能族（须满足条件）",
+   "modes": "海外仓",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-120",
+   "regulation": "REG-US-006",
+   "family": "全部功能族（须满足条件）",
+   "modes": "本地经营",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-130",
+   "regulation": "REG-US-007",
+   "family": "全部功能族（须满足条件）",
+   "modes": "B2B",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-130",
+   "regulation": "REG-US-007",
+   "family": "全部功能族（须满足条件）",
+   "modes": "平台",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-130",
+   "regulation": "REG-US-007",
+   "family": "全部功能族（须满足条件）",
+   "modes": "DTC",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-130",
+   "regulation": "REG-US-007",
+   "family": "全部功能族（须满足条件）",
+   "modes": "海外仓",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-130",
+   "regulation": "REG-US-007",
+   "family": "全部功能族（须满足条件）",
+   "modes": "本地经营",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-009",
+   "regulation": "REG-US-008",
+   "family": "全部功能族（须满足条件）",
+   "modes": "DTC",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-009",
+   "regulation": "REG-US-008",
+   "family": "全部功能族（须满足条件）",
+   "modes": "平台直邮",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-009",
+   "regulation": "REG-US-008",
+   "family": "全部功能族（须满足条件）",
+   "modes": "海外仓补货",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-016",
+   "regulation": "REG-CA-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "B2B",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-016",
+   "regulation": "REG-CA-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "平台",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-016",
+   "regulation": "REG-CA-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "DTC",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-016",
+   "regulation": "REG-CA-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "海外仓",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-016",
+   "regulation": "REG-CA-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "本地经营",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-026",
+   "regulation": "REG-JP-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "B2B",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-026",
+   "regulation": "REG-JP-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "平台",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-026",
+   "regulation": "REG-JP-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "DTC",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-026",
+   "regulation": "REG-JP-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "海外仓",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-026",
+   "regulation": "REG-JP-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "本地经营",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-034",
+   "regulation": "REG-JP-002",
+   "family": "全部功能族（须满足条件）",
+   "modes": "DTC",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-034",
+   "regulation": "REG-JP-002",
+   "family": "全部功能族（须满足条件）",
+   "modes": "平台直销",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-029",
+   "regulation": "REG-KR-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "B2B",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-029",
+   "regulation": "REG-KR-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "平台",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-029",
+   "regulation": "REG-KR-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "DTC",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-029",
+   "regulation": "REG-KR-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "海外仓",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-029",
+   "regulation": "REG-KR-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "本地经营",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-031",
+   "regulation": "REG-SG-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "B2B",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-031",
+   "regulation": "REG-SG-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "平台",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-031",
+   "regulation": "REG-SG-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "DTC",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-031",
+   "regulation": "REG-SG-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "海外仓",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-031",
+   "regulation": "REG-SG-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "本地经营",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-021",
+   "regulation": "REG-MY-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "B2B",
+   "evidence": "官方PDF封面/版本已核读；完整规则逐条核验待续",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-021",
+   "regulation": "REG-MY-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "平台",
+   "evidence": "官方PDF封面/版本已核读；完整规则逐条核验待续",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-021",
+   "regulation": "REG-MY-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "DTC",
+   "evidence": "官方PDF封面/版本已核读；完整规则逐条核验待续",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-021",
+   "regulation": "REG-MY-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "海外仓",
+   "evidence": "官方PDF封面/版本已核读；完整规则逐条核验待续",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-021",
+   "regulation": "REG-MY-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "本地经营",
+   "evidence": "官方PDF封面/版本已核读；完整规则逐条核验待续",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-022",
+   "regulation": "REG-MY-002",
+   "family": "全部功能族（须满足条件）",
+   "modes": "B2B",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-022",
+   "regulation": "REG-MY-002",
+   "family": "全部功能族（须满足条件）",
+   "modes": "平台",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-022",
+   "regulation": "REG-MY-002",
+   "family": "全部功能族（须满足条件）",
+   "modes": "DTC",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-022",
+   "regulation": "REG-MY-002",
+   "family": "全部功能族（须满足条件）",
+   "modes": "海外仓",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-022",
+   "regulation": "REG-MY-002",
+   "family": "全部功能族（须满足条件）",
+   "modes": "本地经营",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-036",
+   "regulation": "REG-TH-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "B2B",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-036",
+   "regulation": "REG-TH-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "平台",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-036",
+   "regulation": "REG-TH-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "DTC",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-036",
+   "regulation": "REG-TH-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "海外仓",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-036",
+   "regulation": "REG-TH-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "本地经营",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-067",
+   "regulation": "REG-VN-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "B2B",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-067",
+   "regulation": "REG-VN-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "平台",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-067",
+   "regulation": "REG-VN-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "DTC",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-067",
+   "regulation": "REG-VN-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "海外仓",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-067",
+   "regulation": "REG-VN-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "本地经营",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-070",
+   "regulation": "REG-VN-002",
+   "family": "全部功能族（须满足条件）",
+   "modes": "B2B",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-070",
+   "regulation": "REG-VN-002",
+   "family": "全部功能族（须满足条件）",
+   "modes": "平台",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-070",
+   "regulation": "REG-VN-002",
+   "family": "全部功能族（须满足条件）",
+   "modes": "DTC",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-070",
+   "regulation": "REG-VN-002",
+   "family": "全部功能族（须满足条件）",
+   "modes": "海外仓",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-070",
+   "regulation": "REG-VN-002",
+   "family": "全部功能族（须满足条件）",
+   "modes": "本地经营",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-064",
+   "regulation": "REG-ID-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "B2B",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-064",
+   "regulation": "REG-ID-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "平台",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-064",
+   "regulation": "REG-ID-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "DTC",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-064",
+   "regulation": "REG-ID-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "海外仓",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-064",
+   "regulation": "REG-ID-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "本地经营",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-087",
+   "regulation": "REG-PH-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "B2B",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-087",
+   "regulation": "REG-PH-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "平台",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-087",
+   "regulation": "REG-PH-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "DTC",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-087",
+   "regulation": "REG-PH-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "海外仓",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-087",
+   "regulation": "REG-PH-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "本地经营",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-089",
+   "regulation": "REG-PH-002",
+   "family": "全部功能族（须满足条件）",
+   "modes": "B2B",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-089",
+   "regulation": "REG-PH-002",
+   "family": "全部功能族（须满足条件）",
+   "modes": "平台",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-089",
+   "regulation": "REG-PH-002",
+   "family": "全部功能族（须满足条件）",
+   "modes": "DTC",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-089",
+   "regulation": "REG-PH-002",
+   "family": "全部功能族（须满足条件）",
+   "modes": "海外仓",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-089",
+   "regulation": "REG-PH-002",
+   "family": "全部功能族（须满足条件）",
+   "modes": "本地经营",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-037",
+   "regulation": "REG-TW-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "B2B",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-037",
+   "regulation": "REG-TW-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "平台",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-037",
+   "regulation": "REG-TW-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "DTC",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-037",
+   "regulation": "REG-TW-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "海外仓",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-037",
+   "regulation": "REG-TW-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "本地经营",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-038",
+   "regulation": "REG-TW-002",
+   "family": "全部功能族（须满足条件）",
+   "modes": "B2B",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-038",
+   "regulation": "REG-TW-002",
+   "family": "全部功能族（须满足条件）",
+   "modes": "平台",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-038",
+   "regulation": "REG-TW-002",
+   "family": "全部功能族（须满足条件）",
+   "modes": "DTC",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-038",
+   "regulation": "REG-TW-002",
+   "family": "全部功能族（须满足条件）",
+   "modes": "海外仓",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-038",
+   "regulation": "REG-TW-002",
+   "family": "全部功能族（须满足条件）",
+   "modes": "本地经营",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-018",
+   "regulation": "REG-AU-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "B2B",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-018",
+   "regulation": "REG-AU-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "平台",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-018",
+   "regulation": "REG-AU-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "DTC",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-018",
+   "regulation": "REG-AU-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "海外仓",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-018",
+   "regulation": "REG-AU-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "本地经营",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-040",
+   "regulation": "REG-GCC-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "B2B",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-040",
+   "regulation": "REG-GCC-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "平台",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-040",
+   "regulation": "REG-GCC-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "DTC",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-040",
+   "regulation": "REG-GCC-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "海外仓",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-040",
+   "regulation": "REG-GCC-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "本地经营",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-043",
+   "regulation": "REG-SA-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "B2B",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-043",
+   "regulation": "REG-SA-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "平台",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-043",
+   "regulation": "REG-SA-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "DTC",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-043",
+   "regulation": "REG-SA-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "海外仓",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-043",
+   "regulation": "REG-SA-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "本地经营",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-045",
+   "regulation": "REG-SA-002",
+   "family": "全部功能族（须满足条件）",
+   "modes": "B2B",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-045",
+   "regulation": "REG-SA-002",
+   "family": "全部功能族（须满足条件）",
+   "modes": "平台",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-045",
+   "regulation": "REG-SA-002",
+   "family": "全部功能族（须满足条件）",
+   "modes": "DTC",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-045",
+   "regulation": "REG-SA-002",
+   "family": "全部功能族（须满足条件）",
+   "modes": "海外仓",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-045",
+   "regulation": "REG-SA-002",
+   "family": "全部功能族（须满足条件）",
+   "modes": "本地经营",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-047",
+   "regulation": "REG-SA-003",
+   "family": "全部功能族（须满足条件）",
+   "modes": "B2B",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-047",
+   "regulation": "REG-SA-003",
+   "family": "全部功能族（须满足条件）",
+   "modes": "平台",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-047",
+   "regulation": "REG-SA-003",
+   "family": "全部功能族（须满足条件）",
+   "modes": "DTC",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-047",
+   "regulation": "REG-SA-003",
+   "family": "全部功能族（须满足条件）",
+   "modes": "海外仓",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-047",
+   "regulation": "REG-SA-003",
+   "family": "全部功能族（须满足条件）",
+   "modes": "本地经营",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-050",
+   "regulation": "REG-AE-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "B2B",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-050",
+   "regulation": "REG-AE-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "平台",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-050",
+   "regulation": "REG-AE-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "DTC",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-050",
+   "regulation": "REG-AE-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "海外仓",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-050",
+   "regulation": "REG-AE-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "本地经营",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-071",
+   "regulation": "REG-IN-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "B2B",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-071",
+   "regulation": "REG-IN-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "平台",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-071",
+   "regulation": "REG-IN-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "DTC",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-071",
+   "regulation": "REG-IN-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "海外仓",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-071",
+   "regulation": "REG-IN-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "本地经营",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-048",
+   "regulation": "REG-IN-002",
+   "family": "全部功能族（须满足条件）",
+   "modes": "B2B",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-048",
+   "regulation": "REG-IN-002",
+   "family": "全部功能族（须满足条件）",
+   "modes": "平台",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-048",
+   "regulation": "REG-IN-002",
+   "family": "全部功能族（须满足条件）",
+   "modes": "DTC",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-048",
+   "regulation": "REG-IN-002",
+   "family": "全部功能族（须满足条件）",
+   "modes": "海外仓",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-048",
+   "regulation": "REG-IN-002",
+   "family": "全部功能族（须满足条件）",
+   "modes": "本地经营",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-054",
+   "regulation": "REG-BR-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "B2B",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-054",
+   "regulation": "REG-BR-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "平台",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-054",
+   "regulation": "REG-BR-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "DTC",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-054",
+   "regulation": "REG-BR-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "海外仓",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-054",
+   "regulation": "REG-BR-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "本地经营",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-056",
+   "regulation": "REG-BR-002",
+   "family": "全部功能族（须满足条件）",
+   "modes": "B2B",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-056",
+   "regulation": "REG-BR-002",
+   "family": "全部功能族（须满足条件）",
+   "modes": "平台",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-056",
+   "regulation": "REG-BR-002",
+   "family": "全部功能族（须满足条件）",
+   "modes": "DTC",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-056",
+   "regulation": "REG-BR-002",
+   "family": "全部功能族（须满足条件）",
+   "modes": "海外仓",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-056",
+   "regulation": "REG-BR-002",
+   "family": "全部功能族（须满足条件）",
+   "modes": "本地经营",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-058",
+   "regulation": "REG-MX-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "B2B",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-058",
+   "regulation": "REG-MX-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "平台",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-058",
+   "regulation": "REG-MX-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "DTC",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-058",
+   "regulation": "REG-MX-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "海外仓",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-058",
+   "regulation": "REG-MX-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "本地经营",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-059",
+   "regulation": "REG-MX-002",
+   "family": "全部功能族（须满足条件）",
+   "modes": "B2B",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-059",
+   "regulation": "REG-MX-002",
+   "family": "全部功能族（须满足条件）",
+   "modes": "平台",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-059",
+   "regulation": "REG-MX-002",
+   "family": "全部功能族（须满足条件）",
+   "modes": "DTC",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-059",
+   "regulation": "REG-MX-002",
+   "family": "全部功能族（须满足条件）",
+   "modes": "海外仓",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-059",
+   "regulation": "REG-MX-002",
+   "family": "全部功能族（须满足条件）",
+   "modes": "本地经营",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-061",
+   "regulation": "REG-AR-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "B2B",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-061",
+   "regulation": "REG-AR-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "平台",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-061",
+   "regulation": "REG-AR-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "DTC",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-061",
+   "regulation": "REG-AR-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "海外仓",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-061",
+   "regulation": "REG-AR-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "本地经营",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-084",
+   "regulation": "REG-CL-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "B2B",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-084",
+   "regulation": "REG-CL-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "平台",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-084",
+   "regulation": "REG-CL-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "DTC",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-084",
+   "regulation": "REG-CL-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "海外仓",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-084",
+   "regulation": "REG-CL-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "本地经营",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-090",
+   "regulation": "REG-TR-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "B2B",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-090",
+   "regulation": "REG-TR-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "平台",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-090",
+   "regulation": "REG-TR-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "DTC",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-090",
+   "regulation": "REG-TR-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "海外仓",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-090",
+   "regulation": "REG-TR-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "本地经营",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-091",
+   "regulation": "REG-TR-002",
+   "family": "全部功能族（须满足条件）",
+   "modes": "B2B",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-091",
+   "regulation": "REG-TR-002",
+   "family": "全部功能族（须满足条件）",
+   "modes": "平台",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-091",
+   "regulation": "REG-TR-002",
+   "family": "全部功能族（须满足条件）",
+   "modes": "DTC",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-091",
+   "regulation": "REG-TR-002",
+   "family": "全部功能族（须满足条件）",
+   "modes": "海外仓",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-091",
+   "regulation": "REG-TR-002",
+   "family": "全部功能族（须满足条件）",
+   "modes": "本地经营",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-127",
+   "regulation": "REG-ZA-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "B2B",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-127",
+   "regulation": "REG-ZA-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "平台",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-127",
+   "regulation": "REG-ZA-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "DTC",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-127",
+   "regulation": "REG-ZA-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "海外仓",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-127",
+   "regulation": "REG-ZA-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "本地经营",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-129",
+   "regulation": "REG-EAEU-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "B2B",
+   "evidence": "已核读官方PDF首页、目录及范围起始；非现行完整核验",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-129",
+   "regulation": "REG-EAEU-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "平台",
+   "evidence": "已核读官方PDF首页、目录及范围起始；非现行完整核验",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-129",
+   "regulation": "REG-EAEU-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "DTC",
+   "evidence": "已核读官方PDF首页、目录及范围起始；非现行完整核验",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-129",
+   "regulation": "REG-EAEU-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "海外仓",
+   "evidence": "已核读官方PDF首页、目录及范围起始；非现行完整核验",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-129",
+   "regulation": "REG-EAEU-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "本地经营",
+   "evidence": "已核读官方PDF首页、目录及范围起始；非现行完整核验",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-073",
+   "regulation": "REG-CN_RCEP-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "B2B",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-073",
+   "regulation": "REG-CN_RCEP-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "平台",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-073",
+   "regulation": "REG-CN_RCEP-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "DTC",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-073",
+   "regulation": "REG-CN_RCEP-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "海外仓",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-073",
+   "regulation": "REG-CN_RCEP-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "本地经营",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-077",
+   "regulation": "REG-RCEP-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "B2B",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-077",
+   "regulation": "REG-RCEP-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "平台",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-077",
+   "regulation": "REG-RCEP-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "DTC",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-077",
+   "regulation": "REG-RCEP-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "海外仓",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-077",
+   "regulation": "REG-RCEP-001",
+   "family": "全部功能族（须满足条件）",
+   "modes": "本地经营",
+   "evidence": "官方摘要/目录已核验；非完整法律审核",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-142",
+   "regulation": "REG-IN-003",
+   "family": "全部功能族（须满足条件）",
+   "modes": "B2B",
+   "evidence": "官方PDF关键条款已核读（范围、适用日期、版本衔接）；非全链最终核验",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-142",
+   "regulation": "REG-IN-003",
+   "family": "全部功能族（须满足条件）",
+   "modes": "平台",
+   "evidence": "官方PDF关键条款已核读（范围、适用日期、版本衔接）；非全链最终核验",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-142",
+   "regulation": "REG-IN-003",
+   "family": "全部功能族（须满足条件）",
+   "modes": "DTC",
+   "evidence": "官方PDF关键条款已核读（范围、适用日期、版本衔接）；非全链最终核验",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-142",
+   "regulation": "REG-IN-003",
+   "family": "全部功能族（须满足条件）",
+   "modes": "海外仓",
+   "evidence": "官方PDF关键条款已核读（范围、适用日期、版本衔接）；非全链最终核验",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-142",
+   "regulation": "REG-IN-003",
+   "family": "全部功能族（须满足条件）",
+   "modes": "本地经营",
+   "evidence": "官方PDF关键条款已核读（范围、适用日期、版本衔接）；非全链最终核验",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-138",
+   "regulation": "REG-IN-004",
+   "family": "全部功能族（须满足条件）",
+   "modes": "B2B",
+   "evidence": "官方PDF关键条款已核读（范围、适用日期、版本衔接）；非全链最终核验",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-138",
+   "regulation": "REG-IN-004",
+   "family": "全部功能族（须满足条件）",
+   "modes": "平台",
+   "evidence": "官方PDF关键条款已核读（范围、适用日期、版本衔接）；非全链最终核验",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-138",
+   "regulation": "REG-IN-004",
+   "family": "全部功能族（须满足条件）",
+   "modes": "DTC",
+   "evidence": "官方PDF关键条款已核读（范围、适用日期、版本衔接）；非全链最终核验",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-138",
+   "regulation": "REG-IN-004",
+   "family": "全部功能族（须满足条件）",
+   "modes": "海外仓",
+   "evidence": "官方PDF关键条款已核读（范围、适用日期、版本衔接）；非全链最终核验",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-138",
+   "regulation": "REG-IN-004",
+   "family": "全部功能族（须满足条件）",
+   "modes": "本地经营",
+   "evidence": "官方PDF关键条款已核读（范围、适用日期、版本衔接）；非全链最终核验",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-136",
+   "regulation": "REG-GCC-002",
+   "family": "全部功能族（须满足条件）",
+   "modes": "B2B",
+   "evidence": "官方托管译本关键页已核读；阿文原本及修订链待核验",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-136",
+   "regulation": "REG-GCC-002",
+   "family": "全部功能族（须满足条件）",
+   "modes": "平台",
+   "evidence": "官方托管译本关键页已核读；阿文原本及修订链待核验",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-136",
+   "regulation": "REG-GCC-002",
+   "family": "全部功能族（须满足条件）",
+   "modes": "DTC",
+   "evidence": "官方托管译本关键页已核读；阿文原本及修订链待核验",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-136",
+   "regulation": "REG-GCC-002",
+   "family": "全部功能族（须满足条件）",
+   "modes": "海外仓",
+   "evidence": "官方托管译本关键页已核读；阿文原本及修订链待核验",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-136",
+   "regulation": "REG-GCC-002",
+   "family": "全部功能族（须满足条件）",
+   "modes": "本地经营",
+   "evidence": "官方托管译本关键页已核读；阿文原本及修订链待核验",
+   "nature": "研究用条件映射；不是已完成的自动或个案法律判断"
+  },
+  {
+   "source": "SRC-161;SRC-164",
+   "regulation": "REG-SG-001",
+   "family": "普通家用便携煮水电热壶",
+   "modes": "",
+   "evidence": "",
+   "nature": "条件树研究规则；具体适用按条件计算；不是所有关联均触发"
+  },
+  {
+   "source": "SRC-161;SRC-164",
+   "regulation": "REG-SG-001",
+   "family": "普通家用面包烤片机",
+   "modes": "",
+   "evidence": "",
+   "nature": "条件树研究规则；具体适用按条件计算；不是所有关联均触发"
+  },
+  {
+   "source": "SRC-161;SRC-164",
+   "regulation": "REG-SG-001",
+   "family": "普通家用便携煮水电热壶",
+   "modes": "",
+   "evidence": "",
+   "nature": "条件树研究规则；具体适用按条件计算；不是所有关联均触发"
+  },
+  {
+   "source": "SRC-161;SRC-164",
+   "regulation": "REG-SG-001",
+   "family": "普通家用面包烤片机",
+   "modes": "",
+   "evidence": "",
+   "nature": "条件树研究规则；具体适用按条件计算；不是所有关联均触发"
+  },
+  {
+   "source": "SRC-200;SRC-164;SRC-201",
+   "regulation": "REG-SG-001",
+   "family": "普通家用便携煮水电热壶",
+   "modes": "",
+   "evidence": "",
+   "nature": "条件树研究规则；具体适用按条件计算；不是所有关联均触发"
+  },
+  {
+   "source": "SRC-200;SRC-164;SRC-201",
+   "regulation": "REG-SG-001",
+   "family": "普通家用面包烤片机",
+   "modes": "",
+   "evidence": "",
+   "nature": "条件树研究规则；具体适用按条件计算；不是所有关联均触发"
+  },
+  {
+   "source": "SRC-164;SRC-201",
+   "regulation": "REG-SG-001",
+   "family": "普通家用便携煮水电热壶",
+   "modes": "",
+   "evidence": "",
+   "nature": "条件树研究规则；具体适用按条件计算；不是所有关联均触发"
+  },
+  {
+   "source": "SRC-164;SRC-201",
+   "regulation": "REG-SG-001",
+   "family": "普通家用面包烤片机",
+   "modes": "",
+   "evidence": "",
+   "nature": "条件树研究规则；具体适用按条件计算；不是所有关联均触发"
+  },
+  {
+   "source": "SRC-164;SRC-218",
+   "regulation": "REG-SG-001",
+   "family": "普通家用便携煮水电热壶",
+   "modes": "",
+   "evidence": "",
+   "nature": "条件树研究规则；具体适用按条件计算；不是所有关联均触发"
+  },
+  {
+   "source": "SRC-164;SRC-218",
+   "regulation": "REG-SG-001",
+   "family": "普通家用面包烤片机",
+   "modes": "",
+   "evidence": "",
+   "nature": "条件树研究规则；具体适用按条件计算；不是所有关联均触发"
+  },
+  {
+   "source": "SRC-161;SRC-164",
+   "regulation": "REG-SG-001",
+   "family": "普通家用便携煮水电热壶",
+   "modes": "",
+   "evidence": "",
+   "nature": "条件树研究规则；具体适用按条件计算；不是所有关联均触发"
+  },
+  {
+   "source": "SRC-161;SRC-164",
+   "regulation": "REG-SG-001",
+   "family": "普通家用面包烤片机",
+   "modes": "",
+   "evidence": "",
+   "nature": "条件树研究规则；具体适用按条件计算；不是所有关联均触发"
+  },
+  {
+   "source": "SRC-161;SRC-164",
+   "regulation": "REG-SG-001",
+   "family": "普通家用便携煮水电热壶",
+   "modes": "",
+   "evidence": "",
+   "nature": "条件树研究规则；具体适用按条件计算；不是所有关联均触发"
+  },
+  {
+   "source": "SRC-161;SRC-164",
+   "regulation": "REG-SG-001",
+   "family": "普通家用面包烤片机",
+   "modes": "",
+   "evidence": "",
+   "nature": "条件树研究规则；具体适用按条件计算；不是所有关联均触发"
+  },
+  {
+   "source": "SRC-164",
+   "regulation": "REG-SG-001",
+   "family": "普通家用便携煮水电热壶",
+   "modes": "",
+   "evidence": "",
+   "nature": "条件树研究规则；具体适用按条件计算；不是所有关联均触发"
+  },
+  {
+   "source": "SRC-164",
+   "regulation": "REG-SG-001",
+   "family": "普通家用面包烤片机",
+   "modes": "",
+   "evidence": "",
+   "nature": "条件树研究规则；具体适用按条件计算；不是所有关联均触发"
+  },
+  {
+   "source": "SRC-164;SRC-218",
+   "regulation": "REG-SG-001",
+   "family": "普通家用便携煮水电热壶",
+   "modes": "",
+   "evidence": "",
+   "nature": "条件树研究规则；具体适用按条件计算；不是所有关联均触发"
+  },
+  {
+   "source": "SRC-164;SRC-218",
+   "regulation": "REG-SG-001",
+   "family": "普通家用面包烤片机",
+   "modes": "",
+   "evidence": "",
+   "nature": "条件树研究规则；具体适用按条件计算；不是所有关联均触发"
+  },
+  {
+   "source": "SRC-164",
+   "regulation": "REG-SG-001",
+   "family": "普通家用便携煮水电热壶",
+   "modes": "",
+   "evidence": "",
+   "nature": "条件树研究规则；具体适用按条件计算；不是所有关联均触发"
+  },
+  {
+   "source": "SRC-164",
+   "regulation": "REG-SG-001",
+   "family": "普通家用面包烤片机",
+   "modes": "",
+   "evidence": "",
+   "nature": "条件树研究规则；具体适用按条件计算；不是所有关联均触发"
+  },
+  {
+   "source": "SRC-164",
+   "regulation": "REG-SG-001",
+   "family": "普通家用便携煮水电热壶",
+   "modes": "",
+   "evidence": "",
+   "nature": "条件树研究规则；具体适用按条件计算；不是所有关联均触发"
+  },
+  {
+   "source": "SRC-164",
+   "regulation": "REG-SG-001",
+   "family": "普通家用面包烤片机",
+   "modes": "",
+   "evidence": "",
+   "nature": "条件树研究规则；具体适用按条件计算；不是所有关联均触发"
+  },
+  {
+   "source": "SRC-164",
+   "regulation": "REG-SG-001",
+   "family": "普通家用便携煮水电热壶",
+   "modes": "",
+   "evidence": "",
+   "nature": "条件树研究规则；具体适用按条件计算；不是所有关联均触发"
+  },
+  {
+   "source": "SRC-164",
+   "regulation": "REG-SG-001",
+   "family": "普通家用面包烤片机",
+   "modes": "",
+   "evidence": "",
+   "nature": "条件树研究规则；具体适用按条件计算；不是所有关联均触发"
+  },
+  {
+   "source": "SRC-164",
+   "regulation": "REG-SG-001",
+   "family": "普通家用便携煮水电热壶",
+   "modes": "",
+   "evidence": "",
+   "nature": "条件树研究规则；具体适用按条件计算；不是所有关联均触发"
+  },
+  {
+   "source": "SRC-164",
+   "regulation": "REG-SG-001",
+   "family": "普通家用面包烤片机",
+   "modes": "",
+   "evidence": "",
+   "nature": "条件树研究规则；具体适用按条件计算；不是所有关联均触发"
+  },
+  {
+   "source": "SRC-164",
+   "regulation": "REG-SG-001",
+   "family": "普通家用便携煮水电热壶",
+   "modes": "",
+   "evidence": "",
+   "nature": "条件树研究规则；具体适用按条件计算；不是所有关联均触发"
+  },
+  {
+   "source": "SRC-164",
+   "regulation": "REG-SG-001",
+   "family": "普通家用面包烤片机",
+   "modes": "",
+   "evidence": "",
+   "nature": "条件树研究规则；具体适用按条件计算；不是所有关联均触发"
+  },
+  {
+   "source": "SRC-164",
+   "regulation": "REG-SG-001",
+   "family": "普通家用便携煮水电热壶",
+   "modes": "",
+   "evidence": "",
+   "nature": "条件树研究规则；具体适用按条件计算；不是所有关联均触发"
+  },
+  {
+   "source": "SRC-164",
+   "regulation": "REG-SG-001",
+   "family": "普通家用面包烤片机",
+   "modes": "",
+   "evidence": "",
+   "nature": "条件树研究规则；具体适用按条件计算；不是所有关联均触发"
+  },
+  {
+   "source": "SRC-164",
+   "regulation": "REG-SG-001",
+   "family": "普通家用便携煮水电热壶",
+   "modes": "",
+   "evidence": "",
+   "nature": "条件树研究规则；具体适用按条件计算；不是所有关联均触发"
+  },
+  {
+   "source": "SRC-164",
+   "regulation": "REG-SG-001",
+   "family": "普通家用面包烤片机",
+   "modes": "",
+   "evidence": "",
+   "nature": "条件树研究规则；具体适用按条件计算；不是所有关联均触发"
+  },
+  {
+   "source": "SRC-201;SRC-164",
+   "regulation": "REG-SG-001",
+   "family": "普通家用便携煮水电热壶",
+   "modes": "",
+   "evidence": "",
+   "nature": "条件树研究规则；具体适用按条件计算；不是所有关联均触发"
+  },
+  {
+   "source": "SRC-201;SRC-164",
+   "regulation": "REG-SG-001",
+   "family": "普通家用面包烤片机",
+   "modes": "",
+   "evidence": "",
+   "nature": "条件树研究规则；具体适用按条件计算；不是所有关联均触发"
+  },
+  {
+   "source": "SRC-164",
+   "regulation": "REG-SG-001",
+   "family": "普通家用便携煮水电热壶",
+   "modes": "",
+   "evidence": "",
+   "nature": "条件树研究规则；具体适用按条件计算；不是所有关联均触发"
+  },
+  {
+   "source": "SRC-164",
+   "regulation": "REG-SG-001",
+   "family": "普通家用面包烤片机",
+   "modes": "",
+   "evidence": "",
+   "nature": "条件树研究规则；具体适用按条件计算；不是所有关联均触发"
+  },
+  {
+   "source": "SRC-176;SRC-204",
+   "regulation": "REG-SG-002",
+   "family": "普通家用便携煮水电热壶",
+   "modes": "",
+   "evidence": "",
+   "nature": "条件树研究规则；具体适用按条件计算；不是所有关联均触发"
+  },
+  {
+   "source": "SRC-176;SRC-204",
+   "regulation": "REG-SG-002",
+   "family": "普通家用面包烤片机",
+   "modes": "",
+   "evidence": "",
+   "nature": "条件树研究规则；具体适用按条件计算；不是所有关联均触发"
+  },
+  {
+   "source": "SRC-176;SRC-204",
+   "regulation": "REG-SG-002",
+   "family": "普通家用便携煮水电热壶",
+   "modes": "",
+   "evidence": "",
+   "nature": "条件树研究规则；具体适用按条件计算；不是所有关联均触发"
+  },
+  {
+   "source": "SRC-176;SRC-204",
+   "regulation": "REG-SG-002",
+   "family": "普通家用面包烤片机",
+   "modes": "",
+   "evidence": "",
+   "nature": "条件树研究规则；具体适用按条件计算；不是所有关联均触发"
+  },
+  {
+   "source": "SRC-225",
+   "regulation": "REG-SG-003",
+   "family": "普通家用便携煮水电热壶",
+   "modes": "",
+   "evidence": "",
+   "nature": "条件树研究规则；具体适用按条件计算；不是所有关联均触发"
+  },
+  {
+   "source": "SRC-225",
+   "regulation": "REG-SG-003",
+   "family": "普通家用面包烤片机",
+   "modes": "",
+   "evidence": "",
+   "nature": "条件树研究规则；具体适用按条件计算；不是所有关联均触发"
+  },
+  {
+   "source": "SRC-226;SRC-227",
+   "regulation": "REG-SG-004",
+   "family": "普通家用便携煮水电热壶",
+   "modes": "",
+   "evidence": "",
+   "nature": "条件树研究规则；具体适用按条件计算；不是所有关联均触发"
+  },
+  {
+   "source": "SRC-226;SRC-227",
+   "regulation": "REG-SG-004",
+   "family": "普通家用面包烤片机",
+   "modes": "",
+   "evidence": "",
+   "nature": "条件树研究规则；具体适用按条件计算；不是所有关联均触发"
+  },
+  {
+   "source": "SRC-231",
+   "regulation": "REG-SG-005",
+   "family": "普通家用便携煮水电热壶",
+   "modes": "",
+   "evidence": "",
+   "nature": "条件树研究规则；具体适用按条件计算；不是所有关联均触发"
+  },
+  {
+   "source": "SRC-231",
+   "regulation": "REG-SG-005",
+   "family": "普通家用面包烤片机",
+   "modes": "",
+   "evidence": "",
+   "nature": "条件树研究规则；具体适用按条件计算；不是所有关联均触发"
+  },
+  {
+   "source": "SRC-173",
+   "regulation": "REG-SG-006",
+   "family": "普通家用便携煮水电热壶",
+   "modes": "",
+   "evidence": "",
+   "nature": "条件树研究规则；具体适用按条件计算；不是所有关联均触发"
+  },
+  {
+   "source": "SRC-173",
+   "regulation": "REG-SG-006",
+   "family": "普通家用面包烤片机",
+   "modes": "",
+   "evidence": "",
+   "nature": "条件树研究规则；具体适用按条件计算；不是所有关联均触发"
+  },
+  {
+   "source": "SRC-186;SRC-206;SRC-219",
+   "regulation": "REG-AU-001",
+   "family": "普通家用便携煮水电热壶",
+   "modes": "",
+   "evidence": "",
+   "nature": "条件树研究规则；具体适用按条件计算；不是所有关联均触发"
+  },
+  {
+   "source": "SRC-186;SRC-206;SRC-219",
+   "regulation": "REG-AU-001",
+   "family": "普通家用面包烤片机",
+   "modes": "",
+   "evidence": "",
+   "nature": "条件树研究规则；具体适用按条件计算；不是所有关联均触发"
+  },
+  {
+   "source": "SRC-186;SRC-206;SRC-219",
+   "regulation": "REG-AU-001",
+   "family": "普通家用便携煮水电热壶",
+   "modes": "",
+   "evidence": "",
+   "nature": "条件树研究规则；具体适用按条件计算；不是所有关联均触发"
+  },
+  {
+   "source": "SRC-186;SRC-206;SRC-219",
+   "regulation": "REG-AU-001",
+   "family": "普通家用面包烤片机",
+   "modes": "",
+   "evidence": "",
+   "nature": "条件树研究规则；具体适用按条件计算；不是所有关联均触发"
+  },
+  {
+   "source": "SRC-184;SRC-185",
+   "regulation": "REG-AU-001",
+   "family": "普通家用便携煮水电热壶",
+   "modes": "",
+   "evidence": "",
+   "nature": "条件树研究规则；具体适用按条件计算；不是所有关联均触发"
+  },
+  {
+   "source": "SRC-184;SRC-185",
+   "regulation": "REG-AU-001",
+   "family": "普通家用面包烤片机",
+   "modes": "",
+   "evidence": "",
+   "nature": "条件树研究规则；具体适用按条件计算；不是所有关联均触发"
+  },
+  {
+   "source": "SRC-184;SRC-183",
+   "regulation": "REG-AU-001",
+   "family": "普通家用便携煮水电热壶",
+   "modes": "",
+   "evidence": "",
+   "nature": "条件树研究规则；具体适用按条件计算；不是所有关联均触发"
+  },
+  {
+   "source": "SRC-184;SRC-183",
+   "regulation": "REG-AU-001",
+   "family": "普通家用面包烤片机",
+   "modes": "",
+   "evidence": "",
+   "nature": "条件树研究规则；具体适用按条件计算；不是所有关联均触发"
+  },
+  {
+   "source": "SRC-187",
+   "regulation": "REG-AU-002",
+   "family": "普通家用便携煮水电热壶",
+   "modes": "",
+   "evidence": "",
+   "nature": "条件树研究规则；具体适用按条件计算；不是所有关联均触发"
+  },
+  {
+   "source": "SRC-187",
+   "regulation": "REG-AU-002",
+   "family": "普通家用面包烤片机",
+   "modes": "",
+   "evidence": "",
+   "nature": "条件树研究规则；具体适用按条件计算；不是所有关联均触发"
+  },
+  {
+   "source": "SRC-211",
+   "regulation": "REG-AU-001",
+   "family": "普通家用便携煮水电热壶",
+   "modes": "",
+   "evidence": "",
+   "nature": "条件树研究规则；具体适用按条件计算；不是所有关联均触发"
+  },
+  {
+   "source": "SRC-211",
+   "regulation": "REG-AU-001",
+   "family": "普通家用面包烤片机",
+   "modes": "",
+   "evidence": "",
+   "nature": "条件树研究规则；具体适用按条件计算；不是所有关联均触发"
+  },
+  {
+   "source": "SRC-235;SRC-236;SRC-237;SRC-233",
+   "regulation": "REG-AU-004",
+   "family": "普通家用便携煮水电热壶",
+   "modes": "",
+   "evidence": "",
+   "nature": "条件树研究规则；具体适用按条件计算；不是所有关联均触发"
+  },
+  {
+   "source": "SRC-235;SRC-236;SRC-237;SRC-233",
+   "regulation": "REG-AU-004",
+   "family": "普通家用面包烤片机",
+   "modes": "",
+   "evidence": "",
+   "nature": "条件树研究规则；具体适用按条件计算；不是所有关联均触发"
+  }
+ ],
  "hsCandidates": [
   {
    "id": "HS-SG-P2-HOT-WATER-DISPENSER",
@@ -32827,6 +37424,531 @@
    "sourceIds": [
     "SRC-177"
    ]
+  },
+  {
+   "market": "SG",
+   "product_type": "hot_water_dispenser",
+   "hs": "851679",
+   "candidateId": "HS-SG-P2-HOT-WATER-DISPENSER",
+   "origin_scope": "ANY",
+   "effective_from": "2026-01-01",
+   "effective_to": "2026-12-31",
+   "ordinaryRate": 0,
+   "sourceIds": [
+    "SRC-168",
+    "SRC-170",
+    "SRC-171",
+    "SRC-174"
+   ],
+   "version": "sg-nondutiable-2026-r1",
+   "verifiedAt": "2026-11-04",
+   "requiresReview": true,
+   "rule": "SG ordinary bulk import: non-dutiable household electrical appliances; CIF GST 9%; exclude low-value, excisable goods and special valuation.",
+   "verification": "Inherited repository source records; online recheck blocked 2026-11-09"
+  },
+  {
+   "market": "SG",
+   "product_type": "airpot",
+   "hs": "851679",
+   "candidateId": "HS-SG-P2-AIRPOT",
+   "origin_scope": "ANY",
+   "effective_from": "2026-01-01",
+   "effective_to": "2026-12-31",
+   "ordinaryRate": 0,
+   "sourceIds": [
+    "SRC-168",
+    "SRC-170",
+    "SRC-171",
+    "SRC-174"
+   ],
+   "version": "sg-nondutiable-2026-r1",
+   "verifiedAt": "2026-11-04",
+   "requiresReview": true,
+   "rule": "SG ordinary bulk import: non-dutiable household electrical appliances; CIF GST 9%; exclude low-value, excisable goods and special valuation.",
+   "verification": "Inherited repository source records; online recheck blocked 2026-11-09"
+  },
+  {
+   "market": "SG",
+   "product_type": "coffee_maker",
+   "hs": "851671",
+   "candidateId": "HS-SG-P2-COFFEE-MAKER",
+   "origin_scope": "ANY",
+   "effective_from": "2026-01-01",
+   "effective_to": "2026-12-31",
+   "ordinaryRate": 0,
+   "sourceIds": [
+    "SRC-168",
+    "SRC-170",
+    "SRC-171",
+    "SRC-174"
+   ],
+   "version": "sg-nondutiable-2026-r1",
+   "verifiedAt": "2026-11-04",
+   "requiresReview": true,
+   "rule": "SG ordinary bulk import: non-dutiable household electrical appliances; CIF GST 9%; exclude low-value, excisable goods and special valuation.",
+   "verification": "Inherited repository source records; online recheck blocked 2026-11-09"
+  },
+  {
+   "market": "SG",
+   "product_type": "slow_cooker",
+   "hs": "851660",
+   "candidateId": "HS-SG-P2-SLOW-COOKER",
+   "origin_scope": "ANY",
+   "effective_from": "2026-01-01",
+   "effective_to": "2026-12-31",
+   "ordinaryRate": 0,
+   "sourceIds": [
+    "SRC-168",
+    "SRC-170",
+    "SRC-171",
+    "SRC-174"
+   ],
+   "version": "sg-nondutiable-2026-r1",
+   "verifiedAt": "2026-11-04",
+   "requiresReview": true,
+   "rule": "SG ordinary bulk import: non-dutiable household electrical appliances; CIF GST 9%; exclude low-value, excisable goods and special valuation.",
+   "verification": "Inherited repository source records; online recheck blocked 2026-11-09"
+  },
+  {
+   "market": "SG",
+   "product_type": "pressure_cooker",
+   "hs": "851660",
+   "candidateId": "HS-SG-P2-PRESSURE-COOKER",
+   "origin_scope": "ANY",
+   "effective_from": "2026-01-01",
+   "effective_to": "2026-12-31",
+   "ordinaryRate": 0,
+   "sourceIds": [
+    "SRC-168",
+    "SRC-170",
+    "SRC-171",
+    "SRC-174"
+   ],
+   "version": "sg-nondutiable-2026-r1",
+   "verifiedAt": "2026-11-04",
+   "requiresReview": true,
+   "rule": "SG ordinary bulk import: non-dutiable household electrical appliances; CIF GST 9%; exclude low-value, excisable goods and special valuation.",
+   "verification": "Inherited repository source records; online recheck blocked 2026-11-09"
+  },
+  {
+   "market": "SG",
+   "product_type": "rice_cooker",
+   "hs": "851660",
+   "candidateId": "HS-SG-P2-RICE-COOKER",
+   "origin_scope": "ANY",
+   "effective_from": "2026-01-01",
+   "effective_to": "2026-12-31",
+   "ordinaryRate": 0,
+   "sourceIds": [
+    "SRC-168",
+    "SRC-170",
+    "SRC-171",
+    "SRC-174"
+   ],
+   "version": "sg-nondutiable-2026-r1",
+   "verifiedAt": "2026-11-04",
+   "requiresReview": true,
+   "rule": "SG ordinary bulk import: non-dutiable household electrical appliances; CIF GST 9%; exclude low-value, excisable goods and special valuation.",
+   "verification": "Inherited repository source records; online recheck blocked 2026-11-09"
+  },
+  {
+   "market": "SG",
+   "product_type": "food_steamer",
+   "hs": "851660",
+   "candidateId": "HS-SG-P2-FOOD-STEAMER",
+   "origin_scope": "ANY",
+   "effective_from": "2026-01-01",
+   "effective_to": "2026-12-31",
+   "ordinaryRate": 0,
+   "sourceIds": [
+    "SRC-168",
+    "SRC-170",
+    "SRC-171",
+    "SRC-174"
+   ],
+   "version": "sg-nondutiable-2026-r1",
+   "verifiedAt": "2026-11-04",
+   "requiresReview": true,
+   "rule": "SG ordinary bulk import: non-dutiable household electrical appliances; CIF GST 9%; exclude low-value, excisable goods and special valuation.",
+   "verification": "Inherited repository source records; online recheck blocked 2026-11-09"
+  },
+  {
+   "market": "SG",
+   "product_type": "soybean_milk_maker",
+   "hs": "851679",
+   "candidateId": "HS-SG-P2-SOYBEAN-MILK-MAKER",
+   "origin_scope": "ANY",
+   "effective_from": "2026-01-01",
+   "effective_to": "2026-12-31",
+   "ordinaryRate": 0,
+   "sourceIds": [
+    "SRC-168",
+    "SRC-170",
+    "SRC-171",
+    "SRC-174"
+   ],
+   "version": "sg-nondutiable-2026-r1",
+   "verifiedAt": "2026-11-04",
+   "requiresReview": true,
+   "rule": "SG ordinary bulk import: non-dutiable household electrical appliances; CIF GST 9%; exclude low-value, excisable goods and special valuation.",
+   "verification": "Inherited repository source records; online recheck blocked 2026-11-09"
+  },
+  {
+   "market": "SG",
+   "product_type": "air_fryer",
+   "hs": "851660",
+   "candidateId": "HS-SG-P2-AIR-FRYER",
+   "origin_scope": "ANY",
+   "effective_from": "2026-01-01",
+   "effective_to": "2026-12-31",
+   "ordinaryRate": 0,
+   "sourceIds": [
+    "SRC-168",
+    "SRC-170",
+    "SRC-171",
+    "SRC-174"
+   ],
+   "version": "sg-nondutiable-2026-r1",
+   "verifiedAt": "2026-11-04",
+   "requiresReview": true,
+   "rule": "SG ordinary bulk import: non-dutiable household electrical appliances; CIF GST 9%; exclude low-value, excisable goods and special valuation.",
+   "verification": "Inherited repository source records; online recheck blocked 2026-11-09"
+  },
+  {
+   "market": "SG",
+   "product_type": "deep_fryer",
+   "hs": "851679",
+   "candidateId": "HS-SG-P2-DEEP-FRYER",
+   "origin_scope": "ANY",
+   "effective_from": "2026-01-01",
+   "effective_to": "2026-12-31",
+   "ordinaryRate": 0,
+   "sourceIds": [
+    "SRC-168",
+    "SRC-170",
+    "SRC-171",
+    "SRC-174"
+   ],
+   "version": "sg-nondutiable-2026-r1",
+   "verifiedAt": "2026-11-04",
+   "requiresReview": true,
+   "rule": "SG ordinary bulk import: non-dutiable household electrical appliances; CIF GST 9%; exclude low-value, excisable goods and special valuation.",
+   "verification": "Inherited repository source records; online recheck blocked 2026-11-09"
+  },
+  {
+   "market": "SG",
+   "product_type": "electric_wok",
+   "hs": "851660",
+   "candidateId": "HS-SG-P2-ELECTRIC-WOK",
+   "origin_scope": "ANY",
+   "effective_from": "2026-01-01",
+   "effective_to": "2026-12-31",
+   "ordinaryRate": 0,
+   "sourceIds": [
+    "SRC-168",
+    "SRC-170",
+    "SRC-171",
+    "SRC-174"
+   ],
+   "version": "sg-nondutiable-2026-r1",
+   "verifiedAt": "2026-11-04",
+   "requiresReview": true,
+   "rule": "SG ordinary bulk import: non-dutiable household electrical appliances; CIF GST 9%; exclude low-value, excisable goods and special valuation.",
+   "verification": "Inherited repository source records; online recheck blocked 2026-11-09"
+  },
+  {
+   "market": "SG",
+   "product_type": "sandwich_maker",
+   "hs": "851660",
+   "candidateId": "HS-SG-P2-SANDWICH-MAKER",
+   "origin_scope": "ANY",
+   "effective_from": "2026-01-01",
+   "effective_to": "2026-12-31",
+   "ordinaryRate": 0,
+   "sourceIds": [
+    "SRC-168",
+    "SRC-170",
+    "SRC-171",
+    "SRC-174"
+   ],
+   "version": "sg-nondutiable-2026-r1",
+   "verifiedAt": "2026-11-04",
+   "requiresReview": true,
+   "rule": "SG ordinary bulk import: non-dutiable household electrical appliances; CIF GST 9%; exclude low-value, excisable goods and special valuation.",
+   "verification": "Inherited repository source records; online recheck blocked 2026-11-09"
+  },
+  {
+   "market": "SG",
+   "product_type": "waffle_maker",
+   "hs": "851660",
+   "candidateId": "HS-SG-P2-WAFFLE-MAKER",
+   "origin_scope": "ANY",
+   "effective_from": "2026-01-01",
+   "effective_to": "2026-12-31",
+   "ordinaryRate": 0,
+   "sourceIds": [
+    "SRC-168",
+    "SRC-170",
+    "SRC-171",
+    "SRC-174"
+   ],
+   "version": "sg-nondutiable-2026-r1",
+   "verifiedAt": "2026-11-04",
+   "requiresReview": true,
+   "rule": "SG ordinary bulk import: non-dutiable household electrical appliances; CIF GST 9%; exclude low-value, excisable goods and special valuation.",
+   "verification": "Inherited repository source records; online recheck blocked 2026-11-09"
+  },
+  {
+   "market": "SG",
+   "product_type": "hot_plate",
+   "hs": "851660",
+   "candidateId": "HS-SG-P2-HOT-PLATE",
+   "origin_scope": "ANY",
+   "effective_from": "2026-01-01",
+   "effective_to": "2026-12-31",
+   "ordinaryRate": 0,
+   "sourceIds": [
+    "SRC-168",
+    "SRC-170",
+    "SRC-171",
+    "SRC-174"
+   ],
+   "version": "sg-nondutiable-2026-r1",
+   "verifiedAt": "2026-11-04",
+   "requiresReview": true,
+   "rule": "SG ordinary bulk import: non-dutiable household electrical appliances; CIF GST 9%; exclude low-value, excisable goods and special valuation.",
+   "verification": "Inherited repository source records; online recheck blocked 2026-11-09"
+  },
+  {
+   "market": "SG",
+   "product_type": "microwave",
+   "hs": "851650",
+   "candidateId": "HS-SG-P2-MICROWAVE",
+   "origin_scope": "ANY",
+   "effective_from": "2026-01-01",
+   "effective_to": "2026-12-31",
+   "ordinaryRate": 0,
+   "sourceIds": [
+    "SRC-168",
+    "SRC-170",
+    "SRC-171",
+    "SRC-174"
+   ],
+   "version": "sg-nondutiable-2026-r1",
+   "verifiedAt": "2026-11-04",
+   "requiresReview": true,
+   "rule": "SG ordinary bulk import: non-dutiable household electrical appliances; CIF GST 9%; exclude low-value, excisable goods and special valuation.",
+   "verification": "Inherited repository source records; online recheck blocked 2026-11-09"
+  },
+  {
+   "market": "SG",
+   "product_type": "blender",
+   "hs": "850940",
+   "candidateId": "HS-SG-P2-BLENDER",
+   "origin_scope": "ANY",
+   "effective_from": "2026-01-01",
+   "effective_to": "2026-12-31",
+   "ordinaryRate": 0,
+   "sourceIds": [
+    "SRC-168",
+    "SRC-170",
+    "SRC-171",
+    "SRC-174"
+   ],
+   "version": "sg-nondutiable-2026-r1",
+   "verifiedAt": "2026-11-04",
+   "requiresReview": true,
+   "rule": "SG ordinary bulk import: non-dutiable household electrical appliances; CIF GST 9%; exclude low-value, excisable goods and special valuation.",
+   "verification": "Inherited repository source records; online recheck blocked 2026-11-09"
+  },
+  {
+   "market": "SG",
+   "product_type": "food_processor",
+   "hs": "850940",
+   "candidateId": "HS-SG-P2-FOOD-PROCESSOR",
+   "origin_scope": "ANY",
+   "effective_from": "2026-01-01",
+   "effective_to": "2026-12-31",
+   "ordinaryRate": 0,
+   "sourceIds": [
+    "SRC-168",
+    "SRC-170",
+    "SRC-171",
+    "SRC-174"
+   ],
+   "version": "sg-nondutiable-2026-r1",
+   "verifiedAt": "2026-11-04",
+   "requiresReview": true,
+   "rule": "SG ordinary bulk import: non-dutiable household electrical appliances; CIF GST 9%; exclude low-value, excisable goods and special valuation.",
+   "verification": "Inherited repository source records; online recheck blocked 2026-11-09"
+  },
+  {
+   "market": "SG",
+   "product_type": "food_mixer",
+   "hs": "850940",
+   "candidateId": "HS-SG-P2-FOOD-MIXER",
+   "origin_scope": "ANY",
+   "effective_from": "2026-01-01",
+   "effective_to": "2026-12-31",
+   "ordinaryRate": 0,
+   "sourceIds": [
+    "SRC-168",
+    "SRC-170",
+    "SRC-171",
+    "SRC-174"
+   ],
+   "version": "sg-nondutiable-2026-r1",
+   "verifiedAt": "2026-11-04",
+   "requiresReview": true,
+   "rule": "SG ordinary bulk import: non-dutiable household electrical appliances; CIF GST 9%; exclude low-value, excisable goods and special valuation.",
+   "verification": "Inherited repository source records; online recheck blocked 2026-11-09"
+  },
+  {
+   "market": "SG",
+   "product_type": "juice_extractor",
+   "hs": "850940",
+   "candidateId": "HS-SG-P2-JUICE-EXTRACTOR",
+   "origin_scope": "ANY",
+   "effective_from": "2026-01-01",
+   "effective_to": "2026-12-31",
+   "ordinaryRate": 0,
+   "sourceIds": [
+    "SRC-168",
+    "SRC-170",
+    "SRC-171",
+    "SRC-174"
+   ],
+   "version": "sg-nondutiable-2026-r1",
+   "verifiedAt": "2026-11-04",
+   "requiresReview": true,
+   "rule": "SG ordinary bulk import: non-dutiable household electrical appliances; CIF GST 9%; exclude low-value, excisable goods and special valuation.",
+   "verification": "Inherited repository source records; online recheck blocked 2026-11-09"
+  },
+  {
+   "market": "SG",
+   "product_type": "vacuum",
+   "hs": "850811/850819",
+   "candidateId": "HS-SG-P2-VACUUM",
+   "origin_scope": "ANY",
+   "effective_from": "2026-01-01",
+   "effective_to": "2026-12-31",
+   "ordinaryRate": 0,
+   "sourceIds": [
+    "SRC-168",
+    "SRC-170",
+    "SRC-171",
+    "SRC-174"
+   ],
+   "version": "sg-nondutiable-2026-r1",
+   "verifiedAt": "2026-11-04",
+   "requiresReview": true,
+   "rule": "SG ordinary bulk import: non-dutiable household electrical appliances; CIF GST 9%; exclude low-value, excisable goods and special valuation.",
+   "verification": "Inherited repository source records; online recheck blocked 2026-11-09"
+  },
+  {
+   "market": "SG",
+   "product_type": "wet_dry_vacuum",
+   "hs": "850811/850819",
+   "candidateId": "HS-SG-P2-WET-DRY-VACUUM",
+   "origin_scope": "ANY",
+   "effective_from": "2026-01-01",
+   "effective_to": "2026-12-31",
+   "ordinaryRate": 0,
+   "sourceIds": [
+    "SRC-168",
+    "SRC-170",
+    "SRC-171",
+    "SRC-174"
+   ],
+   "version": "sg-nondutiable-2026-r1",
+   "verifiedAt": "2026-11-04",
+   "requiresReview": true,
+   "rule": "SG ordinary bulk import: non-dutiable household electrical appliances; CIF GST 9%; exclude low-value, excisable goods and special valuation.",
+   "verification": "Inherited repository source records; online recheck blocked 2026-11-09"
+  },
+  {
+   "market": "SG",
+   "product_type": "robot_vacuum",
+   "hs": "850811/850819",
+   "candidateId": "HS-SG-P2-ROBOT-VACUUM",
+   "origin_scope": "ANY",
+   "effective_from": "2026-01-01",
+   "effective_to": "2026-12-31",
+   "ordinaryRate": 0,
+   "sourceIds": [
+    "SRC-168",
+    "SRC-170",
+    "SRC-171",
+    "SRC-174"
+   ],
+   "version": "sg-nondutiable-2026-r1",
+   "verifiedAt": "2026-11-04",
+   "requiresReview": true,
+   "rule": "SG ordinary bulk import: non-dutiable household electrical appliances; CIF GST 9%; exclude low-value, excisable goods and special valuation.",
+   "verification": "Inherited repository source records; online recheck blocked 2026-11-09"
+  },
+  {
+   "market": "SG",
+   "product_type": "fan",
+   "hs": "841451/841459",
+   "candidateId": "HS-SG-P2-FAN",
+   "origin_scope": "ANY",
+   "effective_from": "2026-01-01",
+   "effective_to": "2026-12-31",
+   "ordinaryRate": 0,
+   "sourceIds": [
+    "SRC-168",
+    "SRC-170",
+    "SRC-171",
+    "SRC-174"
+   ],
+   "version": "sg-nondutiable-2026-r1",
+   "verifiedAt": "2026-11-04",
+   "requiresReview": true,
+   "rule": "SG ordinary bulk import: non-dutiable household electrical appliances; CIF GST 9%; exclude low-value, excisable goods and special valuation.",
+   "verification": "Inherited repository source records; online recheck blocked 2026-11-09"
+  },
+  {
+   "market": "SG",
+   "product_type": "hair_styler",
+   "hs": "851632",
+   "candidateId": "HS-SG-P2-HAIR-STYLER",
+   "origin_scope": "ANY",
+   "effective_from": "2026-01-01",
+   "effective_to": "2026-12-31",
+   "ordinaryRate": 0,
+   "sourceIds": [
+    "SRC-168",
+    "SRC-170",
+    "SRC-171",
+    "SRC-174"
+   ],
+   "version": "sg-nondutiable-2026-r1",
+   "verifiedAt": "2026-11-04",
+   "requiresReview": true,
+   "rule": "SG ordinary bulk import: non-dutiable household electrical appliances; CIF GST 9%; exclude low-value, excisable goods and special valuation.",
+   "verification": "Inherited repository source records; online recheck blocked 2026-11-09"
+  },
+  {
+   "market": "SG",
+   "product_type": "garment_steamer",
+   "hs": "851679",
+   "candidateId": "HS-SG-P2-GARMENT-STEAMER",
+   "origin_scope": "ANY",
+   "effective_from": "2026-01-01",
+   "effective_to": "2026-12-31",
+   "ordinaryRate": 0,
+   "sourceIds": [
+    "SRC-168",
+    "SRC-170",
+    "SRC-171",
+    "SRC-174"
+   ],
+   "version": "sg-nondutiable-2026-r1",
+   "verifiedAt": "2026-11-04",
+   "requiresReview": true,
+   "rule": "SG ordinary bulk import: non-dutiable household electrical appliances; CIF GST 9%; exclude low-value, excisable goods and special valuation.",
+   "verification": "Inherited repository source records; online recheck blocked 2026-11-09"
   }
  ],
  "coverageProfiles": [

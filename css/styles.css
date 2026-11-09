@@ -150,6 +150,12 @@ h1, h2, h3, h4 { line-height: 1.45; margin: 0 0 10px; font-weight: 620; }
 .vo-kettle .head { left: 30px; top: 32px; width: 28px; height: 10px; border-radius: 6px; background: var(--soft); }
 .vo-kettle .pipe { left: 58px; top: 44px; width: 18px; height: 26px; border: 2px solid currentColor; border-bottom: 0; border-radius: 12px 12px 0 0; background: none; }
 
+.home-section-title { display: flex; align-items: center; gap: 9px; }
+.home-guide { margin-top: 16px; }
+.home-guide > h3 { margin: 0 0 12px; }
+#btnHomeStart { padding: 11px 21px; }
+.hs-card ul { margin: 7px 0 9px; padding-left: 17px; color: var(--sub); font-size: 12.5px; }
+.hs-card li + li { margin-top: 3px; }
 .home-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(196px, 1fr)); gap: 12px; }
 .hs-card {
   background: var(--paper); border: 1px solid var(--line); border-radius: 12px;
@@ -164,7 +170,14 @@ h1, h2, h3, h4 { line-height: 1.45; margin: 0 0 10px; font-weight: 620; }
 /* 品类速览卡（参考 .vo-card/.vo-label） */
 .cat-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-top: 14px }
 .cat-card { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 18px; text-align: left }
-.cat-card:hover { border-color: #9dbfaf; }
+.cat-card { cursor: pointer; transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease; }
+.cat-card:hover { border-color: #9dbfaf; box-shadow: 0 5px 16px rgba(24, 59, 78, .08); transform: translateY(-2px); }
+.cat-card:focus-visible { outline: 2px solid var(--green); outline-offset: 3px; }
+.cat-card-title { display: flex; align-items: center; gap: 9px; margin-bottom: 8px; }
+.cat-icon { width: 30px; height: 30px; flex: none; display: grid; place-items: center; color: var(--green); background: var(--soft); border-radius: 9px; }
+.cat-icon svg { width: 19px; height: 19px; }
+.cat-card .cat-card-title h4 { margin: 0; }
+@media (prefers-reduced-motion: reduce) { .cat-card { transition: none; } .cat-card:hover { transform: none; } }
 .cat-card .vo-label { font-size: 11px; color: var(--green); display: inline-block; background: var(--soft); padding: 3px 8px; border-radius: 5px; margin-bottom: 10px }
 .cat-card h4 { margin: 0 0 4px; font-size: 14.5px }
 .cat-card p { margin: 0 0 10px; font-size: 12px; color: var(--sub) }
@@ -284,17 +297,6 @@ details.box summary { cursor: pointer; color: var(--green); font-weight: 640; fo
 .kv dt { color: var(--sub); }
 .kv dd { margin: 0; }
 
-/* ---------- 服务档位徽章（M/L 合并为人话） ---------- */
-.tier { display: inline-flex; align-items: center; gap: 6px; border-radius: 999px; padding: 3px 12px; font-size: 12.5px; font-weight: 640; border: 1px solid var(--line); background: var(--soft-2); color: var(--sub); white-space: nowrap; }
-.tier::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
-.tier.sm { padding: 2px 9px; font-size: 11.5px; }
-.tier-calc { background: var(--ok-bg); border-color: var(--ok-line); color: var(--ok); }
-.tier-screen { background: var(--blue-bg); border-color: var(--blue-line); color: var(--blue); }
-.tier-nav { background: var(--amber-bg); border-color: var(--amber-line); color: var(--amber); }
-.tier-draft { background: #f1efe7; border-color: #ddd6c4; color: #6d6549; }
-.tier-none { background: #eef1ef; border-color: var(--line); color: var(--faint); }
-.pdf-link { font-size: 12px; }
-
 /* ---------- 品类选择 ---------- */
 .chip-select { display: flex; flex-wrap: wrap; gap: 7px; margin: 8px 0 12px; }
 .chip-select button { border: 1px solid var(--line); background: var(--paper); border-radius: 999px; padding: 6px 15px; color: var(--sub); font-size: 13px; min-height: 36px; }
@@ -402,3 +404,25 @@ details.m-more summary { cursor: pointer; color: var(--green); font-weight: 640;
   a { color: #000; text-decoration: none; }
   .home-hero, .hero { background: #fff; box-shadow: none; }
 }
+
+/* ---------- 上手指南流程图 ---------- */
+.guide-flow{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px;margin-top:14px}
+.gstep{position:relative;display:flex;gap:10px;align-items:flex-start;background:var(--soft-2);border:1px solid var(--line);border-radius:12px;padding:12px}
+.gstep-n{flex:none;width:24px;height:24px;border-radius:8px;background:var(--btn);color:#fff;display:grid;place-items:center;font-size:12px;font-weight:700}
+.gstep b{display:block;font-size:13.5px}
+.gstep span{display:block;font-size:12px;color:var(--sub);line-height:1.55;margin-top:2px}
+.gstep-arrow{display:none}
+.guide-list{margin:6px 0 0 18px;padding:0}
+.guide-list li{margin:6px 0;font-size:13px;color:var(--sub);line-height:1.7}
+@media(min-width:900px){.gstep:not(:last-child)::after{content:"→";position:absolute;right:-13px;top:50%;transform:translateY(-50%);color:var(--faint);font-size:14px;z-index:2}}
+
+/* ---------- 服务档位徽章 ---------- */
+.tier{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:3px 12px;font-size:12.5px;font-weight:640;border:1px solid var(--line);background:var(--soft-2);color:var(--sub);white-space:nowrap}
+.tier::before{content:'';width:8px;height:8px;border-radius:50%;background:currentColor}
+.tier.sm{padding:2px 9px;font-size:11.5px}
+.tier-calc{background:var(--ok-bg);border-color:var(--ok-line);color:var(--ok)}
+.tier-screen{background:var(--blue-bg);border-color:var(--blue-line);color:var(--blue)}
+.tier-nav{background:var(--amber-bg);border-color:var(--amber-line);color:var(--amber)}
+.tier-draft{background:#f1efe7;border-color:#ddd6c4;color:#6d6549}
+.tier-none{background:#eef1ef;border-color:var(--line);color:var(--faint)}
+.pdf-link a{margin-right:6px}

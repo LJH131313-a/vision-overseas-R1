@@ -53,6 +53,17 @@ jobs:
       - name: 发布前检查：法规原文 PDF 归档完整性
         run: node tests/policy-archive.test.mjs
 
+      - name: 发布前检查：新加坡税费扩展画像
+        run: node tests/tax-expansion.test.cjs
+
+      - name: 发布前检查：政策资料库分类与链接
+        run: node tests/policy-library.test.mjs
+
+      - name: 发布前检查：页面冒烟（DOM）
+        run: |
+          npm install --no-save jsdom
+          node tests/dom-smoke.mjs
+
       - name: 配置 GitHub Pages
         uses: actions/configure-pages@v5
 

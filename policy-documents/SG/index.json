@@ -38,5 +38,15 @@
     "sha256": "92261d02f5ec28357d10afaa6a6a4015acd9d2e5872059487c94e989f13e6ed5",
     "provenance": "用户于2026-11-08上传；原字节保留，仅规范文件名",
     "verification": "已检查正文版本标记；未重新从官方站点下载比对哈希；尚未逐条接入网页规则"
+  },
+  {
+    "path": "policy-documents/SG/SG-STCCED-AHTN-2022.pdf",
+    "title": "Singapore Trade Classification, Customs and Excise Duties 2022 (STCCED)",
+    "official_reference": "https://file.go.gov.sg/stcced2022.pdf",
+    "version_marker": "2022 版税则；业务使用前请复核现行版本",
+    "size_bytes": 11426646,
+    "sha256": "1df940ad26e07a4cdeaa76a166225e928bd2651d35e9506df0c417fd1a8769e0",
+    "provenance": "用户提供 SRC-161.zip 中 SRC-168.pdf；原文件保留",
+    "verification": "已检查文件头及标题；本轮无法联网比对官方文件哈希，尚未逐条核验税率。"
   }
 ]
