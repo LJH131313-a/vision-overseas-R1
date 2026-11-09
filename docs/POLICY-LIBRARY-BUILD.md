@@ -1,6 +1,6 @@
 # 政策资料库构建与校验记录（开发文档）
 
-生成：2026-11-09T09:21:44.051Z｜脚本：build/build-policy-library.mjs
+生成：2026-11-09T10:50:02.867Z｜脚本：build/build-policy-library.mjs
 
 - 记录 162 条，178.9 MB；逐份 SHA-256 与字节实测。
 - 文件类型分布：reading 101；hosted 43；unknown 7；card 2；manual 4；official 5。

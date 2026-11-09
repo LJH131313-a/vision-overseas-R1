@@ -28,6 +28,8 @@ check('类型标签取自用户语言', F.every((f) => /官方法规 PDF|官方�
 check('主题只来自法规关联（无则待归类）', F.every((f) => (f.topics || []).length > 0 ? f.topicState === 'ok' : f.topicState === '待归类' || f.topicState === '不适用'));
 check('适用范围来自规则或小类路由（无则待核实）', F.every((f) => (f.productScope || []).length > 0 ? f.scopeState === 'rules' : f.scopeState === 'family' || f.scopeState === '待核实' || f.scopeState === '不适用'));
 check('版本缺失记为待核实而非留空伪装', F.every((f) => !!f.version));
+check('版本字段不泄漏内部文本（null、未知保持等）', !F.some((f) => /null|未知保持|逐条见本版规则/i.test(f.version)));
+check('区域显示名为可读文本而非裸代码', F.every((f) => f.countryName && !/^(CN_AU|CN_RCEP|EAEU|GCC|INT|PRODUCT|MISC)$/.test(f.countryName)), F.find((f) => /^(CN_AU|CN_RCEP|EAEU|GCC|INT)$/.test(f.countryName))?.countryName);
 check('哈希与字节实测存在', F.every((f) => /^[0-9a-f]{64}$/i.test(f.sha256) && f.sizeBytes > 0));
 
 console.log('== 2. 链接优先级与回退 ==');

@@ -29,6 +29,9 @@ const log = (...a) => console.log('[policy-library]', ...a);
 const D = J(join(ROOT, 'data/vo-data.json'));
 const jurName = {};
 D.jurisdictions.forEach((j) => { jurName[j.code] = j.name; });
+/** 区域/协定代码的可读名称（无映射时保留代码，不猜测含义） */
+const REGION_NAME = { CN_AU: '中国—澳大利亚（协定项下）', CN_RCEP: '中国—RCEP（协定项下）', RCEP: 'RCEP 成员国', EAEU: '欧亚经济联盟', GCC: '海湾合作委员会', INT: '国际组织', PRODUCT: '产品资料', MISC: '待确认' };
+const regionName = (code) => jurName[code] || REGION_NAME[code] || code;
 const topicName = {};
 D.topics.forEach((t) => { topicName[t.id] = t.name; });
 const subName = {};
@@ -120,6 +123,13 @@ function userKind(rec, inv) {
   return { key: 'unknown', label: '文件类型待核实' };
 }
 
+/** 版本字段清洗：内部占位与不可执行文本一律记「待核实」 */
+function cleanVersion(v) {
+  var t = String(v || '').trim();
+  if (!t || /null|待核|未知|逐条见本版规则|未逐条/i.test(t)) return '待核实';
+  return t.length > 120 ? t.slice(0, 118) + '…' : t;
+}
+
 /* ---------- 收集与复制 ---------- */
 mkdirSync(OUT, { recursive: true });
 const entries = [];
@@ -151,7 +161,7 @@ function register(absPath, opts) {
     id: sid,
     name: opts.title || rec.title || (regs[0] && regs[0].name) || basename(absPath),
     country: jur,
-    countryName: jurName[jur] || (jur === 'PRODUCT' ? '产品资料' : jur === 'MISC' ? '待确认' : jur),
+    countryName: regionName(jur),
     topics: topics.length ? topics : [],
     topicState: topics.length ? 'ok' : '待归类',
     productScope: scopeSubs.slice(0, 8),
@@ -160,7 +170,7 @@ function register(absPath, opts) {
     scopeState: scopeSubs.length ? 'rules' : (families.length ? 'family' : '待核实'),
     kind: kind.key,
     kindLabel: kind.label,
-    version: version || '待核实',
+    version: cleanVersion(version),
     officialUrl,
     officialKind: isPdfLink ? 'pdf' : (officialUrl ? 'page' : 'none'),
     localFile: 'policy-documents/' + destRel.split('\\').join('/'),
@@ -224,7 +234,7 @@ if (existsSync(sgIdxPath)) {
       scopeByFamily: [...(familiesBySource[sid] || [])].concat([...new Set(regs.map((r) => r.productFamily).filter(Boolean))]).slice(0, 4),
       scopeState: scopeSubs.length ? 'rules' : '待核实',
       kind: 'official', kindLabel: '官方法规 PDF',
-      version: d.version_marker || '待核实',
+      version: cleanVersion(d.version_marker),
       officialUrl, officialKind: /\.pdf$/i.test(officialUrl) ? 'pdf' : 'page',
       localFile: d.path, sha256: sha, sizeBytes: buf.length,
       pages: rec.pdf_pages || null, checkedAt: rec.checkedAt || '', verification: rec.verification || '',
@@ -259,7 +269,7 @@ const manifest = {
     files: entries.length,
     bytes: entries.reduce((a, e) => a + e.sizeBytes, 0),
     byKind: kinds,
-    countries: Object.entries(countries).sort((a, b) => b[1] - a[1]).map(([code, n]) => ({ code, name: jurName[code] || code, files: n })),
+    countries: Object.entries(countries).sort((a, b) => b[1] - a[1]).map(([code, n]) => ({ code, name: regionName(code), files: n })),
     topics: [...topics].sort(),
     duplicateGroups: dupGroups.length
   },
