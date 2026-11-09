@@ -59,6 +59,12 @@ jobs:
       - name: 发布前检查：政策资料库分类与链接
         run: node tests/policy-library.test.mjs
 
+      - name: 发布前检查：统一能力判断与动态缺口
+        run: node tests/capability.test.mjs
+
+      - name: 发布前检查：中英双语与结果一致性
+        run: node tests/i18n.test.mjs
+
       - name: 发布前检查：页面冒烟（DOM）
         run: |
           npm install --no-save jsdom

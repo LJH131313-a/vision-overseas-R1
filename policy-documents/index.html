@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>政策资料库 | 远见·企业出海助手 R1</title>
+<title>政策资料库 | 远见·企业出海助手</title>
 <meta name="description" content="按国家、政策主题、适用产品与文件类型查找已归档的法规资料，查看版本、来源与阅读入口。">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../css/styles.css">
@@ -213,6 +213,57 @@
     }
   }
   render();
+})();
+</script>
+
+<!-- 中英双语接入（与主站同一套词条与语言层） -->
+<script src="../data/i18n-en.js"></script>
+<script src="../js/i18n.js"></script>
+<script>
+(function () {
+  'use strict';
+  var I = window.VOI18N;
+  if (!I) return;
+  I.init(null);
+  var bar = document.createElement('div');
+  bar.className = 'lang-switch';
+  bar.setAttribute('role', 'group');
+  bar.setAttribute('aria-label', '界面语言 / Interface language');
+  var busy = false;
+  function paint() {
+    ['zh', 'en'].forEach(function (c) {
+      var b = bar.querySelector('[data-lang="' + c + '"]');
+      if (!b) return;
+      b.classList.toggle('on', I.get() === c);
+      b.setAttribute('aria-pressed', I.get() === c ? 'true' : 'false');
+    });
+  }
+  ['zh', 'en'].forEach(function (c) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'lang-btn' + (I.get() === c ? ' on' : '');
+    b.setAttribute('data-lang', c);
+    b.setAttribute('aria-pressed', I.get() === c ? 'true' : 'false');
+    b.textContent = c === 'zh' ? '中文' : 'English';
+    b.onclick = function () {
+      I.set(c);
+      if (c === 'en') I.apply(document.body); else I.restore(document.body);
+      paint();
+    };
+    bar.appendChild(b);
+  });
+  var host = document.querySelector('.pl-head') || document.querySelector('.page-title') || document.querySelector('header') || document.body;
+  host.appendChild(bar);
+  if (I.get() === 'en') I.apply(document.body);
+  // 页面重新渲染（筛选、分页、搜索）后自动按当前语言处理文本
+  if (window.MutationObserver) {
+    new window.MutationObserver(function () {
+      if (busy || I.get() !== 'en') return;
+      busy = true;
+      try { I.apply(document.body); } finally { setTimeout(function () { busy = false; }, 0); }
+    }).observe(document.body, { subtree: true, childList: true, characterData: true });
+  }
+  paint();
 })();
 </script>
 </body>

@@ -426,3 +426,59 @@ details.m-more summary { cursor: pointer; color: var(--green); font-weight: 640;
 .tier-draft{background:#f1efe7;border-color:#ddd6c4;color:#6d6549}
 .tier-none{background:#eef1ef;border-color:var(--line);color:var(--faint)}
 .pdf-link a{margin-right:6px}
+
+/* ===== 中英双语切换 ===== */
+.lang-switch{display:inline-flex;border:1px solid var(--line);border-radius:9px;overflow:hidden}
+.lang-btn{border:0;background:transparent;color:var(--sub);font-size:13px;padding:7px 10px;min-height:34px;cursor:pointer}
+.lang-btn.on{background:var(--soft);color:var(--green);font-weight:600}
+.lang-btn:focus-visible{outline:2px solid var(--green);outline-offset:-2px}
+
+/* ===== 当前项目功能状态与缺口面板 ===== */
+.ps-head{display:flex;flex-wrap:wrap;gap:10px;align-items:baseline;justify-content:space-between}
+.ps-head h3{margin:0;font-size:15px;color:var(--sub);font-weight:600}
+.ps-title{font-size:19px;font-weight:700;color:var(--ink)}
+.ps-badges{display:flex;gap:6px;flex-wrap:wrap}
+.lvl{display:inline-flex;align-items:center;gap:4px;border:1px solid var(--line);border-radius:999px;padding:3px 10px;font-size:12.5px;background:var(--paper);color:var(--sub)}
+.lvl.m{border-color:var(--blue-line);background:var(--blue-bg);color:var(--blue)}
+.lvl.l{border-color:var(--ok-line);background:var(--ok-bg);color:var(--ok)}
+.ps-features{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.ps-chip{flex:1 1 220px;min-width:0}
+.ps-tag{display:flex;align-items:center;gap:8px;width:100%;text-align:left;border:1px solid var(--line);border-radius:9px;background:var(--paper);padding:9px 10px;min-height:44px;cursor:pointer;font:inherit;color:var(--ink)}
+.ps-tag:hover{background:var(--soft)}
+.ps-fn{font-weight:600;flex:1 1 auto;min-width:0}
+.ps-st{font-size:12.5px;border-radius:999px;padding:2px 8px;border:1px solid var(--line);background:#fff;white-space:nowrap}
+.state-ok .ps-st{color:var(--ok);border-color:var(--ok-line);background:var(--ok-bg)}
+.state-partial .ps-st{color:var(--blue);border-color:var(--blue-line);background:var(--blue-bg)}
+.state-needs_input .ps-st,.state-pending .ps-st{color:#8a5a12;border-color:var(--amber-line);background:var(--amber-bg)}
+.state-not_supported .ps-st,.state-needs_review .ps-st{color:var(--faint);border-color:var(--line);background:#f2f4f2}
+.ps-ico{width:20px;height:20px;border-radius:50%;border:1px solid var(--line);font-size:11px;line-height:18px;text-align:center;color:var(--sub);background:#fff;flex:0 0 auto}
+.ps-panel{border:1px solid var(--line);border-top:0;border-radius:0 0 9px 9px;background:var(--soft);padding:10px 12px;margin-top:-2px}
+.ps-panel p{margin:0 0 6px;font-size:13.5px;line-height:1.6}
+.ps-panel p:last-child{margin-bottom:0}
+.ps-panel b{color:var(--green)}
+
+/* ===== M/L 等级图谱卡片 ===== */
+.lvl-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+.lvl-card{border:1px solid var(--line);border-radius:11px;background:var(--paper);padding:12px 14px}
+.lvl-card h4{margin:0 0 4px;font-size:15px;color:var(--ink)}
+.lvl-card .lv-sub{font-size:13px;color:var(--sub);margin:0 0 8px}
+.lvl-card .lv-num{font-size:12.5px;color:var(--faint)}
+.lvl-list{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.lvl-list button{border:1px solid var(--line);background:#fff;border-radius:8px;padding:5px 9px;font-size:12.5px;cursor:pointer;color:var(--ink);min-height:34px}
+.lvl-list button:hover{background:var(--soft);border-color:var(--green)}
+.lvl-more{border:0;background:none;color:var(--green);font-size:13px;cursor:pointer;padding:6px 0;text-decoration:underline;font-weight:600}
+
+@media (max-width:620px){
+  .ps-chip{flex:1 1 100%}
+  .ps-title{font-size:17px}
+  .topbar-meta{gap:6px}
+}
+
+/* 顶栏在手机宽度下的换行与压缩 */
+@media (max-width:900px){
+  .topbar{flex-wrap:wrap;gap:8px}
+  .topbar-meta{flex-wrap:wrap;justify-content:flex-end;gap:6px}
+  .topbar .snapshot{display:none}
+  .proj-select{max-width:150px}
+  .lang-btn{padding:6px 8px;font-size:12.5px}
+}

@@ -1,0 +1,12 @@
+| 产品小类 | M | L(实际) | L(静态) | 画像有规则支撑 | 合规初筛 | 命中规则 | HS 候选 | 税率查询 | 税额测算 | 汇总 | 汇总值 | 尚缺/原因 |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| C-VAC-001 罐式吸尘器 | M2 | L2 | L2 | 是 | partial(适用1/待补8) | SG-P2-VAC | HS-SG-P2-VACUUM,HS-SG-C-VAC-001-850811,HS-SG-C-VAC-001-850819 | ok | ok | ok | 981.9 / 完整 981.9 | screening:partial:product_fact report:partial:regulation_data |
+| C-VAC-002 立式／杆式吸尘器 | M3 | L2 | L2 | 是 | partial(适用3/待补6) | CORE-C01+SG-P2-VAC+SG-P2-CHARGER-ADAPTER | HS-SG-P2-VACUUM,HS-SG-C-VAC-002-850811,HS-SG-C-VAC-002-850819 | ok | ok | ok | 981.9 / 完整 981.9 | screening:partial:product_fact report:partial:regulation_data |
+| C-VAC-003 手持吸尘器 | M2 | L2 | L2 | 是 | partial(适用2/待补7) | SG-P2-VAC+SG-P2-CHARGER-ADAPTER | HS-SG-P2-VACUUM,HS-SG-C-VAC-003-850811,HS-SG-C-VAC-003-850819 | ok | ok | ok | 981.9 / 完整 981.9 | screening:partial:product_fact report:partial:regulation_data |
+| C-VAC-004 干湿两用吸尘器 | M2 | L2 | L2 | 是 | partial(适用1/待补8) | SG-P2-VAC | HS-SG-P2-WET-DRY-VACUUM,HS-SG-C-VAC-004-850811,HS-SG-C-VAC-004-850819 | ok | ok | ok | 981.9 / 完整 981.9 | screening:partial:product_fact report:partial:regulation_data |
+| C-VAC-005 扫地／扫拖机器人 | M2 | L2 | L2 | 是 | partial(适用4/待补6) | CORE-C01+SG-P2-ROBOT-DOCK+SG-P2-ROBOT-VAC+SG-P2-CHARGER-ADAPTER | HS-SG-P2-ROBOT-VACUUM,HS-SG-C-VAC-005-850811,HS-SG-C-VAC-005-850819 | ok | ok | ok | 981.9 / 完整 981.9 | screening:partial:product_fact report:partial:regulation_data |
+| C-WET-001 洗地机／干湿地面清洁机 | M2 | L2 | L2 | 是 | partial(适用1/待补8) | SG-P2-WET-CGSR | HS-SG-C-WET-001-850980,HS-SG-C-WET-001-850819,HS-SG-C-WET-001-851679 | ok | ok | ok | 981.9 / 完整 981.9 | screening:partial:product_fact report:partial:regulation_data |
+| C-WET-002 蒸汽拖把 | M2 | L2 | L2 | 是 | partial(适用1/待补8) | SG-P2-WET-CGSR | HS-SG-C-WET-002-851679,HS-SG-C-WET-002-850819 | ok | ok | ok | 981.9 / 完整 981.9 | screening:partial:product_fact report:partial:regulation_data |
+| C-WET-003 多用途蒸汽清洁机 | M2 | L2 | L2 | 是 | partial(适用1/待补8) | SG-P2-WET-CGSR | HS-SG-C-WET-003-851679 | ok | ok | ok | 981.9 / 完整 981.9 | screening:partial:product_fact report:partial:regulation_data |
+| C-WET-004 地毯清洗机／抽洗机 | M2 | L2 | L2 | 是 | partial(适用1/待补8) | SG-P2-WET-CGSR | HS-SG-C-WET-004-850819,HS-SG-C-WET-004-850980 | ok | ok | ok | 981.9 / 完整 981.9 | screening:partial:product_fact report:partial:regulation_data |
+| C-WET-005 地板抛光／刷洗机 | M1 | L1 | L1 | 否 | not_supported(适用1/待补8) | SG-P2-WET-CGSR | HS-SG-C-WET-005-850980,HS-SG-C-WET-005-850989 | ok | ok | ok | 981.9 / 完整 981.9 | screening:not_supported:product_fact report:partial:regulation_data |

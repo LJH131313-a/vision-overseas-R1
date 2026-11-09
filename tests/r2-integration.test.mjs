@@ -111,8 +111,8 @@ check('开始项目 / 浏览研究 / 新闻雷达入口', appIdx.includes('btnHo
 check('上手说明', appIdx.includes('查看上手说明'));
 check('app.js 首页 tab 支持', app.includes("name === 'home'"));
 check('researchEvidence 入 inputHash', app.includes('research: p.researchEvidence'));
-check('researchEvidence 入千问任务', app.includes('产品研究档案证据（R1）'));
-check('researchEvidence 入报告', app.includes('产品研究档案（R1 带入）'));
+check('researchEvidence 入千问任务', app.includes('产品研究档案证据'));
+check('researchEvidence 入报告', app.includes('产品研究档案（已带入型号证据）'));
 check('汇总文案统一「本模型已覆盖法定项目汇总」', app.includes('本模型已覆盖法定项目汇总') || app.includes('已覆盖法定项目汇总'));
 check('工作流权限不含 administration', !read('.github/workflows/deploy-pages.yml').includes('administration'));
 check('工作流 workflow_run 联动新闻采集', read('.github/workflows/deploy-pages.yml').includes('workflow_run'));

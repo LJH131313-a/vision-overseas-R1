@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>远见·企业出海助手 R1 | 小家电出海合规工作台</title>
+<title>远见·企业出海助手 | 小家电出海合规工作台</title>
 <meta name="description" content="面向中国小家电出海的企业研究档案、产品登记、法规合规初筛、HS 候选与税费阶段测算、政策新闻雷达、千问辅助建议与综合报告工作台。静态页面，使用流程与能力边界见「上手指南」。">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="css/styles.css">
@@ -18,6 +18,10 @@
     </div>
     <div class="topbar-meta">
       <span class="snapshot" id="snapshotDot"><i></i>数据快照 2026-11-04</span>
+      <div class="lang-switch" id="langSwitch" role="group" aria-label="界面语言 / Interface language">
+        <button class="lang-btn" type="button" data-lang="zh" id="langZh" aria-pressed="true">中文</button>
+        <button class="lang-btn" type="button" data-lang="en" id="langEn" aria-pressed="false">English</button>
+      </div>
       <select id="projSelect" class="proj-select" aria-label="选择项目"></select>
       <button class="tool-btn" id="btnNewProj" type="button" title="新建项目">新建</button>
       <button class="tool-btn" id="btnRenameProj" type="button" title="重命名当前项目">改名</button>
@@ -95,6 +99,8 @@
         </div>
         <div class="hero-status" id="heroStatus"></div>
       </div>
+
+      <div class="card" id="projectStatus" aria-live="polite"></div>
 
       <details class="card case-box" id="companyQuick">
         <summary><b>从企业案例带入</b><em>小熊电器 / 石头科技公开案例</em></summary>
@@ -228,8 +234,11 @@
 
 <script src="data/vo-data.js"></script>
 <script src="data/news.js"></script>
+<script src="data/i18n-en.js"></script>
 <script src="policy-documents/manifest.js"></script>
 <script src="js/engine.js"></script>
+<script src="js/capability.js"></script>
+<script src="js/i18n.js"></script>
 <script src="js/app.js"></script>
 </body>
 </html>

@@ -229,8 +229,14 @@ def main():
     items = [it for it in items if (it.get('date') or '') >= cutoff][:NEWS_MAX_ITEMS]
 
     all_failed = (not offline) and ok_count == 0 and len(feeds) > 0
+    beijing_now = datetime.fromisoformat(now_iso).astimezone(timezone(timedelta(hours=8)))
+    # 最近一次成功采集的实际完成时间（北京时间 UTC+8）；失败时保留上次成功值
+    updated_beijing = now_iso if not all_failed else (old_meta.get('updatedAtBeijing') or '')
     meta = {
         'exportedAt': now_iso,
+        'updatedAtBeijing': updated_beijing,
+        'lastSuccessAtBeijing': (beijing_now.strftime('%Y-%m-%d %H:%M') if not all_failed
+                                 else (old_meta.get('lastSuccessAtBeijing') or '')),
         'sources': sources_status if sources_status else old_meta.get('sources', []),
         'allFailed': all_failed,
         'snapshotNote': ('本次采集全部来源失败，已保留最后成功快照内容与状态。' if all_failed

@@ -502,6 +502,47 @@ const sourceScopeLinks = (ds.tables['法规与产品经营关联_保留MAP'] || 
 })).filter((r) => r.source);
 log('法规-来源关联', regSourceLinks.length, '条 | 来源-产品族关联', sourceScopeLinks.length, '条');
 
+/* ---------- 10c. 新加坡清洁电器扩展（依据仓库内官方文件复核后的关联修复） ---------- */
+const cleanExtPath = join(ROOT, 'data/cleaning-sg-extension.json');
+if (existsSync(cleanExtPath)) {
+  const ce = J(cleanExtPath);
+  const addBy = (arr, items, key) => (items || []).forEach((it) => { if (!arr.some((x) => x[key] === it[key])) arr.push(it); });
+  addBy(fields, ce.fields, 'id');
+  addBy(judgments, ce.judgments, 'id');
+  addBy(actions, ce.actions, 'id');
+  addBy(materials, ce.materials, 'id');
+  addBy(rules, ce.rules, 'id');
+  addBy(sources, ce.sources, 'id');
+  addBy(regulations, ce.regulations, 'id');
+  addBy(hsCandidates, ce.hsCandidates, 'id');
+  (ce.taxProfiles || []).forEach((p) => {
+    const k = p.market + '|' + p.product_type + '|' + (p.candidateId || p.hs);
+    if (!taxProfiles.some((x) => (x.market + '|' + x.product_type + '|' + (x.candidateId || x.hs)) === k)) taxProfiles.push(p);
+  });
+  (ce.coverageProfiles || []).forEach((c) => {
+    const k = c.market + '|' + (c.legacy || '') + '|' + (c.sub || '');
+    if (![...covList.values()].some((x) => (x.market + '|' + (x.legacy || '') + '|' + (x.sub || '')) === k)) covList.set(k, c);
+  });
+  (ce.productRuleLinks || []).forEach((l) => {
+    if (!productRuleLinks.some((x) => x.sub === l.sub && x.ruleId === l.ruleId)) productRuleLinks.push(l);
+  });
+  (ce.dynamicMap || []).forEach((d) => {
+    if (!dynamicMap.some((x) => x.sub === d.sub && x.field === d.field)) dynamicMap.push(Object.assign({ id: 'MAP-' + d.sub + '-' + d.field }, d));
+  });
+  (ce.subcategoryFixes || []).forEach((f) => {
+    const s = subcategories.find((x) => x.id === f.id);
+    if (s && f.legacy && !s.legacy) { s.legacy = f.legacy; log('小类 legacy 补齐：', s.id, '→', f.legacy); }
+  });
+  log('清洁电器扩展：规则', (ce.rules || []).length, '| HS 候选', (ce.hsCandidates || []).length, '| 税费画像', (ce.taxProfiles || []).length, '| 字段', (ce.fields || []).length);
+}
+
+/* 法规 → 可执行规则回填（消除「法规仅有索引级」的误报，仅统计真实引用该法规的规则） */
+regulations.forEach((reg) => {
+  const ids = rules.filter((r) => r.regulationId === reg.id).map((r) => r.id);
+  if (ids.length) reg.ruleIds = Array.from(new Set([...(reg.ruleIds || []), ...ids]));
+});
+log('法规规则回填后仍无规则的法域法规：', regulations.filter((r) => !(r.ruleIds && r.ruleIds.length)).length, '条');
+
 /* ---------- 11. 组装输出 ---------- */
 const voData = {
   meta: {

@@ -69,7 +69,7 @@ const voData = (await get('/data/vo-data.js')).body;
 const newsJs = (await get('/data/news.js')).body;
 const sandbox = { window: {} };
 new Function('window', voData + '\n' + newsJs)(sandbox.window);
-check('vo-data.js 注入 VO_DATA', !!sandbox.window.VO_DATA && sandbox.window.VO_DATA.rules.length === 86);
+check('vo-data.js 注入 VO_DATA', !!sandbox.window.VO_DATA && sandbox.window.VO_DATA.rules.length === 89);
 check('news.js 注入 VO_NEWS', !!sandbox.window.VO_NEWS && sandbox.window.VO_NEWS.items.length > 0);
 
 server.close();

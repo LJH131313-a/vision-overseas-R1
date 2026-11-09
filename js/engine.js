@@ -110,9 +110,11 @@
       product_type: legacy,
       placing_on_market_date: opts.placingOnMarketDate || ''
     });
-    // 旧正式项目字段别名（与原始引擎一致）
+    // 旧正式项目字段别名（与原始引擎一致，双向补齐避免事实已答却仍判 unknown）
     if (normalized.wireless !== undefined && normalized.wireless_present === undefined) normalized.wireless_present = normalized.wireless;
+    if (normalized.wireless_present !== undefined && normalized.wireless === undefined) normalized.wireless = normalized.wireless_present;
     if (normalized.battery !== undefined && normalized.battery_present === undefined) normalized.battery_present = normalized.battery;
+    if (normalized.battery_present !== undefined && normalized.battery === undefined) normalized.battery = normalized.battery_present;
     if (normalized.end_use !== undefined && normalized.consumer_product === undefined) normalized.consumer_product = normalized.end_use === 'consumer';
     if (normalized.channel !== undefined && normalized.offered_online === undefined) normalized.offered_online = ['DTC', 'marketplace', 'online'].indexOf(normalized.channel) >= 0;
 
@@ -167,6 +169,18 @@
     // 覆盖画像：先查静态画像（市场|legacy），否则按“非 M1 且链内有任务三规则”生成 L2
     var cov = coverageFor(data, market, sub, legacy, chain, linked);
 
+    // 画像是否真正对应「产品特定可执行规则」：静态写入的 L2/L3 不能直接当作能力承诺
+    var subFieldKeys = {};
+    (data.dynamicMap || []).forEach(function (m) {
+      if (m.sub !== subId) return;
+      var f = null;
+      data.fields.forEach(function (x) { if (x.id === m.field) f = x; });
+      if (f && f.key) subFieldKeys[f.key] = true;
+      if (f && f.ruleKey) subFieldKeys[f.ruleKey] = true;
+    });
+    var executable = results.filter(function (r) { return r.state === 'applicable' || r.state === 'review_required' || r.state === 'unknown'; });
+    var backingRules = executable.filter(function (r) { return ruleIsProductSpecific(r, legacy, subFieldKeys); }).map(function (r) { return r.id; });
+
     // HS 候选：小类/旧类型/覆盖画像 productId 三路匹配（覆盖画像承载旧 product_id 桥接）
     var covBridge = null;
     data.coverageProfiles.forEach(function (c) { if (c.market === market && c.legacy === legacy) covBridge = c; });
@@ -217,12 +231,37 @@
       sourceIds: sourceIds,
       missingFields: missingFields,
       questions: questions,
-      coverage: cov ? { level: cov.level, label: cov.label } : { level: 'L1', label: '资料导航' },
+      coverage: cov ? { level: cov.level, label: cov.label, profileBacked: backingRules.length > 0, backingRules: backingRules } : { level: 'L1', label: '资料导航', profileBacked: false, backingRules: [] },
       coverageDefinition: coverageText(cov ? cov.level : 'L1', data),
       hsCandidates: hs,
       pendingRegulations: pendingRules,
       gaps: gaps
     };
+  }
+
+  /** 收集条件树中引用的事实字段名 */
+  function collectConditionFields(node, out) {
+    if (!node || typeof node !== 'object') return out;
+    if (node.field) out.push(node.field);
+    (node.args || []).forEach(function (a) { collectConditionFields(a, out); });
+    return out;
+  }
+
+  /**
+   * 规则是否针对「这个产品」而非仅针对通用经营条件：
+   *  - 条件按 product_type 限定且取值命中当前产品；或
+   *  - 条件引用了该产品小类动态映射里的事实字段（如 suction_cleaning、steam_function）。
+   * 仅依赖 market/household/voltage_ac 等通用字段的规则不算产品特定。
+   */
+  function ruleIsProductSpecific(rule, legacy, subFieldKeys) {
+    var fs = collectConditionFields(rule.condition, []);
+    collectConditionFields(rule.exclusions, fs);
+    if (legacy && fs.indexOf('product_type') >= 0 && JSON.stringify(rule.condition).indexOf('"' + legacy + '"') >= 0) return true;
+    var generic = { market: 1, household: 1, voltage_ac: 1, jurisdiction: 1, placing_on_market_date: 1, import_date: 1, product_type: 1 };
+    for (var i = 0; i < fs.length; i++) {
+      if (!generic[fs[i]] && subFieldKeys[fs[i]]) return true;
+    }
+    return false;
   }
 
   function coverageText(level, data) {
@@ -283,7 +322,7 @@
     if (!validNumber(input.goods_value)) blockers.push('货值/海关价值必须是非负数。');
     if (!input.import_date) blockers.push('缺少进口日期。');
     if (input.import_date && input.import_date > SNAPSHOT_DATE) warnings.push('进口日期晚于最后核验日（' + SNAPSHOT_DATE + '）。按已收录且覆盖该日期的规则测算；未自动确认此后有无修订，请在业务使用前复核。核验日不等于政策失效日。');
-    if (input.special_valuation === true || isUnknown(input.special_valuation)) blockers.push('特殊估价事实为「是/不确定」，需先取得专业估价结论，不按常规估价计算。');
+    if (input.special_valuation === true || input.special_valuation === 'unknown' || isUnknown(input.special_valuation)) blockers.push('特殊估价事实为「是/不确定」，需先取得专业估价结论，不按常规估价计算。');
   }
 
   function toNativeCurrency(input, expectedCurrency, blockers) {

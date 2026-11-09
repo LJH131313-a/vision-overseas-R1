@@ -1,0 +1,288 @@
+{
+  "schema": "1.0",
+  "version": "sg-cleaning-workflow-2026-11-09",
+  "builtAt": "2026-11-09",
+  "evidence": {
+    "note": "本扩展的法规适用结论与税目候选均取自仓库内已归档的官方文件，逐条标明文件与页码；未执行官方站点在线复核（网络受限），因此 requiresReview 与 review 字段保持为真，不代表已完成政策核验。",
+    "documents": [
+      {
+        "sourceId": "SRC-161",
+        "title": "CPSR List of controlled goods（33 类受管制商品，页面标注 Last updated on 23 June 2026）",
+        "file": "policy-documents/files/web/SG/SRC-161.pdf",
+        "usedFor": "判断清洁电器是否属 SAFETY Mark 受管制品类",
+        "read": "已逐页读取正文：Medium Risk 含 Vacuum cleaner（IEC 60335-2-2:2019 Ed.7.0，家用可移动式、≤250 VAC）、AC Adapters（含 battery chargers IEC 60335-2-29:2014 + A1:2019 Ed.5.1）、Iron（含带水箱/锅炉 ≤5 L）、Kitchen machines、Liquid heating appliances 等；High Risk 含 3-pin main plugs、Main socket-outlets、Refrigerators、Water heaters；清单中无蒸汽拖把、蒸汽清洁机、洗地机、地毯抽洗机、地板抛光/刷洗机"
+      },
+      {
+        "sourceId": "SRC-168",
+        "title": "Singapore Trade Classification (Customs and Excise Duties) 2022（STCCED 2022，采用 AHTN 2022）",
+        "file": "policy-documents/files/web/SG/SRC-168.pdf",
+        "usedFor": "8508/8509/8516 税目结构与进口税率",
+        "read": "已读取文件第 517 页（8508.11.00、8508.19.10、8508.19.90、8508.60.00、8508.70；8509.40.00、8509.80.10 Floor polishers、8509.80.20、8509.80.90、8509.90）与第 522 页（8516.79.10 Kettles、8516.79.90 Other）；上述各行 Customs Duty FULL 与 PREF 栏及 Excise Duty 栏均为空白（即不征进口关税）"
+      },
+      {
+        "sourceId": "SRC-246",
+        "title": "Consumer Protection (Consumer Goods Safety Requirements) Regulations 2011（S 113/2011，合并文本自 2025-07-01 生效，含 S 430/2025 修订）",
+        "file": "policy-documents/SG/SG-CGSR-consolidated-20250701.pdf",
+        "usedFor": "非受管制消费品的安全标准义务与执法后果",
+        "read": "已读取第 1-5 页：reg 4(a) Category 1 goods 须符合 ISO／IEC／CEN／ASTM 发布的安全标准及 Safety Authority 在 Consumer Goods Safety Requirements Information Booklet 中指定的标准；reg 4(b) Category 2 goods 须符合任一区域或国家标准机构的标准；reg 3 规定不符合时可公告为不安全、责令停止供应并通知用户，违者构成犯罪（首次 ≤$2,000 或 12 个月，再犯 ≤$10,000 或 2 年）；The Schedule 第 1 项将 CPSR 受管制品排除在 consumer goods 定义之外"
+      }
+    ]
+  },
+  "sources": [
+    {
+      "id": "SRC-246",
+      "jurisdiction": "SG",
+      "title": "Consumer Protection (Consumer Goods Safety Requirements) Regulations 2011 (S 113/2011, consolidated)",
+      "url": "https://sso.agc.gov.sg/SL/CPTDSRA1975-S113-2011",
+      "probe": "not_rechecked_online",
+      "verification": "archived_official_consolidated_pdf",
+      "note": "仓库内已归档合并文本，标注自 2025-07-01 生效；本次读取正文第 1-5 页，未执行官方站点在线复核。",
+      "checkedAt": "2026-11-09",
+      "pdfKind": "官方合并文本 PDF（已归档原件）",
+      "filePresent": true
+    }
+  ],
+  "regulations": [
+    {
+      "id": "REG-SG-008",
+      "jurisdiction": "SG",
+      "name": "消费品一般安全要求（CGSR，非受管制品类）",
+      "kind": "官方条例（合并文本）",
+      "legalStatus": "合并文本标注自 2025-07-01 起生效；本次未在线复核现行版本",
+      "effectiveDate": "2025-07-01",
+      "topics": ["T02"],
+      "productFamily": "全部功能族（须满足条件）",
+      "officialUrl": "https://sso.agc.gov.sg/SL/CPTDSRA1975-S113-2011",
+      "sourceIds": ["SRC-246", "SRC-161"],
+      "note": "CPSR 受管制商品（如吸尘器）依 The Schedule 第 1 项被排除在本条例的 consumer goods 定义之外；本条例适用于未列入受管制清单的消费品。"
+    }
+  ],
+  "fields": [
+    { "id": "F081", "key": "floor_washing", "name": "是否喷液刷洗并回收污水（洗地功能）", "nameEn": "Sprays and scrubs with dirty-water recovery (floor washing)", "type": "select", "unit": "", "options": "yes|no|unknown", "unknownAllowed": true, "ruleKey": "floor_washing", "link": "existing_rule_input" },
+    { "id": "F082", "key": "carpet_extraction", "name": "是否用于地毯／软包喷抽清洗", "nameEn": "Carpet or upholstery spray-extraction use", "type": "select", "unit": "", "options": "yes|no|unknown", "unknownAllowed": true, "ruleKey": "carpet_extraction", "link": "existing_rule_input" },
+    { "id": "F083", "key": "polishing_function", "name": "是否用于地面抛光／刷洗", "nameEn": "Floor polishing or scrubbing function", "type": "select", "unit": "", "options": "yes|no|unknown", "unknownAllowed": true, "ruleKey": "polishing_function", "link": "existing_rule_input" },
+    { "id": "F084", "key": "primary_surface", "name": "主要清洁表面", "nameEn": "Primary cleaned surface", "type": "multiselect", "unit": "", "options": "hard_floor|carpet|upholstery|mixed|unknown", "unknownAllowed": true, "ruleKey": "primary_surface", "link": "judgment_dimension_linked" },
+    { "id": "F085", "key": "set_goods", "name": "是否以成套货物方式供货（主机加附件成套）", "nameEn": "Supplied as set goods", "type": "select", "unit": "", "options": "yes|no|unknown", "unknownAllowed": true, "ruleKey": "set_goods", "link": "existing_rule_input" },
+    { "id": "F086", "key": "packaging_turnover", "name": "包装是否属于周转（可重复使用）包装", "nameEn": "Packaging is reusable / turnover packaging", "type": "select", "unit": "", "options": "yes|no|unknown", "unknownAllowed": true, "ruleKey": "packaging_turnover", "link": "existing_rule_input" },
+    { "id": "F087", "key": "specified_packaging", "name": "是否使用受指定包装申报要求约束的包装材料", "nameEn": "Subject to specified packaging reporting", "type": "select", "unit": "", "options": "yes|no|unknown", "unknownAllowed": true, "ruleKey": "specified_packaging", "link": "existing_rule_input" }
+  ],
+  "judgments": [
+    { "id": "J-RULE-WET-CGSR", "name": "湿式清洁类消费品安全判定", "desc": "判断该清洁电器是否属 CPSR 受管制品类；不属受管制时按 CGSR 一般安全标准义务核验。", "businessUse": "决定适用 SAFETY Mark 制度还是消费品一般安全制度" },
+    { "id": "J-RULE-ACCESSORY-CG", "name": "随附充电器／适配器受管制判定", "desc": "外置充电器、充电座或电源适配器本身可能是受管制商品，需单独核验。", "businessUse": "决定是否需为配件单独注册加施 SAFETY Mark" },
+    { "id": "J-HS-WET-PRIMARY-FUNCTION", "name": "湿式清洁归类主要功能区分", "desc": "以真空吸力为主、以电机刷洗为主、以电加热产生蒸汽为主，对应不同税目。", "businessUse": "决定 8508／8509／8516 候选方向" }
+  ],
+  "actions": [
+    { "id": "ACT-SG-CGSR-STD", "ruleId": "", "name": "确认产品类别与适用安全标准", "text": "按 CGSR 第 4 条确认属 Category 1 还是 Category 2 消费品，并确定应符合的 ISO／IEC／CEN／ASTM 标准或 Safety Authority 信息手册指定标准。", "materialIds": ["MAT-138", "MAT-140"], "responsibility": "质量／认证", "due": "供货前", "sourceIds": ["SRC-246"], "locator": "CGSR reg 4(a)(b) 与 reg 2(1) 定义", "nature": "法律义务（官方条例文本支撑）" },
+    { "id": "ACT-SG-CGSR-SCOPE", "ruleId": "", "name": "留存不属受管制商品的判定依据", "text": "在产品档案中记录该产品未列入 CPSR 受管制商品清单的判定依据与清单版本日期，避免误按 SAFETY Mark 流程申报。", "materialIds": ["MAT-139"], "responsibility": "合规／产品", "due": "供货前", "sourceIds": ["SRC-161", "SRC-246"], "locator": "受管制商品清单（33 类）与 CGSR Schedule 第 1 项", "nature": "证据留存" },
+    { "id": "ACT-SG-ADAPTER-SCOPE", "ruleId": "", "name": "核验随附充电器／适配器是否受管制", "text": "确认随附的外置充电器、充电座或电源适配器是否属 AC Adapters 受管制品类；若属，则该配件需由注册供应商完成合格评定与 SAFETY Mark 加施。", "materialIds": ["MAT-141"], "responsibility": "认证／供应链", "due": "供货前", "sourceIds": ["SRC-161", "SRC-164"], "locator": "Medium Risk CGs — AC Adapters（含 battery chargers IEC 60335-2-29）", "nature": "法律义务（官方清单支撑）" }
+  ],
+  "materials": [
+    { "id": "MAT-138", "name": "适用安全标准清单与版本记录", "prep": "未提供", "confirmer": "", "review": "未复核" },
+    { "id": "MAT-139", "name": "受管制商品范围判定记录（含清单版本日期）", "prep": "未提供", "confirmer": "", "review": "未复核" },
+    { "id": "MAT-140", "name": "产品符合性证据（测试报告或符合性声明）", "prep": "未提供", "confirmer": "", "review": "未复核" },
+    { "id": "MAT-141", "name": "充电器／适配器合格评定与注册证据", "prep": "未提供", "confirmer": "", "review": "未复核" }
+  ],
+  "rules": [
+    {
+      "id": "SG-P2-ROBOT-VAC",
+      "jurisdiction": "SG",
+      "regulationId": "REG-SG-001",
+      "topic": "T02",
+      "name": "扫地机器人主机的受管制商品范围",
+      "condition": { "op": "all", "args": [
+        { "op": "eq", "field": "market", "value": "SG" },
+        { "op": "eq", "field": "product_type", "value": "robot_vacuum" },
+        { "op": "eq", "field": "household", "value": true },
+        { "op": "eq", "field": "suction_cleaning", "value": true },
+        { "op": "le", "field": "voltage_ac", "value": 250 }
+      ] },
+      "exclusions": null,
+      "obligation": "主机以负压吸尘为家用清洁功能时，按吸尘器受控范围核验测试、合格评定、型号注册与 SAFETY Mark；基站与充电器按各自品类单独判定。",
+      "notApplicable": "非家用、supply voltage 超过 250 VAC 或不以吸尘为功能的设备不适用本条。",
+      "actions": ["ACT-SG-EXP-SCOPE", "ACT-SG-EXP-REG", "ACT-SG-ADAPTER-SCOPE"],
+      "materials": ["MAT-071", "MAT-072", "MAT-073", "MAT-074", "MAT-141"],
+      "sourceIds": ["SRC-161", "SRC-164"],
+      "locator": "受管制商品清单 Medium Risk — Vacuum cleaner（IEC 60335-2-2:2019 Ed.7.0，家用可移动式、≤250 VAC）",
+      "requirementType": "法律义务（官方受管制清单支撑）",
+      "status": "active",
+      "effectiveFrom": null,
+      "effectiveTo": null,
+      "dateNote": "清单页面标注 2026-06-23 更新；生效日期不以文件年份替代，使用前复核",
+      "exceptions": "",
+      "humanReview": true,
+      "humanReviewNote": "机器人主机是否属清单定义的「可移动式家电」以及基站、充电器的单独判定，需由 Safety Authority 范围说明或 CAB 复核。",
+      "priority": "P0",
+      "unknownBehavior": "indeterminate_and_request_missing_facts",
+      "origin": "sg_cleaning_extension_2026_11_09"
+    },
+    {
+      "id": "SG-P2-CHARGER-ADAPTER",
+      "jurisdiction": "SG",
+      "regulationId": "REG-SG-001",
+      "topic": "T02",
+      "name": "随附充电器／电源适配器的受管制范围",
+      "condition": { "op": "all", "args": [
+        { "op": "eq", "field": "market", "value": "SG" },
+        { "op": "eq", "field": "household", "value": true },
+        { "op": "eq", "field": "charger_included", "value": true }
+      ] },
+      "exclusions": null,
+      "obligation": "随附的外置充电器、充电座或电源适配器若属 AC Adapters 受管制品类，须由注册供应商完成合格评定、型号注册并加施 SAFETY Mark 后方可供货。",
+      "notApplicable": "产品不含任何外置充电器、充电座或适配器时不适用本条。",
+      "actions": ["ACT-SG-ADAPTER-SCOPE", "ACT-SG-EXP-REG"],
+      "materials": ["MAT-141", "MAT-073", "MAT-074"],
+      "sourceIds": ["SRC-161", "SRC-164"],
+      "locator": "受管制商品清单 Medium Risk — AC Adapters（Applicable for battery chargers IEC 60335-2-29:2014 + A1:2019 Ed.5.1）",
+      "requirementType": "法律义务（官方受管制清单支撑）",
+      "status": "active",
+      "effectiveFrom": null,
+      "effectiveTo": null,
+      "dateNote": "清单页面标注 2026-06-23 更新",
+      "exceptions": "",
+      "humanReview": true,
+      "humanReviewNote": "适配器与充电器的额定参数与标准版次需按实际型号由 CAB 复核。",
+      "priority": "P1",
+      "unknownBehavior": "indeterminate_and_request_missing_facts",
+      "origin": "sg_cleaning_extension_2026_11_09"
+    },
+    {
+      "id": "SG-P2-WET-CGSR",
+      "jurisdiction": "SG",
+      "regulationId": "REG-SG-008",
+      "topic": "T02",
+      "name": "湿式清洁电器的消费品一般安全要求",
+      "condition": { "op": "all", "args": [
+        { "op": "eq", "field": "market", "value": "SG" },
+        { "op": "in", "field": "product_type", "value": ["floor_washer", "steam_cleaner", "floor_polisher", "carpet_cleaner"] },
+        { "op": "eq", "field": "household", "value": true },
+        { "op": "eq", "field": "suction_cleaning", "value": false },
+        { "op": "any", "args": [
+          { "op": "eq", "field": "steam_function", "value": true },
+          { "op": "eq", "field": "floor_washing", "value": true },
+          { "op": "eq", "field": "carpet_extraction", "value": true },
+          { "op": "eq", "field": "polishing_function", "value": true },
+          { "op": "eq", "field": "mop_function", "value": true }
+        ] }
+      ] },
+      "exclusions": null,
+      "obligation": "该品类未列入 CPSR 受管制商品清单，因此不属 SAFETY Mark 注册范围；按 CGSR 第 4 条须符合 ISO／IEC／CEN／ASTM 发布的安全标准或 Safety Authority 信息手册指定的标准（Category 1），或任一区域／国家标准机构的标准（Category 2）。不符合标准时，安全主管机关可公告产品不安全、责令停止供应并要求通知用户，违反者构成犯罪。",
+      "notApplicable": "以真空吸力为主要清洁功能的产品（属受管制吸尘器）不适用本条，改按吸尘器受控范围核验。",
+      "actions": ["ACT-SG-CGSR-STD", "ACT-SG-CGSR-SCOPE"],
+      "materials": ["MAT-138", "MAT-139", "MAT-140"],
+      "sourceIds": ["SRC-246", "SRC-161"],
+      "locator": "CGSR S 113/2011 reg 3、reg 4 与 The Schedule 第 1 项；受管制商品清单（33 类）未含蒸汽清洁机、洗地机、地毯抽洗机、地板抛光／刷洗机",
+      "requirementType": "法律义务（官方条例文本支撑）",
+      "status": "active",
+      "effectiveFrom": "2025-07-01",
+      "effectiveTo": null,
+      "dateNote": "合并文本标注自 2025-07-01 起生效（含 S 430/2025 修订）；使用前复核现行版本",
+      "exceptions": "The Schedule 排除项：CPSR 受管制商品、二手商品（已告知）、专供出口、已受其他成文法管制等。",
+      "humanReview": true,
+      "humanReviewNote": "Category 1 与 Category 2 的归属及应适用的具体标准号与版次，需按 Safety Authority 的 Consumer Goods Safety Requirements Information Booklet 逐产品复核。",
+      "priority": "P1",
+      "unknownBehavior": "indeterminate_and_request_missing_facts",
+      "origin": "sg_cleaning_extension_2026_11_09"
+    }
+  ],
+  "coverageProfiles": [
+    { "market": "SG", "legacy": "floor_washer", "sub": "C-WET-001", "level": "L2", "label": "CGSR 消费品安全初筛", "productId": "P-FLW-01" },
+    { "market": "SG", "legacy": "steam_cleaner", "sub": "C-WET-002", "level": "L2", "label": "CGSR 消费品安全初筛", "productId": "P-STP-01" },
+    { "market": "SG", "legacy": "steam_cleaner", "sub": "C-WET-003", "level": "L2", "label": "CGSR 消费品安全初筛", "productId": "P-STC-01" },
+    { "market": "SG", "legacy": "carpet_cleaner", "sub": "C-WET-004", "level": "L2", "label": "CGSR 消费品安全初筛", "productId": "P-CPC-01" },
+    { "market": "SG", "legacy": "floor_polisher", "sub": "C-WET-005", "level": "L2", "label": "CGSR 消费品安全初筛", "productId": "P-FLP-01" }
+  ],
+  "subcategoryFixes": [
+    { "id": "C-WET-004", "legacy": "carpet_cleaner" },
+    { "id": "C-WET-005", "evidenceGate": "M1 小类不因新增规则自动升为 L2；能力层按实际可执行规则与产品证据分别判定" }
+  ],
+  "hsCandidates": [
+    { "id": "HS-SG-C-VAC-001-850811", "market": "SG", "legacyProduct": "C-VAC-001", "code": "8508.11.00", "desc": "Vacuum cleaners, with self-contained electric motor — of a power not exceeding 1,500 W and having a dust bag or other receptacle capacity not exceeding 20 l", "support": "官方税则第 517 页 8508.11.00 行；进口关税栏空白（Free）", "questions": "电机额定功率是否不超过 1,500 W？集尘袋或其他集尘容器容积是否不超过 20 L？", "sourceIds": ["SRC-168"], "locator": "STCCED/AHTN 2022 第 517 页 8508", "gri": "GIR 1 与 6", "review": "候选方向；8 位码以实测参数与海关裁定为准", "asOf": "2026-11-09", "tariffVersion": "SG STCCED/AHTN 2022（仓库归档 PDF）", "notFinal": true, "origin": "sg_cleaning_extension_2026_11_09" },
+    { "id": "HS-SG-C-VAC-001-850819", "market": "SG", "legacyProduct": "C-VAC-001", "code": "8508.19.10", "desc": "Other vacuum cleaners with self-contained electric motor — of a kind suitable for domestic use", "support": "官方税则第 517 页 8508.19.10 行；进口关税栏空白（Free）", "questions": "若功率超过 1,500 W 或集尘容积超过 20 L，则落入 8508.19；是否家用型？", "sourceIds": ["SRC-168"], "locator": "STCCED/AHTN 2022 第 517 页 8508.19", "gri": "GIR 1 与 6", "review": "候选方向；需按实测参数确认 8508.11 与 8508.19 的分界", "asOf": "2026-11-09", "tariffVersion": "SG STCCED/AHTN 2022（仓库归档 PDF）", "notFinal": true, "origin": "sg_cleaning_extension_2026_11_09" },
+    { "id": "HS-SG-C-VAC-002-850811", "market": "SG", "legacyProduct": "C-VAC-002", "code": "8508.11.00", "desc": "立式／杆式吸尘器：自容电机、功率 ≤1,500 W 且集尘容积 ≤20 L", "support": "官方税则第 517 页 8508.11.00 行；进口关税栏空白（Free）", "questions": "电机额定功率与集尘容积是否同时满足 8508.11 阈值？", "sourceIds": ["SRC-168"], "locator": "STCCED/AHTN 2022 第 517 页 8508", "gri": "GIR 1 与 6", "review": "候选方向；8 位码待按实测参数复核", "asOf": "2026-11-09", "tariffVersion": "SG STCCED/AHTN 2022（仓库归档 PDF）", "notFinal": true, "origin": "sg_cleaning_extension_2026_11_09" },
+    { "id": "HS-SG-C-VAC-002-850819", "market": "SG", "legacyProduct": "C-VAC-002", "code": "8508.19.10", "desc": "Other — of a kind suitable for domestic use", "support": "官方税则第 517 页 8508.19.10 行；进口关税栏空白（Free）", "questions": "超出 8508.11 阈值（功率或集尘容积）时归此；是否家用型？", "sourceIds": ["SRC-168"], "locator": "STCCED/AHTN 2022 第 517 页 8508.19", "gri": "GIR 1 与 6", "review": "候选方向", "asOf": "2026-11-09", "tariffVersion": "SG STCCED/AHTN 2022（仓库归档 PDF）", "notFinal": true, "origin": "sg_cleaning_extension_2026_11_09" },
+    { "id": "HS-SG-C-VAC-003-850811", "market": "SG", "legacyProduct": "C-VAC-003", "code": "8508.11.00", "desc": "手持吸尘器：自容电机、功率 ≤1,500 W 且集尘容积 ≤20 L", "support": "官方税则第 517 页 8508.11.00 行；进口关税栏空白（Free）", "questions": "电机额定功率与集尘容积是否满足 8508.11 阈值？", "sourceIds": ["SRC-168"], "locator": "STCCED/AHTN 2022 第 517 页 8508", "gri": "GIR 1 与 6", "review": "候选方向", "asOf": "2026-11-09", "tariffVersion": "SG STCCED/AHTN 2022（仓库归档 PDF）", "notFinal": true, "origin": "sg_cleaning_extension_2026_11_09" },
+    { "id": "HS-SG-C-VAC-003-850819", "market": "SG", "legacyProduct": "C-VAC-003", "code": "8508.19.10", "desc": "Other — of a kind suitable for domestic use", "support": "官方税则第 517 页 8508.19.10 行；进口关税栏空白（Free）", "questions": "超出阈值或为无集尘容器设计时需复核", "sourceIds": ["SRC-168"], "locator": "STCCED/AHTN 2022 第 517 页 8508.19", "gri": "GIR 1 与 6", "review": "候选方向", "asOf": "2026-11-09", "tariffVersion": "SG STCCED/AHTN 2022（仓库归档 PDF）", "notFinal": true, "origin": "sg_cleaning_extension_2026_11_09" },
+    { "id": "HS-SG-C-VAC-004-850811", "market": "SG", "legacyProduct": "C-VAC-004", "code": "8508.11.00", "desc": "干湿两用吸尘器：自容电机、功率 ≤1,500 W 且集尘容积 ≤20 L", "support": "官方税则第 517 页 8508.11.00 行；进口关税栏空白（Free）", "questions": "干湿两用时以吸尘为主还是以吸水清洗为主？集尘／污水容器容积如何计算？", "sourceIds": ["SRC-168"], "locator": "STCCED/AHTN 2022 第 517 页 8508", "gri": "GIR 1、3（组合功能）与 6", "review": "候选方向；组合功能需按主要功能判定", "asOf": "2026-11-09", "tariffVersion": "SG STCCED/AHTN 2022（仓库归档 PDF）", "notFinal": true, "origin": "sg_cleaning_extension_2026_11_09" },
+    { "id": "HS-SG-C-VAC-004-850819", "market": "SG", "legacyProduct": "C-VAC-004", "code": "8508.19.10", "desc": "Other — of a kind suitable for domestic use", "support": "官方税则第 517 页 8508.19.10 行；进口关税栏空白（Free）", "questions": "超出 8508.11 阈值时归此", "sourceIds": ["SRC-168"], "locator": "STCCED/AHTN 2022 第 517 页 8508.19", "gri": "GIR 1 与 6", "review": "候选方向", "asOf": "2026-11-09", "tariffVersion": "SG STCCED/AHTN 2022（仓库归档 PDF）", "notFinal": true, "origin": "sg_cleaning_extension_2026_11_09" },
+    { "id": "HS-SG-C-VAC-005-850811", "market": "SG", "legacyProduct": "C-VAC-005", "code": "8508.11.00", "desc": "扫地／扫拖机器人：自容电机、功率 ≤1,500 W 且集尘容积 ≤20 L", "support": "官方税则第 517 页 8508.11.00 行；进口关税栏空白（Free）", "questions": "主机与集尘基站是否一并申报？基站集尘容积是否计入？", "sourceIds": ["SRC-168"], "locator": "STCCED/AHTN 2022 第 517 页 8508", "gri": "GIR 1、3(b)（成套货品）与 6", "review": "候选方向；含基站套装的归类需按主要功能与成套规则复核", "asOf": "2026-11-09", "tariffVersion": "SG STCCED/AHTN 2022（仓库归档 PDF）", "notFinal": true, "origin": "sg_cleaning_extension_2026_11_09" },
+    { "id": "HS-SG-C-VAC-005-850819", "market": "SG", "legacyProduct": "C-VAC-005", "code": "8508.19.10", "desc": "Other — of a kind suitable for domestic use", "support": "官方税则第 517 页 8508.19.10 行；进口关税栏空白（Free）", "questions": "功率或集尘容积超出阈值时归此", "sourceIds": ["SRC-168"], "locator": "STCCED/AHTN 2022 第 517 页 8508.19", "gri": "GIR 1 与 6", "review": "候选方向", "asOf": "2026-11-09", "tariffVersion": "SG STCCED/AHTN 2022（仓库归档 PDF）", "notFinal": true, "origin": "sg_cleaning_extension_2026_11_09" },
+    { "id": "HS-SG-C-WET-001-850980", "market": "SG", "legacyProduct": "C-WET-001", "code": "8509.80.90", "desc": "Electro-mechanical domestic appliances with self-contained electric motor, other than vacuum cleaners — Other appliances, Other", "support": "官方税则第 517 页 8509.80.90 行；进口关税栏空白（Free）", "questions": "是否以电机刷洗／喷液为主而非以负压吸力为主？是否带加热元件？", "sourceIds": ["SRC-168"], "locator": "STCCED/AHTN 2022 第 517 页 8509.80", "gri": "GIR 1、3(b) 与 6", "review": "候选方向；洗地机若以吸力为主可能落入 8508", "asOf": "2026-11-09", "tariffVersion": "SG STCCED/AHTN 2022（仓库归档 PDF）", "notFinal": true, "origin": "sg_cleaning_extension_2026_11_09" },
+    { "id": "HS-SG-C-WET-001-850819", "market": "SG", "legacyProduct": "C-WET-001", "code": "8508.19.10", "desc": "Vacuum cleaners — Other, of a kind suitable for domestic use", "support": "官方税则第 517 页 8508.19.10 行；进口关税栏空白（Free）", "questions": "若主要清洁原理为负压吸尘（含污水回收），应按吸尘器归类", "sourceIds": ["SRC-168"], "locator": "STCCED/AHTN 2022 第 517 页 8508.19", "gri": "GIR 1 与 6", "review": "候选方向；需与 8509 分支二选一并复核", "asOf": "2026-11-09", "tariffVersion": "SG STCCED/AHTN 2022（仓库归档 PDF）", "notFinal": true, "origin": "sg_cleaning_extension_2026_11_09" },
+    { "id": "HS-SG-C-WET-001-851679", "market": "SG", "legacyProduct": "C-WET-001", "code": "8516.79.90", "desc": "Other electro-thermic appliances — Other", "support": "官方税则第 522 页 8516.79.90 行；进口关税栏空白（Free）", "questions": "是否具备电加热（热水／蒸汽）功能并构成基本特征？", "sourceIds": ["SRC-168"], "locator": "STCCED/AHTN 2022 第 522 页 8516.79", "gri": "GIR 3(b)（组合功能取基本特征）与 6", "review": "候选方向；加热与电机功能并存时需按基本特征判定", "asOf": "2026-11-09", "tariffVersion": "SG STCCED/AHTN 2022（仓库归档 PDF）", "notFinal": true, "origin": "sg_cleaning_extension_2026_11_09" },
+    { "id": "HS-SG-C-WET-002-851679", "market": "SG", "legacyProduct": "C-WET-002", "code": "8516.79.90", "desc": "Other electro-thermic appliances — Other（蒸汽拖把）", "support": "官方税则第 522 页 8516.79.90 行；进口关税栏空白（Free）", "questions": "是否以电加热水产生蒸汽为主要清洁方式？连续蒸汽量多少？", "sourceIds": ["SRC-168"], "locator": "STCCED/AHTN 2022 第 522 页 8516.79", "gri": "GIR 1 与 6", "review": "候选方向；8 位码待按现行税则复核", "asOf": "2026-11-09", "tariffVersion": "SG STCCED/AHTN 2022（仓库归档 PDF）", "notFinal": true, "origin": "sg_cleaning_extension_2026_11_09" },
+    { "id": "HS-SG-C-WET-002-850819", "market": "SG", "legacyProduct": "C-WET-002", "code": "8508.19.10", "desc": "Vacuum cleaners — Other, of a kind suitable for domestic use", "support": "官方税则第 517 页 8508.19.10 行；进口关税栏空白（Free）", "questions": "若为吸尘＋蒸汽组合且以吸尘为主，则按吸尘器归类", "sourceIds": ["SRC-168"], "locator": "STCCED/AHTN 2022 第 517 页 8508.19", "gri": "GIR 3(b) 与 6", "review": "候选方向；组合功能需确认主要功能", "asOf": "2026-11-09", "tariffVersion": "SG STCCED/AHTN 2022（仓库归档 PDF）", "notFinal": true, "origin": "sg_cleaning_extension_2026_11_09" },
+    { "id": "HS-SG-C-WET-003-851679", "market": "SG", "legacyProduct": "C-WET-003", "code": "8516.79.90", "desc": "Other electro-thermic appliances — Other（多用途蒸汽清洁机）", "support": "官方税则第 522 页 8516.79.90 行；进口关税栏空白（Free）", "questions": "是否为带多种附件的蒸汽主机？附件是否随主机一并申报？", "sourceIds": ["SRC-168"], "locator": "STCCED/AHTN 2022 第 522 页 8516.79", "gri": "GIR 1、3(b)（主机与附件成套）与 6", "review": "候选方向；附件成套的归类需按基本特征复核", "asOf": "2026-11-09", "tariffVersion": "SG STCCED/AHTN 2022（仓库归档 PDF）", "notFinal": true, "origin": "sg_cleaning_extension_2026_11_09" },
+    { "id": "HS-SG-C-WET-004-850819", "market": "SG", "legacyProduct": "C-WET-004", "code": "8508.19.10", "desc": "Vacuum cleaners — Other, of a kind suitable for domestic use（喷抽式地毯清洗机）", "support": "官方税则第 517 页 8508.19.10 行；进口关税栏空白（Free）", "questions": "是否以负压吸力抽取污水为主要清洁原理？", "sourceIds": ["SRC-168"], "locator": "STCCED/AHTN 2022 第 517 页 8508.19", "gri": "GIR 1 与 6", "review": "候选方向；若以喷刷为主则考虑 8509.80.90", "asOf": "2026-11-09", "tariffVersion": "SG STCCED/AHTN 2022（仓库归档 PDF）", "notFinal": true, "origin": "sg_cleaning_extension_2026_11_09" },
+    { "id": "HS-SG-C-WET-004-850980", "market": "SG", "legacyProduct": "C-WET-004", "code": "8509.80.90", "desc": "Electro-mechanical domestic appliances — Other appliances, Other", "support": "官方税则第 517 页 8509.80.90 行；进口关税栏空白（Free）", "questions": "是否以喷液刷洗为主要功能、吸力仅辅助？", "sourceIds": ["SRC-168"], "locator": "STCCED/AHTN 2022 第 517 页 8509.80", "gri": "GIR 1、3(b) 与 6", "review": "候选方向；两个分支需择一并复核", "asOf": "2026-11-09", "tariffVersion": "SG STCCED/AHTN 2022（仓库归档 PDF）", "notFinal": true, "origin": "sg_cleaning_extension_2026_11_09" },
+    { "id": "HS-SG-C-WET-005-850980", "market": "SG", "legacyProduct": "C-WET-005", "code": "8509.80.10", "desc": "Floor polishers（地板抛光机）", "support": "官方税则第 517 页 8509.80.10 行明确列出 Floor polishers；进口关税栏空白（Free）", "questions": "产品是否为地面抛光用途？刷洗／抛光模式是否为主要功能？", "sourceIds": ["SRC-168"], "locator": "STCCED/AHTN 2022 第 517 页 8509.80.10", "gri": "GIR 1 与 6", "review": "候选方向；仅刷洗不抛光时需按 8509.80.90 复核", "asOf": "2026-11-09", "tariffVersion": "SG STCCED/AHTN 2022（仓库归档 PDF）", "notFinal": true, "origin": "sg_cleaning_extension_2026_11_09" },
+    { "id": "HS-SG-C-WET-005-850989", "market": "SG", "legacyProduct": "C-WET-005", "code": "8509.80.90", "desc": "Other appliances — Other（非抛光用途的刷洗机）", "support": "官方税则第 517 页 8509.80.90 行；进口关税栏空白（Free）", "questions": "若以刷洗／清洗为主而非抛光，归此分支", "sourceIds": ["SRC-168"], "locator": "STCCED/AHTN 2022 第 517 页 8509.80", "gri": "GIR 1 与 6", "review": "候选方向", "asOf": "2026-11-09", "tariffVersion": "SG STCCED/AHTN 2022（仓库归档 PDF）", "notFinal": true, "origin": "sg_cleaning_extension_2026_11_09" }
+  ],
+  "taxProfiles": [
+    { "market": "SG", "product_type": "vacuum", "hs": "850811", "candidateId": "HS-SG-C-VAC-001-850811", "origin_scope": "ANY", "effective_from": "2026-01-01", "effective_to": "2026-12-31", "ordinaryRate": 0, "sourceIds": ["SRC-168", "SRC-170"], "version": "sg-cleaning-ahtn-2026-11-09", "verifiedAt": "2026-11-09", "requiresReview": true, "rule": "SG ordinary bulk import：8508.11.00 关税栏空白（不征进口关税）；CIF 计征 GST 9%；低价值路线、应税消费品与特殊估价另计。", "verification": "取自仓库归档官方税则 PDF 第 517 页；在线复核未执行（网络受限），不等同政策核验完成" },
+    { "market": "SG", "product_type": "vacuum", "hs": "850819", "candidateId": "HS-SG-C-VAC-001-850819", "origin_scope": "ANY", "effective_from": "2026-01-01", "effective_to": "2026-12-31", "ordinaryRate": 0, "sourceIds": ["SRC-168", "SRC-170"], "version": "sg-cleaning-ahtn-2026-11-09", "verifiedAt": "2026-11-09", "requiresReview": true, "rule": "SG ordinary bulk import：8508.19.10 关税栏空白（不征进口关税）；CIF 计征 GST 9%。", "verification": "取自仓库归档官方税则 PDF 第 517 页；在线复核未执行" },
+    { "market": "SG", "product_type": "vacuum", "hs": "850811", "candidateId": "HS-SG-C-VAC-002-850811", "origin_scope": "ANY", "effective_from": "2026-01-01", "effective_to": "2026-12-31", "ordinaryRate": 0, "sourceIds": ["SRC-168", "SRC-170"], "version": "sg-cleaning-ahtn-2026-11-09", "verifiedAt": "2026-11-09", "requiresReview": true, "rule": "SG ordinary bulk import：8508.11.00 不征进口关税；CIF 计征 GST 9%。", "verification": "取自仓库归档官方税则 PDF 第 517 页；在线复核未执行" },
+    { "market": "SG", "product_type": "vacuum", "hs": "850819", "candidateId": "HS-SG-C-VAC-002-850819", "origin_scope": "ANY", "effective_from": "2026-01-01", "effective_to": "2026-12-31", "ordinaryRate": 0, "sourceIds": ["SRC-168", "SRC-170"], "version": "sg-cleaning-ahtn-2026-11-09", "verifiedAt": "2026-11-09", "requiresReview": true, "rule": "SG ordinary bulk import：8508.19.10 不征进口关税；CIF 计征 GST 9%。", "verification": "取自仓库归档官方税则 PDF 第 517 页；在线复核未执行" },
+    { "market": "SG", "product_type": "vacuum", "hs": "850811", "candidateId": "HS-SG-C-VAC-003-850811", "origin_scope": "ANY", "effective_from": "2026-01-01", "effective_to": "2026-12-31", "ordinaryRate": 0, "sourceIds": ["SRC-168", "SRC-170"], "version": "sg-cleaning-ahtn-2026-11-09", "verifiedAt": "2026-11-09", "requiresReview": true, "rule": "SG ordinary bulk import：8508.11.00 不征进口关税；CIF 计征 GST 9%。", "verification": "取自仓库归档官方税则 PDF 第 517 页；在线复核未执行" },
+    { "market": "SG", "product_type": "vacuum", "hs": "850819", "candidateId": "HS-SG-C-VAC-003-850819", "origin_scope": "ANY", "effective_from": "2026-01-01", "effective_to": "2026-12-31", "ordinaryRate": 0, "sourceIds": ["SRC-168", "SRC-170"], "version": "sg-cleaning-ahtn-2026-11-09", "verifiedAt": "2026-11-09", "requiresReview": true, "rule": "SG ordinary bulk import：8508.19.10 不征进口关税；CIF 计征 GST 9%。", "verification": "取自仓库归档官方税则 PDF 第 517 页；在线复核未执行" },
+    { "market": "SG", "product_type": "wet_dry_vacuum", "hs": "850811", "candidateId": "HS-SG-C-VAC-004-850811", "origin_scope": "ANY", "effective_from": "2026-01-01", "effective_to": "2026-12-31", "ordinaryRate": 0, "sourceIds": ["SRC-168", "SRC-170"], "version": "sg-cleaning-ahtn-2026-11-09", "verifiedAt": "2026-11-09", "requiresReview": true, "rule": "SG ordinary bulk import：8508.11.00 不征进口关税；CIF 计征 GST 9%。", "verification": "取自仓库归档官方税则 PDF 第 517 页；在线复核未执行" },
+    { "market": "SG", "product_type": "wet_dry_vacuum", "hs": "850819", "candidateId": "HS-SG-C-VAC-004-850819", "origin_scope": "ANY", "effective_from": "2026-01-01", "effective_to": "2026-12-31", "ordinaryRate": 0, "sourceIds": ["SRC-168", "SRC-170"], "version": "sg-cleaning-ahtn-2026-11-09", "verifiedAt": "2026-11-09", "requiresReview": true, "rule": "SG ordinary bulk import：8508.19.10 不征进口关税；CIF 计征 GST 9%。", "verification": "取自仓库归档官方税则 PDF 第 517 页；在线复核未执行" },
+    { "market": "SG", "product_type": "robot_vacuum", "hs": "850811", "candidateId": "HS-SG-C-VAC-005-850811", "origin_scope": "ANY", "effective_from": "2026-01-01", "effective_to": "2026-12-31", "ordinaryRate": 0, "sourceIds": ["SRC-168", "SRC-170"], "version": "sg-cleaning-ahtn-2026-11-09", "verifiedAt": "2026-11-09", "requiresReview": true, "rule": "SG ordinary bulk import：8508.11.00 不征进口关税；CIF 计征 GST 9%；含基站套装需按主要功能复核。", "verification": "取自仓库归档官方税则 PDF 第 517 页；在线复核未执行" },
+    { "market": "SG", "product_type": "robot_vacuum", "hs": "850819", "candidateId": "HS-SG-C-VAC-005-850819", "origin_scope": "ANY", "effective_from": "2026-01-01", "effective_to": "2026-12-31", "ordinaryRate": 0, "sourceIds": ["SRC-168", "SRC-170"], "version": "sg-cleaning-ahtn-2026-11-09", "verifiedAt": "2026-11-09", "requiresReview": true, "rule": "SG ordinary bulk import：8508.19.10 不征进口关税；CIF 计征 GST 9%。", "verification": "取自仓库归档官方税则 PDF 第 517 页；在线复核未执行" },
+    { "market": "SG", "product_type": "floor_washer", "hs": "850980", "candidateId": "HS-SG-C-WET-001-850980", "origin_scope": "ANY", "effective_from": "2026-01-01", "effective_to": "2026-12-31", "ordinaryRate": 0, "sourceIds": ["SRC-168", "SRC-170"], "version": "sg-cleaning-ahtn-2026-11-09", "verifiedAt": "2026-11-09", "requiresReview": true, "rule": "SG ordinary bulk import：8509.80.90 不征进口关税；CIF 计征 GST 9%。", "verification": "取自仓库归档官方税则 PDF 第 517 页；在线复核未执行" },
+    { "market": "SG", "product_type": "floor_washer", "hs": "850819", "candidateId": "HS-SG-C-WET-001-850819", "origin_scope": "ANY", "effective_from": "2026-01-01", "effective_to": "2026-12-31", "ordinaryRate": 0, "sourceIds": ["SRC-168", "SRC-170"], "version": "sg-cleaning-ahtn-2026-11-09", "verifiedAt": "2026-11-09", "requiresReview": true, "rule": "SG ordinary bulk import：8508.19.10 不征进口关税；CIF 计征 GST 9%。", "verification": "取自仓库归档官方税则 PDF 第 517 页；在线复核未执行" },
+    { "market": "SG", "product_type": "floor_washer", "hs": "851679", "candidateId": "HS-SG-C-WET-001-851679", "origin_scope": "ANY", "effective_from": "2026-01-01", "effective_to": "2026-12-31", "ordinaryRate": 0, "sourceIds": ["SRC-168", "SRC-170"], "version": "sg-cleaning-ahtn-2026-11-09", "verifiedAt": "2026-11-09", "requiresReview": true, "rule": "SG ordinary bulk import：8516.79.90 不征进口关税；CIF 计征 GST 9%。", "verification": "取自仓库归档官方税则 PDF 第 522 页；在线复核未执行" },
+    { "market": "SG", "product_type": "steam_cleaner", "hs": "851679", "candidateId": "HS-SG-C-WET-002-851679", "origin_scope": "ANY", "effective_from": "2026-01-01", "effective_to": "2026-12-31", "ordinaryRate": 0, "sourceIds": ["SRC-168", "SRC-170"], "version": "sg-cleaning-ahtn-2026-11-09", "verifiedAt": "2026-11-09", "requiresReview": true, "rule": "SG ordinary bulk import：8516.79.90 不征进口关税；CIF 计征 GST 9%。", "verification": "取自仓库归档官方税则 PDF 第 522 页；在线复核未执行" },
+    { "market": "SG", "product_type": "steam_cleaner", "hs": "850819", "candidateId": "HS-SG-C-WET-002-850819", "origin_scope": "ANY", "effective_from": "2026-01-01", "effective_to": "2026-12-31", "ordinaryRate": 0, "sourceIds": ["SRC-168", "SRC-170"], "version": "sg-cleaning-ahtn-2026-11-09", "verifiedAt": "2026-11-09", "requiresReview": true, "rule": "SG ordinary bulk import：8508.19.10 不征进口关税；CIF 计征 GST 9%。", "verification": "取自仓库归档官方税则 PDF 第 517 页；在线复核未执行" },
+    { "market": "SG", "product_type": "steam_cleaner", "hs": "851679", "candidateId": "HS-SG-C-WET-003-851679", "origin_scope": "ANY", "effective_from": "2026-01-01", "effective_to": "2026-12-31", "ordinaryRate": 0, "sourceIds": ["SRC-168", "SRC-170"], "version": "sg-cleaning-ahtn-2026-11-09", "verifiedAt": "2026-11-09", "requiresReview": true, "rule": "SG ordinary bulk import：8516.79.90 不征进口关税；CIF 计征 GST 9%。", "verification": "取自仓库归档官方税则 PDF 第 522 页；在线复核未执行" },
+    { "market": "SG", "product_type": "carpet_cleaner", "hs": "850819", "candidateId": "HS-SG-C-WET-004-850819", "origin_scope": "ANY", "effective_from": "2026-01-01", "effective_to": "2026-12-31", "ordinaryRate": 0, "sourceIds": ["SRC-168", "SRC-170"], "version": "sg-cleaning-ahtn-2026-11-09", "verifiedAt": "2026-11-09", "requiresReview": true, "rule": "SG ordinary bulk import：8508.19.10 不征进口关税；CIF 计征 GST 9%。", "verification": "取自仓库归档官方税则 PDF 第 517 页；在线复核未执行" },
+    { "market": "SG", "product_type": "carpet_cleaner", "hs": "850980", "candidateId": "HS-SG-C-WET-004-850980", "origin_scope": "ANY", "effective_from": "2026-01-01", "effective_to": "2026-12-31", "ordinaryRate": 0, "sourceIds": ["SRC-168", "SRC-170"], "version": "sg-cleaning-ahtn-2026-11-09", "verifiedAt": "2026-11-09", "requiresReview": true, "rule": "SG ordinary bulk import：8509.80.90 不征进口关税；CIF 计征 GST 9%。", "verification": "取自仓库归档官方税则 PDF 第 517 页；在线复核未执行" },
+    { "market": "SG", "product_type": "floor_polisher", "hs": "850980", "candidateId": "HS-SG-C-WET-005-850980", "origin_scope": "ANY", "effective_from": "2026-01-01", "effective_to": "2026-12-31", "ordinaryRate": 0, "sourceIds": ["SRC-168", "SRC-170"], "version": "sg-cleaning-ahtn-2026-11-09", "verifiedAt": "2026-11-09", "requiresReview": true, "rule": "SG ordinary bulk import：8509.80.10（Floor polishers）不征进口关税；CIF 计征 GST 9%。", "verification": "取自仓库归档官方税则 PDF 第 517 页；在线复核未执行" },
+    { "market": "SG", "product_type": "floor_polisher", "hs": "850989", "candidateId": "HS-SG-C-WET-005-850989", "origin_scope": "ANY", "effective_from": "2026-01-01", "effective_to": "2026-12-31", "ordinaryRate": 0, "sourceIds": ["SRC-168", "SRC-170"], "version": "sg-cleaning-ahtn-2026-11-09", "verifiedAt": "2026-11-09", "requiresReview": true, "rule": "SG ordinary bulk import：8509.80.90 不征进口关税；CIF 计征 GST 9%。", "verification": "取自仓库归档官方税则 PDF 第 517 页；在线复核未执行" }
+  ],
+  "productRuleLinks": [
+    { "sub": "C-VAC-001", "ruleId": "SG-P2-VAC", "jurisdiction": "SG", "reason": "家用可移动式吸尘器具，属 CPSR 受管制商品范围" },
+    { "sub": "C-VAC-002", "ruleId": "SG-P2-VAC", "jurisdiction": "SG", "reason": "家用可移动式吸尘器具，属 CPSR 受管制商品范围" },
+    { "sub": "C-VAC-003", "ruleId": "SG-P2-VAC", "jurisdiction": "SG", "reason": "家用可移动式吸尘器具，属 CPSR 受管制商品范围" },
+    { "sub": "C-VAC-004", "ruleId": "SG-P2-VAC", "jurisdiction": "SG", "reason": "干湿两用吸尘器仍列入 product_type 受控范围" },
+    { "sub": "C-VAC-005", "ruleId": "SG-P2-ROBOT-VAC", "jurisdiction": "SG", "reason": "机器人主机按吸尘器具受控范围核验" },
+    { "sub": "C-VAC-005", "ruleId": "SG-P2-ROBOT-DOCK", "jurisdiction": "SG", "reason": "带自动集尘的基站按吸尘器受控边界核验" },
+    { "sub": "C-VAC-005", "ruleId": "SG-P2-CHARGER-ADAPTER", "jurisdiction": "SG", "reason": "随附充电座／适配器可能属 AC Adapters 受管制品" },
+    { "sub": "C-VAC-002", "ruleId": "SG-P2-CHARGER-ADAPTER", "jurisdiction": "SG", "reason": "无线杆式机型常随附外置充电器" },
+    { "sub": "C-VAC-003", "ruleId": "SG-P2-CHARGER-ADAPTER", "jurisdiction": "SG", "reason": "手持充电机型常随附外置充电器" },
+    { "sub": "C-VAC-004", "ruleId": "SG-P2-CHARGER-ADAPTER", "jurisdiction": "SG", "reason": "电池机型随附充电器时需单独核验" },
+    { "sub": "C-WET-001", "ruleId": "SG-P2-WET-CGSR", "jurisdiction": "SG", "reason": "洗地机未列入受管制商品清单，按消费品一般安全要求核验" },
+    { "sub": "C-WET-002", "ruleId": "SG-P2-WET-CGSR", "jurisdiction": "SG", "reason": "蒸汽拖把未列入受管制商品清单，按消费品一般安全要求核验" },
+    { "sub": "C-WET-003", "ruleId": "SG-P2-WET-CGSR", "jurisdiction": "SG", "reason": "多用途蒸汽清洁机未列入受管制商品清单" },
+    { "sub": "C-WET-004", "ruleId": "SG-P2-WET-CGSR", "jurisdiction": "SG", "reason": "地毯清洗机未列入受管制商品清单；若以吸力为主则改按吸尘器核验" },
+    { "sub": "C-WET-005", "ruleId": "SG-P2-WET-CGSR", "jurisdiction": "SG", "reason": "地板抛光／刷洗机未列入受管制商品清单" },
+    { "sub": "C-WET-001", "ruleId": "SG-P2-CHARGER-ADAPTER", "jurisdiction": "SG", "reason": "电池机型随附充电座时需单独核验" },
+    { "sub": "C-VAC-001", "ruleId": "SG-C20", "jurisdiction": "SG", "reason": "成套供货事实影响归类与申报" },
+    { "sub": "C-VAC-005", "ruleId": "SG-C20", "jurisdiction": "SG", "reason": "主机加基站成套供货" },
+    { "sub": "C-WET-003", "ruleId": "SG-C20", "jurisdiction": "SG", "reason": "主机加附件成套供货" }
+  ],
+  "dynamicMap": [
+    { "sub": "C-WET-005", "field": "F081", "judgments": ["J-RULE-WET-CGSR", "J-HS-WET-PRIMARY-FUNCTION"], "businessUse": "现有规则字段 floor_washing", "sourceIds": ["SRC-PROD-013"] },
+    { "sub": "C-WET-005", "field": "F083", "judgments": ["J-RULE-WET-CGSR", "J-HS-WET-PRIMARY-FUNCTION"], "businessUse": "现有规则字段 polishing_function", "sourceIds": ["SRC-PROD-013"] },
+    { "sub": "C-WET-005", "field": "F041", "judgments": ["J-RULE-WET-CGSR", "J-HS-WET-PRIMARY-FUNCTION"], "businessUse": "区分吸尘为主还是抛光刷洗为主", "sourceIds": ["SRC-PROD-013"] },
+    { "sub": "C-WET-005", "field": "F002", "judgments": ["J-RULE-SCOPE", "J-RULE-VOLTAGE"], "businessUse": "现有规则字段 voltage_ac", "sourceIds": ["SRC-PROD-013"] },
+    { "sub": "C-WET-005", "field": "F001", "judgments": ["J-RULE-SCOPE"], "businessUse": "现有规则字段 household", "sourceIds": ["SRC-PROD-013"] },
+    { "sub": "C-WET-005", "field": "F006", "judgments": ["J-RULE-PORTABLE"], "businessUse": "现有规则字段 portable", "sourceIds": ["SRC-PROD-013"] },
+    { "sub": "C-WET-004", "field": "F082", "judgments": ["J-RULE-WET-CGSR", "J-HS-WET-PRIMARY-FUNCTION"], "businessUse": "现有规则字段 carpet_extraction", "sourceIds": ["SRC-PROD-013"] },
+    { "sub": "C-WET-004", "field": "F084", "judgments": ["J-HS-WET-PRIMARY-FUNCTION"], "businessUse": "主要清洁表面影响归类分支", "sourceIds": ["SRC-PROD-013"] },
+    { "sub": "C-WET-001", "field": "F081", "judgments": ["J-RULE-WET-CGSR", "J-HS-WET-PRIMARY-FUNCTION"], "businessUse": "现有规则字段 floor_washing", "sourceIds": ["SRC-PROD-013"] },
+    { "sub": "C-WET-002", "field": "F081", "judgments": ["J-RULE-WET-CGSR"], "businessUse": "现有规则字段 floor_washing", "sourceIds": ["SRC-PROD-013"] },
+    { "sub": "C-WET-003", "field": "F085", "judgments": ["J-HS-COMBINATION"], "businessUse": "附件成套影响归类与申报", "sourceIds": ["SRC-PROD-013"] },
+    { "sub": "C-WET-003", "field": "F052", "judgments": ["J-RULE-WET-CGSR", "J-HS-HEATING-METHOD"], "businessUse": "现有规则字段 steam_function", "sourceIds": ["SRC-PROD-013"] },
+    { "sub": "C-VAC-001", "field": "F085", "judgments": ["J-HS-COMBINATION"], "businessUse": "成套供货事实", "sourceIds": ["SRC-PROD-015"] },
+    { "sub": "C-VAC-002", "field": "F013", "judgments": ["J-RULE-ACCESSORY-CG", "J-ACCESSORY-SCREEN"], "businessUse": "现有规则字段 charger_included", "sourceIds": ["SRC-PROD-015", "SRC-PROD-018"] },
+    { "sub": "C-VAC-003", "field": "F013", "judgments": ["J-RULE-ACCESSORY-CG"], "businessUse": "现有规则字段 charger_included", "sourceIds": ["SRC-PROD-015", "SRC-PROD-018"] },
+    { "sub": "C-VAC-004", "field": "F013", "judgments": ["J-RULE-ACCESSORY-CG"], "businessUse": "现有规则字段 charger_included", "sourceIds": ["SRC-PROD-015"] },
+    { "sub": "C-VAC-005", "field": "F013", "judgments": ["J-RULE-ACCESSORY-CG"], "businessUse": "现有规则字段 charger_included", "sourceIds": ["SRC-PROD-015"] },
+    { "sub": "C-WET-001", "field": "F013", "judgments": ["J-RULE-ACCESSORY-CG"], "businessUse": "现有规则字段 charger_included", "sourceIds": ["SRC-PROD-015"] },
+    { "sub": "C-VAC-001", "field": "F034", "judgments": ["J-HS-POWER-BAND", "J-HS-VACUUM-CONSTRUCTION"], "businessUse": "8508.11 与 8508.19 分界（功率）", "sourceIds": ["SRC-168"] },
+    { "sub": "C-VAC-002", "field": "F034", "judgments": ["J-HS-POWER-BAND", "J-HS-VACUUM-CONSTRUCTION"], "businessUse": "8508.11 与 8508.19 分界（功率）", "sourceIds": ["SRC-168"] },
+    { "sub": "C-VAC-003", "field": "F034", "judgments": ["J-HS-POWER-BAND", "J-HS-VACUUM-CONSTRUCTION"], "businessUse": "8508.11 与 8508.19 分界（功率）", "sourceIds": ["SRC-168"] },
+    { "sub": "C-VAC-004", "field": "F034", "judgments": ["J-HS-POWER-BAND"], "businessUse": "8508.11 与 8508.19 分界（功率）", "sourceIds": ["SRC-168"] },
+    { "sub": "C-VAC-005", "field": "F034", "judgments": ["J-HS-POWER-BAND"], "businessUse": "8508.11 与 8508.19 分界（功率）", "sourceIds": ["SRC-168"] }
+  ]
+}

@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>税费覆盖矩阵 · 远见·企业出海助手</title>
+<meta name="description" content="按目的地与产品筛选，查看税率查询、税额测算与已覆盖项目汇总的实际支持状态与缺口原因。">
+<link rel="stylesheet" href="../css/styles.css">
+<style>
+  .tm-wrap{max-width:1180px;margin:0 auto;padding:20px 16px 60px}
+  .tm-head h1{margin:6px 0 8px;font-size:26px}
+  .tm-head p{margin:0 0 14px;color:var(--sub);font-size:14px;line-height:1.7}
+  .tm-filters{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px;margin:14px 0 8px}
+  .tm-filters label{font-size:12.5px;color:var(--sub);display:block;margin-bottom:4px}
+  .tm-stat{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0 14px;font-size:13px;color:var(--sub)}
+  .tm-stat b{color:var(--ink)}
+  table.tm{width:100%;border-collapse:collapse;font-size:13.5px}
+  table.tm th{text-align:left;font-weight:600;color:var(--sub);border-bottom:1px solid var(--line);padding:8px 6px;position:sticky;top:0;background:var(--paper)}
+  table.tm td{border-bottom:1px solid #eef0ee;padding:8px 6px;vertical-align:top}
+  table.tm tr:hover td{background:#f7faf7}
+  .tm-name{min-width:210px}
+  .tm-name small{display:block;color:var(--faint);font-size:12px}
+  .chip{display:inline-flex;align-items:center;gap:4px;border:1px solid var(--line);border-radius:999px;padding:3px 9px;font-size:12.5px;background:#fff;cursor:pointer;color:var(--ink);font-family:inherit}
+  .chip:hover{background:var(--soft)}
+  .chip:focus-visible{outline:2px solid var(--green);outline-offset:2px}
+  .chip.ok{color:var(--ok);border-color:var(--ok-line);background:var(--ok-bg)}
+  .chip.partial{color:var(--blue);border-color:var(--blue-line);background:var(--blue-bg)}
+  .chip.needs_input,.chip.pending{color:#8a5a12;border-color:var(--amber-line);background:var(--amber-bg)}
+  .chip.not_supported,.chip.needs_review{color:var(--faint);background:#f2f4f2}
+  tr.tm-detail td{background:var(--soft);padding:10px 6px 14px}
+  tr.tm-detail p{margin:0 0 6px;font-size:13px;line-height:1.65}
+  tr.tm-detail b{color:var(--green)}
+  .tm-note{margin-top:16px;font-size:12.5px;color:var(--faint);line-height:1.7}
+  .tm-scroll{overflow-x:auto}
+  @media (max-width:620px){
+    .tm-head h1{font-size:21px}
+    .tm-name{min-width:150px}
+    .chip{white-space:nowrap}
+  }
+</style>
+</head>
+<body>
+<div class="tm-wrap">
+  <div class="tm-head">
+    <a class="btn sec sm" href="../index.html" id="backLink">← 返回工作台</a>
+    <h1 id="pageTitle">税费覆盖矩阵</h1>
+    <p id="pageLead">按目的地、产品大类、产品组与小类筛选，查看税率查询、税额测算与已覆盖项目汇总的实际支持状态。状态由数据包与计算引擎现场判定，不针对具体产品写死。</p>
+  </div>
+
+  <div class="tm-filters">
+    <div><label for="fMarket" id="lbMarket">目的地</label><select id="fMarket" class="sel"></select></div>
+    <div><label for="fCat" id="lbCat">产品大类</label><select id="fCat" class="sel"></select></div>
+    <div><label for="fGroup" id="lbGroup">产品组</label><select id="fGroup" class="sel"></select></div>
+    <div><label for="fSub" id="lbSub">产品小类</label><select id="fSub" class="sel"></select></div>
+  </div>
+
+  <div class="tm-stat" id="tmStat"></div>
+
+  <div class="tm-scroll">
+    <table class="tm">
+      <thead>
+        <tr>
+          <th id="thName">产品小类</th>
+          <th id="thM">产品资料</th>
+          <th id="thL">市场服务</th>
+          <th id="thRate">税率查询</th>
+          <th id="thAmount">税额测算</th>
+          <th id="thSub">已覆盖项目汇总</th>
+        </tr>
+      </thead>
+      <tbody id="tmBody"></tbody>
+    </table>
+  </div>
+
+  <p class="tm-note" id="tmNote"></p>
+</div>
+
+<script src="../data/vo-data.js"></script>
+<script src="../data/i18n-en.js"></script>
+<script src="../js/engine.js"></script>
+<script src="../js/capability.js"></script>
+<script src="../js/i18n.js"></script>
+<script>
+(function () {
+  'use strict';
+  var D = window.VO_DATA, E = window.VOEngine, C = window.VOCapability, I = window.VOI18N;
+  I.init(D);
+  var en = function () { return I.get() === 'en'; };
+
+  var TAX_SAMPLE = {
+    goodsValue: '10000', freight: '800', insurance: '100', origin: 'CN', importDate: '2026-11-08',
+    currency: '', incoterm: 'FOB', priceBasis: 'FOB', importRoute: 'bulk', specialValuation: 'no',
+    remedyCheck: 'confirmed_clear', hsReviewed: true
+  };
+
+  var TEXT = {
+    title: ['税费覆盖矩阵', 'Duty & Tax Coverage Matrix'],
+    lead: ['按目的地、产品大类、产品组与小类筛选，查看税率查询、税额测算与已覆盖项目汇总的实际支持状态。状态由数据包与计算引擎现场判定，不针对具体产品写死。',
+      'Filter by destination, category, group and subcategory to see the real status of tariff rate lookup, duty calculation and the covered-item subtotal. Statuses are computed from the data package and the calculation engine, not fixed per product.'],
+    back: ['← 返回工作台', '← Back to workspace'],
+    market: ['目的地', 'Destination'], cat: ['产品大类', 'Category'], group: ['产品组', 'Product group'], sub: ['产品小类', 'Subcategory'],
+    thName: ['产品小类', 'Subcategory'], thM: ['产品资料', 'Evidence'], thL: ['市场服务', 'Service'],
+    thRate: ['税率查询', 'Rate lookup'], thAmount: ['税额测算', 'Duty calculation'], thSub: ['已覆盖项目汇总', 'Covered-item subtotal'],
+    all: ['全部', 'All'],
+    rows: ['当前筛选：{n} 个小类 × {m} 个目的地', 'Current view: {n} subcategories × {m} destinations'],
+    counts: ['税率可查 {a}｜税额可算 {b}｜汇总可用 {c}', 'Rate available {a} | calculable {b} | subtotal {c}'],
+    note: ['口径说明：本矩阵按一组标准试算输入判断平台计算能力（货值 10,000、国际运费 800、保险费 100、原产地中国、FOB、进口日期 2026-11-08，并假定已完成归类复核与贸易救济措施确认）；实际项目仍需自行填写并由专业人员复核。「税率查询」表示存在带官方来源的税率配置；「税额测算」表示能算出可靠分项；「已覆盖项目汇总」表示全部安全门通过、可输出本模型覆盖项目的合计。三者独立判断，未知条件不按 0 计。候选 HS 不等于海关最终归类；本矩阵不代表完整到岸成本。',
+      'Basis: this matrix probes platform capability with one standard set of inputs (goods value 10,000, freight 800, insurance 100, origin China, FOB, import date 2026-11-08, assuming classification review and trade-remedy checks are confirmed); your own project still needs its real inputs and professional review. "Rate lookup" means a rate configuration with an official source exists; "Duty calculation" means reliable line items can be computed; "Covered-item subtotal" means all safety gates pass and the model-covered total can be output. The three are judged independently and unknown conditions are never treated as zero. An HS candidate is not a customs decision, and this matrix is not the full landed cost.'],
+    why: ['原因：', 'Why: '], need: ['需要补充：', 'What is needed: '], next: ['下一步：', 'Next: '],
+    owner: { user: ['你可以补充', 'you can resolve'], platform: ['平台待补充', 'platform data gap'], expert: ['需专业复核', 'professional review required'] },
+    state: { ok: ['可用', 'available'], partial: ['部分支持', 'partial'], needs_input: ['待补条件', 'needs input'], needs_review: ['需复核', 'needs review'], not_supported: ['暂不支持', 'not covered'], pending: ['待确认', 'to confirm'] }
+  };
+  function T(k) { return TEXT[k][en() ? 1 : 0]; }
+
+  var sel = { market: 'SG', cat: '', group: '', sub: '' };
+
+  function jurName(code) {
+    var j = null;
+    (D.jurisdictions || []).forEach(function (x) { if (x.code === code) j = x; });
+    return j ? j.name : code;
+  }
+  function subName(s) { return en() ? (s.nameEn || s.name) : s.name; }
+
+  function fillSelect(id, options, current, labelFn) {
+    var el = document.getElementById(id);
+    el.textContent = '';
+    options.forEach(function (o) {
+      var op = document.createElement('option');
+      op.value = o.value === null ? '' : o.value;
+      op.textContent = labelFn ? labelFn(o) : o.label;
+      el.appendChild(op);
+    });
+    el.value = current === null ? '' : current;
+  }
+
+  function marketsWithData() {
+    var set = {};
+    (D.coverageProfiles || []).forEach(function (c) { set[c.market] = true; });
+    (D.taxProfiles || []).forEach(function (p) { set[p.market] = true; });
+    (D.rules || []).forEach(function (r) { if (r.jurisdiction && r.jurisdiction !== 'ALL') set[r.jurisdiction] = true; });
+    return Object.keys(set).sort();
+  }
+
+  function filteredSubs() {
+    var groupCat = {};
+    (D.groups || []).forEach(function (g) { groupCat[g.id] = g.category; });
+    return (D.subcategories || []).filter(function (s) {
+      if (sel.cat && groupCat[s.group] !== sel.cat) return false;
+      if (sel.group && s.group !== sel.group) return false;
+      if (sel.sub && s.id !== sel.sub) return false;
+      return true;
+    });
+  }
+
+  var open = {};
+  function evaluateRow(market, sub) {
+    var facts = C.factsFromMap(D, sub.id);
+    facts.household = true;
+    var tax = Object.assign({}, TAX_SAMPLE);
+    tax.currency = market === 'SG' ? 'SGD' : (market === 'AU' ? 'AUD' : '');
+    var hs = E.evaluateScenario(D, { market: market, subcategoryId: sub.id, facts: facts, placingOnMarketDate: TAX_SAMPLE.importDate });
+    var cands = hs.hsCandidates || [];
+    var chosen = cands.length ? cands[0].id : '';
+    return C.evaluate(D, E, {
+      market: market, subcategoryId: sub.id, facts: facts,
+      placingOnMarketDate: TAX_SAMPLE.importDate, hsChoice: chosen, tax: tax
+    });
+  }
+
+  function chip(state, key, sub) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'chip ' + state;
+    b.textContent = (TEXT.state[state] || [state, state])[en() ? 1 : 0];
+    b.setAttribute('aria-expanded', open[key] ? 'true' : 'false');
+    b.onclick = function () { open[key] = !open[key]; render(); };
+    return b;
+  }
+
+  function detailRow(cols, cap, featureKey, label) {
+    var tr = document.createElement('tr');
+    tr.className = 'tm-detail';
+    var td = document.createElement('td');
+    td.colSpan = cols;
+    var f = null;
+    cap.features.forEach(function (x) { if (x.key === featureKey) f = x; });
+    var miss = (f.missing || []).map(function (k) {
+      var fd = null;
+      (D.fields || []).forEach(function (x) { if (x.key === k || x.ruleKey === k) fd = x; });
+      return fd ? (en() ? (fd.nameEn || fd.name) : fd.name) : k;
+    }).join(en() ? ', ' : '、');
+    var reasons = {
+      user_input: en() ? 'Required transaction or project inputs are missing: ' : '缺少必要的交易或项目填写项：',
+      product_fact: en() ? 'Product facts that drive the decision are not confirmed: ' : '影响判断的产品事实未确认：',
+      hs_review: en() ? 'More than one classification direction exists and none is confirmed. ' : '存在多个可能归类方向且尚未确认。',
+      regulation_data: en() ? 'No executable clause rule matches this product in this market. ' : '该市场没有匹配到这款产品的可执行条款规则。',
+      tax_profile_missing: en() ? 'No verified duty profile for this product × destination. ' : '该产品与目的地组合尚无经核验的税费画像。',
+      scenario_unsupported: en() ? 'This route or pricing basis is outside the calculation engine. ' : '该进口路径或计价方式不在计算引擎范围内。',
+      date_out_of_range: en() ? 'No configuration covers the selected date. ' : '所选日期不在现有配置适用区间内。',
+      evidence_pending: en() ? 'Official verification is incomplete. ' : '官方证据尚未完成核验。'
+    };
+    var needs = {
+      user_input: en() ? 'Fill in the fields above.' : '补齐上述字段。',
+      product_fact: en() ? 'Confirm the technical features listed in step 1.' : '在第 1 步确认相关技术特征。',
+      hs_review: en() ? 'Answer the distinguishing questions and pick one HS candidate.' : '回答区分问题并选定一条 HS 候选方向。',
+      regulation_data: en() ? 'The platform must add clause-level rules and official references.' : '平台需补充条款规则与官方依据。',
+      tax_profile_missing: en() ? 'The platform must verify tariff line, rate and valuation basis against official sources.' : '平台需按官方税则核验税目、税率与税基。',
+      scenario_unsupported: en() ? 'The platform must add rules for this route.' : '平台需补充该路径的规则。',
+      date_out_of_range: en() ? 'A configuration covering this date is required.' : '需要覆盖该日期的有效配置。',
+      evidence_pending: en() ? 'Complete the professional review before relying on the total.' : '完成专业复核后再使用汇总结果。'
+    };
+    var p1 = document.createElement('p');
+    p1.innerHTML = '<b>' + T('why') + '</b>' + (reasons[f.reason] || '') + (miss || (en() ? 'no extra fields' : '不涉及额外填写项'));
+    var p2 = document.createElement('p');
+    p2.innerHTML = '<b>' + T('need') + '</b>' + (needs[f.reason] || '');
+    var p3 = document.createElement('p');
+    p3.innerHTML = '<b>' + T('next') + '</b>' + (TEXT.owner[f.owner] || [])[en() ? 1 : 0] + (f.detail && f.detail.blockers && f.detail.blockers.length
+      ? '｜' + f.detail.blockers.slice(0, 2).join('；') : '');
+    td.appendChild(p1); td.appendChild(p2); td.appendChild(p3);
+    tr.appendChild(td);
+    return tr;
+  }
+
+  function render() {
+    var subs = filteredSubs();
+    var body = document.getElementById('tmBody');
+    body.textContent = '';
+    var counts = { rate: 0, amount: 0, subtotal: 0 };
+    subs.forEach(function (s) {
+      var cap = evaluateRow(sel.market, s);
+      if (cap.tax.rate === 'ok') counts.rate++;
+      if (cap.tax.amount === 'ok' || cap.tax.amount === 'partial') counts.amount++;
+      if (cap.tax.subtotal === 'ok') counts.subtotal++;
+      var tr = document.createElement('tr');
+      var tdName = document.createElement('td');
+      tdName.className = 'tm-name';
+      tdName.textContent = subName(s);
+      var small = document.createElement('small');
+      small.textContent = s.id + ' · ' + (en() ? 'Group' : '产品组') + ' ' + s.group;
+      tdName.appendChild(small);
+      tr.appendChild(tdName);
+      [['m', cap.evidence.code], ['l', cap.service.code]].forEach(function (pair) {
+        var td = document.createElement('td');
+        var sp = document.createElement('span');
+        sp.className = 'chip ' + (pair[0] === 'l' ? (cap.service.profileBacked ? 'ok' : 'partial') : 'partial');
+        sp.textContent = pair[1];
+        td.appendChild(sp);
+        tr.appendChild(td);
+      });
+      [['taxRate', 'tax_calc', cap.tax.rate], ['taxAmount', 'tax_calc', cap.tax.amount], ['taxSubtotal', 'tax_calc', cap.tax.subtotal]].forEach(function (row, i) {
+        var td = document.createElement('td');
+        td.appendChild(chip(row[2], s.id + '|' + sel.market + '|' + i, s));
+        tr.appendChild(td);
+      });
+      body.appendChild(tr);
+      var openIdx = Object.keys(open).filter(function (k) { return open[k] && k.indexOf(s.id + '|' + sel.market + '|') === 0; });
+      if (openIdx.length) body.appendChild(detailRow(6, cap, 'tax', s));
+    });
+    var stat = document.getElementById('tmStat');
+    stat.textContent = '';
+    [T('rows').replace('{n}', subs.length).replace('{m}', 1),
+    T('counts').replace('{a}', counts.rate).replace('{b}', counts.amount).replace('{c}', counts.subtotal)].forEach(function (txt) {
+      var b = document.createElement('span');
+      b.innerHTML = txt;
+      stat.appendChild(b);
+    });
+    document.getElementById('tmNote').textContent = T('note');
+    document.getElementById('pageTitle').textContent = T('title');
+    document.getElementById('pageLead').textContent = T('lead');
+    document.getElementById('backLink').textContent = T('back');
+    ['Market', 'Cat', 'Group', 'Sub'].forEach(function (k) {
+      document.getElementById('lb' + k).textContent = T(k.toLowerCase() === 'market' ? 'market' : k.toLowerCase() === 'cat' ? 'cat' : k.toLowerCase() === 'group' ? 'group' : 'sub');
+    });
+    document.getElementById('thName').textContent = T('thName');
+    document.getElementById('thM').textContent = T('thM');
+    document.getElementById('thL').textContent = T('thL');
+    document.getElementById('thRate').textContent = T('thRate');
+    document.getElementById('thAmount').textContent = T('thAmount');
+    document.getElementById('thSub').textContent = T('thSub');
+    I.apply(document.body);
+  }
+
+  function wire() {
+    var mk = marketsWithData();
+    if (mk.indexOf('SG') < 0) mk.unshift('SG');
+    fillSelect('fMarket', mk.map(function (m) { return { value: m, label: jurName(m) }; }), sel.market);
+    var cats = [];
+    (D.categories || []).forEach(function (c) { cats.push({ value: c.id, label: c.name }); });
+    fillSelect('fCat', [{ value: null, label: T('all') }].concat(cats), sel.cat);
+    var groups = [];
+    (D.groups || []).forEach(function (g) { groups.push({ value: g.id, label: g.name }); });
+    fillSelect('fGroup', [{ value: null, label: T('all') }].concat(groups), sel.group);
+    fillSelect('fSub', [{ value: null, label: T('all') }].concat(filteredSubs().map(function (s) { return { value: s.id, label: subName(s) }; })), sel.sub);
+
+    document.getElementById('fMarket').onchange = function () { sel.market = this.value; render(); };
+    document.getElementById('fCat').onchange = function () { sel.cat = this.value; syncGroupSub(); render(); };
+    document.getElementById('fGroup').onchange = function () { sel.group = this.value; syncGroupSub(); render(); };
+    document.getElementById('fSub').onchange = function () { sel.sub = this.value; render(); };
+  }
+  function syncGroupSub() {
+    sel.sub = '';
+    fillSelect('fSub', [{ value: null, label: T('all') }].concat(filteredSubs().map(function (s) { return { value: s.id, label: subName(s) }; })), '');
+  }
+
+  document.getElementById('langSwitchMatrix') || null;
+  var lb = document.createElement('div');
+  lb.className = 'lang-switch';
+  lb.style.marginLeft = '8px';
+  ['zh', 'en'].forEach(function (code) {
+    var b = document.createElement('button');
+    b.className = 'lang-btn' + (I.get() === code ? ' on' : '');
+    b.type = 'button';
+    b.textContent = code === 'zh' ? '中文' : 'English';
+    b.setAttribute('aria-pressed', I.get() === code ? 'true' : 'false');
+    b.onclick = function () { I.set(code); wire(); render(); };
+    lb.appendChild(b);
+  });
+  document.querySelector('.tm-head').appendChild(lb);
+
+  wire();
+  render();
+})();
+</script>
+</body>
+</html>

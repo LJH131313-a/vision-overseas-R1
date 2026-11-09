@@ -25,7 +25,7 @@ window.scrollTo = function () {};
 if (!window.URL.createObjectURL) window.URL.createObjectURL = function () { return 'blob:mock'; };
 if (!window.URL.revokeObjectURL) window.URL.revokeObjectURL = function () {};
 
-for (const s of ['data/vo-data.js', 'data/news.js', 'policy-documents/manifest.js', 'js/engine.js', 'js/app.js']) {
+for (const s of ['data/vo-data.js', 'data/news.js', 'data/i18n-en.js', 'policy-documents/manifest.js', 'js/engine.js', 'js/capability.js', 'js/i18n.js', 'js/app.js']) {
   window.eval(readFileSync(join(ROOT, s), 'utf-8'));
 }
 
@@ -43,7 +43,7 @@ const $v = (id) => document.getElementById(id).value;
 const txt = (id) => document.getElementById(id).textContent;
 
 console.log('== 1. 骨架与数据 ==');
-check('VO_DATA 86 条规则', window.VO_DATA.rules.length === 86);
+check('VO_DATA 89 条规则（新增 3 条新加坡清洁电器规则）', window.VO_DATA.rules.length === 89);
 check('VO_NEWS 已加载', window.VO_NEWS.items.length > 0);
 check('侧栏 7 个导航项（含首页）', document.querySelectorAll('#sideNav .nav-item').length === 7);
 check('默认显示首页', document.getElementById('view-home').classList.contains('on'));
@@ -264,11 +264,11 @@ const gen0 = [...document.querySelectorAll('#qianwenBody button')].find((b) => b
 gen0.click();
 await new Promise((r) => setTimeout(r, 350));
 const ta0 = document.querySelector('#qianwenBody textarea');
-check('千问任务含研究档案证据节', ta0 && ta0.value.includes('产品研究档案证据（R1）') && ta0.value.includes('S03'), ta0 && ta0.value.slice(0, 80));
+check('千问任务含研究档案证据节', ta0 && ta0.value.includes('产品研究档案证据') && ta0.value.includes('S03'), ta0 && ta0.value.slice(0, 80));
 
 // 报告含研究档案卡
 goto('report');
-check('报告含研究档案卡（R1 带入）', document.getElementById('reportBody').textContent.includes('产品研究档案（R1 带入）'));
+check('报告含研究档案卡（型号证据已带入）', document.getElementById('reportBody').textContent.includes('产品研究档案（已带入型号证据）'));
 
 console.log('== 11. R1：雷达视图与 postMessage ==');
 goto('news');
@@ -390,10 +390,12 @@ check('挂「政策资料库」入口', [...document.querySelectorAll('#complian
 document.getElementById('lnkAbout').click();
 await tick(80);
 const aboutTxt = txt('aboutBody');
-const aboutNum = (aboutTxt.match(/(\d{3,})\s*份/) || [])[1];
-check('上手指南如实给出资料库份数（≥ 160）', !!aboutNum && Number(aboutNum) >= 160, aboutNum);
-check('上手指南链接政策资料库', !!document.querySelector('#aboutBody a[href*="policy-documents/index.html"]'));
-check('上手指南不出现内部代号与开发日志用语', !/队友交付|原始字节|构建时实测|哈希实测一致|\bL[123]\b/.test(aboutTxt), aboutTxt.slice(0, 80));
+check('上手指南提供三个统一资料入口（研究档案／政策资料库／税费覆盖矩阵）',
+  ['research/index.html', 'policy-documents/index.html', 'tax-matrix/index.html'].every((href) => !!document.querySelector('#aboutBody a[href="' + href + '"]')),
+  [...document.querySelectorAll('#aboutBody a')].map((a) => a.getAttribute('href')).join(','));
+check('上手指南不再放资料统计与开发文档入口', !/docs\/policy-batches-inventory\.csv|docs\/PRODUCT-TAX-MATRIX\.md|条来源记录/.test(document.getElementById('aboutBody').innerHTML));
+check('上手指南不出现开发日志用语', !/队友交付|原始字节|构建时实测|哈希实测一致/.test(aboutTxt), aboutTxt.slice(0, 80));
+check('M/L 等级以卡片呈现且每张卡都有人话说明', document.querySelectorAll('#aboutBody .lvl-card').length >= 6 && /· 产品资料/.test(aboutTxt) && /· 市场服务/.test(aboutTxt), document.querySelectorAll('#aboutBody .lvl-card').length);
 document.getElementById('btnBackAbout').click();
 
 console.log('== 15. 政策资料库与用户语言 ==');

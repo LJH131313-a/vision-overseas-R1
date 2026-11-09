@@ -20,4 +20,4 @@ if (!payload.items || !Array.isArray(payload.items)) {
 }
 const js = '/*! 新闻快照（由 tools/rebuild_news_js.mjs 从 data/news.json 重建） */\nwindow.VO_NEWS = ' + JSON.stringify(payload) + ';\n';
 writeFileSync(NEWS_JS, js, 'utf-8');
-console.log(`[done] news.js 已重建：${payload.items.length} 条；快照时间 ${payload.meta?.exportedAt || '未知'}`);
+console.log(`[done] news.js 已重建：${payload.items.length} 条；快照时间 ${payload.meta?.lastSuccessAtBeijing || payload.meta?.exportedAt || '未知'}`);

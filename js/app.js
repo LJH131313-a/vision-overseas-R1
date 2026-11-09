@@ -50,6 +50,22 @@
     if (isNaN(d)) return String(s);
     return fmtDate(s) + ' ' + String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0');
   }
+  /** 统一按北京时间（UTC+8）显示实际更新时间，不随访问者时区变化 */
+  function fmtBeijing(s) {
+    if (!s) return '';
+    var d = new Date(s);
+    if (isNaN(d)) return String(s);
+    var t = new Date(d.getTime() + (480 + d.getTimezoneOffset()) * 60000);
+    var pad = function (n) { return String(n).padStart(2, '0'); };
+    return t.getFullYear() + '-' + pad(t.getMonth() + 1) + '-' + pad(t.getDate()) + ' ' + pad(t.getHours()) + ':' + pad(t.getMinutes());
+  }
+  function newsUpdatedText() {
+    var m = (NEWS.meta || {});
+    var stamp = fmtBeijing(m.lastSuccessAtBeijing || m.updatedAtBeijing || m.exportedAt);
+    var en = langKey() === 1;
+    if (!stamp) return en ? 'Policy Updates | Last updated: not recorded' : '政策动态｜最近更新：未记录';
+    return (en ? 'Policy Updates | Last updated: ' : '政策动态｜最近更新：') + stamp + (en ? ' (UTC+8)' : '（北京时间）');
+  }
   function newsId(it) { return E.hashInputs({ u: it.url, t: it.title }); }
   var sourceMap = {};
   D.sources.forEach(function (s) { sourceMap[s.id] = s; });
@@ -265,13 +281,16 @@
     if (!sub) return { level: '', label: '未选品类' };
     var sc = E.evaluateScenario(D, { market: market, subcategoryId: sub.id, facts: {} });
     var cov = sc.coverage;
+    // 静态画像写入的 L2/L3 只有匹配到产品特定可执行规则时才算能力承诺
+    var backed = cov.profileBacked !== false && (cov.backingRules || []).length > 0;
     var hasTax = (D.taxProfiles || []).some(function (t) { return t.market === market && t.product_type === sub.legacy; });
     var label;
-    if (cov.level === 'L3' && hasTax) label = '支持税费测算';
-    else if (cov.level === 'L2' || cov.level === 'L3') label = '支持合规初筛';
+    if (cov.level === 'L3' && hasTax && backed) label = '支持税费测算';
+    else if ((cov.level === 'L2' || cov.level === 'L3') && backed) label = '支持合规初筛';
     else if (sc.pendingRegulations && sc.pendingRegulations.length) label = '支持法规查询';
+    else if (cov.level !== 'L1') label = '支持法规查询';
     else label = '资料待补充';
-    return { level: cov.level, label: label, hasTax: hasTax, indexed: (sc.pendingRegulations || []).length > 0 || cov.level !== 'L1' };
+    return { level: cov.level, label: label, hasTax: hasTax, backed: backed, indexed: (sc.pendingRegulations || []).length > 0 || cov.level !== 'L1' };
   }
 
   /** 服务档位：把资料成熟度（M）与覆盖能力（L）合成一句用户能执行的话 */
@@ -280,9 +299,10 @@
     var sup = supportOf(market, sub);
     var jur = JUR[market] ? JUR[market].name : market;
     var idxCount = D.regulations.filter(function (r) { return chainOf(market).indexOf(r.jurisdiction) >= 0; }).length;
-    if (sup.key === 'calc' || (sup.level === 'L3' && sup.hasTax)) return { key: 'calc', def: TIER_DEF.calc, why: jur + ' × ' + sub.name + '：有可执行规则、目的国 HS 候选与已核对的税费配置，可逐项测算（仍不等于正式归类或全部到岸成本）。' };
-    if (sup.level === 'L2' || sup.level === 'L3') return { key: 'screen', def: TIER_DEF.screen, why: jur + ' 有可执行规则，可出合规清单与待办；税费能否测算取决于该品类是否有已核对配置。' };
+    if (sup.key === 'calc' || (sup.level === 'L3' && sup.hasTax && sup.backed)) return { key: 'calc', def: TIER_DEF.calc, why: jur + ' × ' + sub.name + '：有可执行规则、目的国 HS 候选与已核对的税费配置，可逐项测算（仍不等于正式归类或全部到岸成本）。' };
+    if ((sup.level === 'L2' || sup.level === 'L3') && sup.backed) return { key: 'screen', def: TIER_DEF.screen, why: jur + ' 有可执行规则，可出合规清单与待办；税费能否测算取决于该品类是否有已核对配置。' };
     if (sub.evidence === 'M1') return { key: 'draft', def: TIER_DEF.draft, why: '「' + sub.name + '」的产品资料仍是草案等级（未完成两个型号的官方核对），暂时只做资料查询。' };
+    if ((sup.level === 'L2' || sup.level === 'L3') && !sup.backed) return { key: 'nav', def: TIER_DEF.nav, why: jur + ' × ' + sub.name + ' 在资料库里有覆盖标记，但还没有匹配到针对这款产品的可执行条款规则，因此只输出资料查询与原文入口，不给出适用性或税额结论。' };
     if (idxCount) return { key: 'nav', def: TIER_DEF.nav, why: jur + ' 目前只有 ' + idxCount + ' 条法规索引、还没有可执行规则，因此只做资料查询。注意：卡住的是这个国家的规则资料，不是「' + sub.name + '」的产品资料（其成熟度为 ' + sub.evidence + '）。' };
     return { key: 'none', def: TIER_DEF.none, why: jur + ' 在本产品库中既无可执行规则也无可核对的法规索引，不会输出结论。' };
   }
@@ -294,6 +314,12 @@
     none: { label: '暂不覆盖', cls: 'tier-none', hint: '该目的地暂无可执行规则与法规索引' },
     todo: { label: '待选择', cls: 'tier-none', hint: '先选择目的地与品类' }
   };
+  /** 服务等级代码：与能力层一致（calc=L3、screen=L2、其余=L1） */
+  function tierLevelOf(tier) {
+    if (tier.key === 'calc') return 'L3';
+    if (tier.key === 'screen') return 'L2';
+    return 'L1';
+  }
   function tierBadge(tier, small) {
     return h('span', { class: 'tier ' + tier.def.cls + (small ? ' sm' : ''), title: tier.def.hint }, tier.def.label);
   }
@@ -313,9 +339,14 @@
     renderTab(name);
     updateDots();
   }
+  /** 语言层：渲染完成后按当前界面语言处理文本节点（业务数据与计算不受影响） */
+  function localize(host) {
+    try { if (window.VOI18N) window.VOI18N.apply(host || document.body); } catch (e) { /* 语言层失败不影响业务渲染 */ }
+  }
   function renderTab(name) {
-    if (name === 'home') return;
-    if (name === 'about') { renderGuide(); return; }
+    var host = document.getElementById('view-' + name);
+    if (name === 'home') { localize(host); return; }
+    if (name === 'about') { renderGuide(); localize(host); return; }
     if (name === 'product') { renderCompanies(); renderProduct(); }
     else if (name === 'compliance') renderCompliance();
     else if (name === 'tax') renderTax();
@@ -323,6 +354,7 @@
     else if (name === 'qianwen') renderQianwen();
     else if (name === 'report') renderReport();
     else if (name === 'about') renderAbout();
+    localize(host);
   }
   /** 回答事实/修改输入后统一刷新：重渲染当前视图 + 步骤状态点 */
   var refreshing = false;
@@ -550,9 +582,19 @@
       var badges = h('div', { class: 's-badges' });
       var tier = serviceTier(market, s);
       badges.appendChild(tierBadge(tier, true));
-      badges.appendChild(h('span', { class: 'tag', title: '产品资料成熟度：M1 草案 / M2 官方系列页多型号 / M3 官方多型号且说明书已核对' }, '资料 ' + s.evidence));
-      var hasTax = D.taxProfiles.some(function (t) { return t.market === market && t.product_type && t.product_type === s.legacy; });
-      if (hasTax) badges.appendChild(h('span', { class: 'tag ok' }, '支持税费测算'));
+      badges.appendChild(h('span', { class: 'tag', title: '产品资料成熟度与目的地无关：M1 草案 / M2 官方系列页多型号 / M3 官方多型号且说明书已核对' },
+        (langKey() === 1 ? 'Evidence ' : '产品资料 ') + s.evidence));
+      if (market) {
+        badges.appendChild(h('span', { class: 'tag', title: '该目的地的服务等级；由可执行规则、HS 候选与税费配置共同判定' },
+          (langKey() === 1 ? 'Service ' : '市场服务 ') + tierLevelOf(tier, market, s)));
+        var probe = window.VOCapability.evaluate(D, E, {
+          market: market, subcategoryId: s.id,
+          facts: window.VOCapability.factsFromMap(D, s.id), placingOnMarketDate: p.scenario.placingOnMarketDate || ''
+        });
+        [['税率可查', 'Tariff rate', probe.tax.rate], ['税额可算', 'Duty calc', probe.tax.amount], ['汇总可用', 'Subtotal', probe.tax.subtotal]].forEach(function (t) {
+          badges.appendChild(h('span', { class: 'tag ' + (t[2] === 'ok' ? 'ok' : (t[2] === 'not_supported' ? '' : 'warn')) }, langKey() === 1 ? t[1] : t[0]));
+        });
+      }
       item.appendChild(badges);
       item.appendChild(h('div', { class: 'meta', style: 'font-size:12px;color:var(--faint);margin-top:5px' }, s.core + '｜' + s.keyParams));
       host.appendChild(item);
@@ -741,11 +783,154 @@
       else hs.appendChild(hstat('HS 候选', '—', '该组合暂无目的国候选（缺口）'));
     }
     $('step1Summary').textContent = bits.join('　·　');
+    renderProjectStatus();
   }
   function hstat(label, value, note) {
     return h('div', { class: 'hstat' },
       h('span', {}, h('small', {}, label), h('div', {}, h('b', {}, value))),
       h('span', { class: 'subhint', style: 'text-align:right;max-width:150px' }, note));
+  }
+
+  /* ================= 当前项目功能状态与动态缺口面板 ================= */
+  var FEATURE_TEXT = {
+    reg_lookup: ['法规查询', 'Regulation lookup'],
+    screening: ['合规初筛', 'Compliance screening'],
+    hs_candidates: ['HS 候选', 'HS candidates'],
+    tax_calc: ['税费测算', 'Duty & tax'],
+    report: ['出海报告', 'Export report']
+  };
+  var STATE_TEXT = {
+    ok: ['可用', 'Available'],
+    partial: ['部分支持', 'Partially available'],
+    needs_input: ['待补信息', 'Needs your input'],
+    needs_review: ['需专业复核', 'Needs professional review'],
+    not_supported: ['暂不支持', 'Not available yet'],
+    pending: ['待确认', 'To be confirmed']
+  };
+  var REASON_TEXT = {
+    user_input: ['当前项目还缺少这些填写项：', 'These inputs are still missing: '],
+    product_fact: ['影响判断的产品事实还没确认：', 'The product facts that drive this decision are not confirmed yet: '],
+    hs_review: ['存在多个可能的归类方向，尚未确认选哪一条：', 'More than one classification direction is possible and none has been confirmed: '],
+    regulation_data: ['该市场已收录法规资料，但还没有针对这款产品可执行的条款规则：', 'Regulation material exists for this market, but there is no executable clause rule for this product yet: '],
+    tax_profile_missing: ['该产品与目的地组合还没有经核验的税费画像：', 'No verified duty profile exists for this product and destination: '],
+    scenario_unsupported: ['当前交易或进口路径不在计算范围内：', 'This transaction or import route is outside the calculation engine: '],
+    date_out_of_range: ['所选日期不在现有配置的适用区间内：', 'The selected date falls outside the effective range of the current configuration: '],
+    evidence_pending: ['官方证据尚未完成核验，结果保持保守：', 'Official evidence is not fully verified, so results stay conservative: ']
+  };
+  var NEED_TEXT = {
+    user_input: ['补齐上述字段即可继续。', 'Complete the fields above to continue.'],
+    product_fact: ['确认供电方式、主要功能、电池或加热等影响判断的技术特征。', 'Confirm the technical features that affect the decision (power supply, primary function, battery, heating).'],
+    hs_review: ['回答区分问题并选定一条 HS 候选方向；候选不等于海关最终归类。', 'Answer the distinguishing questions and pick one HS candidate; a candidate is not a customs decision.'],
+    regulation_data: ['平台需补充该产品的条款规则与官方依据。', 'The platform still needs clause-level rules and official references for this product.'],
+    tax_profile_missing: ['平台需补充税目、税率、税基与适用条件的官方依据。', 'The platform still needs the tariff line, rate, valuation basis and conditions verified against official sources.'],
+    scenario_unsupported: ['平台需补充该路径的估价与税费规则。', 'The platform still needs valuation and duty rules for this route.'],
+    date_out_of_range: ['需要覆盖所选日期的有效规则或税率配置。', 'A configuration covering the selected date is required.'],
+    evidence_pending: ['完成归类或措施复核并确认剩余条件。', 'Complete the classification or measures review and confirm the remaining conditions.']
+  };
+  var OWNER_TEXT = {
+    user: ['你可以补充', 'You can resolve this'],
+    platform: ['平台待补充', 'Platform data gap'],
+    expert: ['需专业复核', 'Professional review required']
+  };
+  var ACTION_TEXT = {
+    product: ['去产品与市场登记', 'Go to Product & Market'],
+    compliance: ['查看合规初筛结果', 'Open Compliance Screening'],
+    tax: ['前往税费测算', 'Go to Duty & Tax'],
+    policy: ['到政策资料库核对原文', 'Check the source in the Policy Library'],
+    report: ['查看出海报告', 'Open Export Report']
+  };
+  var ACTION_TAB = { product: 'product', compliance: 'compliance', tax: 'tax', policy: 'policy', report: 'report' };
+  var statusOpen = {};
+
+  function langKey() { return (window.VOI18N && window.VOI18N.get() === 'en') ? 1 : 0; }
+  function pick(pair) { return pair ? pair[langKey()] : ''; }
+
+  function fieldLabel(key) {
+    var f = null;
+    (D.fields || []).forEach(function (x) { if (x.key === key || x.ruleKey === key) f = x; });
+    var en = {
+      goods_value: 'goods value', freight: 'international freight', insurance: 'insurance', origin: 'country of origin',
+      import_date: 'import date', currency: 'currency', fx_rate: 'exchange-rate record', incoterm: 'Incoterms basis',
+      hs_candidate: 'HS candidate', market: 'destination', subcategoryId: 'product subcategory',
+      placing_on_market_date: 'date placed on market'
+    };
+    if (f) return langKey() === 1 ? (f.nameEn || f.name || key) : (f.name || key);
+    return langKey() === 1 ? (en[key] || key) : key;
+  }
+
+  function capabilityInput() {
+    var p = proj();
+    return {
+      market: p.scenario.market, subcategoryId: p.scenario.subcategoryId,
+      facts: p.scenario.facts || {}, placingOnMarketDate: p.scenario.placingOnMarketDate,
+      hsChoice: p.hsChoice || '', tax: p.tax || {}, name: p.name
+    };
+  }
+
+  function renderProjectStatus() {
+    var host = $('projectStatus');
+    if (!host) return;
+    var p = proj();
+    clear(host);
+    var cap = window.VOCapability.evaluate(D, E, capabilityInput());
+    var sub = subById(p.scenario.subcategoryId);
+    var head = h('div', { class: 'ps-head' });
+    head.appendChild(h('h3', {}, langKey() === 1 ? 'Current project' : '当前项目'));
+    var title = sub && p.scenario.market
+      ? (langKey() === 1 ? sub.nameEn + ' × ' + (JUR[p.scenario.market] ? JUR[p.scenario.market].name : p.scenario.market)
+        : sub.name + ' × ' + (JUR[p.scenario.market] ? JUR[p.scenario.market].name : p.scenario.market))
+      : (langKey() === 1 ? 'Select a product and destination' : '还没有选完产品与目的地');
+    head.appendChild(h('div', { class: 'ps-title' }, title));
+    var badges = h('div', { class: 'ps-badges' });
+    if (sub) {
+      badges.appendChild(h('span', { class: 'lvl m' }, (langKey() === 1 ? 'Product evidence ' : '产品资料 ') + cap.evidence.code));
+      badges.appendChild(h('span', { class: 'lvl l' }, (langKey() === 1 ? 'Market service ' : '市场服务 ') + cap.service.code));
+    }
+    head.appendChild(badges);
+    host.appendChild(head);
+
+    var row = h('div', { class: 'ps-features' });
+    cap.features.forEach(function (f) {
+      var chip = h('div', { class: 'ps-chip' });
+      var btn = h('button', {
+        class: 'ps-tag state-' + f.state, type: 'button',
+        'aria-expanded': statusOpen[f.key] ? 'true' : 'false', 'aria-controls': 'psPanel-' + f.key
+      });
+      btn.appendChild(h('span', { class: 'ps-fn' }, pick(FEATURE_TEXT[f.key])));
+      btn.appendChild(h('span', { class: 'ps-st' }, pick(STATE_TEXT[f.state] || ['未知', 'Unknown'])));
+      btn.appendChild(h('span', { class: 'ps-ico', 'aria-hidden': 'true' }, statusOpen[f.key] ? '−' : 'i'));
+      var panel = h('div', { class: 'ps-panel', id: 'psPanel-' + f.key });
+      panel.hidden = !statusOpen[f.key];
+      if (statusOpen[f.key]) {
+        if (f.state === 'ok') {
+          panel.appendChild(h('p', {}, langKey() === 1
+            ? 'This function is available with the current inputs. No additional material is required.'
+            : '当前输入已满足该功能，无需额外补充。'));
+        } else {
+          var miss = (f.missing || []).map(fieldLabel).join(langKey() === 1 ? ', ' : '、');
+          panel.appendChild(h('p', {}, h('b', {}, langKey() === 1 ? 'Why: ' : '原因：'), (pick(REASON_TEXT[f.reason]) || (langKey() === 1 ? 'This function is not available with the current inputs. ' : '当前输入下该功能还不能完成。')) + (miss || (langKey() === 1 ? 'no additional fields required' : '不涉及额外填写项'))));
+          panel.appendChild(h('p', {}, h('b', {}, langKey() === 1 ? 'What is needed: ' : '需要补充：'), pick(NEED_TEXT[f.reason] || ['见上方原因。', 'See the reason above.'])));
+          var nextLine = h('p', {}, h('b', {}, langKey() === 1 ? 'Next action: ' : '下一步：'), pick(OWNER_TEXT[f.owner] || '') + ' · ');
+          var jump = h('button', { class: 'btn sm', type: 'button' }, pick(ACTION_TEXT[f.action] || ['前往', 'Go']));
+          jump.onclick = function () {
+            if (f.action === 'policy') { window.open('policy-documents/index.html', '_blank', 'noopener'); return; }
+            showTab(ACTION_TAB[f.action] || 'product');
+          };
+          nextLine.appendChild(jump);
+          panel.appendChild(nextLine);
+        }
+      }
+      btn.onclick = function () { statusOpen[f.key] = !statusOpen[f.key]; renderProjectStatus(); };
+      chip.appendChild(btn);
+      chip.appendChild(panel);
+      row.appendChild(chip);
+    });
+    host.appendChild(row);
+    var note = h('p', { class: 'subhint' });
+    note.textContent = langKey() === 1
+      ? 'Status, reasons and required inputs are derived from the current project data and the same capability check used by the coverage matrix; they are not fixed per product.'
+      : '状态、原因与所需资料由当前项目数据与统一能力判断生成，与税费覆盖矩阵一致，不针对具体产品固定。';
+    host.appendChild(note);
   }
 
   /* ---------- 第 1 步事件 ---------- */
@@ -849,7 +1034,7 @@
       return;
     }
     var sc = runCompliance();
-    $('complianceRunInfo').textContent = '实时计算：可能适用 ' + sc.applicableRules.length + ' 条 · 待补事实 ' + sc.unknownRules.length + ' 条 · 不适用 ' + sc.excludedRules.length + ' 条（快照 ' + E.SNAPSHOT_DATE + '，法域链 ' + sc.jurisdictionChain.join(' → ') + '）';
+    $('complianceRunInfo').textContent = '实时计算：可能适用 ' + sc.applicableRules.length + ' 条 · 待补事实 ' + sc.unknownRules.length + ' 条 · 不适用 ' + sc.excludedRules.length + ' 条（资料版本 ' + E.SNAPSHOT_DATE + '，适用法规范围 ' + sc.jurisdictionChain.map(function (c) { return JUR[c] ? JUR[c].name : c; }).join('、') + '）';
 
     var tierNow = serviceTier(p.scenario.market, subById(p.scenario.subcategoryId));
     var covBanner = h('div', { class: 'banner ' + (tierNow.key === 'calc' || tierNow.key === 'screen' ? 'info' : 'warn') });
@@ -1283,16 +1468,20 @@
     clear(host);
     var p = proj();
     var meta = NEWS.meta || {};
+    var enLang = langKey() === 1;
     host.appendChild(h('div', { class: 'banner info' },
-      h('b', {}, '来源与覆盖边界：'),
-      document.createTextNode(' 新闻快照来自政府官方 RSS/Atom 公告，由 GitHub Actions 定时采集（北京时间约 09:17 / 17:17），是定时更新的公告快照，不是实时监控，也不覆盖全网舆情或社交平台情感监测。官方新闻不自动等于已生效法规——生效日期以法规原文为准。')));
+      h('b', {}, newsUpdatedText()),
+      document.createTextNode(enLang ? '  Sources: official government and regulatory announcements. Scheduled snapshot, not real-time monitoring.' : '　来源：政府及监管机构公开公告；定时更新的公告快照，不是实时监控。')));
 
     if (!NEWS.items.length) {
       host.appendChild(h('div', { class: 'banner bad' }, '新闻快照为空或未加载（data/news.js 缺失）。请运行采集程序或检查部署文件。'));
       return;
     }
     var status = h('details', { class: 'box' });
-    status.appendChild(h('summary', {}, '快照状态：更新于 ' + fmtDateTime(meta.exportedAt) + '，共 ' + NEWS.items.length + ' 条'));
+    status.appendChild(h('summary', {}, (enLang ? 'Snapshot status (' + NEWS.items.length + ' items)' : '快照状态：共 ' + NEWS.items.length + ' 条')));
+    status.appendChild(h('p', { class: 'subhint' }, enLang
+      ? 'Collected on a schedule (about 09:17 and 17:17 Beijing time). An official announcement is not evidence that a regulation is already in force; effective dates follow the regulation text. Social-media and non-official sources are out of scope.'
+      : '按计划定时采集（北京时间约 09:17 与 17:17）。官方公告不自动等于已生效法规，生效日期以法规原文为准；不覆盖全网舆情或社交平台。'));
     if (meta.allFailed) status.appendChild(h('div', { class: 'banner bad' }, '最近一次采集全部来源失败：已保留最后成功快照与时间。'));
     var st = h('table', { class: 't' });
     st.appendChild(h('thead', {}, h('tr', {}, h('th', {}, '来源'), h('th', {}, '市场'), h('th', {}, '状态'))));
@@ -1379,6 +1568,7 @@
 
   /* ================= 第 5 步：千问辅助建议 ================= */
   var API_SYSTEM_PROMPT = '你是一名面向中国企业小家电出海业务的合规与供应链顾问。请严格按用户任务中「要求的输出结构」作答，使用中文；每条结论附引用依据（法规编号/条款/官方链接）；对缺失信息明确列为待补资料，不得假设企业已取得认证、已确定进口商或已满足准入条件；未知税率与贸易救济不得按零处理；覆盖不足的产品与市场组合要明确说明缺口。';
+  var API_SYSTEM_PROMPT_EN = 'You are a compliance and supply-chain adviser for Chinese small-home-appliance exporters. Answer strictly in the output structure requested in the task, in English. Attach a citation (regulation ID, clause or official link) to every conclusion. List missing information explicitly as required material; never assume the company is certified, has an importer of record, or meets market-entry conditions. Never treat unknown rates or trade remedies as zero. State the gap plainly for product × destination combinations that are not covered.';
   function apiSettings() { return state.settings; }
   function activeModel() {
     var st = state.settings;
@@ -1390,6 +1580,38 @@
       ? 'https://dashscope-intl.aliyuncs.com/compatible-mode/v1/chat/completions'
       : 'https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions';
   }
+  function apiSystemPrompt() { return langKey() === 1 ? API_SYSTEM_PROMPT_EN : API_SYSTEM_PROMPT; }
+
+  /** 报告第 0 节：功能状态与缺口摘要（与当前项目标签、税费覆盖矩阵同源） */
+  function reportCapabilityCard() {
+    var cap = window.VOCapability.evaluate(D, E, capabilityInput());
+    var en = langKey() === 1;
+    var card = h('div', { class: 'card' });
+    card.appendChild(h('h3', {}, en ? '0. Capability and gaps' : '0. 功能状态与缺口摘要'));
+    var tbl = h('table', { class: 't' });
+    tbl.appendChild(h('thead', {}, h('tr', {},
+      h('th', {}, en ? 'Function' : '功能'), h('th', {}, en ? 'Status' : '当前状态'),
+      h('th', {}, en ? 'Why and what is needed' : '原因与所需资料'), h('th', {}, en ? 'Owner' : '责任方'))));
+    var tb = h('tbody', {});
+    cap.features.forEach(function (f) {
+      var why = f.state === 'ok'
+        ? (en ? 'Available with the current inputs.' : '当前输入下可用。')
+        : ((REASON_TEXT[f.reason] || ['没有更多说明。', 'No further note.'])[en ? 1 : 0]
+          + ((f.missing || []).map(fieldLabel).join(en ? ', ' : '、') || (en ? 'nothing further to fill in' : '无需额外填写项')));
+      tb.appendChild(h('tr', {},
+        h('td', {}, pick(FEATURE_TEXT[f.key])),
+        h('td', {}, h('span', { class: 'tag ' + (f.state === 'ok' ? 'ok' : (f.state === 'not_supported' ? 'bad' : 'warn')) }, pick(STATE_TEXT[f.state] || ['—', '—']))),
+        h('td', {}, why),
+        h('td', {}, pick(OWNER_TEXT[f.owner] || ['—', '—']))));
+    });
+    tbl.appendChild(tb);
+    card.appendChild(h('div', { class: 'tbl-wrap' }, tbl));
+    card.appendChild(h('p', { class: 'subhint' }, en
+      ? 'This summary uses the same capability check as the project status tags and the coverage matrix; switching language changes no value or conclusion.'
+      : '本摘要与「当前项目」功能标签、税费覆盖矩阵使用同一套判断；切换语言不改变任何数值或结论。'));
+    return card;
+  }
+
   function buildApiRequest(task) {
     var st = state.settings;
     return {
@@ -1399,7 +1621,7 @@
         headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + st.apiKey },
         body: JSON.stringify({
           model: activeModel(), temperature: 0.2, stream: false,
-          messages: [{ role: 'system', content: API_SYSTEM_PROMPT }, { role: 'user', content: task }]
+          messages: [{ role: 'system', content: apiSystemPrompt() }, { role: 'user', content: task }]
         })
       }
     };
@@ -1468,7 +1690,7 @@
     var lines = [];
     lines.push('# 小家电出海分析任务（远见·企业出海助手 生成）');
     lines.push('');
-    lines.push('生成时间：' + new Date().toISOString().slice(0, 16).replace('T', ' ') + '｜输入指纹：' + inputHash() + '｜数据快照：' + E.SNAPSHOT_DATE);
+    lines.push('生成时间：' + new Date().toISOString().slice(0, 16).replace('T', ' ') + '｜输入版本：' + inputHash() + '｜数据快照：' + E.SNAPSHOT_DATE);
     lines.push('');
     lines.push('请以合规顾问视角分析以下出海情景。要求：只基于「已知事实」与「引用依据」推理；对缺失信息明确列为「待补资料」，不要假设已取得认证或已确定进口商。');
     lines.push('');
@@ -1736,7 +1958,7 @@
 
     var head = h('div', { class: 'card' });
     head.appendChild(h('h2', {}, '远见 · 企业出海综合报告'));
-    head.appendChild(h('p', { class: 'subhint' }, '项目：' + p.name + '｜生成时间：' + fmtDateTime(new Date().toISOString()) + '｜输入指纹：' + R.hash + '｜数据快照：' + E.SNAPSHOT_DATE));
+    head.appendChild(h('p', { class: 'subhint' }, '项目：' + p.name + '｜生成时间：' + fmtDateTime(new Date().toISOString()) + '｜输入版本：' + R.hash + '｜数据快照：' + E.SNAPSHOT_DATE));
     if (p.reportSnapshots.length) {
       var latest = p.reportSnapshots[0];
       head.appendChild(latest.hash === R.hash
@@ -1747,6 +1969,7 @@
     }
     head.appendChild(h('p', { class: 'subhint' }, '本机保存说明：项目数据保存在本机浏览器，属单人本机使用，非多人协作。'));
     host.appendChild(head);
+    host.appendChild(reportCapabilityCard());
 
     var s1 = h('div', { class: 'card' });
     s1.appendChild(h('h3', {}, '1. 企业与项目'));
@@ -2017,29 +2240,134 @@
     affect.appendChild(h('p', { class: 'subhint', style: 'margin-top:8px' }, '政策资料如何回到结论：合规规则、税种公式和 HS 候选都带来源编号，点击可跳到政策资料库或官方来源；资料库里的文件类型（官方法规 PDF / 网页阅读版 / 核验记录 / 产品说明书）标明它能证明什么。'));
     host.appendChild(affect);
 
-    var caps = h('div', { class: 'card' });
-    caps.appendChild(h('h3', {}, '当前能力与边界（简明版）'));
-    caps.innerHTML += '<ul class="guide-list">' +
-      '<li>能算税并出清单：新加坡 × 电热水壶、烤面包机（有已核税费画像与 HS 候选）。</li>' +
-      '<li>能出合规清单：有可执行规则的市场，例如新加坡、澳大利亚、欧盟及成员国、英国、美国等。</li>' +
-      '<li>只能查法规资料：有法规索引但还没有可执行规则的法域，例如马来西亚半岛——页面显示缺口，不编造结论。</li>' +
-      '<li>税费口径：显示的是「本模型已覆盖法定项目汇总」，不等于全部到岸成本；检测、标签、渠道等费用需自行分摊。</li>' +
-      '<li>HS 是候选方向，最终归类以目的国税则与个案裁定为准；官方新闻不等于法规已生效。</li>' +
+    var map = h('div', { class: 'card' });
+    map.appendChild(h('h3', {}, langKey() === 1 ? 'Capability map (M / L)' : '能力与等级图谱'));
+    map.appendChild(h('p', { class: 'subhint' }, langKey() === 1
+      ? 'M answers “what evidence do we have for this product”; L answers “what can this product do in this market”. Both are computed from live data, not fixed per product.'
+      : 'M 回答「这款产品有哪些资料可以查」；L 回答「这款产品出口到该市场能用哪些功能」。两者都由实际数据计算，不针对具体产品固定。'));
+    map.appendChild(renderCapabilityMap());
+    host.appendChild(map);
+
+    var limits = h('div', { class: 'card' });
+    limits.appendChild(h('h3', {}, langKey() === 1 ? 'Reading the numbers' : '看结果时要注意'));
+    limits.innerHTML += '<ul class="guide-list">' +
+      (langKey() === 1
+        ? '<li>The subtotal is the sum of statutory items covered by this model, not the full landed cost.</li>' +
+          '<li>HS entries are candidate directions; the final code depends on the destination tariff and case facts.</li>' +
+          '<li>Official news is not evidence that a regulation is already in force.</li>' +
+          '<li>Unknown conditions are never treated as zero; partial results stay visible, the total stays empty.</li>'
+        : '<li>汇总口径是「本模型已覆盖法定项目汇总」，不等于全部到岸成本；检测、标签、渠道等费用需自行分摊。</li>' +
+          '<li>HS 是候选方向，最终归类以目的国税则与个案事实为准。</li>' +
+          '<li>官方新闻不等于法规已生效。</li>' +
+          '<li>条件不足时未知项不按 0 计：可靠分项继续显示，完整总额保持为空。</li>') +
       '</ul>';
-    host.appendChild(caps);
+    host.appendChild(limits);
 
     var refs = h('div', { class: 'card' });
-    refs.appendChild(h('h3', {}, '资料与记录放在哪'));
-    var plTot = (POLICY.totals || {});
-    var plRecords = plTot.files || (POLICY.files || []).length;
-    var plUnique = plTot.uniqueFiles || plRecords;
-    refs.appendChild(h('p', { class: 'subhint' }, '政策资料库：当前收录 ' + plRecords + ' 条来源记录、' + plUnique + ' 份实体文件（法规原文、网页阅读版、核验记录与产品说明书，均带来源链接）；研究档案：16 款产品的公开资料；数据与核验明细：开发文档 docs/ 目录（含税费覆盖矩阵、资料清单与校验记录）。'));
+    refs.appendChild(h('h3', {}, langKey() === 1 ? 'Reference material' : '资料查询'));
     var links2 = h('div', { style: 'display:flex;gap:8px;flex-wrap:wrap' });
-    [['research/index.html', '产品研究档案'], ['policy-documents/index.html', '政策资料库'], ['docs/PRODUCT-TAX-MATRIX.md', '税费覆盖矩阵'], ['docs/policy-batches-inventory.csv', '资料清单']].forEach(function (l) {
-      links2.appendChild(h('a', { class: 'btn sec sm', href: l[0], target: '_blank', rel: 'noopener noreferrer' }, l[1] + ' ↗'));
+    [['research/index.html', '产品研究档案', 'Product research files'],
+    ['policy-documents/index.html', '政策资料库', 'Policy Library'],
+    ['tax-matrix/index.html', '税费覆盖矩阵', 'Duty & Tax Coverage Matrix']].forEach(function (l) {
+      links2.appendChild(h('a', { class: 'btn sec sm', href: l[0], target: '_blank', rel: 'noopener noreferrer' }, (langKey() === 1 ? l[2] : l[1]) + ' ↗'));
     });
     refs.appendChild(links2);
     host.appendChild(refs);
+  }
+
+  /* ================= 能力等级图谱（M/L，按实际数据生成） ================= */
+  var mapCache = null;
+  var mapOpen = {};
+  function capabilityIndex() {
+    if (!mapCache) mapCache = window.VOCapability.levelIndex(D, E, { date: '2026-11-08' });
+    return mapCache;
+  }
+  function renderCapabilityMap() {
+    var wrap = h('div', {});
+    var idx = capabilityIndex();
+    var en = langKey() === 1;
+    var grid = h('div', { class: 'lvl-grid' });
+
+    [['M1', en ? 'Basic product data: category and key features' : '基础产品资料：可查类别与关键特征', 'mGroups'],
+    ['M2', en ? 'Multi-model parameters from official pages' : '多型号参数：可查看多个型号的官方参数', 'mGroups'],
+    ['M3', en ? 'Manual-verified evidence for multiple models' : '说明书核验：多型号参数加说明书证据', 'mGroups']].forEach(function (row) {
+      var code = row[0];
+      var ids = idx.mGroups[code] || [];
+      grid.appendChild(levelCard('M', code, row[1], ids, function (id) {
+        var s = subById(id);
+        return s ? (en ? (s.nameEn || s.name) : s.name) : id;
+      }, function (id) {
+        selectedGroup = (subById(id) || {}).group || selectedGroup;
+        var p = proj(); p.scenario.subcategoryId = id; touch(); showTab('product');
+      }));
+    });
+
+    var marketSel = h('select', { class: 'sel', id: 'mapMarket', 'aria-label': en ? 'Filter L combinations by market' : '按市场筛选 L 等级组合' });
+    var markets = (D.jurisdictions || []).map(function (j) { return j.code; });
+    var withRows = {};
+    idx.rows.forEach(function (r) { withRows[r.market] = (withRows[r.market] || 0) + 1; });
+    var mkOptions = markets.filter(function (m) { return withRows[m]; });
+    mkOptions = ['SG'].concat(mkOptions.filter(function (m) { return m !== 'SG'; }));
+    mkOptions.forEach(function (m) { marketSel.appendChild(h('option', { value: m }, (JUR[m] ? JUR[m].name : m) + '（' + withRows[m] + '）')); });
+    marketSel.value = mapOpen.market || 'SG';
+    marketSel.onchange = function () { mapOpen.market = marketSel.value; refreshTabHost(); };
+
+    [['L1', en ? 'Look up regulations and official sources' : '查法规：查询法规与官方来源', 'L1'],
+    ['L2', en ? 'Run compliance screening and build a checklist' : '做初筛：判断合规要求并生成准备清单', 'L2'],
+    ['L3', en ? 'Calculate applicable duties and subtotals' : '算税费：测算适用税费并生成分项汇总', 'L3']].forEach(function (row) {
+      var code = row[2];
+      var list = idx.rows.filter(function (r) { return r.l === code && r.market === marketSel.value; });
+      var all = idx.rows.filter(function (r) { return r.l === code; });
+      grid.appendChild(levelCard('L', code, row[1], list.length ? list : all, function (r) {
+        var s = subById(r.sub);
+        var pn = s ? (en ? (s.nameEn || s.name) : s.name) : r.sub;
+        return pn + ' × ' + (JUR[r.market] ? JUR[r.market].name : r.market);
+      }, function (r) {
+        var p = proj(); p.scenario.subcategoryId = r.sub; p.scenario.market = r.market; p.hsChoice = ''; touch();
+        selectedGroup = (subById(r.sub) || {}).group || selectedGroup;
+        showTab('product');
+      }, en));
+    });
+
+    wrap.appendChild(marketSel);
+    wrap.appendChild(grid);
+    return wrap;
+  }
+  function levelCard(series, code, desc, items, labelOf, onPick, en) {
+    var card = h('div', { class: 'lvl-card' });
+    card.appendChild(h('h4', {}, code + ' · ' + (series === 'M' ? (en ? 'Product evidence' : '产品资料') : (en ? 'Market service' : '市场服务'))));
+    card.appendChild(h('p', { class: 'lv-sub' }, desc));
+    card.appendChild(h('p', { class: 'lv-num' }, (en ? 'Covers ' : '覆盖 ') + items.length + (series === 'M' ? (en ? ' subcategories' : ' 个小类') : (en ? ' combinations' : ' 个组合'))));
+    var preview = h('div', { class: 'lvl-list' });
+    items.slice(0, 3).forEach(function (it) {
+      var b = h('button', { type: 'button' }, labelOf(it));
+      b.onclick = function () { onPick(it); };
+      preview.appendChild(b);
+    });
+    card.appendChild(preview);
+    if (items.length > 3) {
+      var key = series + code;
+      var more = h('button', { class: 'lvl-more', type: 'button', 'aria-expanded': mapOpen[key] ? 'true' : 'false' });
+      more.textContent = mapOpen[key] ? (en ? 'Collapse' : '收起') : (en ? 'View all (' + items.length + ')' : '查看全部（' + items.length + '）');
+      more.onclick = function () { mapOpen[key] = !mapOpen[key]; refreshTabHost(); };
+      card.appendChild(more);
+      if (mapOpen[key]) {
+        var full = h('div', { class: 'lvl-list' });
+        items.forEach(function (it) {
+          var b = h('button', { type: 'button' }, labelOf(it));
+          b.onclick = function () { onPick(it); };
+          full.appendChild(b);
+        });
+        card.appendChild(full);
+      }
+    }
+    return card;
+  }
+  /** 局部重绘当前视图（等级图谱展开/筛选时避免整页跳回顶部） */
+  function refreshTabHost() {
+    var y = window.scrollY;
+    renderTab(currentTab);
+    window.scrollTo(0, y);
   }
 
   /* ================= 数据说明（保留给追溯明细，入口已改为上手指南） ================= */
@@ -2149,6 +2477,35 @@
   document.querySelectorAll('#sideNav .nav-item').forEach(function (b) {
     b.addEventListener('click', function () { showTab(b.getAttribute('data-tab')); });
   });
+
+  /* ================= 界面语言（中英双语） ================= */
+  function syncLangButtons() {
+    var en = window.VOI18N && window.VOI18N.get() === 'en';
+    [['langZh', !en], ['langEn', !!en]].forEach(function (pair) {
+      var b = $(pair[0]);
+      if (b) { b.classList.toggle('on', pair[1]); b.setAttribute('aria-pressed', pair[1] ? 'true' : 'false'); }
+    });
+  }
+  function setLang(next) {
+    if (!window.VOI18N) return;
+    window.VOI18N.set(next);
+    syncLangButtons();
+    // 重新渲染当前视图：业务数据与计算结果不变，只换说明语言
+    refreshProjSelect();
+    renderTab(currentTab);
+    updateDots();
+    localize(document.querySelector('.topbar'));
+    localize(document.querySelector('.sidebar'));
+  }
+  if (window.VOI18N) {
+    window.VOI18N.init(window.VO_DATA);
+    if (window.VOI18N.get() === 'en') setTimeout(function () { localize(document.body); }, 0);
+  }
+  ['langZh', 'langEn'].forEach(function (id) {
+    var b = $(id);
+    if (b) b.addEventListener('click', function () { setLang(b.getAttribute('data-lang')); });
+  });
+  syncLangButtons();
 
   loadState();
   var firstSub = subById(proj().scenario.subcategoryId);
@@ -2260,7 +2617,7 @@
     if (re) {
       var lines = [
         '',
-        '## 附：产品研究档案证据（R1）',
+        '## 附：产品研究档案证据',
         '- 型号：' + re.brand + ' ' + re.name + '（' + re.modelId + '）；结构类型：' + re.catName + '（' + re.sub + '）；证据地区：' + re.region + (re.jurs && re.jurs.length ? '（法域 ' + re.jurs.join('/') + '）' : ''),
         '- 地区证据：' + re.evidence,
         '- 研究解释：' + re.interpret,
@@ -2288,7 +2645,7 @@
     var s2 = host.querySelector('#repFactsCard');
     var card = document.createElement('div');
     card.className = 'card';
-    var html = '<h3>1b. 产品研究档案（R1 带入）</h3>';
+    var html = '<h3>1b. 产品研究档案（已带入型号证据）</h3>';
     html += '<p class="subhint">来源：研究档案页（核验 ' + re.checkedAt + '）；只载入了品牌/型号/小类/地区，技术参数需在第 1 步逐项登记。</p>';
     html += '<dl class="kv">';
     html += '<dt>型号</dt><dd>' + re.brand + ' ' + re.name + '（' + re.modelId + '）</dd>';
