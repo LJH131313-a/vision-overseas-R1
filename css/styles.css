@@ -170,7 +170,14 @@ h1, h2, h3, h4 { line-height: 1.45; margin: 0 0 10px; font-weight: 620; }
 /* 品类速览卡（参考 .vo-card/.vo-label） */
 .cat-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-top: 14px }
 .cat-card { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 18px; text-align: left }
-.cat-card:hover { border-color: #9dbfaf; }
+.cat-card { cursor: pointer; transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease; }
+.cat-card:hover { border-color: #9dbfaf; box-shadow: 0 5px 16px rgba(24, 59, 78, .08); transform: translateY(-2px); }
+.cat-card:focus-visible { outline: 2px solid var(--green); outline-offset: 3px; }
+.cat-card-title { display: flex; align-items: center; gap: 9px; margin-bottom: 8px; }
+.cat-icon { width: 30px; height: 30px; flex: none; display: grid; place-items: center; color: var(--green); background: var(--soft); border-radius: 9px; }
+.cat-icon svg { width: 19px; height: 19px; }
+.cat-card .cat-card-title h4 { margin: 0; }
+@media (prefers-reduced-motion: reduce) { .cat-card { transition: none; } .cat-card:hover { transform: none; } }
 .cat-card .vo-label { font-size: 11px; color: var(--green); display: inline-block; background: var(--soft); padding: 3px 8px; border-radius: 5px; margin-bottom: 10px }
 .cat-card h4 { margin: 0 0 4px; font-size: 14.5px }
 .cat-card p { margin: 0 0 10px; font-size: 12px; color: var(--sub) }

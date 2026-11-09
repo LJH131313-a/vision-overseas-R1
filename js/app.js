@@ -210,12 +210,42 @@
   }
 
 
+  // Product group icons are decorative; category names remain the accessible labels.
+  var groupIconPaths = {
+    'GRP-BEV': 'M6 8h10v7a4 4 0 0 1-4 4h-2a4 4 0 0 1-4-4V8zm10 2h2a2 2 0 0 1 0 4h-2M8 4v2m4-2v2',
+    'GRP-COOK': 'M4 10h16v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-7zm-1 0h18M7 7h10M12 5v2',
+    'GRP-PREP': 'M7 4h10l-1 11H8L7 4zm2 11v4m6-4v4M7 20h10M9 8h6',
+    'GRP-VAC': 'M14 4l-5 10m5-10 3 2-5 10-3-2M6 17h8l2 3H4l2-3z',
+    'GRP-WET': 'M12 3c-2 3-5 6-5 9a5 5 0 0 0 10 0c0-3-3-6-5-9zM9 14c.4 1 1.3 1.5 2.5 1.5',
+    'GRP-MOVE': 'M12 12c-5 1-7-1-6-4s5-2 6 4zm0 0c2-5 5-5 7-3s-1 5-7 3zm0 0c3 4 2 7-1 7s-4-3 1-7z',
+    'GRP-QUAL': 'M4 8h11a3 3 0 1 0-3-3M3 12h16M5 16h10a3 3 0 1 1-3 3',
+    'GRP-HAIR': 'M4 7h9a4 4 0 0 1 0 8h-2l2 5H9l-2-5H4V7zm13 2h3m-3 3h4m-4 3h3',
+    'GRP-GROOM': 'M9 4h6v4h2v11H7V8h2V4zm0 7h6m-3 3v3',
+    'GRP-ORAL': 'M9 4h6v4H9V4zm0 4h6l-1 11a2 2 0 0 1-4 0L9 8zm2 4h2',
+    'GRP-IRON': 'M4 17c1-5 5-8 11-8h3l2 8H4zm6-8V6h5a3 3 0 0 1 3 3M3 20h18',
+    'GRP-FAB': 'M7 4h10a2 2 0 0 1 2 2v10a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4V6a2 2 0 0 1 2-2zm2 5h6m-6 3h6m-6 3h6'
+  };
+  function groupIcon(id) {
+    var ns = 'http://www.w3.org/2000/svg';
+    var icon = document.createElementNS(ns, 'svg');
+    icon.setAttribute('viewBox', '0 0 24 24');
+    icon.setAttribute('fill', 'none');
+    icon.setAttribute('stroke', 'currentColor');
+    icon.setAttribute('stroke-width', '1.7');
+    icon.setAttribute('stroke-linecap', 'round');
+    icon.setAttribute('stroke-linejoin', 'round');
+    icon.setAttribute('aria-hidden', 'true');
+    var path = document.createElementNS(ns, 'path');
+    path.setAttribute('d', groupIconPaths[id] || 'M4 4h16v16H4z');
+    icon.appendChild(path);
+    return icon;
+  }
   var homeGroups = $('homeGroups');
   if (homeGroups) D.groups.forEach(function (g) {
     var members = D.subcategories.filter(function (s) { return s.group === g.id; });
     homeGroups.appendChild(h('button', { type: 'button', class: 'cat-card', onclick: function () {
       proj().scenario.subcategoryId = members[0].id; selectedGroup = g.id; proj().hsChoice = ''; proj().tax.hsReviewed = false; touch(); showTab('product');
-    } }, h('h4', {}, g.name), h('p', {}, members.length + ' 个产品小类'), h('span', { class: 'text-button' }, '选择产品 →')));
+    } }, h('div', { class: 'cat-card-title' }, h('span', { class: 'cat-icon' }, groupIcon(g.id)), h('h4', {}, g.name)), h('p', {}, members.length + ' 个产品小类'), h('span', { class: 'text-button' }, '选择产品 →')));
   });
 
   /* ================= 派生数据与覆盖判断 ================= */
