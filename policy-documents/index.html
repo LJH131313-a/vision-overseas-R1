@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>政策资料库 | 远见·企业出海助手 R1</title>
+<meta name="description" content="按国家、政策主题、适用产品与文件类型查找已归档的法规资料，查看版本、来源与阅读入口。">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../css/styles.css">
+<style>
+  .pl-head{display:flex;justify-content:space-between;align-items:flex-end;gap:14px;flex-wrap:wrap;margin-bottom:10px}
+  .pl-search{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}
+  .pl-search input[type=search]{flex:1;min-width:220px;border:1px solid var(--line);border-radius:9px;padding:10px 12px;min-height:44px;background:var(--paper);color:var(--ink)}
+  .pl-filters{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin-bottom:6px}
+  .pl-filters select{border:1px solid var(--line);border-radius:9px;padding:9px 11px;min-height:42px;background:var(--paper);width:100%;color:var(--ink)}
+  .pl-filters label{display:block;font-size:12px;color:var(--sub);margin-bottom:4px}
+  .pl-count{font-size:12.5px;color:var(--sub);margin:6px 0 12px}
+  .pl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:12px}
+  .pl-card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:16px 17px;display:flex;flex-direction:column;gap:8px}
+  .pl-card h3{margin:0;font-size:14.5px;line-height:1.5}
+  .pl-tags{display:flex;gap:6px;flex-wrap:wrap}
+  .pl-line{font-size:12.5px;color:var(--sub);line-height:1.6}
+  .pl-line b{color:var(--ink);font-weight:640}
+  .pl-acts{display:flex;gap:8px;flex-wrap:wrap;margin-top:auto;padding-top:6px}
+  .kind-official,.kind-hosted{background:var(--ok-bg);border-color:var(--ok-line);color:var(--ok)}
+  .kind-reading{background:var(--blue-bg);border-color:var(--blue-line);color:var(--blue)}
+  .kind-card,.kind-unknown{background:var(--amber-bg);border-color:var(--amber-line);color:var(--amber)}
+  .kind-manual{background:var(--soft-2);border-color:var(--line);color:var(--sub)}
+  details.pl-more{border:1px solid var(--line);border-radius:9px;background:var(--soft-2);padding:8px 11px;font-size:12px;color:var(--sub)}
+  details.pl-more summary{cursor:pointer;color:var(--green);font-weight:620;font-size:12px}
+  details.pl-more .row{margin:4px 0;word-break:break-all}
+  .pl-pager{display:flex;gap:10px;align-items:center;justify-content:center;margin:20px 0 4px;flex-wrap:wrap}
+  .pl-toggle{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;color:var(--sub);margin:2px 0 6px}
+  .pl-toggle input{accent-color:var(--green);width:15px;height:15px}
+  .sub-wrap{overflow-x:hidden}
+  .pl-note{font-size:12.5px;color:var(--sub);background:var(--soft-2);border:1px solid var(--soft);border-radius:10px;padding:10px 14px;margin:12px 0;line-height:1.7}
+  @media (max-width:620px){.pl-grid{grid-template-columns:1fr}.pl-filters{grid-template-columns:1fr 1fr}.pl-card h3{overflow-wrap:anywhere}.pl-tags{overflow-wrap:anywhere}}
+</style>
+</head>
+<body class="subpage">
+<div class="sub-wrap">
+  <header class="pl-head">
+    <div>
+      <p class="eyebrow">政策资料库</p>
+      <h1>查找法规原文与配套资料</h1>
+      <p class="lead">按国家、政策主题、适用产品和文件类型筛选；每份资料都注明版本与官方来源，方便核对现行要求。</p>
+    </div>
+    <a class="btn sec sm" href="../index.html">← 返回工作台</a>
+  </header>
+
+  <div class="pl-search">
+    <input type="search" id="q" placeholder="搜索文件名称、法规编号或关键词，例如：CPSR、GST、8516.79" aria-label="搜索政策资料">
+  </div>
+  <div class="pl-filters">
+    <div><label for="fCountry">国家 / 地区</label><select id="fCountry"><option value="">全部</option></select></div>
+    <div><label for="fTopic">政策主题</label><select id="fTopic"><option value="">全部</option></select></div>
+    <div><label for="fScope">适用产品</label><select id="fScope"><option value="">全部</option></select></div>
+    <div><label for="fKind">文件类型</label><select id="fKind">
+      <option value="">全部</option>
+      <option value="official">官方法规 PDF</option>
+      <option value="hosted">官方托管原始 PDF</option>
+      <option value="reading">网页阅读版（非官方原文）</option>
+      <option value="card">核验记录（非原文）</option>
+      <option value="manual">产品说明书</option>
+      <option value="unknown">类型待核实</option>
+    </select></div>
+  </div>
+  <label class="pl-toggle"><input type="checkbox" id="onlyReady"> 只看已归类到主题与适用产品的资料</label>
+  <p class="pl-count" id="count" aria-live="polite"></p>
+
+  <div class="pl-grid" id="grid"></div>
+  <div class="pl-pager no-print" id="pager"></div>
+
+  <p class="pl-note"><b>怎么读这些文件：</b>「官方法规 PDF / 官方托管原始 PDF」是官方发布的法规文本；「网页阅读版」是从官方网页正文抽取或打印的文件，方便离线核对，<b>不是官方法规原文</b>，权威文本请以「查看官方网页」为准；「核验记录」与「产品说明书」不是法规原文。版本与适用日期以页面标注和官方来源为准，未标注的记为待核实。</p>
+</div>
+<script src="../policy-documents/manifest.js"></script>
+<script>
+(function () {
+  var M = window.VO_POLICY_LIBRARY || { files: [] };
+  var FILES = M.files || [];
+  var PAGE = 24, page = 1;
+  function esc(x) { return String(x == null ? '' : x).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+
+  /* 下拉选项由实际数据生成，不预设不存在的分类 */
+  var countries = {}, topics = {}, scopes = {};
+  FILES.forEach(function (f) {
+    countries[f.countryName || f.country] = 1;
+    (f.topics || []).forEach(function (t) { topics[t] = 1; });
+    (f.productScope || []).forEach(function (s) { scopes[s] = 1; });
+    (f.scopeByFamily || []).forEach(function (s) { scopes[s] = 1; });
+  });
+  function fill(sel, obj) {
+    Object.keys(obj).sort().forEach(function (k) {
+      var o = document.createElement('option'); o.value = k; o.textContent = k; sel.appendChild(o);
+    });
+  }
+  var els = {
+    q: document.getElementById('q'), c: document.getElementById('fCountry'),
+    t: document.getElementById('fTopic'), s: document.getElementById('fScope'), k: document.getElementById('fKind')
+  };
+  fill(els.c, countries); fill(els.t, topics); fill(els.s, scopes);
+
+  var onlyReady = false;
+  function score(f) {
+    var v = 0;
+    if ((f.topics || []).length) v += 4;
+    if ((f.productScope || []).length) v += 3;
+    if (f.version && f.version !== '待核实') v += 2;
+    if (f.kind === 'official' || f.kind === 'hosted') v += 1;
+    return v;
+  }
+  function match(f) {
+    if (onlyReady && !((f.topics || []).length && (f.productScope || []).length)) return false;
+    if (els.c.value && (f.countryName || f.country) !== els.c.value) return false;
+    if (els.t.value && (f.topics || []).indexOf(els.t.value) < 0) return false;
+    if (els.s.value) {
+      var all = (f.productScope || []).concat(f.scopeByFamily || []);
+      if (all.indexOf(els.s.value) < 0) return false;
+    }
+    if (els.k.value && f.kind !== els.k.value) return false;
+    var kw = els.q.value.trim().toLowerCase();
+    if (kw) {
+      var hay = [f.name, f.id, (f.topics || []).join(' '), (f.productScope || []).join(' '), (f.scopeByFamily || []).join(' '), f.version, f.countryName].join(' ').toLowerCase();
+      if (hay.indexOf(kw) < 0) return false;
+    }
+    return true;
+  }
+
+  /* 链接优先级：本地已归档 PDF → 官方 PDF 直链 → 官方网页 */
+  function links(f) {
+    var out = [];
+    if (f.localFile) out.push({ href: '../' + f.localFile, label: '打开 PDF', primary: true });
+    if (f.officialKind === 'pdf') out.push({ href: f.officialUrl, label: '官方 PDF ↗', ext: true });
+    else if (f.officialKind === 'page') out.push({ href: f.officialUrl, label: '查看官方网页 ↗', ext: true });
+    return out;
+  }
+
+  function render() {
+    var list = FILES.filter(match).slice().sort(function (a, b) {
+      var d = score(b) - score(a);
+      return d !== 0 ? d : String(a.name).localeCompare(String(b.name), 'zh');
+    });
+    /* 同哈希的不同来源合并显示，避免同一文件重复占位 */
+    var seenSha = {};
+    list = list.filter(function (f) {
+      if (seenSha[f.sha256]) { seenSha[f.sha256].dupes.push(f); return false; }
+      seenSha[f.sha256] = f; f.dupes = []; return true;
+    });
+    var pages = Math.max(1, Math.ceil(list.length / PAGE));
+    if (page > pages) page = pages;
+    document.getElementById('count').textContent = '找到 ' + list.length + ' 份资料（库内 ' + FILES.length + ' 条记录，同一文件的不同来源已合并显示）';
+    var grid = document.getElementById('grid');
+    grid.innerHTML = '';
+    list.slice((page - 1) * PAGE, page * PAGE).forEach(function (f) {
+      var card = document.createElement('article');
+      card.className = 'pl-card';
+      var tags = '<span class="kind-tag kind-' + f.kind + '">' + esc(f.kindLabel) + '</span>' +
+        '<span class="tag">' + esc(f.countryName || f.country) + '</span>';
+      (f.topics || []).slice(0, 2).forEach(function (t) { tags += '<span class="tag brand">' + esc(t) + '</span>'; });
+      if (!(f.topics || []).length) tags += '<span class="tag warn">主题待归类</span>';
+      var scope = (f.productScope || []).length
+        ? esc(f.productScope.slice(0, 3).join('、')) + (f.productScope.length > 3 ? ' 等 ' + f.productScope.length + ' 类' : '')
+        : ((f.scopeByFamily || []).length ? esc((f.scopeByFamily || []).slice(0, 2).join('；')) + '（按法规适用产品族）' : '待核实');
+      var html = '<h3>' + esc(f.name) + '</h3><div class="pl-tags">' + tags + '</div>';
+      html += '<div class="pl-line"><b>适用产品：</b>' + scope + '</div>';
+      html += '<div class="pl-line"><b>版本 / 日期：</b>' + esc(f.version || '待核实') + '</div>';
+      var ls = links(f);
+      html += '<div class="pl-acts">' + ls.map(function (l) {
+        return '<a class="' + (l.primary ? 'btn sm' : 'btn sec sm') + '" href="' + esc(l.href) + '"' + (l.ext ? ' target="_blank" rel="noopener noreferrer"' : '') + '>' + esc(l.label) + '</a>';
+      }).join('') + '</div>';
+      if (!ls.length) html += '<div class="pl-line">暂无可用文件或官方链接，已记为缺口。</div>';
+      var more = '<details class="pl-more"><summary>版本与来源详情</summary>' +
+        '<div class="row">来源编号：' + esc(f.id) + '</div>' +
+        (f.officialUrl ? '<div class="row">官方来源：<a href="' + esc(f.officialUrl) + '" target="_blank" rel="noopener noreferrer">' + esc(f.officialUrl) + '</a></div>' : '<div class="row">官方来源：待补</div>') +
+        (f.pages ? '<div class="row">页数：' + f.pages + '</div>' : '') +
+        (f.checkedAt ? '<div class="row">核验日期：' + esc(f.checkedAt) + '</div>' : '') +
+        (f.verification ? '<div class="row">核验说明：' + esc(f.verification) + '</div>' : '') +
+        (f.regulations && f.regulations.length ? '<div class="row">关联法规：' + esc(f.regulations.join('、')) + '</div>' : '') +
+        '<div class="row">文件校验码（SHA-256）：' + esc(f.sha256) + '</div>' +
+        '<div class="row">大小：' + (f.sizeBytes || 0).toLocaleString('zh-CN') + ' 字节</div>' +
+        (f.internal && f.internal.sameContentAs ? '<div class="row">与 ' + esc(f.internal.sameContentAs) + ' 内容相同（同一文件的不同来源地址）</div>' : '') +
+        '</details>';
+      if (f.dupes && f.dupes.length) {
+        html += '<div class="pl-line"><b>同一文件的其他来源编号：</b>' + esc(f.dupes.map(function (d) { return d.id; }).join('、')) + '</div>';
+      }
+      card.innerHTML = html + more;
+      grid.appendChild(card);
+    });
+    if (!list.length) grid.innerHTML = '<div class="pl-note">没有符合条件的资料。可以放宽筛选，或在合规初筛里按来源编号查找。</div>';
+    var pager = document.getElementById('pager');
+    pager.innerHTML = '';
+    if (pages > 1) {
+      var prev = document.createElement('button'); prev.className = 'btn sec sm'; prev.textContent = '上一页'; prev.disabled = page <= 1;
+      prev.onclick = function () { if (page > 1) { page--; render(); } };
+      var next = document.createElement('button'); next.className = 'btn sec sm'; next.textContent = '下一页'; next.disabled = page >= pages;
+      next.onclick = function () { if (page < pages) { page++; render(); } };
+      var info = document.createElement('span'); info.className = 'pl-count'; info.textContent = '第 ' + page + ' / ' + pages + ' 页';
+      pager.appendChild(prev); pager.appendChild(info); pager.appendChild(next);
+    }
+  }
+  document.getElementById('onlyReady').addEventListener('change', function (e) { onlyReady = e.target.checked; page = 1; render(); });
+  ['q', 'c', 't', 's', 'k'].forEach(function (key) {
+    els[key].addEventListener(els[key].getAttribute('type') === 'search' ? 'input' : 'change', function () { page = 1; render(); });
+  });
+
+  /* 深链：?q=SRC-104 或 ?country=SG */
+  var qs = new URLSearchParams(location.search);
+  if (qs.get('q')) els.q.value = qs.get('q');
+  if (qs.get('country')) {
+    var want = qs.get('country');
+    for (var i = 0; i < els.c.options.length; i++) {
+      if (FILES.some(function (f) { return f.country === want && (f.countryName || f.country) === els.c.options[i].value; })) { els.c.value = els.c.options[i].value; break; }
+    }
+  }
+  render();
+})();
+</script>
+</body>
+</html>

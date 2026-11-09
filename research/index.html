@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>产品研究 | 远见·企业出海助手 R1</title>
+<meta name="description" content="16 款中国品牌真空吸尘产品的出海研究档案：品牌/型号/地区检索、结构类型筛选、地区证据、逐字段规格、待补项与候选归类方向。">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../css/styles.css">
+<style>
+  .filters{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0;align-items:center}
+  .filters input,.filters select{border:1px solid var(--line);border-radius:9px;padding:8px 12px;background:#fff;min-width:160px}
+  .model-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:14px}
+  .model-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;box-shadow:0 6px 18px rgba(24,59,78,.05);display:flex;flex-direction:column;gap:8px}
+  .model-card .m-head{display:flex;justify-content:space-between;gap:8px;align-items:baseline;flex-wrap:wrap}
+  .model-card h3{margin:0;font-size:16px}
+  .spec-table{width:100%;border-collapse:collapse;font-size:12.5px;margin:4px 0}
+  .spec-table td{border-bottom:1px dashed var(--line);padding:5px 6px;vertical-align:top}
+  .spec-table td:first-child{color:var(--muted);white-space:nowrap;width:96px}
+  .m-sec{font-size:13px}
+  .m-sec b{font-size:12.5px;color:var(--green-2)}
+  .m-sec .warn{color:var(--amber)}
+  details.m-more{border:1px solid var(--line);border-radius:10px;padding:8px 12px;background:#fbfdfc}
+  details.m-more summary{cursor:pointer;color:var(--green);font-weight:640;font-size:13px}
+  .src-list{font-size:12px;color:var(--muted);display:grid;gap:3px;margin-top:4px}
+</style>
+</head>
+<body class="subpage">
+<div class="sub-wrap">
+  <header class="page-title">
+    <div>
+      <p class="eyebrow">产品研究档案 · 中国品牌真空吸尘产品</p>
+      <h1>16 款型号 × 5 类结构</h1>
+      <p class="subhint">研究基准 2026-11-08；证据来自品牌官网、官方说明书与当地目录。研究结论不等于海关归类或准入结论。</p>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <a class="btn sec sm" href="../research/中国品牌真空吸尘产品与出海研究.html" target="_blank" rel="noopener noreferrer">研究 HTML 全文 ↗</a>
+      <a class="btn sec sm" href="../index.html">← 返回工作台</a>
+    </div>
+  </header>
+
+  <p class="subhint">带入只填写有公开资料支持的内容（品牌、型号、品类、地区）；技术参数需要你按出口版本重新确认，带入前会先询问是否替换当前项目。</p>
+
+  <div class="filters">
+    <input type="search" id="fKw" placeholder="搜索品牌 / 型号 / 地区">
+    <select id="fCat">
+      <option value="">全部结构类型</option>
+    </select>
+    <span class="subhint" id="fCount"></span>
+  </div>
+
+  <div class="model-grid" id="modelGrid"></div>
+</div>
+<script src="../data/research-models.js"></script>
+<script>
+(function () {
+  var MODELS = window.VO_RESEARCH_MODELS || [];
+  var CAT_MAP = { 1: { sub: 'C-VAC-001', name: '罐式吸尘器' }, 2: { sub: 'C-VAC-002', name: '立式／杆式吸尘器' }, 3: { sub: 'C-VAC-003', name: '手持吸尘器' }, 4: { sub: 'C-VAC-004', name: '干湿两用吸尘器' }, 5: { sub: 'C-VAC-005', name: '扫地／扫拖机器人' } };
+  var REGION_JUR = { '马来西亚': 'MY', '英国': 'UK_GB', '美国': 'US', '德国': 'DE', '澳大利亚': 'AU' };
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  function regionJurs(region) {
+    var out = [];
+    Object.keys(REGION_JUR).forEach(function (k) { if (String(region || '').indexOf(k) >= 0) out.push(REGION_JUR[k]); });
+    return out;
+  }
+
+  var catSel = document.getElementById('fCat');
+  var catNames = {};
+  MODELS.forEach(function (m) { catNames[m.cat] = CAT_MAP[m.cat] ? CAT_MAP[m.cat].name : ('类型' + m.cat); });
+  Object.keys(catNames).sort().forEach(function (c) {
+    var o = document.createElement('option');
+    o.value = c; o.textContent = catNames[c] + '（' + MODELS.filter(function (m) { return String(m.cat) === c; }).length + '）';
+    catSel.appendChild(o);
+  });
+
+  function render() {
+    var kw = document.getElementById('fKw').value.trim().toLowerCase();
+    var cat = catSel.value;
+    var grid = document.getElementById('modelGrid');
+    grid.innerHTML = '';
+    var list = MODELS.filter(function (m) {
+      if (cat && String(m.cat) !== cat) return false;
+      if (kw && (m.brand + ' ' + m.name + ' ' + m.region).toLowerCase().indexOf(kw) < 0) return false;
+      return true;
+    });
+    document.getElementById('fCount').textContent = '显示 ' + list.length + ' / ' + MODELS.length + ' 款';
+    list.forEach(function (m) {
+      var cm = CAT_MAP[m.cat] || {};
+      var jurs = regionJurs(m.region);
+      var card = document.createElement('div');
+      card.className = 'model-card';
+      var html = '';
+      html += '<div class="m-head"><h3>' + esc(m.brand) + ' ' + esc(m.name) + '</h3><span class="tag">' + esc(m.id) + '</span></div>';
+      html += '<div>' + (cm.name ? '<span class="tag brand">' + esc(cm.name) + '（' + esc(cm.sub) + '）</span>' : '') + '<span class="tag">' + esc(m.region) + '</span>' + (jurs.length ? '<span class="tag info">证据法域 ' + jurs.map(esc).join('/') + '</span>' : '<span class="tag warn">证据地区未映射法域</span>') + '<span class="tag">核验 ' + esc(m.checked_at) + '</span></div>';
+      html += '<div class="m-sec"><b>地区证据：</b>' + esc(m.evidence) + '</div>';
+      var st = '<table class="spec-table">';
+      (m.specs || []).forEach(function (s) { st += '<tr><td>' + esc(s[0]) + '</td><td>' + esc(s[1]) + '</td></tr>'; });
+      st += '</table>';
+      html += st;
+      html += '<details class="m-more"><summary>研究解释 · 候选归类方向 · 待补项</summary>';
+      html += '<div class="m-sec" style="margin-top:8px"><b>研究解释：</b>' + esc(m.interpret) + '</div>';
+      html += '<div class="m-sec" style="margin:6px 0"><b>候选归类方向：</b>' + esc(m.hs) + '（研究候选，非海关确定结论）</div>';
+      html += '<div class="m-sec"><b class="warn">待补项：</b>' + esc(m.missing) + '</div>';
+      html += '<div class="m-sec" style="margin-top:6px"><b>逐型号实缴税额：</b>' + esc(m.actual_model_tax_paid || '未取得') + '</div>';
+      html += '</details>';
+      html += '<div class="src-list">' + (m.sources || []).map(function (s) { return '<a href="' + esc(s.url) + '" target="_blank" rel="noopener noreferrer">' + esc(s.title) + ' ↗</a>'; }).join('') + '</div>';
+      var btn = document.createElement('button');
+      btn.className = 'btn sm';
+      btn.style.marginTop = 'auto';
+      btn.textContent = '带入当前项目';
+      btn.addEventListener('click', function () {
+        var msg = '将把「' + (d.brand || '') + ' ' + (d.name || '') + '」带入当前项目：\n· 品类：' + (CAT_NAME[d.sub] || d.sub) + (d.jurisdiction ? '，目的地：' + d.jurisdiction : '') + '\n· 当前已填的技术事实、HS 与税费输入会被清空重填\n· 技术参数不会自动带入，需要你按出口版本确认（例如充电电压不等于市电电压、吸力 Pa 不等于功率 W）\n\n确定带入？';
+        if (!window.confirm(msg)) return;
+        var payload = { type: 'research-bring-in', brand: m.brand, name: m.name, sub: cm.sub || '', catName: cm.name || '', region: m.region, jurs: jurs, modelId: m.id, evidence: m.evidence, hs: m.hs, missing: m.missing, interpret: m.interpret, sources: (m.sources || []).map(function (s) { return { url: s.url, title: s.title }; }), checkedAt: m.checked_at, specs: m.specs };
+        if (window.parent === window) {
+          try { localStorage.setItem('vo-r1-research-bring', JSON.stringify(payload)); } catch (e) { }
+          location.href = '../index.html?bring=research';
+        } else {
+          window.parent.postMessage(payload, '*');
+        }
+      });
+      var illuMap = { 1: 'vo-tank', 2: 'vo-stick', 3: 'vo-bot', 4: 'vo-tank', 5: 'vo-bot' };
+      var illu = '<div class="mini-illu vo-illustration ' + (illuMap[m.cat] || 'vo-stick') + '" aria-hidden="true">' +
+        (m.cat === 2 ? '<i class="pipe"></i><i class="body"></i><i class="head"></i>' : m.cat === 1 || m.cat === 4 ? '<i class="body"></i><i class="head"></i><i class="pipe"></i>' : '<i class="dock"></i><i class="body"></i><i class="head"></i>') + '</div>';
+      card.innerHTML = illu + html;
+      card.appendChild(btn);
+      grid.appendChild(card);
+    });
+    if (!list.length) grid.innerHTML = '<div class="banner warn">没有符合条件的型号。</div>';
+  }
+  // 支持首页品类卡深链：research/index.html?cat=5
+  var catParam = new URLSearchParams(location.search).get('cat');
+  if (catParam && catSel.querySelector('option[value="' + catParam + '"]')) catSel.value = catParam;
+  document.getElementById('fKw').addEventListener('input', render);
+  catSel.addEventListener('change', render);
+  render();
+})();
+</script>
+</body>
+</html>

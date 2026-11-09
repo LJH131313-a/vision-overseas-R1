@@ -1,0 +1,71 @@
+name: 部署网站到 GitHub Pages
+
+# 发布方式：GitHub Actions（需在 Settings → Pages 将 Source 设为 "GitHub Actions"）
+# 触发：推送 main、新闻快照工作流成功完成后（workflow_run，确保机器人提交新闻后线上实际更新）、手动运行
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+  workflow_run:
+    workflows: ['更新新闻快照']
+    types: [completed]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    if: github.event_name != 'workflow_run' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main')
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: 检出最新发布分支
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: 设置 Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: 发布前检查：引擎回归（208 项断言）
+        run: node tests/engine.test.mjs
+
+      - name: 发布前检查：税费 UI 数据衔接（15 项断言）
+        run: node tests/tax-ui-regression.cjs
+
+      - name: 发布前检查：第二版集成检查
+        run: node tests/r2-integration.test.mjs
+
+      - name: 发布前检查：税费扩展画像（25 条新增）
+        run: node tests/tax-expansion.test.cjs
+
+      - name: 发布前检查：政策资料库分类与链接
+        run: node tests/policy-library.test.mjs
+
+      - name: 发布前检查：页面冒烟（DOM）
+        run: |
+          npm install --no-save jsdom
+          node tests/dom-smoke.mjs
+
+      - name: 配置 GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: 上传网站文件（仅站点资源）
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - name: 部署到 GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
