@@ -1958,6 +1958,8 @@
   /* ---------- 首页入口 ---------- */
   var btnHomeStart = $('btnHomeStart');
   if (btnHomeStart) btnHomeStart.addEventListener('click', function () { showTab('product'); });
+  var btnHomeExamples = $('btnHomeExamples');
+  if (btnHomeExamples) btnHomeExamples.addEventListener('click', function () { showTab('product'); $('companyQuick').open = true; $('companyQuick').scrollIntoView({ behavior: 'smooth', block: 'start' }); });
   var btnHomeRadar = $('btnHomeRadar');
   if (btnHomeRadar) btnHomeRadar.addEventListener('click', function () { showTab('news'); });
   document.querySelectorAll('[data-goto]').forEach(function (b) {

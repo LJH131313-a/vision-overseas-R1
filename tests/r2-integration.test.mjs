@@ -108,7 +108,7 @@ check('首页导航含政策原文入口', appIdx.includes('policy-documents/ind
 console.log('== 7. 首页与第二版功能 ==');
 check('首页封面标语', appIdx.includes('让每一款小家电，'));
 check('开始项目 / 浏览研究 / 新闻雷达入口', appIdx.includes('btnHomeStart') && appIdx.includes('research/index.html') && appIdx.includes('btnHomeRadar'));
-check('四步上手说明', appIdx.includes('四步上手说明'));
+check('上手说明', appIdx.includes('查看上手说明'));
 check('app.js 首页 tab 支持', app.includes("name === 'home'"));
 check('researchEvidence 入 inputHash', app.includes('research: p.researchEvidence'));
 check('researchEvidence 入千问任务', app.includes('产品研究档案证据（R1）'));

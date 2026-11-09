@@ -150,6 +150,12 @@ h1, h2, h3, h4 { line-height: 1.45; margin: 0 0 10px; font-weight: 620; }
 .vo-kettle .head { left: 30px; top: 32px; width: 28px; height: 10px; border-radius: 6px; background: var(--soft); }
 .vo-kettle .pipe { left: 58px; top: 44px; width: 18px; height: 26px; border: 2px solid currentColor; border-bottom: 0; border-radius: 12px 12px 0 0; background: none; }
 
+.home-section-title { display: flex; align-items: center; gap: 9px; }
+.home-guide { margin-top: 16px; }
+.home-guide > h3 { margin: 0 0 12px; }
+#btnHomeStart { padding: 11px 21px; }
+.hs-card ul { margin: 7px 0 9px; padding-left: 17px; color: var(--sub); font-size: 12.5px; }
+.hs-card li + li { margin-top: 3px; }
 .home-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(196px, 1fr)); gap: 12px; }
 .hs-card {
   background: var(--paper); border: 1px solid var(--line); border-radius: 12px;

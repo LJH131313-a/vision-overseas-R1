@@ -54,11 +54,11 @@
         <div class="home-copy">
           <p class="eyebrow">从了解产品，到准备出海</p>
           <h1>让每一款小家电，<br>都有清晰的出海准备路径。</h1>
-          <p class="lead">选好产品和目标市场，查看需要满足的要求、估算税费计算，并持续关注相关变化。</p>
+          <p class="lead">选好产品和目标市场，查看需要满足的要求、测算进口税费，并持续关注相关变化。</p>
           <div class="home-actions">
-            <button class="btn" id="btnHomeStart" type="button">开始项目</button>
-            <a class="btn sec" href="research/index.html">浏览产品研究</a>
-            <button class="btn sec" id="btnHomeRadar" type="button">新闻雷达</button>
+            <button class="btn" id="btnHomeStart" type="button">开始你的项目</button>
+            <button class="btn sec" id="btnHomeExamples" type="button">项目示例</button>
+            <button class="btn sec" id="btnHomeRadar" type="button">政策动态</button>
           </div>
         </div>
         <div class="home-objects" aria-hidden="true">
@@ -69,20 +69,19 @@
         </div>
       </div>
       <div class="card" style="margin-top:0">
-        <h3>先认识你的产品类别</h3>
+        <h3 class="home-section-title"><span class="hs-n" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span>认识产品类别</h3>
         <p class="subhint" style="margin:0 0 4px">覆盖小家电主要产品组；清洁电器研究档案较完整。各市场功能以实际支持标签为准。</p>
         <div class="cat-cards" id="homeGroups"></div>
         <button class="text-button" data-goto="product" type="button">查看全部产品 →</button>
       </div>
-      <div class="home-steps">
-        <div class="hs-card"><span class="hs-n"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></span><div><b>选择产品市场</b><p>选目的地与品类，只回答影响判断的关键事实；研究档案可一键带入。</p><button class="text-button" data-goto="product" type="button">去登记 →</button></div></div>
-        <div class="hs-card"><span class="hs-n"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l7 4v5c0 4-3 7-7 9-4-2-7-5-7-9V7z"/><path d="M9 12l2 2 4-4"/></svg></span><div><b>查看合规初筛</b><p>可能适用、待补事实、不适用与待规则核验分开显示，缺口如实呈现。</p><button class="text-button" data-goto="compliance" type="button">去初筛 →</button></div></div>
-        <div class="hs-card"><span class="hs-n"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 8h8M8 12h3M14 12h2M8 16h6"/></svg></span><div><b>测算税费计算</b><p>候选方向 + 按公式逐行复算；条件不足时完整总额保持不可用。</p><button class="text-button" data-goto="tax" type="button">去测算 →</button></div></div>
-        <div class="hs-card"><span class="hs-n"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 3h10v18H7z"/><path d="M10 8h4M10 12h4M10 16h2"/></svg></span><div><b>获取出海报告</b><p>每条结论可溯源，支持打印 PDF、导出 JSON 与快照管理。</p><button class="text-button" data-goto="report" type="button">看报告 →</button></div></div>
-      </div>
-      <div class="card" style="margin-top:16px">
-        <h3>四步上手说明</h3>
-        <ol><li>选择产品市场：填写影响判断的产品信息。</li><li>查看合规要求：确认准入规则与准备材料。</li><li>测算税费计算：复核 HS 候选，补齐交易条件。</li><li>获取出海报告：整理结果、政策来源与待办事项。</li></ol><p class="subhint">新闻雷达、产品研究和 千问建议可按需要使用。</p>
+      <div class="home-guide">
+        <h3 class="home-section-title"><span class="hs-n" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4zM8 9h8M8 13h8M8 17h5"/></svg></span>查看上手说明</h3>
+        <div class="home-steps">
+          <div class="hs-card"><span class="hs-n" aria-hidden="true">1</span><div><b>选择产品与市场</b><ul><li>选择产品和目的地</li><li>填写关键产品信息</li></ul><button class="text-button" data-goto="product" type="button">去登记 →</button></div></div>
+          <div class="hs-card"><span class="hs-n" aria-hidden="true">2</span><div><b>查看合规初筛</b><ul><li>了解可能适用的要求</li><li>确认需要准备的材料</li></ul><button class="text-button" data-goto="compliance" type="button">去初筛 →</button></div></div>
+          <div class="hs-card"><span class="hs-n" aria-hidden="true">3</span><div><b>计算进口税费</b><ul><li>复核 HS 候选</li><li>填写交易条件查看测算</li></ul><button class="text-button" data-goto="tax" type="button">去计算 →</button></div></div>
+          <div class="hs-card"><span class="hs-n" aria-hidden="true">4</span><div><b>获取出海报告</b><ul><li>汇总分析结果和政策来源</li><li>整理后续准备事项</li></ul><button class="text-button" data-goto="report" type="button">看报告 →</button></div></div>
+        </div>
       </div>
     </section>
 
