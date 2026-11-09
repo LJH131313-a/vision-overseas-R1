@@ -92,7 +92,7 @@ check('只载入品牌/型号/小类/地区（不猜参数）', rpage.includes('
 
 console.log('== 6. 政策 PDF 归档 ==');
 const idx = JSON.parse(read('policy-documents/SG/index.json'));
-check('4 份 PDF 归档', idx.length === 4);
+check('5 份 PDF 归档', idx.length === 5);
 idx.forEach((d) => {
   const p = join(ROOT, d.path);
   const buf = readFileSync(p);

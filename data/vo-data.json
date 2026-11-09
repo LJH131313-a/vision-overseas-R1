@@ -17756,7 +17756,9 @@
    "note": "",
    "checkedAt": "2026-11-04",
    "pdfKind": "官方托管原始PDF，字节未改动",
-   "filePresent": true
+   "filePresent": true,
+   "pdfPath": "policy-documents/SG/SG-STCCED-AHTN-2022.pdf",
+   "pdfVersion": "2022 版税则；业务使用前请复核现行版本"
   },
   {
    "id": "SRC-169",

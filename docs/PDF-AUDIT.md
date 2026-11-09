@@ -167,6 +167,10 @@
 
 ## 本轮补充包
 
-SG_Kettle_Tax_Fix_20261108 (1).zip 中四份 PDF 与仓库 SHA-256 全部一致；不重复计入新增档案。documents.zip 超过 32 MiB 工具上限，内容尚未读取；待分包后核查，不将其列为已盘点。
+SG_Kettle_Tax_Fix_20261108 (1).zip 中四份 PDF 与仓库 SHA-256 全部一致；不重复计入新增档案。已收到 5 个分包，共 125 份 PDF，完整清单位于 policy-batches-inventory.csv；SRC-131.zip 仍超过工具上限。上述 125 份保存在当前工作区 /workspace/policy-source-batches，尚未全部纳入网站仓库，格式与版本还需逐份核对。
 
 优先补充官方资料：[STCCED/AHTN 原始 PDF](https://file.go.gov.sg/stcced2022.pdf)、[非应税范围网页](https://www.customs.gov.sg/doing-business/valuation-duties-and-fees/duties-and-dutiable-goods/duties-and-dutiable-goods-overview/)、[进口 GST 网页](https://www.customs.gov.sg/doing-business/valuation-duties-and-fees/goods-and-services-tax-gst/)。若保存为网页打印 PDF，请保留打印日期、来源 URL，并标记为网页打印版。
+
+## 新加坡税则补充
+
+SRC-161.zip 中的 SRC-168.pdf 已保存为 SG-STCCED-AHTN-2022.pdf，检查文件头、标题及 SHA-256；源数据称其为官方托管原始 PDF，但本轮无法从官方网站下载比对，文件版本与现行适用性仍须确认。可检索到微波炉 8516.50.00 和部分吸尘器子目。其余 124 个文件保存在 /workspace/policy-source-batches，尚未完成网站归档和逐份版本/原文核查。

@@ -50,7 +50,7 @@
     h.textContent = d.title;
     card.appendChild(h);
     var topic = document.createElement('p'); topic.className = 'subhint';
-    topic.textContent = '新加坡 · ' + (d.path.includes('GST') ? '进口税费 · 进口商品' : d.path.includes('Batteries') ? '环保 · 随附电池' : '产品安全 · 消费品') + ' · ' + d.version_marker; card.appendChild(topic);
+    topic.textContent = '新加坡 · ' + (d.path.includes('STCCED') ? '进口税则 · 商品归类' : d.path.includes('GST') ? '进口税费 · 进口商品' : d.path.includes('Batteries') ? '环保 · 随附电池' : '产品安全 · 消费品') + ' · ' + d.version_marker; card.appendChild(topic);
     var meta = document.createElement('div');
     meta.className = 'doc-meta';
     function row(k, v) {
