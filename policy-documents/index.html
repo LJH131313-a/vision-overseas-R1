@@ -3,91 +3,184 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>政策原文 | 远见·企业出海助手 R1</title>
-<meta name="description" content="新加坡法规原始 PDF 归档：官方参考、版本标记与 SHA-256 哈希校验。">
+<title>政策原文归档 | 远见·企业出海助手 R1</title>
+<meta name="description" content="法规原始 PDF 全量归档：按法域与文件性质筛选，逐份显示官方参考、版本、页数与构建时实测 SHA-256 哈希。">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../css/styles.css">
 <style>
-  .doc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;margin-top:14px}
-  .doc-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;box-shadow:0 6px 18px rgba(24,59,78,.05);display:flex;flex-direction:column;gap:8px}
-  .doc-card h3{margin:0;font-size:15.5px;line-height:1.45}
-  .doc-meta{font-size:12.5px;color:var(--muted);display:grid;gap:3px}
-  .doc-meta b{color:var(--ink);font-weight:640}
-  .hash{font-family:ui-monospace,Consolas,monospace;font-size:11px;word-break:break-all;background:var(--mint-2);border-radius:6px;padding:6px 8px;color:var(--green-2)}
-  .doc-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:auto}
-  .badge-ok{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;color:var(--ok);background:var(--ok-bg);border:1px solid #bfe0cd;border-radius:999px;padding:2px 10px}
+  .stats{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}
+  .stat{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:12px 16px;min-width:130px}
+  .stat b{display:block;font-size:20px;color:var(--green)}
+  .stat span{font-size:12px;color:var(--sub)}
+  .pf-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px;margin-top:12px}
+  .kind-tag{font-size:11px;padding:2px 8px;border-radius:999px;border:1px solid var(--line);background:var(--soft-2);color:var(--sub)}
+  .kind-official{background:var(--ok-bg);border-color:var(--ok-line);color:var(--ok)}
+  .kind-html{background:var(--blue-bg);border-color:var(--blue-line);color:var(--blue)}
+  .kind-manual{background:var(--amber-bg);border-color:var(--amber-line);color:var(--amber)}
+  .pf-card h3{font-size:14px;margin:0 0 6px;line-height:1.45}
+  .pf-meta{font-size:12px;color:var(--sub);display:grid;gap:2px;margin-bottom:8px}
+  .hash{font-family:ui-monospace,Consolas,monospace;font-size:10.5px;word-break:break-all;background:var(--soft-2);border:1px solid var(--soft);border-radius:6px;padding:5px 8px;color:var(--green-2)}
+  .pf-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+  .pager{display:flex;gap:10px;align-items:center;justify-content:center;margin:18px 0;flex-wrap:wrap}
 </style>
 </head>
 <body class="subpage">
 <div class="sub-wrap">
   <header class="page-title">
     <div>
-      <p class="eyebrow">政策原文归档 · 新加坡（SG）</p>
+      <p class="eyebrow">政策原文归档 · 全量</p>
       <h1>法规原始 PDF 与哈希校验</h1>
     </div>
     <a class="btn sec sm" href="../index.html">← 返回工作台</a>
   </header>
 
-  <div class="banner info">以下是<b>原始字节未改动</b>的官方法规 PDF 归档，每份均经 SHA-256 与文件大小校验（校验结果为构建时实测）。<b>归档 ≠ 全文已结构化，也 ≠ 新增规则已生效</b>：规则引擎仍以数据包中已核条款为准；PDF 供人工核对原文使用。版本标记为合并文本自带的生效标注，未重新从官方站点下载比对哈希。</div>
+  <div class="banner info"><b>这些是什么：</b>队友交付物中的法规原文与阅读版 PDF，<b>原始字节未改动</b>；每份的 SHA-256 与文件大小由本次构建实测，并与原始登记哈希比对。<br>
+  <b>这些不是什么：</b>归档 ≠ 全文已结构化，≠ 规则已接入网页引擎，≠ 法规现行有效。标记为「官方 HTML 正文抽取阅读版」的文件不是官方原始 PDF，仅供离线阅读核对；版本标记为文件自带生效标注，未重新从官方站点下载比对。逐条法律意见请以官方链接与主管机关公告为准。</div>
 
-  <div class="doc-grid" id="docGrid"></div>
+  <div class="stats" id="stats"></div>
+
+  <div class="filters">
+    <select id="fJur"><option value="">全部法域</option></select>
+    <select id="fGroup">
+      <option value="">全部来源组</option>
+      <option value="web">正式项目网页运行目录</option>
+      <option value="official">研究库官方原件</option>
+      <option value="SG">二次交付上传原件（SG）</option>
+      <option value="product-manuals">产品说明书样本（非法规）</option>
+    </select>
+    <select id="fKind">
+      <option value="">全部文件性质</option>
+      <option value="official">官方原始 PDF</option>
+      <option value="html">HTML 阅读版</option>
+      <option value="unknown">未标注 / 待核</option>
+      <option value="manual">产品说明书</option>
+    </select>
+    <input type="search" id="fKw" placeholder="搜索标题 / 编号 / 来源 ID">
+    <span class="subhint" id="count"></span>
+  </div>
+
+  <div class="pf-grid" id="grid"></div>
+  <div class="pager no-print" id="pager"></div>
 
   <div class="card" style="margin-top:18px">
-    <h3>使用边界</h3>
-    <p class="subhint">· 打开 PDF 即为原始文件浏览器预览；「官方参考」跳转新加坡成文法（SSO）对应页面，用于核对最新版本。</p>
-    <p class="subhint">· 归档哈希用于确认“这份文件就是当初核验的那份”；不能证明法规当前仍然有效——请结合官方参考页与主管机关公告确认。</p>
+    <h3>怎么用</h3>
+    <p class="subhint">· 「打开 PDF」直接读取仓库内原始文件；「官方来源」跳转主管机关页面核对现行版本。</p>
+    <p class="subhint">· 合规初筛里的每条规则与「待规则核验」法规都带有来源 ID，可回到本页按 ID 搜索对应原文。</p>
+    <p class="subhint" id="hashNote"></p>
   </div>
 </div>
-<script src="../data/policy-docs.js"></script>
+<script src="../policy-documents/manifest.js"></script>
 <script>
 (function () {
-  var IDX = window.VO_POLICY_DOCS || [];
-  var grid = document.getElementById('docGrid');
-  IDX.forEach(function (d) {
-    var card = document.createElement('div');
-    card.className = 'doc-card';
-    var h = document.createElement('h3');
-    h.textContent = d.title;
-    card.appendChild(h);
-    var meta = document.createElement('div');
-    meta.className = 'doc-meta';
-    function row(k, v) {
-      var p = document.createElement('div');
-      var b = document.createElement('b'); b.textContent = k + '：';
-      p.appendChild(b); p.appendChild(document.createTextNode(v));
-      meta.appendChild(p);
-    }
-    row('版本标记', d.version_marker);
-    row('归档来源', d.provenance);
-    row('核验说明', d.verification);
-    row('文件大小', d.size_bytes.toLocaleString('zh-CN') + ' 字节');
-    card.appendChild(meta);
-    var hash = document.createElement('div');
-    hash.className = 'hash';
-    hash.textContent = 'SHA-256 ' + d.sha256;
-    card.appendChild(hash);
-    var ok = document.createElement('span');
-    ok.className = 'badge-ok';
-    ok.textContent = '✓ 哈希与大小校验通过（构建时实测）';
-    card.appendChild(ok);
-    var actions = document.createElement('div');
-    actions.className = 'doc-actions';
-    var open = document.createElement('a');
-    open.className = 'btn sm';
-    open.href = '../' + d.path;
-    open.target = '_blank'; open.rel = 'noopener noreferrer';
-    open.textContent = '打开 PDF 原文';
-    actions.appendChild(open);
-    var ref = document.createElement('a');
-    ref.className = 'btn sec sm';
-    ref.href = d.official_reference;
-    ref.target = '_blank'; ref.rel = 'noopener noreferrer';
-    ref.textContent = '官方参考 ↗';
-    actions.appendChild(ref);
-    card.appendChild(actions);
-    grid.appendChild(card);
+  var M = (window.VO_POLICY_FILES || { files: [], jurisdictions: [], totals: {} });
+  var FILES = M.files || [];
+  var esc = function (x) { return String(x == null ? '' : x).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); };
+
+  function kindClass(k) {
+    k = String(k || '');
+    if (/产品说明书|制造商/.test(k)) return 'kind-manual';
+    if (/官方原始|原始 PDF|用户上传/.test(k)) return 'kind-official';
+    if (/HTML/.test(k)) return 'kind-html';
+    return '';
+  }
+  function kindBucket(k) {
+    k = String(k || '');
+    if (/产品说明书|制造商/.test(k)) return 'manual';
+    if (/官方原始|原始 PDF|用户上传/.test(k)) return 'official';
+    if (/HTML/.test(k)) return 'html';
+    return 'unknown';
+  }
+
+  // 统计
+  var stats = document.getElementById('stats');
+  function stat(label, value) {
+    var d = document.createElement('div'); d.className = 'stat';
+    d.innerHTML = '<b>' + esc(value) + '</b><span>' + esc(label) + '</span>';
+    stats.appendChild(d);
+  }
+  stat('归档文件', (M.totals && M.totals.files) || FILES.length);
+  stat('总体积', ((M.totals && M.totals.bytes || 0) / 1048576).toFixed(1) + ' MB');
+  stat('哈希实测一致', (M.totals && M.totals.hashVerified) + ' / ' + FILES.length);
+  stat('覆盖法域', (M.jurisdictions || []).length);
+  stat('构建时间', String(M.builtAt || '').slice(0, 10));
+
+  // 法域下拉
+  var jurSel = document.getElementById('fJur');
+  (M.jurisdictions || []).forEach(function (j) {
+    var o = document.createElement('option');
+    o.value = j.code; o.textContent = j.name + '（' + j.code + '）· ' + j.files;
+    jurSel.appendChild(o);
   });
-  if (!IDX.length) grid.textContent = '暂无归档记录。';
+
+  var PAGE = 24, page = 1;
+  function filtered() {
+    var jur = jurSel.value, grp = document.getElementById('fGroup').value,
+      kind = document.getElementById('fKind').value,
+      kw = document.getElementById('fKw').value.trim().toLowerCase();
+    return FILES.filter(function (f) {
+      if (jur && f.jurisdiction !== jur) return false;
+      if (grp && f.group !== grp) return false;
+      if (kind && kindBucket(f.file_kind) !== kind) return false;
+      if (kw && ((f.title || '') + ' ' + (f.id || '') + ' ' + (f.filename || '')).toLowerCase().indexOf(kw) < 0) return false;
+      return true;
+    });
+  }
+  function render() {
+    var list = filtered();
+    var pages = Math.max(1, Math.ceil(list.length / PAGE));
+    if (page > pages) page = pages;
+    document.getElementById('count').textContent = '共 ' + list.length + ' 份 · 第 ' + page + '/' + pages + ' 页';
+    var grid = document.getElementById('grid');
+    grid.innerHTML = '';
+    list.slice((page - 1) * PAGE, page * PAGE).forEach(function (f) {
+      var card = document.createElement('div');
+      card.className = 'card pf-card';
+      card.style.margin = '0';
+      var html = '<h3>' + esc(f.title || f.filename) + '</h3>';
+      html += '<div style="margin-bottom:6px"><span class="kind-tag ' + kindClass(f.file_kind) + '">' + esc(f.file_kind || '未标注') + '</span> ' +
+        '<span class="tag">' + esc(f.jurisdiction || '—') + '</span>' +
+        (f.pages ? '<span class="tag">' + f.pages + ' 页</span>' : '') +
+        (f.hash_match === true ? '<span class="tag ok">哈希与记录一致</span>' : f.hash_match === false ? '<span class="tag bad">与记录不一致，需人工复核</span>' : '<span class="tag warn">原始未登记哈希</span>') + '</div>';
+      html += '<div class="pf-meta">';
+      html += '<div><b>来源 ID：</b>' + esc(f.id) + '</div>';
+      if (f.effective_date) html += '<div><b>版本标记：</b>' + esc(f.effective_date) + '</div>';
+      if (f.checked_at) html += '<div><b>核验日期：</b>' + esc(f.checked_at) + '</div>';
+      if (f.verification) html += '<div><b>核验说明：</b>' + esc(f.verification) + '</div>';
+      if (f.regulations && f.regulations.length) html += '<div><b>关联法规：</b>' + esc(f.regulations.join('、')) + '</div>';
+      html += '<div><b>大小：</b>' + (f.size_bytes || 0).toLocaleString('zh-CN') + ' 字节</div>';
+      html += '</div>';
+      html += '<div class="hash">SHA-256 ' + esc(f.sha256) + '</div>';
+      html += '<div class="pf-actions"><a class="btn sm" href="' + esc(f.file) + '" target="_blank" rel="noopener">打开 PDF</a>';
+      if (/^https?:\/\//i.test(f.official_url || '')) html += '<a class="btn sec sm" href="' + esc(f.official_url) + '" target="_blank" rel="noopener">官方来源 ↗</a>';
+      html += '</div>';
+      card.innerHTML = html;
+      grid.appendChild(card);
+    });
+    if (!list.length) grid.innerHTML = '<div class="banner warn">没有符合条件的文件。</div>';
+    var pager = document.getElementById('pager');
+    pager.innerHTML = '';
+    if (pages > 1) {
+      var prev = document.createElement('button'); prev.className = 'btn sec sm'; prev.textContent = '上一页';
+      prev.disabled = page <= 1;
+      prev.onclick = function () { if (page > 1) { page--; render(); } };
+      var next = document.createElement('button'); next.className = 'btn sec sm'; next.textContent = '下一页';
+      next.disabled = page >= pages;
+      next.onclick = function () { if (page < pages) { page++; render(); } };
+      var info = document.createElement('span'); info.className = 'subhint'; info.textContent = '第 ' + page + ' / ' + pages + ' 页';
+      pager.appendChild(prev); pager.appendChild(info); pager.appendChild(next);
+    }
+  }
+  ['fJur', 'fGroup', 'fKind'].forEach(function (id) { document.getElementById(id).addEventListener('change', function () { page = 1; render(); }); });
+  document.getElementById('fKw').addEventListener('input', function () { page = 1; render(); });
+  var q0 = new URLSearchParams(location.search).get('q');
+  if (q0) document.getElementById('fKw').value = q0;
+  var j0 = new URLSearchParams(location.search).get('jur');
+  if (j0 && jurSel.querySelector('option[value="' + j0 + '"]')) jurSel.value = j0;
+  var bad = FILES.filter(function (f) { return f.hash_match === false; });
+  document.getElementById('hashNote').textContent = bad.length
+    ? '注意：' + bad.length + ' 份文件的实测哈希与原始登记值不一致，已标红，需人工复核后再引用。'
+    : '本次构建实测：所有已登记哈希的文件全部一致（' + FILES.filter(function (f) { return f.hash_match === true; }).length + ' 份）；其余为原始未登记哈希，已在卡片上标注。';
+  render();
 })();
 </script>
 </body>

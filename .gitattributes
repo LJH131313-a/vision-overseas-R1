@@ -1,0 +1,20 @@
+# 二进制资源永不换行转换（保证 SHA-256 归档校验在任何克隆设置下都可复现）
+*.pdf binary
+*.zip binary
+*.sqlite3 binary
+*.png binary
+*.jpg binary
+*.ico binary
+
+# 文本资源统一 LF，避免跨平台 CRLF 抖动
+*.js text eol=lf
+*.mjs text eol=lf
+*.cjs text eol=lf
+*.json text eol=lf
+*.html text eol=lf
+*.css text eol=lf
+*.yml text eol=lf
+*.md text eol=lf
+*.py text eol=lf
+*.svg text eol=lf
+.gitignore text eol=lf

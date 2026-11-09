@@ -284,6 +284,17 @@ details.box summary { cursor: pointer; color: var(--green); font-weight: 640; fo
 .kv dt { color: var(--sub); }
 .kv dd { margin: 0; }
 
+/* ---------- 服务档位徽章（M/L 合并为人话） ---------- */
+.tier { display: inline-flex; align-items: center; gap: 6px; border-radius: 999px; padding: 3px 12px; font-size: 12.5px; font-weight: 640; border: 1px solid var(--line); background: var(--soft-2); color: var(--sub); white-space: nowrap; }
+.tier::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
+.tier.sm { padding: 2px 9px; font-size: 11.5px; }
+.tier-calc { background: var(--ok-bg); border-color: var(--ok-line); color: var(--ok); }
+.tier-screen { background: var(--blue-bg); border-color: var(--blue-line); color: var(--blue); }
+.tier-nav { background: var(--amber-bg); border-color: var(--amber-line); color: var(--amber); }
+.tier-draft { background: #f1efe7; border-color: #ddd6c4; color: #6d6549; }
+.tier-none { background: #eef1ef; border-color: var(--line); color: var(--faint); }
+.pdf-link { font-size: 12px; }
+
 /* ---------- 品类选择 ---------- */
 .chip-select { display: flex; flex-wrap: wrap; gap: 7px; margin: 8px 0 12px; }
 .chip-select button { border: 1px solid var(--line); background: var(--paper); border-radius: 999px; padding: 6px 15px; color: var(--sub); font-size: 13px; min-height: 36px; }

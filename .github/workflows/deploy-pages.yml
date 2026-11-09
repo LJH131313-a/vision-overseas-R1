@@ -47,6 +47,12 @@ jobs:
       - name: 发布前检查：第二版集成检查
         run: node tests/r2-integration.test.mjs
 
+      - name: 发布前检查：第一版超集门禁（第二版不得覆盖第一版）
+        run: node tests/v1-superset.test.mjs
+
+      - name: 发布前检查：法规原文 PDF 归档完整性
+        run: node tests/policy-archive.test.mjs
+
       - name: 配置 GitHub Pages
         uses: actions/configure-pages@v5
 

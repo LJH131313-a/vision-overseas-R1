@@ -25,7 +25,7 @@ window.scrollTo = function () {};
 if (!window.URL.createObjectURL) window.URL.createObjectURL = function () { return 'blob:mock'; };
 if (!window.URL.revokeObjectURL) window.URL.revokeObjectURL = function () {};
 
-for (const s of ['data/vo-data.js', 'data/news.js', 'js/engine.js', 'js/app.js']) {
+for (const s of ['data/vo-data.js', 'data/news.js', 'data/research-models.js', 'data/policy-docs.js', 'policy-documents/manifest.js', 'js/engine.js', 'js/app.js']) {
   window.eval(readFileSync(join(ROOT, s), 'utf-8'));
 }
 
@@ -55,6 +55,7 @@ await new Promise((r) => setTimeout(r, 50));
 check('首页开始项目 → 进入第 1 步', document.getElementById('view-product').classList.contains('on'));
 check('目的地分组显示（三档）', document.querySelectorAll('#pMarket optgroup').length === 3, document.querySelectorAll('#pMarket optgroup').length);
 check('案例卡片带入按钮 8 个', [...document.querySelectorAll('#companyList button')].filter((b) => b.textContent.includes('带入本项目')).length === 8);
+check('产品页 hero 状态卡渲染（第一版断言保留）', document.querySelectorAll('#heroStatus .hstat').length >= 2);
 
 console.log('== 2. 案例带入 → 第 1 步 ==');
 const bring = [...document.querySelectorAll('#companyList button')].filter((b) => b.textContent.includes('带入本项目'));
@@ -360,6 +361,51 @@ if (curSel2) {
   await new Promise((r) => setTimeout(r, 250));
   check('显式 USD 保留且汇率输入出现', window.__VO_TEST__.current().tax.currency === 'USD' && txt('taxBody').includes('汇率'));
 } else check('显式 USD 保留', true, '未找到币种下拉');
+
+
+console.log('== 14. 服务档位与 PDF 归档 ==');
+// 电饭煲 × 马来西亚：应显示「只能查法规资料」并解释卡住的是国家数据
+window.__VO_TEST__.mutate(function (p) {
+  p.scenario.market = 'MY'; p.scenario.subcategoryId = 'K-COOK-003';
+  p.scenario.facts = { household: true, end_use: 'consumer' }; p.scenario.factsUnknown = {};
+});
+goto('product');
+await new Promise((r) => setTimeout(r, 250));
+const tierChips = [...document.querySelectorAll('#subList .tier')];
+check('品类卡显示服务档位徽章', tierChips.length > 0, tierChips.length);
+check('马来西亚档位为「只能查法规资料」', tierChips.some((t) => t.textContent.includes('只能查法规资料')), tierChips.map((t) => t.textContent).join('/'));
+check('资料成熟度以「资料 Mx」形式并列显示', [...document.querySelectorAll('#subList .tag')].some((t) => /资料 M\d/.test(t.textContent)));
+check('hero 摘要用人话档位而非 L1', txt('heroLead').includes('只能查法规资料'), txt('heroLead').slice(0, 60));
+goto('compliance');
+await new Promise((r) => setTimeout(r, 250));
+const compTxt = txt('complianceResult');
+check('初筛横幅显示服务档位徽章', !!document.querySelector('#complianceResult .tier'));
+check('横幅解释卡住的是国家数据', compTxt.includes('卡住的是这个国家的规则数据'), compTxt.slice(0, 120));
+check('术语对照折叠存在（L 与 M 两套标记）', compTxt.includes('术语对照') && compTxt.includes('资料成熟度'));
+
+// 新加坡场景：规则卡应挂本地原文 PDF 链接（归档含 SG 34 份）
+window.__VO_TEST__.mutate(function (p) {
+  p.scenario.market = 'SG'; p.scenario.subcategoryId = 'K-BEV-001';
+  p.scenario.facts = { household: true, end_use: 'consumer', voltage_ac: 230, capacity_l: 1.7, heats_liquid: true, boils_water: true, portable: true };
+  p.scenario.factsUnknown = {};
+});
+goto('compliance');
+await new Promise((r) => setTimeout(r, 300));
+const pdfLinks = [...document.querySelectorAll('#complianceResult .pdf-link a')];
+check('规则来源挂「原文 PDF」链接', pdfLinks.some((a) => a.textContent.includes('原文 PDF')), pdfLinks.length);
+check('PDF 链接指向归档文件', pdfLinks.some((a) => /policy-documents\/files\//.test(a.getAttribute('href'))), pdfLinks[0] && pdfLinks[0].getAttribute('href'));
+check('挂「归档库」入口', pdfLinks.some((a) => a.textContent.includes('归档库')));
+const pendingTxt = txt('complianceResult');
+check('待核验法规可开本地原文', pendingTxt.includes('官方原文') || pdfLinks.length > 0);
+
+// 数据说明页：档位对照表 + PDF 统计
+document.getElementById('lnkAbout').click();
+await new Promise((r) => setTimeout(r, 250));
+const aboutTxt = txt('aboutBody');
+check('数据说明含档位对照表', aboutTxt.includes('可算税并出清单') && aboutTxt.includes('只能查法规资料'));
+check('数据说明解释 M 与 L 是两个维度', aboutTxt.includes('M1/M2/M3 与 L1/L2/L3 是两套内部标记'));
+check('数据说明含 PDF 归档统计', aboutTxt.includes('法规原文 PDF 归档') && aboutTxt.includes('SHA-256'), aboutTxt.slice(0, 80));
+check('PDF 统计份数 ≥ 160', /共 (\d{3,}) 份/.test(aboutTxt) && parseInt(aboutTxt.match(/共 (\d{3,}) 份/)[1], 10) >= 160, aboutTxt.match(/共 \d+ 份/));
 
 console.log(`\n===== DOM 冒烟测试：${pass + fail} 项断言，通过 ${pass}，失败 ${fail} =====`);
 if (failures.length) { console.log('失败：', failures.join('；')); process.exit(1); }

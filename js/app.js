@@ -238,6 +238,32 @@
     return { level: 'L1', label: hasIndex ? '仅法规资料' : '超出数据覆盖' };
   }
 
+  /** 服务档位：把 M（资料成熟度）与 L（服务能力）合成一句用户能懂的话 */
+  var TIER_DEF = {
+    calc: { label: '可算税并出清单', cls: 'tier-calc', hint: '有可执行规则 + 目的国 HS 候选 + 已核税费画像，可逐行复算分项（仍不等于正式合规或最终归类）' },
+    screen: { label: '可出合规清单', cls: 'tier-screen', hint: '有可执行条件规则：能追问事实、出适用判断与行动材料；税额可能因数据不足被阻断' },
+    nav: { label: '只能查法规资料', cls: 'tier-nav', hint: '该法域只有法规索引、没有可执行条款规则：只能检索原文与显示缺口，不输出适用性或税额结论' },
+    draft: { label: '品类资料未补齐', cls: 'tier-draft', hint: '该品类资料为草案等级（M1：未做两个型号的官方闭环），只做资料导航' },
+    none: { label: '数据未覆盖', cls: 'tier-none', hint: '该目的地在本数据包中既无可执行规则也无法规索引：不会输出任何结论' }
+  };
+  function serviceTier(market, sub) {
+    if (!market || !sub) return { key: 'none', def: TIER_DEF.none, why: '先选择目的地与品类后，这里会显示该组合能做到哪一步。' };
+    var chain = chainOf(market);
+    var sup = supportOf(market, sub);
+    var idxCount = D.regulations.filter(function (r) { return chain.indexOf(r.jurisdiction) >= 0; }).length;
+    var ruleCount = D.rules.filter(function (r) { return chain.indexOf(r.jurisdiction) >= 0 || r.jurisdiction === 'ALL'; }).length;
+    var mk = JUR[market] ? JUR[market].name : market;
+    if (sup.level === 'L3') return { key: 'calc', def: TIER_DEF.calc, why: mk + '对该品类有可执行规则，且已收录目的国 HS 候选与已核税费画像（服务能力 L3；品类资料成熟度 ' + sub.evidence + '）。' };
+    if (sup.level === 'L2') return { key: 'screen', def: TIER_DEF.screen, why: mk + '法域链内有 ' + ruleCount + ' 条可执行规则可做条件初筛（服务能力 L2；品类资料成熟度 ' + sub.evidence + '）。税费分项是否可算，取决于有没有该组合的税费画像。' };
+    if (sub.evidence === 'M1') return { key: 'draft', def: TIER_DEF.draft, why: '「' + sub.name + '」资料仍是草案等级 M1（未完成两个型号的官方闭环），即使换到有规则的市场也只能资料导航。' };
+    if (idxCount) return { key: 'nav', def: TIER_DEF.nav, why: mk + '在数据包里有 ' + idxCount + ' 条法规索引、0 条可执行规则（服务能力 L1）。注意：品类「' + sub.name + '」的资料成熟度是 ' + sub.evidence + '，卡住的是这个国家的规则数据，不是产品资料。' };
+    return { key: 'none', def: TIER_DEF.none, why: mk + '在本数据包中既无可执行规则也无法规索引（服务能力 L1 以下），不会输出任何结论。' };
+  }
+  function tierBadge(tier, small) {
+    var b = h('span', { class: 'tier ' + tier.def.cls + (small ? ' sm' : ''), title: tier.def.hint }, tier.def.label);
+    return b;
+  }
+
   /* ================= 导航（侧栏向导） ================= */
   var flowSteps = ['home', 'product', 'compliance', 'tax', 'news', 'qianwen', 'report'];
   var currentTab = 'home';
@@ -293,6 +319,28 @@
     var el = $(id);
     if (!el) return;
     el.className = 'dot' + (cls ? ' ' + cls : '');
+  }
+
+  /* ---------- 本地法规原文 PDF（构建时归档 + SHA-256 实测） ---------- */
+  var POLICY = window.VO_POLICY_FILES || { files: [] };
+  var policyById = {};
+  (POLICY.files || []).forEach(function (f) { if (f.id && policyById[f.id] === undefined) policyById[f.id] = f; });
+  function pdfLinks(ids) {
+    var hits = (ids || []).map(function (id) { return policyById[id]; }).filter(Boolean);
+    if (!hits.length) return null;
+    var wrap = h('span', { class: 'pdf-link' });
+    hits.slice(0, 3).forEach(function (f, i) {
+      if (i) wrap.appendChild(document.createTextNode(' '));
+      wrap.appendChild(h('a', {
+        href: f.file + '?v=' + String(f.sha256).slice(0, 8),
+        target: '_blank', rel: 'noopener noreferrer',
+        title: f.file_kind + '｜SHA-256 构建时实测 ' + String(f.sha256).slice(0, 12) + '…'
+      }, '原文 PDF' + (f.pages ? '（' + f.pages + ' 页）' : '')));
+    });
+    if (hits.length > 3) wrap.appendChild(h('span', { class: 'subhint' }, ' 等' + hits.length + ' 份'));
+    wrap.appendChild(document.createTextNode(' '));
+    wrap.appendChild(h('a', { href: 'policy-documents/index.html?q=' + encodeURIComponent(ids[0]), target: '_blank', rel: 'noopener noreferrer' }, '归档库 ↗'));
+    return wrap;
   }
 
   /* ================= 第 1 步：企业案例带入 ================= */
@@ -456,10 +504,11 @@
         return (order[ra.level] === undefined ? 3 : order[ra.level]) - (order[rb.level] === undefined ? 3 : order[rb.level]);
       });
     subs.forEach(function (s) {
-      var sup = supportOf(market, s);
+      var tier = serviceTier(market, s);
       var on = p.scenario.subcategoryId === s.id;
       var item = h('div', {
         class: 'sub-item' + (on ? ' on' : '') + (s.evidence === 'M1' ? ' m1' : ''),
+        title: tier.def.hint + '　' + tier.why,
         onclick: function () {
           proj().scenario.subcategoryId = s.id;
           touch();
@@ -468,9 +517,8 @@
       });
       item.appendChild(h('div', { class: 's-name' }, s.name));
       var badges = h('div', { class: 's-badges' });
-      badges.appendChild(h('span', { class: 'tag ' + (sup.level === 'L3' ? 'ok' : sup.level === 'L2' ? 'info' : 'warn') },
-        market ? sup.label : '选目的地后显示支持度'));
-      badges.appendChild(h('span', { class: 'tag' }, s.evidence));
+      badges.appendChild(tierBadge(tier, true));
+      badges.appendChild(h('span', { class: 'tag', title: '资料成熟度 ' + s.evidence + '（描述产品资料本身，与服务档位是两个维度）' }, '资料 ' + s.evidence));
       item.appendChild(badges);
       item.appendChild(h('div', { class: 'meta', style: 'font-size:12px;color:var(--faint);margin-top:5px' }, s.core + '｜' + s.keyParams));
       host.appendChild(item);
@@ -627,15 +675,14 @@
     bits.push(p.scenario.market ? '目的地：' + (JUR[p.scenario.market] ? JUR[p.scenario.market].name : p.scenario.market) : '未选目的地');
     bits.push(sub ? '品类：' + sub.name : '未选品类');
     if (p.scenario.market && sub) {
-      var sup = supportOf(p.scenario.market, sub);
-      bits.push('支持度：' + sup.label);
+      bits.push('能做到：' + serviceTier(p.scenario.market, sub).def.label);
       var ks = keyQuestionFields();
       bits.push('关键事实待答 ' + ks.length + ' 项');
     }
     var lead = $('heroLead');
     if (lead) {
       lead.textContent = sub && p.scenario.market
-        ? '已登记：' + sub.name + ' × ' + (JUR[p.scenario.market] ? JUR[p.scenario.market].name : p.scenario.market) + '（' + supportOf(p.scenario.market, sub).label + '）。'
+        ? '已登记：' + sub.name + ' × ' + (JUR[p.scenario.market] ? JUR[p.scenario.market].name : p.scenario.market) + ' —— ' + serviceTier(p.scenario.market, sub).def.label + '。'
         : '先选好「产品 × 目的地」，系统只追问影响当前判断的关键事实；案例资料可一键带入。';
     }
     var hs = $('heroStatus');
@@ -706,7 +753,11 @@
     if (r.locator || (r.sourceIds && r.sourceIds.length)) {
       var src = h('div', { class: 'src' });
       if (r.locator) src.appendChild(document.createTextNode('条款定位：' + r.locator + '　'));
-      if (r.sourceIds && r.sourceIds.length) src.appendChild(sourceLinks(r.sourceIds));
+      if (r.sourceIds && r.sourceIds.length) {
+        src.appendChild(sourceLinks(r.sourceIds));
+        var plr2 = pdfLinks(r.sourceIds);
+        if (plr2) { src.appendChild(document.createTextNode('　')); src.appendChild(plr2); }
+      }
       card.appendChild(src);
     }
     return card;
@@ -723,8 +774,24 @@
     var sc = runCompliance();
     $('complianceRunInfo').textContent = '实时计算：可能适用 ' + sc.applicableRules.length + ' 条 · 待补事实 ' + sc.unknownRules.length + ' 条 · 不适用 ' + sc.excludedRules.length + ' 条（快照 ' + E.SNAPSHOT_DATE + '，法域链 ' + sc.jurisdictionChain.join(' → ') + '）';
 
-    host.appendChild(h('div', { class: 'banner ' + (sc.coverage.level === 'L1' ? 'warn' : 'info') },
-      '服务覆盖等级：' + sc.coverage.level + '（' + sc.coverage.label + '）。' + sc.coverageDefinition));
+    var tier = serviceTier(p.scenario.market, subById(p.scenario.subcategoryId));
+    var covBanner = h('div', { class: 'banner ' + (tier.key === 'calc' || tier.key === 'screen' ? 'info' : 'warn') });
+    covBanner.appendChild(tierBadge(tier));
+    covBanner.appendChild(document.createTextNode(' ' + tier.why));
+    host.appendChild(covBanner);
+    var legend = h('details', { class: 'box' });
+    legend.appendChild(h('summary', {}, '术语对照：服务覆盖等级 L1–L3 与资料成熟度 M1–M3'));
+    var lg = document.createElement('div');
+    lg.innerHTML = '<p class="subhint">本页把两个内部维度合并成上面那句「能做到什么」。原始术语保留如下，便于与队友文档对照：</p>' +
+      '<table class="t"><thead><tr><th>页面显示档位</th><th>内部服务能力 L</th><th>含义</th></tr></thead><tbody>' +
+      '<tr><td>可算税并出清单</td><td>L3</td><td>含 L2 全部，另有目的国 HS 候选与已核税费画像，可逐行复算分项</td></tr>' +
+      '<tr><td>可出合规清单</td><td>L2</td><td>有可执行条件规则：追问事实、出适用判断与行动材料</td></tr>' +
+      '<tr><td>只能查法规资料</td><td>L1</td><td>只有法规索引：可检索原文与显示缺口，不输出适用性或税额结论</td></tr>' +
+      '<tr><td>品类资料未补齐</td><td>—</td><td>品类证据为 M1 草案，未做两个型号的官方闭环</td></tr>' +
+      '<tr><td>数据未覆盖</td><td>—</td><td>该法域既无规则也无索引</td></tr></tbody></table>' +
+      '<p class="subhint"><b>M1/M2/M3 量的是产品资料本身</b>（M3＝官方多型号且说明书正文已核；M2＝官方系列页多型号或明确配置差异；M1＝仅有品类入口或相邻系列证据，属草案），<b>与目的地无关</b>；<b>L1/L2/L3 量的是「品类 × 目的地」这个组合</b>网站能做到哪一步。因此 M3 的电饭煲遇上没有规则数据的马来西亚，仍只能「查法规资料」——卡住的是这个国家的数据，不是产品资料。</p>';
+    legend.appendChild(lg);
+    host.appendChild(legend);
     sc.gaps.forEach(function (g) { host.appendChild(h('div', { class: 'banner bad' }, '覆盖缺口：' + g)); });
 
     // 待补事实置顶（有则优先处理）
@@ -757,7 +824,8 @@
         var it = h('div', { style: 'font-size:13px;margin:5px 0' },
           '· ' + reg.name + '（' + reg.id + '，核验 ' + reg.checkedAt + '）',
           h('span', { class: 'tag warn' }, reg.maturity === 'verified_index_only' ? '索引级' : reg.maturity),
-          reg.officialUrl ? h('a', { href: reg.officialUrl, target: '_blank', rel: 'noopener noreferrer', style: 'margin-left:6px' }, '原文') : null);
+          reg.officialUrl ? h('a', { href: reg.officialUrl, target: '_blank', rel: 'noopener noreferrer', style: 'margin-left:6px' }, '官方原文') : null,
+          (function () { var plr = pdfLinks(reg.sourceIds); return plr ? h('span', { style: 'margin-left:6px' }, plr) : null; })());
         d3.appendChild(it);
       });
       g2.appendChild(d3);
@@ -1353,7 +1421,8 @@
     if (sc) {
       lines.push('');
       lines.push('## 四、本地规则引擎初筛结果（规则提示，非千问输出）');
-      lines.push('- 覆盖等级：' + sc.coverage.level + '（' + sc.coverage.label + '）');
+      var tq = serviceTier(p.scenario.market, sub);
+      lines.push('- 服务档位：' + tq.def.label + '（内部服务能力 ' + sc.coverage.level + '；品类资料成熟度 ' + (sub ? sub.evidence : '—') + '）。原因：' + tq.why);
       lines.push('- 可能适用规则 ' + sc.applicableRules.length + ' 条：' + (sc.applicableRules.map(function (r) { return r.id + ' ' + r.name; }).join('；') || '无'));
       lines.push('- 待补事实规则 ' + sc.unknownRules.length + ' 条；缺失字段：' + (sc.missingFields.join('、') || '无'));
       lines.push('- 不适用规则 ' + sc.excludedRules.length + ' 条；待规则核验法规 ' + sc.pendingRegulations.length + ' 条');
@@ -1647,7 +1716,9 @@
     if (!R.sc) s3.appendChild(h('p', { class: 'subhint' }, '未完成登记，无法评估。'));
     else {
       var sc = R.sc;
-      s3.appendChild(h('p', {}, '覆盖等级：', h('b', {}, sc.coverage.level + '（' + sc.coverage.label + '）'), '；法域链：' + sc.jurisdictionChain.join(' → ') + '；基准日期：' + sc.asOf));
+      var t3 = serviceTier(p.scenario.market, R.sub);
+      s3.appendChild(h('p', {}, '服务档位：', h('b', {}, t3.def.label), '（内部服务能力 ' + sc.coverage.level + '；品类资料成熟度 ' + (R.sub ? R.sub.evidence : '—') + '）；法域链：' + sc.jurisdictionChain.join(' → ') + '；基准日期：' + sc.asOf));
+      s3.appendChild(h('p', { class: 'subhint' }, t3.why));
       sc.gaps.forEach(function (g) { s3.appendChild(h('div', { class: 'banner bad' }, '覆盖缺口：' + g)); });
       var rt = h('table', { class: 't' });
       rt.appendChild(h('thead', {}, h('tr', {}, h('th', {}, '规则'), h('th', {}, '结论'), h('th', {}, '义务/原因'), h('th', {}, '依据'))));
@@ -1825,9 +1896,24 @@
       h('span', { class: 'tag brand' }, '材料 ' + D.materials.length),
       h('span', { class: 'tag brand' }, 'HS 候选 ' + D.hsCandidates.length),
       h('span', { class: 'tag brand' }, '税费画像 ' + D.taxProfiles.length)));
-    Object.keys(D.meta.levels).forEach(function (k) {
-      n.appendChild(h('p', { style: 'margin:4px 0;font-size:13.5px' }, h('span', { class: 'tag brand' }, k), ' ' + D.meta.levels[k]));
-    });
+    var tierTable = h('div', {});
+    tierTable.appendChild(h('h4', { style: 'font-size:14px;margin:12px 0 6px' }, '页面显示档位 ↔ 内部服务能力 L / 资料成熟度 M'));
+    var ttier = h('table', { class: 't' });
+    ttier.innerHTML = '<thead><tr><th>页面档位</th><th>内部 L</th><th>含义</th></tr></thead><tbody>' +
+      '<tr><td>可算税并出清单</td><td>L3</td><td>有可执行规则 + 目的国 HS 候选 + 已核税费画像，可逐行复算</td></tr>' +
+      '<tr><td>可出合规清单</td><td>L2</td><td>有可执行条件规则：追问事实、出判断与行动材料；税额可能被阻断</td></tr>' +
+      '<tr><td>只能查法规资料</td><td>L1</td><td>只有法规索引：检索原文、显示缺口，不输出结论</td></tr>' +
+      '<tr><td>品类资料未补齐</td><td>—</td><td>品类证据 M1 草案（未做两个型号官方闭环）</td></tr>' +
+      '<tr><td>数据未覆盖</td><td>—</td><td>该法域既无规则也无索引</td></tr></tbody>';
+    tierTable.appendChild(h('div', { class: 'tbl-wrap' }, ttier));
+    var mDist = D.subcategories.reduce(function (a, x) { a[x.evidence] = (a[x.evidence] || 0) + 1; return a; }, {});
+    tierTable.appendChild(h('p', { class: 'subhint', style: 'margin-top:8px' },
+      'M1/M2/M3 与 L1/L2/L3 是两套内部标记：M 量「产品资料本身」的成熟度（M3＝官方多型号且说明书正文已核；M2＝官方系列页多型号或明确配置差异；M1＝仅品类入口或相邻系列证据，属草案），与目的地无关；L 量「品类 × 目的地」这个组合网站能做到哪一步。页面统一显示为上面一列的人话档位，M/L 原值保留在品类卡「资料 Mx」与档位说明里。'));
+    tierTable.appendChild(h('p', { class: 'subhint' },
+      '例：电饭煲资料为 M3，但马来西亚没有可执行规则，所以该组合档位是「只能查法规资料」——卡住的是这个国家的数据，不是产品资料。'));
+    tierTable.appendChild(h('p', { class: 'subhint' },
+      '本站 M 等级分布：' + Object.keys(mDist).sort().map(function (k) { return k + ' ' + mDist[k] + ' 个小类'; }).join('；') + '。'));
+    n.appendChild(tierTable);
     host.appendChild(n);
 
     var g = h('div', { class: 'card' });
@@ -1843,6 +1929,17 @@
     g.appendChild(h('div', { class: 'tbl-wrap' }, glist));
     g.appendChild(h('p', { class: 'subhint' }, '覆盖矩阵缺口合计 ' + D.gapsSummary.total + ' 条（法域 × 主题空白、成员国实施缺口与来源访问问题的合计）。'));
     host.appendChild(g);
+
+    var pc = h('div', { class: 'card' });
+    pc.appendChild(h('h3', {}, '法规原文 PDF 归档'));
+    var PF = window.VO_POLICY_FILES || { files: [], totals: {} };
+    pc.appendChild(h('p', { class: 'subhint' },
+      '共 ' + (PF.files || []).length + ' 份，' + (((PF.totals && PF.totals.bytes) || 0) / 1048576).toFixed(1) + ' MB；每份 SHA-256 与大小为构建时实测，并与原始登记哈希比对：一致 ' + (PF.totals && PF.totals.hashVerified) + ' 份、不一致 ' + (PF.totals && PF.totals.hashMismatch) + ' 份（不一致会在归档页标红并提示人工复核）。'));
+    pc.appendChild(h('p', { class: 'subhint' },
+      '分组：正式项目网页运行目录 ' + ((PF.totals && PF.totals.groups && PF.totals.groups.web) || 0) + ' 份（含官方原始 PDF 与 HTML 正文抽取阅读版，性质逐份标注）、研究库官方原件 ' + ((PF.totals && PF.totals.groups && PF.totals.groups.official) || 0) + ' 份、二次交付上传 SG 原件 ' + ((PF.totals && PF.totals.groups && PF.totals.groups.SG) || 0) + ' 份、产品说明书样本 ' + ((PF.totals && PF.totals.groups && PF.totals.groups['product-manuals']) || 0) + ' 份（属产品事实证据，不是法规原文）。'));
+    pc.appendChild(h('p', { class: 'subhint' }, '归档 ≠ 全文已结构化，≠ 规则已接入引擎，≠ 法规现行有效；逐条法律意见以官方链接与主管机关公告为准。'));
+    pc.appendChild(h('p', {}, h('a', { href: 'policy-documents/index.html', target: '_blank', rel: 'noopener noreferrer' }, '打开政策原文归档库 →')));
+    host.appendChild(pc);
 
     var nw = h('div', { class: 'card' });
     nw.appendChild(h('h3', {}, '新闻更新机制与千问 API 边界'));
