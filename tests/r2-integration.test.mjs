@@ -41,17 +41,18 @@ for (const d of ['policy-documents/SG', 'research', 'modules', 'data', 'js', 'cs
 
 console.log('== 2. 发布包不应包含的文件 ==');
 const banned = [];
+const ALLOWED_DOT = new Set(['.gitignore', '.gitattributes']);
+const BANNED_NAME = /\.sqlite3?$|\.zip$|\.patch$|CHANGE\.patch|\.pem$|\.key$|\.env$|\.log$/i;
 (function walk(dir) {
   for (const e of readdirSync(dir, { withFileTypes: true })) {
     if (e.name === '.git' || e.name === 'node_modules') continue;
     const p = join(dir, e.name);
     if (e.isDirectory()) walk(p);
-    else if (/\.sqlite3?$|\.zip$|\.patch$|CHANGE\.patch/i.test(e.name) || e.name.startsWith('.')) {
-      if (e.name !== '.gitignore' && e.name !== '.github') banned.push(p);
-    }
+    else if (BANNED_NAME.test(e.name)) banned.push(p);
+    else if (e.name.startsWith('.') && !ALLOWED_DOT.has(e.name)) banned.push(p);
   }
 })(ROOT);
-check('无 SQLite / 原始 ZIP / 补丁文件 / 密钥文件', banned.length === 0, banned.join(', '));
+check('无 SQLite / 原始 ZIP / 补丁 / 密钥 / 日志文件（.gitignore 与 .gitattributes 为正常配置）', banned.length === 0, banned.join(', '));
 
 console.log('== 3. 独立 localStorage 键 ==');
 const app = read('js/app.js');
