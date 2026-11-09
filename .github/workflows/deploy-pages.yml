@@ -63,12 +63,12 @@ jobs:
         run: node tests/capability.test.mjs
 
       - name: 发布前检查：中英双语与结果一致性
-        run: node tests/i18n.test.mjs
-
-      - name: 发布前检查：页面冒烟（DOM）
         run: |
           npm install --no-save jsdom
-          node tests/dom-smoke.mjs
+          node tests/i18n.test.mjs
+
+      - name: 发布前检查：页面冒烟（DOM）
+        run: node tests/dom-smoke.mjs
 
       - name: 配置 GitHub Pages
         uses: actions/configure-pages@v5
