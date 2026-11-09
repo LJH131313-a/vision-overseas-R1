@@ -47,7 +47,7 @@ check('VO_DATA 86 条规则', window.VO_DATA.rules.length === 86);
 check('VO_NEWS 已加载', window.VO_NEWS.items.length > 0);
 check('侧栏 7 个导航项（含首页）', document.querySelectorAll('#sideNav .nav-item').length === 7);
 check('默认显示首页', document.getElementById('view-home').classList.contains('on'));
-check('首页封面与五步引导渲染', document.getElementById('view-home').textContent.includes('让每一款小家电') && document.querySelectorAll('.hs-card').length === 5);
+check('首页封面与四步引导渲染', document.getElementById('view-home').textContent.includes('让每一款小家电') && document.querySelectorAll('.hs-card').length === 4);
 
 console.log('== 1b. 首页 → 进入第 1 步 ==');
 document.getElementById('btnHomeStart').click();
@@ -90,7 +90,7 @@ mSel.dispatchEvent(new window.Event('change'));
 await new Promise((r) => setTimeout(r, 60));
 goto('compliance');
 const comp = txt('complianceResult');
-check('覆盖等级横幅', comp.includes('服务覆盖等级'));
+check('覆盖等级横幅', comp.includes('当前组合支持'));
 check('待补事实置顶（有未答关键事实）', document.querySelectorAll('#complianceResult .group-state').length >= 2);
 check('可能适用分组', comp.includes('可能适用'));
 check('不适用+待核验合并分组', comp.includes('单条规则不适用') && comp.includes('待规则核验'));
@@ -168,7 +168,7 @@ check('关键词筛选空结果提示', txt('newsBody').includes('没有符合�
 console.log('== 7. 千问辅助（API mock） ==');
 goto('qianwen');
 check('主卡为在线分析', txt('qianwenBody').includes('在线分析：一键调用千问 API'));
-check('手动闭环保留为折叠', txt('qianwenBody').includes('手动闭环'));
+check('手动分析保留为折叠', txt('qianwenBody').includes('手动分析'));
 window.__VO_TEST__.setApiSettings({ apiKey: '' });
 goto('qianwen');
 [...document.querySelectorAll('#qianwenBody .btn')].find((b) => b.textContent.includes('调用千问 API')).click();
@@ -190,7 +190,7 @@ const resp0 = window.__VO_TEST__.current().qianwen.responses[0];
 check('API 回复自动保存', resp0 && resp0.via === 'api' && resp0.model === 'qwen-mock');
 check('回复标记 API 调用', txt('qianwenBody').includes('千问回复（API 调用 · qwen-mock）'));
 // 任务生成 + 手动粘贴
-const genBtn = [...document.querySelectorAll('#qianwenBody summary')].find((s) => s.textContent.includes('手动闭环'));
+const genBtn = [...document.querySelectorAll('#qianwenBody summary')].find((s) => s.textContent.includes('手动分析'));
 genBtn.parentElement.open = true;
 [...genBtn.parentElement.querySelectorAll('button')].find((b) => b.textContent.includes('生成分析任务')).click();
 await new Promise((r) => setTimeout(r, 250));
@@ -254,7 +254,7 @@ check('研究带入：项目名含品牌型号', rp.name.includes('R20'));
 // 千问任务包含研究证据
 goto('qianwen');
 window.__VO_TEST__.setApiSettings({ apiKey: '' });
-const sum0 = [...document.querySelectorAll('#qianwenBody summary')].find((x) => x.textContent.includes('手动闭环'));
+const sum0 = [...document.querySelectorAll('#qianwenBody summary')].find((x) => x.textContent.includes('手动分析'));
 if (sum0) sum0.parentElement.open = true;
 const gen0 = [...document.querySelectorAll('#qianwenBody button')].find((b) => b.textContent.includes('生成分析任务'));
 gen0.click();

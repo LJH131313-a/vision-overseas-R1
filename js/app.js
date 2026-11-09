@@ -56,8 +56,10 @@
   function sourceLink(id) {
     var s = sourceMap[id];
     if (!s) return h('span', { class: 'tag' }, id);
-    var a = h('a', { href: s.url || '#', target: '_blank', rel: 'noopener noreferrer' }, s.title || id);
-    return h('span', { class: 'tag brand', title: (s.verification ? '核验状态：' + s.verification + '；' : '') + '核验日期：' + (s.checkedAt || '未记录') }, a);
+    var a = h('a', { href: s.pdfPath || s.url || '#', target: '_blank', rel: 'noopener noreferrer' }, (s.title || id) + (s.pdfPath ? ' · PDF' : /\.pdf(?:[?#]|$)/i.test(s.url || '') ? ' · 官方 PDF' : ' · 查看官方网页'));
+    var related = { 'SRC-195': 'SG-CPSR-consolidated-20250701.pdf', 'SRC-199': 'SG-CPSR-consolidated-20250701.pdf', 'SRC-161': 'SG-CPSR-consolidated-20250701.pdf', 'SRC-162': 'SG-CPSR-consolidated-20250701.pdf' }[id];
+    if (related) return h('span', { class: 'tag brand' }, h('a', { href: 'policy-documents/SG/' + related, target: '_blank', rel: 'noopener noreferrer' }, 'CPSR 法规 PDF（2025-07-01 版）'), ' · ', a);
+    return h('span', { class: 'tag brand', title: (s.verification ? '版本：' + (s.pdfVersion || '见官方来源') + '；官方来源：' + s.url + '；' : '') + '核验日期：' + (s.checkedAt || '未记录') }, a);
   }
   function sourceLinks(ids) {
     var wrap = h('span', {});
@@ -207,6 +209,15 @@
     return out;
   }
 
+
+  var homeGroups = $('homeGroups');
+  if (homeGroups) D.groups.forEach(function (g) {
+    var members = D.subcategories.filter(function (s) { return s.group === g.id; });
+    homeGroups.appendChild(h('button', { type: 'button', class: 'cat-card', onclick: function () {
+      proj().scenario.subcategoryId = members[0].id; selectedGroup = g.id; proj().hsChoice = ''; proj().tax.hsReviewed = false; touch(); showTab('product');
+    } }, h('h4', {}, g.name), h('p', {}, members.length + ' 个产品小类'), h('span', { class: 'text-button' }, '选择产品 →')));
+  });
+
   /* ================= 派生数据与覆盖判断 ================= */
   var ruleJ = {};
   D.rules.forEach(function (r) { ruleJ[r.jurisdiction] = true; });
@@ -222,20 +233,8 @@
   function supportOf(market, sub) {
     if (!market) return { level: '', label: '未选目的地' };
     if (!sub) return { level: '', label: '未选品类' };
-    if (sub.evidence === 'M1') return { level: 'L1', label: '仅资料导航（M1 草案）' };
-    var chain = chainOf(market);
-    var prof = null;
-    D.coverageProfiles.forEach(function (c) { if (c.market === market && c.legacy === sub.legacy) prof = c; });
-    var linked = {};
-    D.productRuleLinks.forEach(function (l) { if (l.sub === sub.id) linked[l.ruleId] = true; });
-    var hasT3 = D.rules.some(function (r) {
-      return r.origin === 'task3_verified_rule' && linked[r.id] && chain.indexOf(r.jurisdiction) >= 0;
-    });
-    if (prof && prof.level === 'L3' && TAX_MARKETS[market]) return { level: 'L3', label: '可复算税费' };
-    if (prof) return { level: prof.level === 'L3' ? 'L2' : prof.level, label: prof.label || '结构化初筛' };
-    if (hasT3) return { level: 'L2', label: '条件初筛' };
-    var hasIndex = D.regulations.some(function (r) { return chain.indexOf(r.jurisdiction) >= 0; });
-    return { level: 'L1', label: hasIndex ? '仅法规资料' : '超出数据覆盖' };
+    var cov = E.evaluateScenario(D, { market: market, subcategoryId: sub.id, facts: {} }).coverage;
+    return { level: cov.level, label: cov.level === 'L1' ? '支持法规查询' : '支持合规初筛' };
   }
 
   /* ================= 导航（侧栏向导） ================= */
@@ -264,10 +263,29 @@
     else if (name === 'about') renderAbout();
   }
   /** 回答事实/修改输入后统一刷新：重渲染当前视图 + 步骤状态点 */
+  var refreshing = false;
   function refreshAll() {
+    if (refreshing) return;
+    refreshing = true;
+    try {
+    var active = document.activeElement;
+    var qa = active && active.closest('[data-fact]');
+    var key = qa && qa.getAttribute('data-fact');
+    var index = qa ? Array.from(qa.querySelectorAll('input,select,button')).indexOf(active) : -1;
+    var top = qa && qa.getBoundingClientRect().top;
+    var y = window.scrollY;
     renderTab(currentTab);
+    if (key) {
+      var next = Array.from(document.querySelectorAll('[data-fact]')).find(function (n) { return n.getAttribute('data-fact') === key; });
+      if (next) {
+        var control = next.querySelectorAll('input,select,button')[index];
+        if (control) control.focus({ preventScroll: true });
+        window.scrollTo(0, window.scrollY + next.getBoundingClientRect().top - top);
+      } else window.scrollTo(0, y);
+    }
     if (currentTab !== 'product' && currentTab !== 'about') updateDots();
     else { updateDots(); }
+    } finally { refreshing = false; }
   }
   function updateDots() {
     var p = proj();
@@ -405,7 +423,7 @@
     var sel = $('pMarket');
     clear(sel);
     sel.appendChild(h('option', { value: '' }, '请选择目的地'));
-    var g1 = h('optgroup', { label: '可复算税费（SG / AU）' });
+    var g1 = h('optgroup', { label: '部分产品支持税费测算（SG / AU）' });
     var g2 = h('optgroup', { label: '可条件初筛' });
     var g3 = h('optgroup', { label: '仅法规资料（选择后只会显示导航与缺口）' });
     D.jurisdictions.forEach(function (j) {
@@ -419,11 +437,11 @@
     $('marketNote').textContent = marketNoteText(p.scenario.market);
   }
   function marketNoteText(code) {
-    if (!code) return '目的地决定允许进入的法域规则集合（含显式继承的上位法域）；不跨法域默认替代。「仅法规资料」档位的法域不会生成初筛结论，只会显示缺口与导航。';
+    if (!code) return '选择实际销售目的地。各地适用要求不同，支持范围将在选品后显示。';
     var j = JUR[code];
     if (!j) return '';
     var inherits = (j.inherits || []).map(function (c) { return JUR[c] ? JUR[c].name : c; }).join('、');
-    var tier = TAX_MARKETS[code] ? '该档位：可复算税费 + 条件初筛。' : marketHasRules(code) ? '该档位：条件初筛（HS/税费按缺口显示）。' : '该档位：仅法规资料导航，不会生成初筛或税额结论。';
+    var tier = TAX_MARKETS[code] ? '部分产品支持税费测算与合规初筛，请查看所选产品的支持标签。' : marketHasRules(code) ? '该档位：条件初筛（HS/税费按缺口显示）。' : '该档位：仅法规资料导航，不会生成初筛或税额结论。';
     return (j.note || '') + (inherits ? '；继承：' + inherits + '。' : '') + ' ' + tier;
   }
 
@@ -461,7 +479,7 @@
       var item = h('div', {
         class: 'sub-item' + (on ? ' on' : '') + (s.evidence === 'M1' ? ' m1' : ''),
         onclick: function () {
-          proj().scenario.subcategoryId = s.id;
+          proj().scenario.subcategoryId = s.id; proj().hsChoice = ''; proj().tax.hsReviewed = false;
           touch();
           refreshAll();
         }
@@ -470,15 +488,16 @@
       var badges = h('div', { class: 's-badges' });
       badges.appendChild(h('span', { class: 'tag ' + (sup.level === 'L3' ? 'ok' : sup.level === 'L2' ? 'info' : 'warn') },
         market ? sup.label : '选目的地后显示支持度'));
-      badges.appendChild(h('span', { class: 'tag' }, s.evidence));
+      var hasTax = D.taxProfiles.some(function (t) { return t.market === market && t.product_type && t.product_type === s.legacy; });
+      if (hasTax) badges.appendChild(h('span', { class: 'tag ok' }, '支持税费测算'));
       item.appendChild(badges);
       item.appendChild(h('div', { class: 'meta', style: 'font-size:12px;color:var(--faint);margin-top:5px' }, s.core + '｜' + s.keyParams));
       host.appendChild(item);
     });
     var sub = subById(p.scenario.subcategoryId);
     $('subNote').textContent = sub
-      ? '已选：' + sub.name + '（' + sub.id + '，证据 ' + sub.evidence + '）。可变配置：' + sub.variable + '。HS 相关特征：' + sub.hsFeatures + '。'
-      : '小类决定动态问题、规则候选路由与 HS 候选；M1 为草案证据等级，仅资料导航。';
+      ? '已选：' + sub.name + '。可变配置：' + sub.variable + '。HS 相关特征：' + sub.hsFeatures + '。'
+      : '选择产品后查看适用要求。产品参数帮助合规判断与归类，税率还取决于目的地、原产地及进口日期。';
   }
 
   var BIZ_FACTS = [
@@ -497,7 +516,7 @@
   }
   function triControl(label, key, whyText) {
     var val = getFact(key);
-    var wrap = h('div', { class: 'qa' + (val !== '' && val !== 'unknown' ? ' answered' : '') });
+    var wrap = h('div', { 'data-fact': key, class: 'qa' + (val !== '' && val !== 'unknown' ? ' answered' : '') });
     wrap.appendChild(h('div', { class: 'q' }, label));
     if (val === 'unknown') wrap.appendChild(h('div', { class: 'why' }, '已标记不确定：相关判断保持「待确认」，不按否处理。'));
     else if (whyText) wrap.appendChild(h('div', { class: 'meta' }, whyText));
@@ -533,6 +552,16 @@
     if (!sc) return [];
     return sc.questions;
   }
+  var questionSession = { context: '', questions: [] };
+  function displayedKeyQuestions() {
+    var p = proj();
+    var context = p.id + ':' + p.scenario.market + ':' + p.scenario.subcategoryId;
+    if (questionSession.context !== context) questionSession = { context: context, questions: [] };
+    keyQuestionFields().forEach(function (q) {
+      if (!questionSession.questions.some(function (old) { return old.field.key === q.field.key; })) questionSession.questions.push(q);
+    });
+    return questionSession.questions;
+  }
   function renderKeyFacts() {
     var host = $('keyFacts');
     var hint = $('keyFactsHint');
@@ -543,8 +572,8 @@
       host.appendChild(h('p', { class: 'subhint' }, '选定目的地与品类后，这里只显示影响判断的问题。'));
       return;
     }
-    var ks = keyQuestionFields();
-    hint.textContent = '当前 ' + ks.length + ' 项待答';
+    var ks = displayedKeyQuestions();
+    hint.textContent = '当前 ' + keyQuestionFields().length + ' 项待答；已填写内容保留在原位';
     if (!ks.length) {
       host.appendChild(h('div', { class: 'banner ok' }, '影响当前判断的关键事实已齐备，可进入合规初筛。'));
       return;
@@ -561,14 +590,14 @@
     var qs = dynQuestions();
     if (!qs.length) { host.appendChild(h('p', { class: 'subhint' }, '该品类暂无更多已发布参数。')); return; }
     var keySet = {};
-    keyQuestionFields().forEach(function (q) { keySet[q.field.key] = true; });
+    displayedKeyQuestions().forEach(function (q) { keySet[q.field.key] = true; });
     var rest = qs.filter(function (q) { return !keySet[q.field.key]; });
     host.appendChild(h('p', { class: 'subhint' }, '共 ' + rest.length + ' 项；这些参数不会改变当前目的地的初筛、HS 或税费结论，仅在你想补充资料时填写。'));
     rest.forEach(function (q) { host.appendChild(questionControl(q.field, q.map, '')); });
   }
   function questionControl(field, map, whyText) {
     var val = getFact(field.key);
-    var wrap = h('div', { class: 'qa' + (val !== '' && val !== 'unknown' ? ' answered' : '') });
+    var wrap = h('div', { 'data-fact': field.key, class: 'qa' + (val !== '' && val !== 'unknown' ? ' answered' : '') });
     wrap.appendChild(h('div', { class: 'q' }, field.name + (field.unit ? '（' + field.unit + '）' : '')));
     var judgments = (map && map.judgments || []).map(function (j) {
       var jn = D.judgments.find(function (x) { return x.id === j; });
@@ -662,7 +691,7 @@
   $('pPlacingDate').addEventListener('change', function () { proj().scenario.placingOnMarketDate = $('pPlacingDate').value; touch(); refreshAll(); });
   $('pImportDate').addEventListener('change', function () { proj().scenario.importDate = $('pImportDate').value; touch(); });
   $('pRole').addEventListener('change', function () { proj().scenario.role = $('pRole').value; touch(); });
-  $('pMarket').addEventListener('change', function () { proj().scenario.market = $('pMarket').value; touch(); refreshAll(); });
+  $('pMarket').addEventListener('change', function () { proj().scenario.market = $('pMarket').value; proj().hsChoice = ''; proj().tax.hsReviewed = false; touch(); refreshAll(); });
   $('btnNext1').addEventListener('click', function () { showTab('compliance'); });
 
   /* ================= 第 2 步：合规初筛（实时） ================= */
@@ -724,7 +753,7 @@
     $('complianceRunInfo').textContent = '实时计算：可能适用 ' + sc.applicableRules.length + ' 条 · 待补事实 ' + sc.unknownRules.length + ' 条 · 不适用 ' + sc.excludedRules.length + ' 条（快照 ' + E.SNAPSHOT_DATE + '，法域链 ' + sc.jurisdictionChain.join(' → ') + '）';
 
     host.appendChild(h('div', { class: 'banner ' + (sc.coverage.level === 'L1' ? 'warn' : 'info') },
-      '服务覆盖等级：' + sc.coverage.level + '（' + sc.coverage.label + '）。' + sc.coverageDefinition));
+      sc.coverage.level === 'L1' ? '当前组合支持法规查询，具体适用要求需进一步核验。' : '当前组合支持合规初筛，请补齐影响判断的事实。税费能力请查看税费测算。'));
     sc.gaps.forEach(function (g) { host.appendChild(h('div', { class: 'banner bad' }, '覆盖缺口：' + g)); });
 
     // 待补事实置顶（有则优先处理）
@@ -757,7 +786,7 @@
         var it = h('div', { style: 'font-size:13px;margin:5px 0' },
           '· ' + reg.name + '（' + reg.id + '，核验 ' + reg.checkedAt + '）',
           h('span', { class: 'tag warn' }, reg.maturity === 'verified_index_only' ? '索引级' : reg.maturity),
-          reg.officialUrl ? h('a', { href: reg.officialUrl, target: '_blank', rel: 'noopener noreferrer', style: 'margin-left:6px' }, '原文') : null);
+          reg.officialUrl ? h('a', { href: reg.pdfPath || reg.officialUrl, target: '_blank', rel: 'noopener noreferrer', style: 'margin-left:6px' }, reg.pdfPath ? '查看 PDF' : '查看官方网页') : null);
         d3.appendChild(it);
       });
       g2.appendChild(d3);
@@ -835,6 +864,7 @@
       product_type: (subById(p.scenario.subcategoryId) || {}).legacy || '',
       subcategory_id: p.scenario.subcategoryId,
       hs_candidate: p.hsChoice || '',
+      hs_reviewed: t.hsReviewed === true,
       origin: t.origin || '',
       import_date: p.scenario.importDate || '',
       goods_value: t.goodsValue === '' ? null : Number(t.goodsValue),
@@ -880,7 +910,7 @@
     syncTaxCurrency(); // 市场切换币种残留纠正（表单构建前，保证标签与选项正确）
 
     /* A. HS 候选 */
-    host.appendChild(h('div', { class: 'banner warn' }, 'L3 表示已有普通交易计算路径；请填写进口日期、HS 候选、价格及运保费。最后核验日为 ' + E.SNAPSHOT_DATE + '。进口日期按规则有效期匹配；晚于核验日仍可测算，并提示复核后续政策变动。'));
+    host.appendChild(h('div', { class: 'banner warn' }, '普通进口测算：请填写进口日期、HS 候选、价格及运保费。最后核验日为 ' + E.SNAPSHOT_DATE + '。进口日期按规则有效期匹配；晚于核验日仍可测算，并提示复核后续政策变动。'));
     var hsCard = h('div', { class: 'card' });
     hsCard.appendChild(h('h3', {}, '目的国 HS 候选方向'));
     var cands = sc ? sc.hsCandidates : [];
@@ -894,12 +924,12 @@
         var head = h('div', { class: 'head' });
         var radio = h('input', { type: 'radio', name: 'hsChoice', value: c.id });
         radio.checked = on;
-        radio.addEventListener('change', function () { proj().hsChoice = c.id; touch(); renderTax(); updateDots(); });
+        radio.addEventListener('change', function () { proj().hsChoice = c.id; proj().tax.hsReviewed = false; touch(); renderTax(); updateDots(); });
         head.appendChild(radio);
         head.appendChild(h('b', {}, c.code));
         head.appendChild(h('span', { class: 'tag' }, c.market));
         head.appendChild(h('span', { class: 'tag warn' }, '候选方向'));
-        if (c.origin === 'task3_verified') head.appendChild(h('span', { class: 'tag ok' }, '任务三核验'));
+        if (c.origin === 'task3_verified') head.appendChild(h('span', { class: 'tag ok' }, '已有来源依据'));
         item.appendChild(head);
         item.appendChild(h('div', { class: 'body' }, (c.desc || '') + (c.support ? '。依据：' + c.support : '')));
         if (c.questions) item.appendChild(h('div', { class: 'subhint' }, '区分问题：' + c.questions));
@@ -909,6 +939,10 @@
         hsCard.appendChild(item);
       });
     }
+    var review = h('input', { type: 'checkbox', id: 'hsReviewed' });
+    review.checked = p.tax.hsReviewed === true;
+    review.addEventListener('change', function () { p.tax.hsReviewed = review.checked; touch(); renderTax(); });
+    hsCard.appendChild(h('label', {}, review, ' 已复核所选候选与实际商品一致，并确认属于普通非应税小家电（新加坡扩展品类汇总必需）'));
     host.appendChild(hsCard);
 
     /* B. 税费计算器（SG/AU）或变量计算式模板（其他市场） */
@@ -1030,7 +1064,7 @@
         })()));
         tc.appendChild(h('p', { class: 'subhint' }, tpl.note));
       } else {
-        tc.appendChild(h('div', { class: 'banner bad' }, '当前目的地（' + (JUR[market] ? JUR[market].name : market) + '）既无可复算税费画像，也无可展示的变量计算式模板：不输出任何金额结论。可在下方知识库查看通用税种与公式。'));
+        tc.appendChild(h('div', { class: 'banner bad' }, '当前目的地（' + (JUR[market] ? JUR[market].name : market) + '）既无已核税费规则，也无可展示的变量计算式模板：不输出任何金额结论。可在下方知识库查看通用税种与公式。'));
       }
       host.appendChild(tc);
     }
@@ -1093,6 +1127,8 @@
   }
   function renderTaxResult(host, tax) {
     clear(host);
+    if (tax.capabilities) host.appendChild(h('p', { class: 'subhint' },
+      '税率查询：' + (tax.capabilities.rates ? '有适用依据' : '待核验') + ' · 税额测算：' + (tax.capabilities.amounts ? '可用' : '待补条件') + ' · 已覆盖项目汇总：' + (tax.capabilities.summary ? '可用' : '待确认')));
     if (tax.lines && tax.lines.length) {
       var t = h('table', { class: 't' });
       t.appendChild(h('thead', {}, h('tr', {},
@@ -1298,7 +1334,7 @@
     }).catch(function (err) {
       clearTimeout(timer);
       var msg = (err && err.name === 'AbortError') ? '已取消或请求超时（180 秒）。'
-        : '网络或跨域请求失败：' + ((err && err.message) || '未知错误') + '。可改用国际站端点、自建代理地址，或使用下方手动闭环。';
+        : '网络或跨域请求失败：' + ((err && err.message) || '未知错误') + '。可改用国际站端点、自建代理地址，或使用下方手动分析。';
       cb({ ok: false, error: msg });
     });
   }
@@ -1366,7 +1402,7 @@
       lines.push('- 币种：' + tax.currency + '；已知法定分项小计：' + (tax.known_statutory_subtotal === null ? '不可用' : tax.known_statutory_subtotal) + '；完整总额：' + (tax.complete_total === null ? '不可用' : tax.complete_total));
       tax.lines.forEach(function (l) { lines.push('  - ' + l.label + '：税率 ' + (l.rate === null ? '—' : (l.rate * 100) + '%') + '，金额 ' + (l.amount === null ? '被阻断' : l.amount) + '（' + l.classification + '）'); });
     } else {
-      lines.push('- 当前目的地没有可复算税费画像：' + (tax.blockers[0] || ''));
+      lines.push('- 当前目的地没有已核税费规则：' + (tax.blockers[0] || ''));
     }
     (tax.blockers || []).forEach(function (b) { lines.push('- 阻断原因：' + b); });
     if (p.newsSelected.length) {
@@ -1497,7 +1533,7 @@
 
     /* 内嵌手动闭环 */
     var mBox = h('details', { class: 'box' });
-    mBox.appendChild(h('summary', {}, '不用 API？手动闭环：生成任务 → 复制交给千问办公 → 粘贴回复保存'));
+    mBox.appendChild(h('summary', {}, '不用 API？手动分析：生成任务 → 复制交给千问办公 → 粘贴回复保存'));
     var genBtn = h('button', { class: 'btn sec sm' }, '生成分析任务');
     var copyBtn = h('button', { class: 'btn sec sm' }, '复制任务');
     var ta = h('textarea', { class: 'task', spellcheck: 'false', readonly: 'readonly', 'aria-label': '分析任务文本' });
@@ -1668,7 +1704,7 @@
         var pd = h('details', { class: 'box' });
         pd.appendChild(h('summary', {}, '待规则核验法规（' + sc.pendingRegulations.length + ' 条，仅索引级）'));
         sc.pendingRegulations.forEach(function (reg) {
-          pd.appendChild(h('div', {}, '· ' + reg.name + '（' + reg.id + '，核验 ' + reg.checkedAt + '）', reg.officialUrl ? h('a', { href: reg.officialUrl, target: '_blank', rel: 'noopener noreferrer', style: 'margin-left:6px' }, '原文') : null));
+          pd.appendChild(h('div', {}, '· ' + reg.name + '（' + reg.id + '，核验 ' + reg.checkedAt + '）', reg.officialUrl ? h('a', { href: reg.pdfPath || reg.officialUrl, target: '_blank', rel: 'noopener noreferrer', style: 'margin-left:6px' }, reg.pdfPath ? '查看 PDF' : '查看官方网页') : null));
         });
         s3.appendChild(pd);
       }
@@ -1724,7 +1760,7 @@
         '；完整总额：', h('b', { style: R.tax.complete_total === null ? 'color:var(--red)' : 'color:var(--ok)' }, R.tax.complete_total === null ? '不可用' : fmtMoney(R.tax.complete_total, R.tax.currency))));
       (R.tax.blockers || []).forEach(function (b) { s5.appendChild(h('div', { class: 'banner bad' }, '阻断：' + b)); });
     } else {
-      (R.tax.blockers || ['当前目的地无可复算税费画像。']).forEach(function (b) { s5.appendChild(h('div', { class: 'banner bad' }, '税费缺口：' + b)); });
+      (R.tax.blockers || ['当前目的地无已核税费规则。']).forEach(function (b) { s5.appendChild(h('div', { class: 'banner bad' }, '税费缺口：' + b)); });
     }
     host.appendChild(s5);
 
@@ -1824,7 +1860,7 @@
       h('span', { class: 'tag brand' }, '行动 ' + D.actions.length),
       h('span', { class: 'tag brand' }, '材料 ' + D.materials.length),
       h('span', { class: 'tag brand' }, 'HS 候选 ' + D.hsCandidates.length),
-      h('span', { class: 'tag brand' }, '税费画像 ' + D.taxProfiles.length)));
+      h('span', { class: 'tag brand' }, '税费规则 ' + D.taxProfiles.length)));
     Object.keys(D.meta.levels).forEach(function (k) {
       n.appendChild(h('p', { style: 'margin:4px 0;font-size:13.5px' }, h('span', { class: 'tag brand' }, k), ' ' + D.meta.levels[k]));
     });

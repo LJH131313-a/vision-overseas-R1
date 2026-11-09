@@ -18092,7 +18092,9 @@
    "note": "",
    "checkedAt": "2026-11-04",
    "pdfKind": "",
-   "filePresent": false
+   "filePresent": false,
+   "pdfPath": "policy-documents/SG/SG-GST-Act-consolidated-20261104.pdf",
+   "pdfVersion": "合并文本标注自2026-11-04起生效"
   },
   {
    "id": "SRC-197",
@@ -32827,6 +32829,531 @@
    "sourceIds": [
     "SRC-177"
    ]
+  },
+  {
+   "market": "SG",
+   "product_type": "hot_water_dispenser",
+   "hs": "851679",
+   "candidateId": "HS-SG-P2-HOT-WATER-DISPENSER",
+   "origin_scope": "ANY",
+   "effective_from": "2026-01-01",
+   "effective_to": "2026-12-31",
+   "ordinaryRate": 0,
+   "sourceIds": [
+    "SRC-168",
+    "SRC-170",
+    "SRC-171",
+    "SRC-174"
+   ],
+   "version": "sg-nondutiable-2026-r1",
+   "verifiedAt": "2026-11-04",
+   "requiresReview": true,
+   "rule": "SG ordinary bulk import: non-dutiable household electrical appliances; CIF GST 9%; exclude low-value, excisable goods and special valuation.",
+   "verification": "Inherited repository source records; online recheck blocked 2026-11-09"
+  },
+  {
+   "market": "SG",
+   "product_type": "airpot",
+   "hs": "851679",
+   "candidateId": "HS-SG-P2-AIRPOT",
+   "origin_scope": "ANY",
+   "effective_from": "2026-01-01",
+   "effective_to": "2026-12-31",
+   "ordinaryRate": 0,
+   "sourceIds": [
+    "SRC-168",
+    "SRC-170",
+    "SRC-171",
+    "SRC-174"
+   ],
+   "version": "sg-nondutiable-2026-r1",
+   "verifiedAt": "2026-11-04",
+   "requiresReview": true,
+   "rule": "SG ordinary bulk import: non-dutiable household electrical appliances; CIF GST 9%; exclude low-value, excisable goods and special valuation.",
+   "verification": "Inherited repository source records; online recheck blocked 2026-11-09"
+  },
+  {
+   "market": "SG",
+   "product_type": "coffee_maker",
+   "hs": "851671",
+   "candidateId": "HS-SG-P2-COFFEE-MAKER",
+   "origin_scope": "ANY",
+   "effective_from": "2026-01-01",
+   "effective_to": "2026-12-31",
+   "ordinaryRate": 0,
+   "sourceIds": [
+    "SRC-168",
+    "SRC-170",
+    "SRC-171",
+    "SRC-174"
+   ],
+   "version": "sg-nondutiable-2026-r1",
+   "verifiedAt": "2026-11-04",
+   "requiresReview": true,
+   "rule": "SG ordinary bulk import: non-dutiable household electrical appliances; CIF GST 9%; exclude low-value, excisable goods and special valuation.",
+   "verification": "Inherited repository source records; online recheck blocked 2026-11-09"
+  },
+  {
+   "market": "SG",
+   "product_type": "slow_cooker",
+   "hs": "851660",
+   "candidateId": "HS-SG-P2-SLOW-COOKER",
+   "origin_scope": "ANY",
+   "effective_from": "2026-01-01",
+   "effective_to": "2026-12-31",
+   "ordinaryRate": 0,
+   "sourceIds": [
+    "SRC-168",
+    "SRC-170",
+    "SRC-171",
+    "SRC-174"
+   ],
+   "version": "sg-nondutiable-2026-r1",
+   "verifiedAt": "2026-11-04",
+   "requiresReview": true,
+   "rule": "SG ordinary bulk import: non-dutiable household electrical appliances; CIF GST 9%; exclude low-value, excisable goods and special valuation.",
+   "verification": "Inherited repository source records; online recheck blocked 2026-11-09"
+  },
+  {
+   "market": "SG",
+   "product_type": "pressure_cooker",
+   "hs": "851660",
+   "candidateId": "HS-SG-P2-PRESSURE-COOKER",
+   "origin_scope": "ANY",
+   "effective_from": "2026-01-01",
+   "effective_to": "2026-12-31",
+   "ordinaryRate": 0,
+   "sourceIds": [
+    "SRC-168",
+    "SRC-170",
+    "SRC-171",
+    "SRC-174"
+   ],
+   "version": "sg-nondutiable-2026-r1",
+   "verifiedAt": "2026-11-04",
+   "requiresReview": true,
+   "rule": "SG ordinary bulk import: non-dutiable household electrical appliances; CIF GST 9%; exclude low-value, excisable goods and special valuation.",
+   "verification": "Inherited repository source records; online recheck blocked 2026-11-09"
+  },
+  {
+   "market": "SG",
+   "product_type": "rice_cooker",
+   "hs": "851660",
+   "candidateId": "HS-SG-P2-RICE-COOKER",
+   "origin_scope": "ANY",
+   "effective_from": "2026-01-01",
+   "effective_to": "2026-12-31",
+   "ordinaryRate": 0,
+   "sourceIds": [
+    "SRC-168",
+    "SRC-170",
+    "SRC-171",
+    "SRC-174"
+   ],
+   "version": "sg-nondutiable-2026-r1",
+   "verifiedAt": "2026-11-04",
+   "requiresReview": true,
+   "rule": "SG ordinary bulk import: non-dutiable household electrical appliances; CIF GST 9%; exclude low-value, excisable goods and special valuation.",
+   "verification": "Inherited repository source records; online recheck blocked 2026-11-09"
+  },
+  {
+   "market": "SG",
+   "product_type": "food_steamer",
+   "hs": "851660",
+   "candidateId": "HS-SG-P2-FOOD-STEAMER",
+   "origin_scope": "ANY",
+   "effective_from": "2026-01-01",
+   "effective_to": "2026-12-31",
+   "ordinaryRate": 0,
+   "sourceIds": [
+    "SRC-168",
+    "SRC-170",
+    "SRC-171",
+    "SRC-174"
+   ],
+   "version": "sg-nondutiable-2026-r1",
+   "verifiedAt": "2026-11-04",
+   "requiresReview": true,
+   "rule": "SG ordinary bulk import: non-dutiable household electrical appliances; CIF GST 9%; exclude low-value, excisable goods and special valuation.",
+   "verification": "Inherited repository source records; online recheck blocked 2026-11-09"
+  },
+  {
+   "market": "SG",
+   "product_type": "soybean_milk_maker",
+   "hs": "851679",
+   "candidateId": "HS-SG-P2-SOYBEAN-MILK-MAKER",
+   "origin_scope": "ANY",
+   "effective_from": "2026-01-01",
+   "effective_to": "2026-12-31",
+   "ordinaryRate": 0,
+   "sourceIds": [
+    "SRC-168",
+    "SRC-170",
+    "SRC-171",
+    "SRC-174"
+   ],
+   "version": "sg-nondutiable-2026-r1",
+   "verifiedAt": "2026-11-04",
+   "requiresReview": true,
+   "rule": "SG ordinary bulk import: non-dutiable household electrical appliances; CIF GST 9%; exclude low-value, excisable goods and special valuation.",
+   "verification": "Inherited repository source records; online recheck blocked 2026-11-09"
+  },
+  {
+   "market": "SG",
+   "product_type": "air_fryer",
+   "hs": "851660",
+   "candidateId": "HS-SG-P2-AIR-FRYER",
+   "origin_scope": "ANY",
+   "effective_from": "2026-01-01",
+   "effective_to": "2026-12-31",
+   "ordinaryRate": 0,
+   "sourceIds": [
+    "SRC-168",
+    "SRC-170",
+    "SRC-171",
+    "SRC-174"
+   ],
+   "version": "sg-nondutiable-2026-r1",
+   "verifiedAt": "2026-11-04",
+   "requiresReview": true,
+   "rule": "SG ordinary bulk import: non-dutiable household electrical appliances; CIF GST 9%; exclude low-value, excisable goods and special valuation.",
+   "verification": "Inherited repository source records; online recheck blocked 2026-11-09"
+  },
+  {
+   "market": "SG",
+   "product_type": "deep_fryer",
+   "hs": "851679",
+   "candidateId": "HS-SG-P2-DEEP-FRYER",
+   "origin_scope": "ANY",
+   "effective_from": "2026-01-01",
+   "effective_to": "2026-12-31",
+   "ordinaryRate": 0,
+   "sourceIds": [
+    "SRC-168",
+    "SRC-170",
+    "SRC-171",
+    "SRC-174"
+   ],
+   "version": "sg-nondutiable-2026-r1",
+   "verifiedAt": "2026-11-04",
+   "requiresReview": true,
+   "rule": "SG ordinary bulk import: non-dutiable household electrical appliances; CIF GST 9%; exclude low-value, excisable goods and special valuation.",
+   "verification": "Inherited repository source records; online recheck blocked 2026-11-09"
+  },
+  {
+   "market": "SG",
+   "product_type": "electric_wok",
+   "hs": "851660",
+   "candidateId": "HS-SG-P2-ELECTRIC-WOK",
+   "origin_scope": "ANY",
+   "effective_from": "2026-01-01",
+   "effective_to": "2026-12-31",
+   "ordinaryRate": 0,
+   "sourceIds": [
+    "SRC-168",
+    "SRC-170",
+    "SRC-171",
+    "SRC-174"
+   ],
+   "version": "sg-nondutiable-2026-r1",
+   "verifiedAt": "2026-11-04",
+   "requiresReview": true,
+   "rule": "SG ordinary bulk import: non-dutiable household electrical appliances; CIF GST 9%; exclude low-value, excisable goods and special valuation.",
+   "verification": "Inherited repository source records; online recheck blocked 2026-11-09"
+  },
+  {
+   "market": "SG",
+   "product_type": "sandwich_maker",
+   "hs": "851660",
+   "candidateId": "HS-SG-P2-SANDWICH-MAKER",
+   "origin_scope": "ANY",
+   "effective_from": "2026-01-01",
+   "effective_to": "2026-12-31",
+   "ordinaryRate": 0,
+   "sourceIds": [
+    "SRC-168",
+    "SRC-170",
+    "SRC-171",
+    "SRC-174"
+   ],
+   "version": "sg-nondutiable-2026-r1",
+   "verifiedAt": "2026-11-04",
+   "requiresReview": true,
+   "rule": "SG ordinary bulk import: non-dutiable household electrical appliances; CIF GST 9%; exclude low-value, excisable goods and special valuation.",
+   "verification": "Inherited repository source records; online recheck blocked 2026-11-09"
+  },
+  {
+   "market": "SG",
+   "product_type": "waffle_maker",
+   "hs": "851660",
+   "candidateId": "HS-SG-P2-WAFFLE-MAKER",
+   "origin_scope": "ANY",
+   "effective_from": "2026-01-01",
+   "effective_to": "2026-12-31",
+   "ordinaryRate": 0,
+   "sourceIds": [
+    "SRC-168",
+    "SRC-170",
+    "SRC-171",
+    "SRC-174"
+   ],
+   "version": "sg-nondutiable-2026-r1",
+   "verifiedAt": "2026-11-04",
+   "requiresReview": true,
+   "rule": "SG ordinary bulk import: non-dutiable household electrical appliances; CIF GST 9%; exclude low-value, excisable goods and special valuation.",
+   "verification": "Inherited repository source records; online recheck blocked 2026-11-09"
+  },
+  {
+   "market": "SG",
+   "product_type": "hot_plate",
+   "hs": "851660",
+   "candidateId": "HS-SG-P2-HOT-PLATE",
+   "origin_scope": "ANY",
+   "effective_from": "2026-01-01",
+   "effective_to": "2026-12-31",
+   "ordinaryRate": 0,
+   "sourceIds": [
+    "SRC-168",
+    "SRC-170",
+    "SRC-171",
+    "SRC-174"
+   ],
+   "version": "sg-nondutiable-2026-r1",
+   "verifiedAt": "2026-11-04",
+   "requiresReview": true,
+   "rule": "SG ordinary bulk import: non-dutiable household electrical appliances; CIF GST 9%; exclude low-value, excisable goods and special valuation.",
+   "verification": "Inherited repository source records; online recheck blocked 2026-11-09"
+  },
+  {
+   "market": "SG",
+   "product_type": "microwave",
+   "hs": "851650",
+   "candidateId": "HS-SG-P2-MICROWAVE",
+   "origin_scope": "ANY",
+   "effective_from": "2026-01-01",
+   "effective_to": "2026-12-31",
+   "ordinaryRate": 0,
+   "sourceIds": [
+    "SRC-168",
+    "SRC-170",
+    "SRC-171",
+    "SRC-174"
+   ],
+   "version": "sg-nondutiable-2026-r1",
+   "verifiedAt": "2026-11-04",
+   "requiresReview": true,
+   "rule": "SG ordinary bulk import: non-dutiable household electrical appliances; CIF GST 9%; exclude low-value, excisable goods and special valuation.",
+   "verification": "Inherited repository source records; online recheck blocked 2026-11-09"
+  },
+  {
+   "market": "SG",
+   "product_type": "blender",
+   "hs": "850940",
+   "candidateId": "HS-SG-P2-BLENDER",
+   "origin_scope": "ANY",
+   "effective_from": "2026-01-01",
+   "effective_to": "2026-12-31",
+   "ordinaryRate": 0,
+   "sourceIds": [
+    "SRC-168",
+    "SRC-170",
+    "SRC-171",
+    "SRC-174"
+   ],
+   "version": "sg-nondutiable-2026-r1",
+   "verifiedAt": "2026-11-04",
+   "requiresReview": true,
+   "rule": "SG ordinary bulk import: non-dutiable household electrical appliances; CIF GST 9%; exclude low-value, excisable goods and special valuation.",
+   "verification": "Inherited repository source records; online recheck blocked 2026-11-09"
+  },
+  {
+   "market": "SG",
+   "product_type": "food_processor",
+   "hs": "850940",
+   "candidateId": "HS-SG-P2-FOOD-PROCESSOR",
+   "origin_scope": "ANY",
+   "effective_from": "2026-01-01",
+   "effective_to": "2026-12-31",
+   "ordinaryRate": 0,
+   "sourceIds": [
+    "SRC-168",
+    "SRC-170",
+    "SRC-171",
+    "SRC-174"
+   ],
+   "version": "sg-nondutiable-2026-r1",
+   "verifiedAt": "2026-11-04",
+   "requiresReview": true,
+   "rule": "SG ordinary bulk import: non-dutiable household electrical appliances; CIF GST 9%; exclude low-value, excisable goods and special valuation.",
+   "verification": "Inherited repository source records; online recheck blocked 2026-11-09"
+  },
+  {
+   "market": "SG",
+   "product_type": "food_mixer",
+   "hs": "850940",
+   "candidateId": "HS-SG-P2-FOOD-MIXER",
+   "origin_scope": "ANY",
+   "effective_from": "2026-01-01",
+   "effective_to": "2026-12-31",
+   "ordinaryRate": 0,
+   "sourceIds": [
+    "SRC-168",
+    "SRC-170",
+    "SRC-171",
+    "SRC-174"
+   ],
+   "version": "sg-nondutiable-2026-r1",
+   "verifiedAt": "2026-11-04",
+   "requiresReview": true,
+   "rule": "SG ordinary bulk import: non-dutiable household electrical appliances; CIF GST 9%; exclude low-value, excisable goods and special valuation.",
+   "verification": "Inherited repository source records; online recheck blocked 2026-11-09"
+  },
+  {
+   "market": "SG",
+   "product_type": "juice_extractor",
+   "hs": "850940",
+   "candidateId": "HS-SG-P2-JUICE-EXTRACTOR",
+   "origin_scope": "ANY",
+   "effective_from": "2026-01-01",
+   "effective_to": "2026-12-31",
+   "ordinaryRate": 0,
+   "sourceIds": [
+    "SRC-168",
+    "SRC-170",
+    "SRC-171",
+    "SRC-174"
+   ],
+   "version": "sg-nondutiable-2026-r1",
+   "verifiedAt": "2026-11-04",
+   "requiresReview": true,
+   "rule": "SG ordinary bulk import: non-dutiable household electrical appliances; CIF GST 9%; exclude low-value, excisable goods and special valuation.",
+   "verification": "Inherited repository source records; online recheck blocked 2026-11-09"
+  },
+  {
+   "market": "SG",
+   "product_type": "vacuum",
+   "hs": "850811/850819",
+   "candidateId": "HS-SG-P2-VACUUM",
+   "origin_scope": "ANY",
+   "effective_from": "2026-01-01",
+   "effective_to": "2026-12-31",
+   "ordinaryRate": 0,
+   "sourceIds": [
+    "SRC-168",
+    "SRC-170",
+    "SRC-171",
+    "SRC-174"
+   ],
+   "version": "sg-nondutiable-2026-r1",
+   "verifiedAt": "2026-11-04",
+   "requiresReview": true,
+   "rule": "SG ordinary bulk import: non-dutiable household electrical appliances; CIF GST 9%; exclude low-value, excisable goods and special valuation.",
+   "verification": "Inherited repository source records; online recheck blocked 2026-11-09"
+  },
+  {
+   "market": "SG",
+   "product_type": "wet_dry_vacuum",
+   "hs": "850811/850819",
+   "candidateId": "HS-SG-P2-WET-DRY-VACUUM",
+   "origin_scope": "ANY",
+   "effective_from": "2026-01-01",
+   "effective_to": "2026-12-31",
+   "ordinaryRate": 0,
+   "sourceIds": [
+    "SRC-168",
+    "SRC-170",
+    "SRC-171",
+    "SRC-174"
+   ],
+   "version": "sg-nondutiable-2026-r1",
+   "verifiedAt": "2026-11-04",
+   "requiresReview": true,
+   "rule": "SG ordinary bulk import: non-dutiable household electrical appliances; CIF GST 9%; exclude low-value, excisable goods and special valuation.",
+   "verification": "Inherited repository source records; online recheck blocked 2026-11-09"
+  },
+  {
+   "market": "SG",
+   "product_type": "robot_vacuum",
+   "hs": "850811/850819",
+   "candidateId": "HS-SG-P2-ROBOT-VACUUM",
+   "origin_scope": "ANY",
+   "effective_from": "2026-01-01",
+   "effective_to": "2026-12-31",
+   "ordinaryRate": 0,
+   "sourceIds": [
+    "SRC-168",
+    "SRC-170",
+    "SRC-171",
+    "SRC-174"
+   ],
+   "version": "sg-nondutiable-2026-r1",
+   "verifiedAt": "2026-11-04",
+   "requiresReview": true,
+   "rule": "SG ordinary bulk import: non-dutiable household electrical appliances; CIF GST 9%; exclude low-value, excisable goods and special valuation.",
+   "verification": "Inherited repository source records; online recheck blocked 2026-11-09"
+  },
+  {
+   "market": "SG",
+   "product_type": "fan",
+   "hs": "841451/841459",
+   "candidateId": "HS-SG-P2-FAN",
+   "origin_scope": "ANY",
+   "effective_from": "2026-01-01",
+   "effective_to": "2026-12-31",
+   "ordinaryRate": 0,
+   "sourceIds": [
+    "SRC-168",
+    "SRC-170",
+    "SRC-171",
+    "SRC-174"
+   ],
+   "version": "sg-nondutiable-2026-r1",
+   "verifiedAt": "2026-11-04",
+   "requiresReview": true,
+   "rule": "SG ordinary bulk import: non-dutiable household electrical appliances; CIF GST 9%; exclude low-value, excisable goods and special valuation.",
+   "verification": "Inherited repository source records; online recheck blocked 2026-11-09"
+  },
+  {
+   "market": "SG",
+   "product_type": "hair_styler",
+   "hs": "851632",
+   "candidateId": "HS-SG-P2-HAIR-STYLER",
+   "origin_scope": "ANY",
+   "effective_from": "2026-01-01",
+   "effective_to": "2026-12-31",
+   "ordinaryRate": 0,
+   "sourceIds": [
+    "SRC-168",
+    "SRC-170",
+    "SRC-171",
+    "SRC-174"
+   ],
+   "version": "sg-nondutiable-2026-r1",
+   "verifiedAt": "2026-11-04",
+   "requiresReview": true,
+   "rule": "SG ordinary bulk import: non-dutiable household electrical appliances; CIF GST 9%; exclude low-value, excisable goods and special valuation.",
+   "verification": "Inherited repository source records; online recheck blocked 2026-11-09"
+  },
+  {
+   "market": "SG",
+   "product_type": "garment_steamer",
+   "hs": "851679",
+   "candidateId": "HS-SG-P2-GARMENT-STEAMER",
+   "origin_scope": "ANY",
+   "effective_from": "2026-01-01",
+   "effective_to": "2026-12-31",
+   "ordinaryRate": 0,
+   "sourceIds": [
+    "SRC-168",
+    "SRC-170",
+    "SRC-171",
+    "SRC-174"
+   ],
+   "version": "sg-nondutiable-2026-r1",
+   "verifiedAt": "2026-11-04",
+   "requiresReview": true,
+   "rule": "SG ordinary bulk import: non-dutiable household electrical appliances; CIF GST 9%; exclude low-value, excisable goods and special valuation.",
+   "verification": "Inherited repository source records; online recheck blocked 2026-11-09"
   }
  ],
  "coverageProfiles": [
