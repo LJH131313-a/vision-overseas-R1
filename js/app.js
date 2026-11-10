@@ -2499,7 +2499,7 @@
   }
   if (window.VOI18N) {
     window.VOI18N.init(window.VO_DATA);
-    if (window.VOI18N.get() === 'en') setTimeout(function () { localize(document.body); }, 0);
+    if (window.VOI18N.get() === 'en') { localize(document.body); setTimeout(function () { localize(document.body); }, 0); }
   }
   ['langZh', 'langEn'].forEach(function (id) {
     var b = $(id);
