@@ -145,7 +145,7 @@
   'use strict';
   var I = window.VOI18N;
   if (!I) return;
-  I.init(null);
+  I.init(window.VO_DATA || null);
   var bar = document.createElement('div');
   bar.className = 'lang-switch';
   bar.setAttribute('role', 'group');
@@ -175,13 +175,19 @@
   });
   var host = document.querySelector('.pl-head') || document.querySelector('.page-title') || document.querySelector('header') || document.body;
   host.appendChild(bar);
-  if (I.get() === 'en') I.apply(document.body);
+  if (I.get() === 'en') {
+    I.apply(document.body);
+    // 异步渲染兜底：加载完成与首屏数据到位后各补一次
+    window.addEventListener('load', function () { I.apply(document.body); });
+    [400, 1200, 2600, 5000].forEach(function (ms) { setTimeout(function () { I.apply(document.body); }, ms); });
+  }
   // 页面重新渲染（筛选、分页、搜索）后自动按当前语言处理文本
   if (window.MutationObserver) {
+    var applying = false;
     new window.MutationObserver(function () {
-      if (busy || I.get() !== 'en') return;
-      busy = true;
-      try { I.apply(document.body); } finally { setTimeout(function () { busy = false; }, 0); }
+      if (applying || I.get() !== 'en') return;
+      applying = true;
+      try { I.apply(document.body); } finally { setTimeout(function () { applying = false; }, 0); }
     }).observe(document.body, { subtree: true, childList: true, characterData: true });
   }
   paint();

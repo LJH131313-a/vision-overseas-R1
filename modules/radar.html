@@ -13,6 +13,7 @@ return `<article class="story"><div class="meta"><span class="tag">${esc(s.marke
 document.addEventListener('click',function(ev){var b=ev.target.closest?ev.target.closest('.addproj'):null;if(!b)return;var u=b.getAttribute('data-url')||'';if(!/^https?:\/\//i.test(u))return;try{parent.postMessage({type:'radar-select',url:u},'*')}catch(e){}});loadNews();
 </script>
 <!-- 中英双语接入（与主站同一套词条与语言层） -->
+<script src="../data/vo-data.js"></script>
 <script src="../data/i18n-en.js"></script>
 <script src="../js/i18n.js"></script>
 <script>
@@ -20,7 +21,7 @@ document.addEventListener('click',function(ev){var b=ev.target.closest?ev.target
   'use strict';
   var I = window.VOI18N;
   if (!I) return;
-  I.init(null);
+  I.init(window.VO_DATA || null);
   var bar = document.createElement('div');
   bar.className = 'lang-switch';
   bar.setAttribute('role', 'group');
@@ -50,13 +51,19 @@ document.addEventListener('click',function(ev){var b=ev.target.closest?ev.target
   });
   var host = document.querySelector('.pl-head') || document.querySelector('.page-title') || document.querySelector('header') || document.body;
   host.appendChild(bar);
-  if (I.get() === 'en') I.apply(document.body);
+  if (I.get() === 'en') {
+    I.apply(document.body);
+    // 异步渲染兜底：加载完成与首屏数据到位后各补一次
+    window.addEventListener('load', function () { I.apply(document.body); });
+    [400, 1200, 2600, 5000].forEach(function (ms) { setTimeout(function () { I.apply(document.body); }, ms); });
+  }
   // 页面重新渲染（筛选、分页、搜索）后自动按当前语言处理文本
   if (window.MutationObserver) {
+    var applying = false;
     new window.MutationObserver(function () {
-      if (busy || I.get() !== 'en') return;
-      busy = true;
-      try { I.apply(document.body); } finally { setTimeout(function () { busy = false; }, 0); }
+      if (applying || I.get() !== 'en') return;
+      applying = true;
+      try { I.apply(document.body); } finally { setTimeout(function () { applying = false; }, 0); }
     }).observe(document.body, { subtree: true, childList: true, characterData: true });
   }
   paint();

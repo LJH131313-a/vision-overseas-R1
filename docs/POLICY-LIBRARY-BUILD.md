@@ -1,12 +1,12 @@
 # 政策资料库构建与校验记录（开发文档）
 
-生成：2026-11-09T12:14:17.219Z｜脚本：build/build-policy-library.mjs
+生成：2026-11-09T17:23:03.599Z｜脚本：build/build-policy-library.mjs
 
-- 记录 162 条，178.9 MB；逐份 SHA-256 与字节实测。
+- 记录 162 条，171.3 MB；逐份 SHA-256 与字节实测。
 - 文件类型分布：reading 101；hosted 43；unknown 7；card 2；manual 4；official 5。
-- 重复内容组 2 个（同哈希不同来源 ID，已记 sameContentAs，不删除任何原件）。
-- 与 docs/policy-batches-inventory.csv 匹配：126 / 125 条索引命中。
-- 主题待归类 64 条；产品适用范围待核实 85 条；无官方链接 4 条。
+- 重复内容组 1 个（同哈希不同来源 ID，已记 sameContentAs，不删除任何原件）。
+- 与 docs/policy-batches-inventory.csv 匹配：125 / 125 条索引命中。
+- 主题待归类 65 条；产品适用范围待核实 83 条；无官方链接 4 条。
 
 ## 缺口
 
