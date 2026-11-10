@@ -121,6 +121,22 @@
     if ((m = text.match(/^第 (\d+) \/ (\d+) 页$/))) return 'Page ' + m[1] + ' of ' + m[2];
     // 政策资料库技术字段
     if ((m = text.match(/^页数：([\d,]+)$/))) return 'Pages: ' + m[1];
+    // 组合式：'规则提示（本地引擎，非千问分析）：X关注建议：BODY' 逐层拆解，避免枚举所有组合
+    if ((m = text.match(/^规则提示（本地引擎，非千问分析）：([\s\S]+)$/))) {
+      var inner = translateZh(m[1].trim());
+      if (inner) return 'Rule hints (local engine, not AI analysis): ' + inner;
+    }
+    // 新闻卡：'X关注建议：BODY'（市场前缀 + 复用正文）
+    if ((m = text.match(/^([\u4e00-\u9fff]{2,4})关注建议：([\s\S]+)$/))) {
+      var mkEn = lookup(m[1]);
+      var body = m[2].trim();
+      var bodyEn = lookup(body) || lookup(body.replace(/。$/, '')) || null;
+      if (mkEn && bodyEn) return mkEn + ': ' + bodyEn.replace(/\.$/, '') + '.';
+    }
+    if ((m = text.match(/^官方新闻不自动等于已生效法规；快照时间 ([\d: -]+)。$/))) {
+      return 'Official news is not automatically an in-force regulation; snapshot ' + m[1] + '.';
+    }
+    if ((m = text.match(/^快照状态：共 (\d+) 条$/))) return 'Snapshot: ' + m[1] + ' items';
     if ((m = text.match(/^快照 · (\d+) 条；由 GitHub Actions 定时采集后重新发布$/))) return 'Snapshot · ' + m[1] + ' items; collected and republished on a schedule by GitHub Actions';
     if ((m = text.match(/^第 (\d+) \/ (\d+) 页 · (\d+) 条（近两年）$/))) return 'Page ' + m[1] + ' / ' + m[2] + ' · ' + m[3] + ' items (last 2 years)';
     if ((m = text.match(/^大小：([\d,]+) 字节$/))) return 'Size: ' + m[1] + ' bytes';
@@ -179,6 +195,13 @@
   function translateZh(text) {
     var exact = lookup(text);
     if (exact) return exact;
+    var mk = text.match(/^([\u4e00-\u9fff]{2,4})关注建议：([\s\S]+)$/);
+    if (mk) {
+      var mkEn = lookup(mk[1]);
+      var body = mk[2].trim();
+      var bodyEn = lookup(body) || lookup(body.replace(/。$/, ''));
+      if (mkEn && bodyEn) return mkEn + ': ' + bodyEn.replace(/\.$/, '') + '.';
+    }
     var suf = suffixTranslate(text);
     if (suf) return suf;
     var ph = phraseReplace(text);
